@@ -105,7 +105,7 @@ export class ImagesComponent implements OnInit {
     this.apiService.getCasinoCategory({}, providerId).subscribe({
       next: (res: any) => {
         console.log('Categories:', res);
-        this.categories = res?.data || [];
+        this.categories = res || [];
       },
       error: (err: any) => {
         console.log(err);
