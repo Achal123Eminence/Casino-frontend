@@ -1,0 +1,225 @@
+<!-- casino-provider.component.html -->
+
+<div class="casino-provider-page">
+
+  <!-- Top Heading -->
+  <div class="page-header">
+    <h2>Casino Provider</h2>
+  </div>
+
+  <!-- Main Tabs -->
+  <div class="top-tabs">
+    <button class="tab-btn" [class.active]="selectedCasinoType === 'awc'" type="button"
+      (click)="changeCasinoType('awc')">
+      AWC Casino
+    </button>
+
+    <button class="tab-btn" [class.active]="selectedCasinoType === 'international'" type="button"
+      (click)="changeCasinoType('international')">
+      International Casino
+    </button>
+  </div>
+
+  <div class="subsection-tab">
+
+
+    <!-- Second Tabs -->
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" type="button">
+        Provider
+      </button>
+    </div>
+
+    <!-- Add Provider Section -->
+    <div class="provider-form-card">
+      <div class="provider-form">
+
+        <div class="input-group-custom">
+          <label>Provider Name</label>
+
+          <input type="text" class="form-control" placeholder="Enter provider name" [(ngModel)]="providerName"
+            (input)="validateProviderName()">
+          <small class="validation-error" *ngIf="providerNameError">
+            Only alphabets and numbers are allowed
+          </small>
+        </div>
+
+        <button class="submit-btn" type="button" (click)="addProvider()">
+          Submit
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-card">
+
+      <div class="table-responsive">
+
+        <table class="custom-table">
+
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>PROVIDER NAME</th>
+              <th>GAME DETAILS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let item of providerList; let i = index">
+
+              <!-- Serial Number -->
+              <td>{{ i + 1 }}</td>
+
+              <!-- Provider Name -->
+              <td>
+                {{ item.provider_name }}
+              </td>
+
+              <!-- Game Details -->
+
+              <td>
+
+                <div class="game-details-wrapper">
+
+                  <!-- Game Name -->
+
+                  <div class="game-field">
+
+                    <input type="text" class="table-input" placeholder="Enter game name" [(ngModel)]="item.gameName"
+                      (input)="validateGameName(item)">
+
+                    <small class="validation-error" *ngIf="item.gameNameError">
+
+                      Only alphabets and numbers allowed
+
+                    </small>
+
+                  </div>
+
+                  <!-- Game Code -->
+
+                  <div class="game-field">
+
+                    <input type="text" class="table-input" placeholder="Enter game code" [(ngModel)]="item.gameCode"
+                      (input)="validateGameCode(item)">
+
+                    <small class="validation-error" *ngIf="item.gameCodeError">
+
+                      Only alphabets and numbers allowed
+
+                    </small>
+
+                  </div>
+
+                  <!-- Add Button -->
+
+                  <button class="small-btn" type="button" (click)="addGameDetails(item)">
+
+                    Add
+
+                  </button>
+
+                </div>
+
+              </td>
+
+              <!-- Actions -->
+              <td>
+
+                <div class="action-buttons">
+
+                  <!-- Add Category -->
+                  <button class="action-btn add-category-btn" type="button" (click)="openCategoryModal(item)">
+                    Add Category
+                  </button>
+
+                  <!-- Category List -->
+                  <button class="action-btn category-list-btn" type="button" (click)="viewCategoryList(item)">
+                    Category List
+                  </button>
+
+                  <!-- File Upload -->
+                  <div class="csv-upload-area">
+
+                    <input type="file" #csvFileInput accept=".csv" hidden (change)="onFileSelected($event, item)">
+
+                    <button class="action-btn choose-file-btn" type="button" (click)="csvFileInput.click()">
+                      Choose File
+                    </button>
+
+                    <button class="action-btn upload-btn" type="button" (click)="uploadCsv(item)">
+                      Upload CSV
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+            <!-- Empty State -->
+            <tr *ngIf="providerList.length === 0">
+              <td colspan="5" class="empty-data">
+                No providers added yet.
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Category Modal -->
+
+<div class="custom-modal-backdrop" *ngIf="showCategoryModal">
+
+  <div class="custom-modal">
+
+    <div class="modal-header-custom">
+
+      <h4>Add Category</h4>
+
+      <button class="close-btn" (click)="closeCategoryModal()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body-custom">
+
+      <label>Category Name</label>
+
+      <input type="text" class="form-control" placeholder="Enter category name" [(ngModel)]="categoryName"
+        (input)="validateCategoryName()">
+
+      <small class="validation-error" *ngIf="categoryNameError">Only alphabets and numbers are allowed</small>
+
+    </div>
+
+    <div class="modal-footer-custom">
+
+      <button class="cancel-btn" type="button" (click)="closeCategoryModal()">
+        Cancel
+      </button>
+
+      <button class="submit-btn" type="button" (click)="submitCategory()">
+        Submit
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

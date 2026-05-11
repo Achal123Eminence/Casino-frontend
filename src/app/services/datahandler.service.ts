@@ -692,4 +692,24 @@ export class DatahandlerService {
     return this.http.post(`${this.baseUrl}/page-media/update-autoplay`, payload);
   };
 
+  // Casino Provider
+  casinoAddProvider(data: any) {
+    return this.http.post(`${this.baseUrl}/casino/add-providers`, data);
+  };
+
+  getCasinoProvider(data: any = {}) {
+    return this.http.post(`${this.baseUrl}/casino/providers`, data);
+  }
+
+  casinoAddCategory(data: any) {
+    return this.http.post(`${this.baseUrl}/casino/add-category`, data);
+  };
+
+  getCasinoCategory(data: any = {},id: any) {
+    return this.http.post(`${this.baseUrl}/casino/categories/${id}`, data);
+  }
+
+  casinoAddGameDetails(data: any) {
+    return this.http.post(`${this.baseUrl}/casino/add-game`, data);
+  };
 }

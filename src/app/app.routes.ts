@@ -202,6 +202,39 @@ export const routes: Routes = [
             './features/main-menu/dashboards/project-dashboard/project-dashboard.component'
           ).then((m) => m.ProjectDashboardComponent),
       },
+      {
+        path: 'casino-provider',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/casino-provider/casino-provider.component'
+          ).then((m) => m.CasinoProviderComponent),
+      },
+      {
+        path: 'casino-category-list/:id',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/category-list/category-list.component'
+          ).then((m) => m.CategoryListComponent),
+      },
+      {
+        path: 'casino-Images',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/images/images.component'
+          ).then((m) => m.ImagesComponent),
+      },
       //Application
       {
         path: 'application',

@@ -1,0 +1,152 @@
+<!-- category-list.component.html -->
+
+<div class="category-page">
+
+  <!-- Header -->
+
+  <div class="page-header">
+
+    <div>
+
+      <h2>Category List</h2>
+
+      <div class="breadcrumb-area">
+
+        <a routerLink="/casino-provider">
+          Casino Provider
+        </a>
+
+        <span>›</span>
+
+        <span>
+          <!-- {{ providerDetails?.providerName || 'Category List'}} -->
+          Category List
+        </span>
+
+      </div>
+
+    </div>
+
+    <button
+      class="back-btn"
+      routerLink="/casino-provider">
+
+      Back
+
+    </button>
+
+  </div>
+
+  <!-- Provider Card -->
+<!-- 
+  <div class="provider-card">
+
+    <div class="provider-box">
+
+      <label>Provider Name</label>
+
+      <h3>
+        {{ providerDetails?.providerName }}
+      </h3>
+
+    </div>
+
+    <div class="provider-box">
+
+      <label>Total Categories</label>
+
+      <h3>
+        {{ categoryList.length }}
+      </h3>
+
+    </div>
+
+  </div> -->
+
+  <!-- Table -->
+
+  <div class="table-card">
+
+    <div class="table-responsive">
+
+      <table class="custom-table">
+
+        <thead>
+
+          <tr>
+            <th>S.NO</th>
+            <th>CATEGORY NAME</th>
+            <!-- <th>TOTAL GAMES</th> -->
+            <th>CREATED DATE</th>
+            <th>ACTION</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let item of categoryList; let i = index">
+
+            <td>
+              {{ i + 1 }}
+            </td>
+
+            <td>
+              {{ item.name }}
+            </td>
+
+            <!-- <td>
+              {{ item.totalGames || 0 }}
+            </td> -->
+
+            <td>
+              {{ item.createdAt | date:'dd/MM/yyyy hh:mm a' }}
+            </td>
+
+            <td>
+
+              <div class="action-buttons">
+
+                <button
+                  class="edit-btn"
+                  type="button">
+
+                  Edit
+
+                </button>
+
+                <button
+                  class="delete-btn"
+                  type="button">
+
+                  Delete
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+          <!-- Empty -->
+
+          <tr *ngIf="categoryList.length === 0">
+
+            <td colspan="5" class="empty-data">
+
+              No categories found.
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

@@ -744,7 +744,25 @@ export class DataService {
               permissionKeys: ['WGCREATE', 'MNGUSRS'],
             },
           ],
-        }
+        },
+        {
+          menuValue: 'Casino Provider',
+          icon: 'layout',
+          route: routes.casinoProvider,
+          base: 'casino-provider',
+          hasSubRoute: false,
+          showSubRoute: false,
+          permissionKey: 'CASINOPROVIDER',
+        },
+        {
+          menuValue: 'Images',
+          icon: 'layout',
+          route: routes.casinoImages,
+          base: 'casino-images',
+          hasSubRoute: false,
+          showSubRoute: false,
+          permissionKey: 'CASINOIMAGES',
+        },          
       ],
     },
     {
