@@ -1,1 +1,185 @@
-<p>images works!</p>
+<div class="container-fluid">
+
+  <div class="card main-card">
+
+    <div class="card-body">
+
+      <h3 class="page-title">Casino Images</h3>
+
+      <form [formGroup]="imageForm">
+
+        <!-- PROVIDER + CATEGORY -->
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+              Select Provider
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="provider"
+              (change)="onProviderChange($event)">
+
+              <option value="">
+                Select Provider
+              </option>
+
+              <option
+                *ngFor="let item of providers"
+                [value]="item._id">
+
+                {{ item.provider_name }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+              Select Category
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="category">
+
+              <option value="">
+                Select Category
+              </option>
+
+              <option
+                *ngFor="let item of categories"
+                [value]="item._id">
+
+                {{ item.name }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+        <!-- DYNAMIC ROWS -->
+
+        <div formArrayName="images">
+
+          <div
+            class="row align-items-end image-row"
+            *ngFor="let item of imagesArray.controls; let i = index"
+            [formGroupName]="i">
+
+            <!-- IMAGE NAME -->
+
+            <div class="col-md-3 mb-3">
+
+              <label class="form-label">
+                Image Name
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Image Name"
+                formControlName="image_name">
+
+            </div>
+
+            <!-- GAME CODE -->
+
+            <div class="col-md-2 mb-3">
+
+              <label class="form-label">
+                Game Code
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Game Code"
+                formControlName="game_code">
+
+            </div>
+
+            <!-- IMAGE -->
+
+            <div class="col-md-3 mb-3">
+
+              <label class="form-label">
+                Image
+              </label>
+
+              <input
+                type="file"
+                class="form-control"
+                (change)="onFileSelect($event, i)">
+
+            </div>
+
+            <!-- IMAGE URL -->
+
+            <div class="col-md-3 mb-3">
+
+              <label class="form-label">
+                Image URL
+              </label>
+
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Image Url"
+                formControlName="image_url">
+
+            </div>
+
+            <!-- ACTION BUTTON -->
+
+            <div class="col-md-1 mb-3">
+              <!-- FIRST ROW ADD BUTTON -->
+              <button *ngIf="i === 0" type="button" class="btn btn-primary w-100" (click)="addRow()">+</button>
+              <!-- OTHER ROWS REMOVE BUTTON -->
+              <button *ngIf="i !== 0" type="button" class="btn btn-danger w-100" (click)="removeRow(i)">-</button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="mt-4 d-flex gap-2">
+
+          <button
+            type="button"
+            class="btn btn-success"
+            [disabled]="isLoading"
+            (click)="submitImages()">
+
+            {{ isLoading ? 'Saving...' : 'Save' }}
+
+          </button>
+
+          <button
+            type="reset"
+            class="btn btn-secondary">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

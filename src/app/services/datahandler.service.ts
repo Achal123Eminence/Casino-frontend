@@ -712,4 +712,8 @@ export class DatahandlerService {
   casinoAddGameDetails(data: any) {
     return this.http.post(`${this.baseUrl}/casino/add-game`, data);
   };
+
+  casinoAddImages(data: any) {
+    return this.http.post(`${this.baseUrl}/image/upload`, data);
+  };
 }
