@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconThemifyComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-themify/icon-themify.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-themify</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-themify.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-themify.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-themify/icon-themify.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-themify&#x27;,
+    templateUrl: &#x27;./icon-themify.component.html&#x27;,
+    styleUrls: [&#x27;./icon-themify.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconThemifyComponent {
+routes&#x3D;routes
+   
+
+   
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Themify Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Themify Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Chart --&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;Themify Icon&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+                    &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrows-vertical&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrows-vertical&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrows-horizontal&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrows-horizontal&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-double-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-double-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-double-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-double-right&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-double-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-double-left&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-angle-double-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-angle-double-down&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-move&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-move&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-fullscreen&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-fullscreen&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-top-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-top-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-top-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-top-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-circle-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-circle-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-circle-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-circle-right&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-circle-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-circle-left&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrow-circle-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrow-circle-down&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-arrows-corner&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-arrows-corner&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-split-v&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-split-v&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-split-v-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-split-v-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-split-h&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-split-h&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-point-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-point-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-point-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-point-right&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-point-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-point-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-point-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-point-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-back-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-back-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-back-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-back-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-exchange-vertical&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-exchange-vertical&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-wand&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-wand&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-save&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-save&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-save-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-save-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-direction&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-direction&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-direction-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-direction-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-user&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-user&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-link&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-link&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-unlink&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-unlink&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-trash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-trash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-target&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-target&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-tag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-tag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-desktop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-desktop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-tablet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-tablet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-mobile&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-mobile&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-email&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-email&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-star&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-star&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-spray&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-spray&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-signal&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-signal&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shopping-cart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shopping-cart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shopping-cart-full&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shopping-cart-full&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-settings&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-settings&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-search&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-search&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-zoom-in&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-zoom-in&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-zoom-out&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-zoom-out&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-cut&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-cut&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ruler&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ruler&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ruler-alt-2&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ruler-alt-2&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ruler-pencil&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ruler-pencil&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ruler-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ruler-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bookmark&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bookmark&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bookmark-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bookmark-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-reload&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-reload&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-minus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-close&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-close&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pin&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pin&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pencil&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pencil&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pencil-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pencil-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-paint-roller&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-paint-roller&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-paint-bucket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-paint-bucket&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-na&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-na&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-medall&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-medall&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-medall-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-medall-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-marker&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-marker&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-marker-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-marker-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-lock&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-lock&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-unlock&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-unlock&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-location-arrow&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-location-arrow&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-layout&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-layout&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-layers&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-layers&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-layers-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-layers-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-key&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-key&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-image&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-image&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-heart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-heart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-heart-broken&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-heart-broken&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-stop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-stop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-open&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-open&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hand-drag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hand-drag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-flag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-flag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-flag-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-flag-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-flag-alt-2&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-flag-alt-2&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-eye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-eye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-import&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-import&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-export&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-export&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-cup&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-cup&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-crown&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-crown&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-comments&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-comments&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-comment&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-comment&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-comment-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-comment-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-thought&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-thought&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-clip&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-clip&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-check&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-check&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-check-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-check-box&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-camera&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-camera&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-announcement&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-announcement&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-brush&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-brush&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-brush-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-brush-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-palette&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-palette&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-briefcase&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-briefcase&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bolt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bolt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bolt-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bolt-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-blackboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-blackboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-world&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-world&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-wheelchair&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-wheelchair&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-car&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-car&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-truck&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-truck&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-timer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-timer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ticket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ticket&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-thumb-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-thumb-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-thumb-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-thumb-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-stats-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-stats-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-stats-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-stats-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shine&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shine&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shift-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shift-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shift-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shift-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shift-right-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shift-right-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shift-left-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shift-left-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shield&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shield&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-notepad&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-notepad&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-server&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-server&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pulse&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pulse&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-printer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-printer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-power-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-power-off&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-plug&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-plug&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pie-chart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pie-chart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-panel&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-panel&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-package&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-package&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-music&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-music&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-music-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-music-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-mouse&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-mouse&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-mouse-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-mouse-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-money&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-money&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-microphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-microphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-menu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-menu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-menu-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-menu-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-map&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-map&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-map-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-map-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-location-pin&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-location-pin&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-light-bulb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-light-bulb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-info&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-info&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-infinite&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-infinite&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-id-badge&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-id-badge&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-hummer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-hummer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-home&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-home&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-help&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-help&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-headphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-headphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-harddrives&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-harddrives&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-harddrive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-harddrive&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-gift&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-gift&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-game&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-game&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-filter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-filter&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-files&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-files&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-file&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-file&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-zip&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-zip&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-folder&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-folder&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-envelope&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-envelope&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-dashboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-dashboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-cloud&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-cloud&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-cloud-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-cloud-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-cloud-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-cloud-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-clipboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-clipboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-calendar&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-calendar&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-book&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-book&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bell&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bell&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-basketball&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-basketball&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bar-chart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bar-chart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-bar-chart-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-bar-chart-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-archive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-archive&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-anchor&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-anchor&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-alert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-alert&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-alarm-clock&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-alarm-clock&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-agenda&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-agenda&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-write&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-write&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-wallet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-wallet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-video-clapper&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-video-clapper&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-video-camera&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-video-camera&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-vector&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-vector&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-support&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-support&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-stamp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-stamp&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-slice&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-slice&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-shortcode&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-shortcode&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-receipt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-receipt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pin2&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pin2&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pin-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pin-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-pencil-alt2&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-pencil-alt2&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-eraser&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-eraser&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-more&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-more&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-more-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-more-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-microphone-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-microphone-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-magnet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-magnet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-line-double&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-line-double&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-line-dotted&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-line-dotted&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-line-dashed&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-line-dashed&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-ink-pen&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-ink-pen&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-info-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-info-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-help-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-help-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-headphone-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-headphone-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-gallery&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-gallery&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-face-smile&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-face-smile&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-face-sad&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-face-sad&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-credit-card&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-credit-card&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-comments-smiley&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-comments-smiley&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-time&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-time&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-share&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-share&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-share-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-share-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-rocket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-rocket&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-new-window&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-new-window&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-rss&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-rss&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ti-rss-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ti-rss-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-themify.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Themify Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Themify Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Chart -->    <div class="col-md-12">        <div class="card">            <div class="card-header">                <div class="card-title">Themify Icon</div>            </div>            <div class="card-body">                <div class="icons-items">                    <ul class="icons-list">                        <li><i class="ti-arrow-up" data-bs-toggle="tooltip" title="ti-arrow-up"></i></li>                        <li><i class="ti-arrow-right" data-bs-toggle="tooltip" title="ti-arrow-right"></i></li>                        <li><i class="ti-arrow-left" data-bs-toggle="tooltip" title="ti-arrow-left"></i></li>                        <li><i class="ti-arrow-down" data-bs-toggle="tooltip" title="ti-arrow-down"></i></li>                        <li><i class="ti-arrows-vertical" data-bs-toggle="tooltip" title="ti-arrows-vertical"></i></li>                        <li><i class="ti-arrows-horizontal" data-bs-toggle="tooltip" title="ti-arrows-horizontal"></i>                        </li>                        <li><i class="ti-angle-up" data-bs-toggle="tooltip" title="ti-angle-up"></i></li>                        <li><i class="ti-angle-right" data-bs-toggle="tooltip" title="ti-angle-right"></i></li>                        <li><i class="ti-angle-left" data-bs-toggle="tooltip" title="ti-angle-left"></i></li>                        <li><i class="ti-angle-down" data-bs-toggle="tooltip" title="ti-angle-down"></i></li>                        <li><i class="ti-angle-double-up" data-bs-toggle="tooltip" title="ti-angle-double-up"></i></li>                        <li><i class="ti-angle-double-right" data-bs-toggle="tooltip" title="ti-angle-double-right"></i>                        </li>                        <li><i class="ti-angle-double-left" data-bs-toggle="tooltip" title="ti-angle-double-left"></i>                        </li>                        <li><i class="ti-angle-double-down" data-bs-toggle="tooltip" title="ti-angle-double-down"></i>                        </li>                        <li><i class="ti-move" data-bs-toggle="tooltip" title="ti-move"></i></li>                        <li><i class="ti-fullscreen" data-bs-toggle="tooltip" title="ti-fullscreen"></i></li>                        <li><i class="ti-arrow-top-right" data-bs-toggle="tooltip" title="ti-arrow-top-right"></i></li>                        <li><i class="ti-arrow-top-left" data-bs-toggle="tooltip" title="ti-arrow-top-left"></i></li>                        <li><i class="ti-arrow-circle-up" data-bs-toggle="tooltip" title="ti-arrow-circle-up"></i></li>                        <li><i class="ti-arrow-circle-right" data-bs-toggle="tooltip" title="ti-arrow-circle-right"></i>                        </li>                        <li><i class="ti-arrow-circle-left" data-bs-toggle="tooltip" title="ti-arrow-circle-left"></i>                        </li>                        <li><i class="ti-arrow-circle-down" data-bs-toggle="tooltip" title="ti-arrow-circle-down"></i>                        </li>                        <li><i class="ti-arrows-corner" data-bs-toggle="tooltip" title="ti-arrows-corner"></i></li>                        <li><i class="ti-split-v" data-bs-toggle="tooltip" title="ti-split-v"></i></li>                        <li><i class="ti-split-v-alt" data-bs-toggle="tooltip" title="ti-split-v-alt"></i></li>                        <li><i class="ti-split-h" data-bs-toggle="tooltip" title="ti-split-h"></i></li>                        <li><i class="ti-hand-point-up" data-bs-toggle="tooltip" title="ti-hand-point-up"></i></li>                        <li><i class="ti-hand-point-right" data-bs-toggle="tooltip" title="ti-hand-point-right"></i>                        </li>                        <li><i class="ti-hand-point-left" data-bs-toggle="tooltip" title="ti-hand-point-left"></i></li>                        <li><i class="ti-hand-point-down" data-bs-toggle="tooltip" title="ti-hand-point-down"></i></li>                        <li><i class="ti-back-right" data-bs-toggle="tooltip" title="ti-back-right"></i></li>                        <li><i class="ti-back-left" data-bs-toggle="tooltip" title="ti-back-left"></i></li>                        <li><i class="ti-exchange-vertical" data-bs-toggle="tooltip" title="ti-exchange-vertical"></i>                        </li>                        <li><i class="ti-wand" data-bs-toggle="tooltip" title="ti-wand"></i></li>                        <li><i class="ti-save" data-bs-toggle="tooltip" title="ti-save"></i></li>                        <li><i class="ti-save-alt" data-bs-toggle="tooltip" title="ti-save-alt"></i></li>                        <li><i class="ti-direction" data-bs-toggle="tooltip" title="ti-direction"></i></li>                        <li><i class="ti-direction-alt" data-bs-toggle="tooltip" title="ti-direction-alt"></i></li>                        <li><i class="ti-user" data-bs-toggle="tooltip" title="ti-user"></i></li>                        <li><i class="ti-link" data-bs-toggle="tooltip" title="ti-link"></i></li>                        <li><i class="ti-unlink" data-bs-toggle="tooltip" title="ti-unlink"></i></li>                        <li><i class="ti-trash" data-bs-toggle="tooltip" title="ti-trash"></i></li>                        <li><i class="ti-target" data-bs-toggle="tooltip" title="ti-target"></i></li>                        <li><i class="ti-tag" data-bs-toggle="tooltip" title="ti-tag"></i></li>                        <li><i class="ti-desktop" data-bs-toggle="tooltip" title="ti-desktop"></i></li>                        <li><i class="ti-tablet" data-bs-toggle="tooltip" title="ti-tablet"></i></li>                        <li><i class="ti-mobile" data-bs-toggle="tooltip" title="ti-mobile"></i></li>                        <li><i class="ti-email" data-bs-toggle="tooltip" title="ti-email"></i></li>                        <li><i class="ti-star" data-bs-toggle="tooltip" title="ti-star"></i></li>                        <li><i class="ti-spray" data-bs-toggle="tooltip" title="ti-spray"></i></li>                        <li><i class="ti-signal" data-bs-toggle="tooltip" title="ti-signal"></i></li>                        <li><i class="ti-shopping-cart" data-bs-toggle="tooltip" title="ti-shopping-cart"></i></li>                        <li><i class="ti-shopping-cart-full" data-bs-toggle="tooltip" title="ti-shopping-cart-full"></i>                        </li>                        <li><i class="ti-settings" data-bs-toggle="tooltip" title="ti-settings"></i></li>                        <li><i class="ti-search" data-bs-toggle="tooltip" title="ti-search"></i></li>                        <li><i class="ti-zoom-in" data-bs-toggle="tooltip" title="ti-zoom-in"></i></li>                        <li><i class="ti-zoom-out" data-bs-toggle="tooltip" title="ti-zoom-out"></i></li>                        <li><i class="ti-cut" data-bs-toggle="tooltip" title="ti-cut"></i></li>                        <li><i class="ti-ruler" data-bs-toggle="tooltip" title="ti-ruler"></i></li>                        <li><i class="ti-ruler-alt-2" data-bs-toggle="tooltip" title="ti-ruler-alt-2"></i></li>                        <li><i class="ti-ruler-pencil" data-bs-toggle="tooltip" title="ti-ruler-pencil"></i></li>                        <li><i class="ti-ruler-alt" data-bs-toggle="tooltip" title="ti-ruler-alt"></i></li>                        <li><i class="ti-bookmark" data-bs-toggle="tooltip" title="ti-bookmark"></i></li>                        <li><i class="ti-bookmark-alt" data-bs-toggle="tooltip" title="ti-bookmark-alt"></i></li>                        <li><i class="ti-reload" data-bs-toggle="tooltip" title="ti-reload"></i></li>                        <li><i class="ti-plus" data-bs-toggle="tooltip" title="ti-plus"></i></li>                        <li><i class="ti-minus" data-bs-toggle="tooltip" title="ti-minus"></i></li>                        <li><i class="ti-close" data-bs-toggle="tooltip" title="ti-close"></i></li>                        <li><i class="ti-pin" data-bs-toggle="tooltip" title="ti-pin"></i></li>                        <li><i class="ti-pencil" data-bs-toggle="tooltip" title="ti-pencil"></i></li>                        <li><i class="ti-pencil-alt" data-bs-toggle="tooltip" title="ti-pencil-alt"></i></li>                        <li><i class="ti-paint-roller" data-bs-toggle="tooltip" title="ti-paint-roller"></i></li>                        <li><i class="ti-paint-bucket" data-bs-toggle="tooltip" title="ti-paint-bucket"></i></li>                        <li><i class="ti-na" data-bs-toggle="tooltip" title="ti-na"></i></li>                        <li><i class="ti-medall" data-bs-toggle="tooltip" title="ti-medall"></i></li>                        <li><i class="ti-medall-alt" data-bs-toggle="tooltip" title="ti-medall-alt"></i></li>                        <li><i class="ti-marker" data-bs-toggle="tooltip" title="ti-marker"></i></li>                        <li><i class="ti-marker-alt" data-bs-toggle="tooltip" title="ti-marker-alt"></i></li>                        <li><i class="ti-lock" data-bs-toggle="tooltip" title="ti-lock"></i></li>                        <li><i class="ti-unlock" data-bs-toggle="tooltip" title="ti-unlock"></i></li>                        <li><i class="ti-location-arrow" data-bs-toggle="tooltip" title="ti-location-arrow"></i></li>                        <li><i class="ti-layout" data-bs-toggle="tooltip" title="ti-layout"></i></li>                        <li><i class="ti-layers" data-bs-toggle="tooltip" title="ti-layers"></i></li>                        <li><i class="ti-layers-alt" data-bs-toggle="tooltip" title="ti-layers-alt"></i></li>                        <li><i class="ti-key" data-bs-toggle="tooltip" title="ti-key"></i></li>                        <li><i class="ti-image" data-bs-toggle="tooltip" title="ti-image"></i></li>                        <li><i class="ti-heart" data-bs-toggle="tooltip" title="ti-heart"></i></li>                        <li><i class="ti-heart-broken" data-bs-toggle="tooltip" title="ti-heart-broken"></i></li>                        <li><i class="ti-hand-stop" data-bs-toggle="tooltip" title="ti-hand-stop"></i></li>                        <li><i class="ti-hand-open" data-bs-toggle="tooltip" title="ti-hand-open"></i></li>                        <li><i class="ti-hand-drag" data-bs-toggle="tooltip" title="ti-hand-drag"></i></li>                        <li><i class="ti-flag" data-bs-toggle="tooltip" title="ti-flag"></i></li>                        <li><i class="ti-flag-alt" data-bs-toggle="tooltip" title="ti-flag-alt"></i></li>                        <li><i class="ti-flag-alt-2" data-bs-toggle="tooltip" title="ti-flag-alt-2"></i></li>                        <li><i class="ti-eye" data-bs-toggle="tooltip" title="ti-eye"></i></li>                        <li><i class="ti-import" data-bs-toggle="tooltip" title="ti-import"></i></li>                        <li><i class="ti-export" data-bs-toggle="tooltip" title="ti-export"></i></li>                        <li><i class="ti-cup" data-bs-toggle="tooltip" title="ti-cup"></i></li>                        <li><i class="ti-crown" data-bs-toggle="tooltip" title="ti-crown"></i></li>                        <li><i class="ti-comments" data-bs-toggle="tooltip" title="ti-comments"></i></li>                        <li><i class="ti-comment" data-bs-toggle="tooltip" title="ti-comment"></i></li>                        <li><i class="ti-comment-alt" data-bs-toggle="tooltip" title="ti-comment-alt"></i></li>                        <li><i class="ti-thought" data-bs-toggle="tooltip" title="ti-thought"></i></li>                        <li><i class="ti-clip" data-bs-toggle="tooltip" title="ti-clip"></i></li>                        <li><i class="ti-check" data-bs-toggle="tooltip" title="ti-check"></i></li>                        <li><i class="ti-check-box" data-bs-toggle="tooltip" title="ti-check-box"></i></li>                        <li><i class="ti-camera" data-bs-toggle="tooltip" title="ti-camera"></i></li>                        <li><i class="ti-announcement" data-bs-toggle="tooltip" title="ti-announcement"></i></li>                        <li><i class="ti-brush" data-bs-toggle="tooltip" title="ti-brush"></i></li>                        <li><i class="ti-brush-alt" data-bs-toggle="tooltip" title="ti-brush-alt"></i></li>                        <li><i class="ti-palette" data-bs-toggle="tooltip" title="ti-palette"></i></li>                        <li><i class="ti-briefcase" data-bs-toggle="tooltip" title="ti-briefcase"></i></li>                        <li><i class="ti-bolt" data-bs-toggle="tooltip" title="ti-bolt"></i></li>                        <li><i class="ti-bolt-alt" data-bs-toggle="tooltip" title="ti-bolt-alt"></i></li>                        <li><i class="ti-blackboard" data-bs-toggle="tooltip" title="ti-blackboard"></i></li>                        <li><i class="ti-bag" data-bs-toggle="tooltip" title="ti-bag"></i></li>                        <li><i class="ti-world" data-bs-toggle="tooltip" title="ti-world"></i></li>                        <li><i class="ti-wheelchair" data-bs-toggle="tooltip" title="ti-wheelchair"></i></li>                        <li><i class="ti-car" data-bs-toggle="tooltip" title="ti-car"></i></li>                        <li><i class="ti-truck" data-bs-toggle="tooltip" title="ti-truck"></i></li>                        <li><i class="ti-timer" data-bs-toggle="tooltip" title="ti-timer"></i></li>                        <li><i class="ti-ticket" data-bs-toggle="tooltip" title="ti-ticket"></i></li>                        <li><i class="ti-thumb-up" data-bs-toggle="tooltip" title="ti-thumb-up"></i></li>                        <li><i class="ti-thumb-down" data-bs-toggle="tooltip" title="ti-thumb-down"></i></li>                        <li><i class="ti-stats-up" data-bs-toggle="tooltip" title="ti-stats-up"></i></li>                        <li><i class="ti-stats-down" data-bs-toggle="tooltip" title="ti-stats-down"></i></li>                        <li><i class="ti-shine" data-bs-toggle="tooltip" title="ti-shine"></i></li>                        <li><i class="ti-shift-right" data-bs-toggle="tooltip" title="ti-shift-right"></i></li>                        <li><i class="ti-shift-left" data-bs-toggle="tooltip" title="ti-shift-left"></i></li>                        <li><i class="ti-shift-right-alt" data-bs-toggle="tooltip" title="ti-shift-right-alt"></i></li>                        <li><i class="ti-shift-left-alt" data-bs-toggle="tooltip" title="ti-shift-left-alt"></i></li>                        <li><i class="ti-shield" data-bs-toggle="tooltip" title="ti-shield"></i></li>                        <li><i class="ti-notepad" data-bs-toggle="tooltip" title="ti-notepad"></i></li>                        <li><i class="ti-server" data-bs-toggle="tooltip" title="ti-server"></i></li>                        <li><i class="ti-pulse" data-bs-toggle="tooltip" title="ti-pulse"></i></li>                        <li><i class="ti-printer" data-bs-toggle="tooltip" title="ti-printer"></i></li>                        <li><i class="ti-power-off" data-bs-toggle="tooltip" title="ti-power-off"></i></li>                        <li><i class="ti-plug" data-bs-toggle="tooltip" title="ti-plug"></i></li>                        <li><i class="ti-pie-chart" data-bs-toggle="tooltip" title="ti-pie-chart"></i></li>                        <li><i class="ti-panel" data-bs-toggle="tooltip" title="ti-panel"></i></li>                        <li><i class="ti-package" data-bs-toggle="tooltip" title="ti-package"></i></li>                        <li><i class="ti-music" data-bs-toggle="tooltip" title="ti-music"></i></li>                        <li><i class="ti-music-alt" data-bs-toggle="tooltip" title="ti-music-alt"></i></li>                        <li><i class="ti-mouse" data-bs-toggle="tooltip" title="ti-mouse"></i></li>                        <li><i class="ti-mouse-alt" data-bs-toggle="tooltip" title="ti-mouse-alt"></i></li>                        <li><i class="ti-money" data-bs-toggle="tooltip" title="ti-money"></i></li>                        <li><i class="ti-microphone" data-bs-toggle="tooltip" title="ti-microphone"></i></li>                        <li><i class="ti-menu" data-bs-toggle="tooltip" title="ti-menu"></i></li>                        <li><i class="ti-menu-alt" data-bs-toggle="tooltip" title="ti-menu-alt"></i></li>                        <li><i class="ti-map" data-bs-toggle="tooltip" title="ti-map"></i></li>                        <li><i class="ti-map-alt" data-bs-toggle="tooltip" title="ti-map-alt"></i></li>                        <li><i class="ti-location-pin" data-bs-toggle="tooltip" title="ti-location-pin"></i></li>                        <li><i class="ti-light-bulb" data-bs-toggle="tooltip" title="ti-light-bulb"></i></li>                        <li><i class="ti-info" data-bs-toggle="tooltip" title="ti-info"></i></li>                        <li><i class="ti-infinite" data-bs-toggle="tooltip" title="ti-infinite"></i></li>                        <li><i class="ti-id-badge" data-bs-toggle="tooltip" title="ti-id-badge"></i></li>                        <li><i class="ti-hummer" data-bs-toggle="tooltip" title="ti-hummer"></i></li>                        <li><i class="ti-home" data-bs-toggle="tooltip" title="ti-home"></i></li>                        <li><i class="ti-help" data-bs-toggle="tooltip" title="ti-help"></i></li>                        <li><i class="ti-headphone" data-bs-toggle="tooltip" title="ti-headphone"></i></li>                        <li><i class="ti-harddrives" data-bs-toggle="tooltip" title="ti-harddrives"></i></li>                        <li><i class="ti-harddrive" data-bs-toggle="tooltip" title="ti-harddrive"></i></li>                        <li><i class="ti-gift" data-bs-toggle="tooltip" title="ti-gift"></i></li>                        <li><i class="ti-game" data-bs-toggle="tooltip" title="ti-game"></i></li>                        <li><i class="ti-filter" data-bs-toggle="tooltip" title="ti-filter"></i></li>                        <li><i class="ti-files" data-bs-toggle="tooltip" title="ti-files"></i></li>                        <li><i class="ti-file" data-bs-toggle="tooltip" title="ti-file"></i></li>                        <li><i class="ti-zip" data-bs-toggle="tooltip" title="ti-zip"></i></li>                        <li><i class="ti-folder" data-bs-toggle="tooltip" title="ti-folder"></i></li>                        <li><i class="ti-envelope" data-bs-toggle="tooltip" title="ti-envelope"></i></li>                        <li><i class="ti-dashboard" data-bs-toggle="tooltip" title="ti-dashboard"></i></li>                        <li><i class="ti-cloud" data-bs-toggle="tooltip" title="ti-cloud"></i></li>                        <li><i class="ti-cloud-up" data-bs-toggle="tooltip" title="ti-cloud-up"></i></li>                        <li><i class="ti-cloud-down" data-bs-toggle="tooltip" title="ti-cloud-down"></i></li>                        <li><i class="ti-clipboard" data-bs-toggle="tooltip" title="ti-clipboard"></i></li>                        <li><i class="ti-calendar" data-bs-toggle="tooltip" title="ti-calendar"></i></li>                        <li><i class="ti-book" data-bs-toggle="tooltip" title="ti-book"></i></li>                        <li><i class="ti-bell" data-bs-toggle="tooltip" title="ti-bell"></i></li>                        <li><i class="ti-basketball" data-bs-toggle="tooltip" title="ti-basketball"></i></li>                        <li><i class="ti-bar-chart" data-bs-toggle="tooltip" title="ti-bar-chart"></i></li>                        <li><i class="ti-bar-chart-alt" data-bs-toggle="tooltip" title="ti-bar-chart-alt"></i></li>                        <li><i class="ti-archive" data-bs-toggle="tooltip" title="ti-archive"></i></li>                        <li><i class="ti-anchor" data-bs-toggle="tooltip" title="ti-anchor"></i></li>                        <li><i class="ti-alert" data-bs-toggle="tooltip" title="ti-alert"></i></li>                        <li><i class="ti-alarm-clock" data-bs-toggle="tooltip" title="ti-alarm-clock"></i></li>                        <li><i class="ti-agenda" data-bs-toggle="tooltip" title="ti-agenda"></i></li>                        <li><i class="ti-write" data-bs-toggle="tooltip" title="ti-write"></i></li>                        <li><i class="ti-wallet" data-bs-toggle="tooltip" title="ti-wallet"></i></li>                        <li><i class="ti-video-clapper" data-bs-toggle="tooltip" title="ti-video-clapper"></i></li>                        <li><i class="ti-video-camera" data-bs-toggle="tooltip" title="ti-video-camera"></i></li>                        <li><i class="ti-vector" data-bs-toggle="tooltip" title="ti-vector"></i></li>                        <li><i class="ti-support" data-bs-toggle="tooltip" title="ti-support"></i></li>                        <li><i class="ti-stamp" data-bs-toggle="tooltip" title="ti-stamp"></i></li>                        <li><i class="ti-slice" data-bs-toggle="tooltip" title="ti-slice"></i></li>                        <li><i class="ti-shortcode" data-bs-toggle="tooltip" title="ti-shortcode"></i></li>                        <li><i class="ti-receipt" data-bs-toggle="tooltip" title="ti-receipt"></i></li>                        <li><i class="ti-pin2" data-bs-toggle="tooltip" title="ti-pin2"></i></li>                        <li><i class="ti-pin-alt" data-bs-toggle="tooltip" title="ti-pin-alt"></i></li>                        <li><i class="ti-pencil-alt2" data-bs-toggle="tooltip" title="ti-pencil-alt2"></i></li>                        <li><i class="ti-eraser" data-bs-toggle="tooltip" title="ti-eraser"></i></li>                        <li><i class="ti-more" data-bs-toggle="tooltip" title="ti-more"></i></li>                        <li><i class="ti-more-alt" data-bs-toggle="tooltip" title="ti-more-alt"></i></li>                        <li><i class="ti-microphone-alt" data-bs-toggle="tooltip" title="ti-microphone-alt"></i></li>                        <li><i class="ti-magnet" data-bs-toggle="tooltip" title="ti-magnet"></i></li>                        <li><i class="ti-line-double" data-bs-toggle="tooltip" title="ti-line-double"></i></li>                        <li><i class="ti-line-dotted" data-bs-toggle="tooltip" title="ti-line-dotted"></i></li>                        <li><i class="ti-line-dashed" data-bs-toggle="tooltip" title="ti-line-dashed"></i></li>                        <li><i class="ti-ink-pen" data-bs-toggle="tooltip" title="ti-ink-pen"></i></li>                        <li><i class="ti-info-alt" data-bs-toggle="tooltip" title="ti-info-alt"></i></li>                        <li><i class="ti-help-alt" data-bs-toggle="tooltip" title="ti-help-alt"></i></li>                        <li><i class="ti-headphone-alt" data-bs-toggle="tooltip" title="ti-headphone-alt"></i></li>                        <li><i class="ti-gallery" data-bs-toggle="tooltip" title="ti-gallery"></i></li>                        <li><i class="ti-face-smile" data-bs-toggle="tooltip" title="ti-face-smile"></i></li>                        <li><i class="ti-face-sad" data-bs-toggle="tooltip" title="ti-face-sad"></i></li>                        <li><i class="ti-credit-card" data-bs-toggle="tooltip" title="ti-credit-card"></i></li>                        <li><i class="ti-comments-smiley" data-bs-toggle="tooltip" title="ti-comments-smiley"></i></li>                        <li><i class="ti-time" data-bs-toggle="tooltip" title="ti-time"></i></li>                        <li><i class="ti-share" data-bs-toggle="tooltip" title="ti-share"></i></li>                        <li><i class="ti-share-alt" data-bs-toggle="tooltip" title="ti-share-alt"></i></li>                        <li><i class="ti-rocket" data-bs-toggle="tooltip" title="ti-rocket"></i></li>                        <li><i class="ti-new-window" data-bs-toggle="tooltip" title="ti-new-window"></i></li>                        <li><i class="ti-rss" data-bs-toggle="tooltip" title="ti-rss"></i></li>                        <li><i class="ti-rss-alt" data-bs-toggle="tooltip" title="ti-rss-alt"></i></li>                    </ul>                </div>            </div>        </div>    </div>    <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconThemifyComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconThemifyComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

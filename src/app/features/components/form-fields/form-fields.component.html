@@ -1,0 +1,345 @@
+<!-- Start Content -->
+<div class="content pb-0">
+  <!-- Page Header -->
+  <div
+    class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap"
+  >
+    <div>
+      <h4 class="mb-1">
+        Form Fields<span class="badge badge-soft-primary ms-2">{{
+          totalData
+        }}</span>
+      </h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="routes.index">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Manage Form Fields
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="gap-2 d-flex align-items-center flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-sm btn-info" (click)="goBack()">
+          <i class="ti ti-arrow-left me-1"></i> Back
+        </button>
+        @if (authService.hasPermission("FORFL", "write")) {
+          <a
+            href="javascript:void(0);"
+            class="btn btn-sm btn-primary"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas_add"
+            (click)="openAddForm()"
+          >
+            <i class="ti ti-square-rounded-plus-filled me-1"></i> Add Fields
+          </a>
+        }
+      </div>
+      <app-export-dropdown
+        [exportData]="downloadData"
+        [fileName]="fileName"
+        (exportRequest)="onExportRequest($event)"
+      >
+      </app-export-dropdown>
+      <a
+        href="javascript:void(0);"
+        class="btn btn-sm btn-icon btn-outline-light shadow"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        aria-label="Refresh"
+        data-bs-original-title="Refresh"
+        ><i class="ti ti-refresh"></i
+      ></a>
+      <app-collapse-header></app-collapse-header>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- card start -->
+  <div class="card border-0 rounded-0">
+    <!-- <div class="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+            <div class="input-icon input-icon-start position-relative">
+                <span class="input-icon-addon text-dark"><i class="ti ti-search"></i></span>
+                <input
+                [(ngModel)]="searchDataValue"
+                [ngModelOptions]="{ standalone: true }"
+                type="search"
+                (ngModelChange)="searchData(searchDataValue)"
+                class="form-control"
+                placeholder="Search"
+                />
+            </div>
+        </div> -->
+    <div class="card-body">
+      <!-- Contact List -->
+      <div class="table-responsive custom-table">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Placeholder</th>
+              <th scope="col">Min Length</th>
+              <th scope="col">Max Length</th>
+              <th scope="col">placeholder</th>
+              <th scope="col">Required</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of tableData; track item.uuid; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.placeholder }}</td>
+                <td>{{ item.minLength }}</td>
+                <td>{{ item.maxLength ?? "-" }}</td>
+                <td>{{ item.label }}</td>
+                <td>
+                  <span
+                    class="badge"
+                    [ngClass]="item.required ? 'bg-success' : 'bg-secondary'"
+                  >
+                    {{ item.required ? "Yes" : "No" }}
+                  </span>
+                </td>
+                <td>
+                  <div class="d-flex form-check form-switch form-check-reverse">
+                    <input
+                      (click)="confirmStatusChange($event, item)"
+                      type="checkbox"
+                      id="switchCheckReverse"
+                      [checked]="item.status == '1'"
+                      class="form-check-input"
+                      [disabled]="!authService.hasPermission('FORFL','update')"
+                    />
+                  </div>
+                </td>
+                <td>
+                  @if(authService.hasPermission('FORFL','update')){
+                  <button
+                    class="btn btn-sm btn-primary"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas_add"
+                    (click)="openEditForm(item)"
+                  >
+                    Edit
+                  </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <app-custom-pagination></app-custom-pagination>
+      <!-- /Contact List -->
+    </div>
+  </div>
+  <!-- card end -->
+</div>
+<!-- End Content -->
+<!-- Add Form Field -->
+<div
+  class="offcanvas offcanvas-end offcanvas-large"
+  tabindex="-1"
+  id="offcanvas_add"
+>
+  <div class="offcanvas-header border-bottom">
+    <h5 class="fw-semibold">{{ isEditMode ? 'Edit Field Definition' : 'Create New Field Definition' }}</h5>
+    <button
+      type="button"
+      class="btn-close custom-btn-close border p-1 me-0 d-flex align-items-center justify-content-center rounded-circle"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    >
+      <i class="ti ti-x"></i>
+    </button>
+  </div>
+
+  <div class="offcanvas-body">
+    <form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- name -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label"
+              >Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="USERNAME"
+            />
+          </div>
+        </div>
+
+        <!-- label -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label"
+              >Label <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="label"
+              placeholder="Username"
+            />
+          </div>
+        </div>
+
+        <!-- inputType -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label"
+              >Input Type <span class="text-danger">*</span></label
+            >
+            <select class="form-select" formControlName="inputType">
+              <option value="textbox">Textbox</option>
+              <option value="email">Email</option>
+              <option value="password">Password</option>
+              <option value="number">Number</option>
+              <option value="select">Select</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- minLength -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Min Length</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="minLength"
+              placeholder="3"
+            />
+          </div>
+        </div>
+
+        <!-- maxLength -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Max Length</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="maxLength"
+              placeholder="20"
+            />
+          </div>
+        </div>
+
+        <!-- placeholder -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Placeholder</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="placeholder"
+              placeholder="Enter username"
+            />
+          </div>
+        </div>
+
+        <!-- regex -->
+        <div class="col-md-12">
+          <div class="mb-3">
+            <label class="form-label">Regex Pattern</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="regex"
+              placeholder="^[a-zA-Z0-9_]+$"
+            />
+          </div>
+        </div>
+
+        <!-- Error Messages -->
+        <div class="col-12">
+          <h6 class="mt-3">Error Messages</h6>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Required</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="requiredMsg"
+              placeholder="Username is required"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Min Length Error</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="minLengthMsg"
+              placeholder="Must be at least 3 characters"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Max Length Error</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="maxLengthMsg"
+              placeholder="Cannot exceed 20 characters"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Regex Error</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="regexMsg"
+              placeholder="Only alphanumeric and underscores allowed"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="d-flex align-items-center justify-content-end">
+        <a
+          href="javascript:void(0);"
+          class="btn btn-light me-2"
+          data-bs-dismiss="offcanvas"
+          >Cancel</a
+        >
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="fieldForm.invalid"
+        >
+          {{ isEditMode ? 'Update Field' : 'Save Field' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-confirm-modal
+  [title]="modalTitle"
+  [message]="modalMessage"
+  modalId="changeFormFieldStatus"
+  (confirmed)="confirmStatusUpdate()"
+></app-confirm-modal>

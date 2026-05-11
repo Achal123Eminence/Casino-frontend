@@ -1,0 +1,429 @@
+<div class="content pb-0 website-guide-page">
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-toolbar">
+    <div>
+      <h4 class="mb-1">{{ pageTitle }}</h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item">{{ pageTitle }}</li>
+          @for (item of breadcrumb; track $index) {
+            @if ($last) {
+              <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+            } @else {
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)" (click)="goToHierarchyLevel(item)">{{ item.name }}</a>
+              </li>
+            }
+          }
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button type="button" class="btn btn-info btn-sm" (click)="goBack()"><i class="ti ti-arrow-left me-1"></i> Back</button>
+      @if (canOpenAdd) {
+        <button type="button" class="btn btn-primary btn-sm" (click)="openAddModal()"><i class="ti ti-square-rounded-plus-filled me-1"></i> {{ addButtonLabel }}</button>
+      }
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="openExportModal()"><i class="ti ti-file-export me-1"></i> Export</button>
+    </div>
+  </div>
+
+  <div class="card border-0 rounded-0">
+    <div class="card-body compact-card-body">
+      <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap mb-2">
+        <ul class="nav nav-pills align-items-center bg-light rounded py-2 px-2 gap-1 mb-0 inner-tab-list">
+          @for (subTab of subTabs; track subTab.id) {
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" [class.active]="activeSubTab === subTab.id" (click)="setSubTab(subTab.id)">{{ subTab.title }}</a>
+            </li>
+          }
+        </ul>
+        <input class="form-control form-control-sm w-auto" type="text" placeholder="Search" [(ngModel)]="search" style="min-width: 220px" />
+      </div>
+
+      <div class="table-responsive custom-table">
+        <table class="table align-middle website-guide-table mb-0">
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>CATEGORY NAME</th>
+              <th>DOC</th>
+              <th>IMAGE</th>
+              <th>VIDEO</th>
+              @if (isOwnerUser) {
+                <th>ACTION</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of filteredRows; track row.uuid) {
+              <tr>
+                <td>{{ row.sNo }}</td>
+                <td class="category-name-cell">
+                  <button type="button" class="btn btn-link p-0 category-link" (click)="enterCategory(row)">
+                    {{ row.categoryName }}
+                  </button>
+                </td>
+                <td>
+                  <div class="media-icon-grid">
+                    @for (slot of mediaSlots; track slot) {
+                      <div class="media-slot-wrap">
+                        <button type="button" class="btn btn-sm media-slot-btn"
+                          [class.btn-danger]="row.docs[slot]"
+                          [class.btn-outline-secondary]="!row.docs[slot]"
+                          [disabled]="!row.docs[slot]"
+                          [title]="'Doc ' + (slot + 1)"
+                          (click)="openDocAtIndex(row, slot)">
+                          <i class="fa fa-file-pdf"></i>
+                        </button>
+                        @if (hasMediaAtSlot(row, 'doc', slot) && canRemoveMedia) {
+                          <button type="button" class="media-remove-btn" title="Remove doc"
+                            (click)="openRemoveMediaModal(row, 'doc', slot, $event)">
+                            <i class="fa fa-times"></i>
+                          </button>
+                        }
+                      </div>
+                    }
+                  </div>
+                </td>
+                <td>
+                  <div class="media-icon-grid">
+                    @for (slot of mediaSlots; track slot) {
+                      <div class="media-slot-wrap">
+                        <button type="button" class="btn btn-sm media-slot-btn"
+                          [class.btn-primary]="row.images[slot]"
+                          [class.btn-outline-secondary]="!row.images[slot]"
+                          [disabled]="!row.images[slot]"
+                          [title]="'Image ' + (slot + 1)"
+                          (click)="openImagePreview(row, slot)">
+                          <i class="fa fa-image"></i>
+                        </button>
+                        @if (hasMediaAtSlot(row, 'image', slot) && canRemoveMedia) {
+                          <button type="button" class="media-remove-btn" title="Remove image"
+                            (click)="openRemoveMediaModal(row, 'image', slot, $event)">
+                            <i class="fa fa-times"></i>
+                          </button>
+                        }
+                      </div>
+                    }
+                  </div>
+                </td>
+                <td>
+                  <div class="media-icon-grid">
+                    @for (slot of mediaSlots; track slot) {
+                      <div class="media-slot-wrap">
+                        <button type="button" class="btn btn-sm media-slot-btn"
+                          [class.btn-success]="row.videos[slot]"
+                          [class.btn-outline-secondary]="!row.videos[slot]"
+                          [disabled]="!row.videos[slot]"
+                          [title]="'Video ' + (slot + 1)"
+                          (click)="openVideoAtIndex(row, slot)">
+                          <i class="fa fa-play-circle"></i>
+                        </button>
+                        @if (hasMediaAtSlot(row, 'video', slot) && canRemoveMedia) {
+                          <button type="button" class="media-remove-btn" title="Remove video"
+                            (click)="openRemoveMediaModal(row, 'video', slot, $event)">
+                            <i class="fa fa-times"></i>
+                          </button>
+                        }
+                      </div>
+                    }
+                  </div>
+                </td>
+                @if (isOwnerUser) {
+                  <td>
+                    @if (hasAnyActions) {
+                    <div class="action-controls">
+                      <div class="action-inline-icons">
+                        @if (canEditVideos) {
+                          <button type="button" class="btn btn-sm btn-success" title="Edit Videos" (click)="openVideoModal(row)">
+                            <i class="fa fa-video-camera"></i>
+                          </button>
+                        }
+                        @if (canEditInfo) {
+                          <button type="button" class="btn btn-sm btn-info" title="Edit Info" (click)="openInfoModal(row)">
+                            <i class="fa fa-info-circle"></i>
+                          </button>
+                        }
+                        @if (canEditDocs) {
+                          <button type="button" class="btn btn-sm btn-danger" title="Upload Docs" (click)="openDocModal(row)">
+                            <i class="fa fa-file-pdf"></i>
+                          </button>
+                        }
+                        @if (canEditImages) {
+                          <button type="button" class="btn btn-sm btn-primary" title="Upload Images" (click)="openImageModal(row)">
+                            <i class="fa fa-image"></i>
+                          </button>
+                        }
+                        @if (canEditCategory) {
+                          <button type="button" class="btn btn-sm btn-warning" title="Edit Category Name" (click)="openEditModal(row)">
+                            <i class="fa fa-pencil"></i>
+                          </button>
+                        }
+                      </div>
+
+                      <div class="dropdown action-dropdown">
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fa fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          @if (canEditVideos) {
+                            <li><button type="button" class="dropdown-item" (click)="openVideoModal(row)"><i class="fa fa-video-camera me-2 text-success"></i> Edit Videos</button></li>
+                          }
+                          @if (canEditInfo) {
+                            <li><button type="button" class="dropdown-item" (click)="openInfoModal(row)"><i class="fa fa-info-circle me-2 text-info"></i> Edit Info</button></li>
+                          }
+                          @if (canEditDocs) {
+                            <li><button type="button" class="dropdown-item" (click)="openDocModal(row)"><i class="fa fa-file-pdf me-2 text-danger"></i> Upload Docs</button></li>
+                          }
+                          @if (canEditImages) {
+                            <li><button type="button" class="dropdown-item" (click)="openImageModal(row)"><i class="fa fa-image me-2 text-primary"></i> Upload Images</button></li>
+                          }
+                          @if (canEditCategory) {
+                            <li><button type="button" class="dropdown-item" (click)="openEditModal(row)"><i class="fa fa-pencil me-2 text-warning"></i> Edit Category Name</button></li>
+                          }
+                        </ul>
+                      </div>
+                    </div>
+                    } @else {
+                      <span class="text-muted">No actions</span>
+                    }
+                  </td>
+                }
+              </tr>
+            } @empty {
+              <tr>
+                <td [attr.colspan]="visibleColumnCount" class="text-center text-muted py-3">
+                  No categories available for this level. Use Add to create {{ currentParentUuid ? 'subcategory' : 'category' }}.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonRemoveMediaModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body p-4 text-center">
+        <div class="mb-3">
+          <span class="avatar avatar-xl badge-soft-danger border-0 text-danger rounded-circle">
+            <i class="fa fa-check-circle fs-24"></i>
+          </span>
+        </div>
+        <h5 class="mb-1">{{ removeMediaTitle }}</h5>
+        <p class="mb-3">{{ removeMediaMessage }}</p>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-light me-2 w-100" (click)="closeModal('removeMedia')">Cancel</button>
+          <button type="button" class="btn btn-primary w-100" (click)="confirmRemoveMedia()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonYoutubeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Video Preview</h5>
+        <button type="button" class="btn-close" (click)="closeModal('youtube')"></button>
+      </div>
+      <div class="modal-body p-2">
+        @if (activeVideoUrl) {
+          <div class="ratio ratio-16x9">
+            <iframe [src]="activeVideoUrl" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        } @else {
+          <p class="mb-0 text-muted">No video selected.</p>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('youtube')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonVideoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Video Links</h5>
+        <button type="button" class="btn-close" (click)="closeModal('video')"></button>
+      </div>
+      <div class="modal-body">
+        @for (slot of mediaSlots; track slot) {
+          <div class="mb-2">
+            <label class="form-label">Video {{ slot + 1 }} (YouTube URL)</label>
+            <input type="text" class="form-control" [(ngModel)]="editableVideos[slot]" placeholder="Enter YouTube URL" />
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('video')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="saveVideos()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonInfoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Info</h5>
+        <button type="button" class="btn-close" (click)="closeModal('info')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2">
+          <label class="form-label">Note</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="editableNote" placeholder="Add note"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('info')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="saveInfo()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonDocModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Docs (PDF Only, Max 1MB)</h5>
+        <button type="button" class="btn-close" (click)="closeModal('doc')"></button>
+      </div>
+      <div class="modal-body">
+        @for (slot of mediaSlots; track slot) {
+          <div class="mb-2">
+            <label class="form-label">Doc {{ slot + 1 }}</label>
+            <input type="file" class="form-control" accept="application/pdf" (change)="onGuideDocSelected($event, slot)" [disabled]="isDocUploading" />
+            @if (docUploading[slot]) {
+              <small class="text-muted d-block">Uploading...</small>
+            }
+            @if (docPreviewUrls[slot]) {
+              <iframe class="modal-doc-preview mt-1" [src]="getPdfInlinePreviewUrl(docPreviewUrls[slot])" [attr.aria-label]="'Doc ' + (slot + 1) + ' preview'"></iframe>
+            } @else {
+              <small class="text-muted d-block">{{ editableDocs[slot] || 'No document selected' }}</small>
+            }
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('doc')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" [disabled]="isDocUploading" (click)="saveDocs()">
+          @if (isDocUploading) {
+            Uploading...
+          } @else {
+            Save
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonImageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Image Paths</h5>
+        <button type="button" class="btn-close" (click)="closeModal('image')"></button>
+      </div>
+      <div class="modal-body">
+        @for (slot of mediaSlots; track slot) {
+          <div class="mb-2">
+            <label class="form-label">Image {{ slot + 1 }} @if (slot === 0) {<span> Image size should be 1200 x 700 for best visibility and max 1mb.</span>}</label>
+            <input type="file" class="form-control" accept="image/*" (change)="onGuideImageSelected($event, slot)" [disabled]="isImageUploading" />
+            @if (imageUploading[slot]) {
+              <small class="text-muted d-block">Uploading...</small>
+            }
+            @if (imagePreviewUrls[slot]) {
+              <img class="modal-image-preview mt-1" [src]="imagePreviewUrls[slot]" [attr.alt]="'Image ' + (slot + 1) + ' preview'" />
+            } @else {
+              <small class="text-muted d-block">{{ editableImages[slot] || 'No image selected' }}</small>
+            }
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('image')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" [disabled]="isImageUploading" (click)="saveImages()">
+          @if (isImageUploading) {
+            Uploading...
+          } @else {
+            Save
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonEditModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Category Name</h5>
+        <button type="button" class="btn-close" (click)="closeModal('edit')"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label">Category Name</label>
+        <input type="text" class="form-control" [(ngModel)]="editableCategoryName" placeholder="Enter category name" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('edit')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="saveCategoryName()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonAddModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ addModalTitle }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal('add')"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label">Category Name</label>
+        <input type="text" class="form-control" [(ngModel)]="newCategoryName" placeholder="Enter category name" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('add')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" [disabled]="isSubmitting" (click)="saveNewCategory()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guideCommonExportModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Export Guide Data</h5>
+        <button type="button" class="btn-close" (click)="closeModal('export')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check mb-2">
+          <input id="guide-common-export-csv" class="form-check-input" type="radio" name="guideCommonExportType" value="csv" [(ngModel)]="selectedExportType" />
+          <label class="form-check-label" for="guide-common-export-csv">CSV</label>
+        </div>
+        <div class="form-check mb-0">
+          <input id="guide-common-export-pdf" class="form-check-input" type="radio" name="guideCommonExportType" value="pdf" [(ngModel)]="selectedExportType" />
+          <label class="form-check-label" for="guide-common-export-pdf">PDF</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('export')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="exportGuideData()">Export</button>
+      </div>
+    </div>
+  </div>
+</div>

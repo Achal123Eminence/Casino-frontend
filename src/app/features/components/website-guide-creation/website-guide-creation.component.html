@@ -1,0 +1,51 @@
+<div class="content pb-0 website-guide-container">
+  @if (!canAccessModulePage) {
+    <div class="tab-pane show active p-3 bg-white rounded shadow-sm">
+      You do not have permission to access Website Guide Creation.
+    </div>
+  } @else {
+  <ul class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1 mb-2">
+    @for (tab of allowedTabs; track tab.index) {
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="activeIndex === tab.index" (click)="changeTab(tab.index)">
+          {{ tab.title }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="tab-content bg-white rounded-bottom shadow-sm p-2 mt-2">
+    @if (activeIndex === -1) {
+      <div class="tab-pane show active p-3">
+        You do not have permission to access Website Guide Creation.
+      </div>
+    }
+
+    @if (activeIndex === 0 && canAccessTab(tabs[0])) {
+      <div class="tab-pane show active">
+        <app-guide-common-tab
+          guideType="WEBSITE_GUIDE"
+          pageTitle="Website Guide"
+          [permissionSet]="getActionPermissions(tabs[0])">
+        </app-guide-common-tab>
+      </div>
+    }
+
+    @if (activeIndex === 1 && canAccessTab(tabs[1])) {
+      <div class="tab-pane show active">
+        <app-guide-common-tab
+          guideType="DEVELOPER_GUIDE"
+          pageTitle="Developer Guide"
+          [permissionSet]="getActionPermissions(tabs[1])">
+        </app-guide-common-tab>
+      </div>
+    }
+
+    @if (activeIndex === 2 && canAccessTab(tabs[2])) {
+      <div class="tab-pane show active">
+        <app-page-videos-tab [permissionSet]="getActionPermissions(tabs[2])"></app-page-videos-tab>
+      </div>
+    }
+  </div>
+  }
+</div>

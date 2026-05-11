@@ -1,0 +1,807 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  ChartOptions</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/features/reports/contact-reports/contact-reports.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#chart" 
+>
+                                            chart
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#dataLabels" 
+>
+                                            dataLabels
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#legend" 
+>
+                                            legend
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#plotOptions" 
+>
+                                            plotOptions
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#series" 
+>
+                                            series
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#xaxis" 
+>
+                                            xaxis
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="chart"></a>
+                                        <span class="name "><b>chart</b>
+                                            <a href="#chart">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>chart:     <code>ApexChart | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexChart | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="dataLabels"></a>
+                                        <span class="name "><b>dataLabels</b>
+                                            <a href="#dataLabels">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>dataLabels:     <code>ApexDataLabels | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexDataLabels | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="legend"></a>
+                                        <span class="name "><b>legend</b>
+                                            <a href="#legend">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>legend:     <code>ApexLegend | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexLegend | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="plotOptions"></a>
+                                        <span class="name "><b>plotOptions</b>
+                                            <a href="#plotOptions">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>plotOptions:     <code>ApexPlotOptions | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexPlotOptions | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="series"></a>
+                                        <span class="name "><b>series</b>
+                                            <a href="#series">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>series:     <code>ApexAxisChartSeries | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexAxisChartSeries | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="xaxis"></a>
+                                        <span class="name "><b>xaxis</b>
+                                            <a href="#xaxis">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>xaxis:     <code>ApexXAxis | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexXAxis | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, ViewChild } from &#x27;@angular/core&#x27;;
+import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { NgxEditorModule } from &#x27;ngx-editor&#x27;;
+import { CustomPaginationComponent } from &#x27;../../../shared/custom-pagination/custom-pagination.component&#x27;;
+import { MatSort, MatSortModule, Sort } from &#x27;@angular/material/sort&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../common/collapse-header/collapse-header.component&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { routes } from &#x27;../../../shared/routes/routes&#x27;;
+import { apiResultFormat, pageSelection, contactReports } from &#x27;../../../shared/model/pages.model&#x27;;
+import { PaginationService, tablePageSize } from &#x27;../../../shared/custom-pagination/pagination.service&#x27;;
+import { DataService } from &#x27;../../../shared/data/data.service&#x27;;
+import { DomSanitizer} from &#x27;@angular/platform-browser&#x27;;
+import { DateRangePickerComponent } from &#x27;../../common/date-range-picker/date-range-picker.component&#x27;;
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+  ApexLegend,
+  NgApexchartsModule,
+} from &#x27;ng-apexcharts&#x27;;
+
+
+export interface ChartOptions {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
+  xaxis: ApexXAxis | any;
+  legend: ApexLegend | any;
+}
+@Component({
+  selector: &#x27;app-contact-reports&#x27;,
+  imports: [CommonModule,
+    RouterLink,
+    NgxEditorModule,
+    MatSelectModule,
+    FormsModule,
+    BsDatepickerModule,
+    MatChipsModule,
+    MatIconModule,
+    CustomPaginationComponent,
+    MatSort,
+    DateRangePickerComponent,
+    CollapseHeaderComponent,
+    ReactiveFormsModule,
+    MatSortModule,
+    NgApexchartsModule],
+  templateUrl: &#x27;./contact-reports.component.html&#x27;,
+  styleUrl: &#x27;./contact-reports.component.scss&#x27;
+})
+export class ContactReportsComponent {
+   @ViewChild(&#x27;chart&#x27;) chart!: ChartComponent;
+  public chartOptions4: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions3: Partial&lt;ChartOptions&gt; | any;
+public routes &#x3D; routes;
+  // pagination variables
+  public tableData: contactReports[] &#x3D; [];
+  public pageSize &#x3D; 10;
+  public serialNumberArray: number[] &#x3D; [];
+  public totalData &#x3D; 0;
+  showFilter &#x3D; false;
+  dataSource!: MatTableDataSource&lt;contactReports&gt;;
+  public searchDataValue &#x3D; &#x27;&#x27;;
+  public tableDataCopy: contactReports[] &#x3D; [];
+  public actualData: contactReports[] &#x3D; [];
+  //** pagination variables
+  
+  public sidebarPopup &#x3D; false;
+  public sidebarPopup2 &#x3D; false;
+  public password : boolean[] &#x3D; [false];
+
+  initChecked &#x3D; false;
+
+  /**
+   * togglePassword function.
+   * @param {*} index - Parameter.
+   * @returns {*} Result.
+   */
+  public togglePassword(index: number){
+    this.password[index] &#x3D; !this.password[index]
+  }
+ 
+  /**
+   * onClickStar function.
+   * @param {*} item - Parameter.
+   * @returns {*} Result.
+   */
+  onClickStar(item: contactReports) {
+      item.isStarActive &#x3D; !item.isStarActive;
+    }
+ 
+
+  constructor(
+    private data: DataService,
+    private pagination: PaginationService,
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    
+  ) {
+    this.data.getContactReports().subscribe((apiRes: apiResultFormat) &#x3D;&gt; {
+      this.actualData &#x3D; apiRes.data;
+      this.pagination.tablePageSize.subscribe((res: tablePageSize) &#x3D;&gt; {
+        if (this.router.url &#x3D;&#x3D; this.routes.contactReports) {
+          this.getTableData({ skip: res.skip, limit: res.limit });
+          this.pageSize &#x3D; res.pageSize;
+        }
+      });
+    });
+    this.chartOptions4 &#x3D; {
+      series: [
+        {
+          name: &#x27;Reports&#x27;,
+          data: [40, 30, 20, 30, 22, 20, 30, 20, 22, 30, 15, 20],
+        },
+      ],
+      chart: {
+        height: 273,
+        type: &#x27;area&#x27;,
+        zoom: {
+          enabled: false,
+        },
+      },
+      colors: [&#x27;#4A00E5&#x27;],
+      dataLabels: {
+        enabled: false,
+      },
+      title: {
+        text: &#x27;&#x27;,
+        align: &#x27;left&#x27;,
+      },
+      xaxis: {
+        categories: [
+          &#x27;Jan&#x27;,
+          &#x27;Feb&#x27;,
+          &#x27;Mar&#x27;,
+          &#x27;Apr&#x27;,
+          &#x27;May&#x27;,
+          &#x27;Jun&#x27;,
+          &#x27;Jul&#x27;,
+          &#x27;Aug&#x27;,
+          &#x27;Sep&#x27;,
+          &#x27;Oct&#x27;,
+          &#x27;Nov&#x27;,
+          &#x27;Dec&#x27;,
+        ],
+      },
+      yaxis: {
+        min: 10,
+        max: 60,
+        tickAmount: 5,
+        labels: {
+          formatter: (val: number) &#x3D;&gt; {
+            return val / 1 + &#x27;K&#x27;;
+          },
+        },
+      },
+      legend: {
+        position: &#x27;top&#x27;,
+        horizontalAlign: &#x27;left&#x27;,
+      },
+    };
+    this.chartOptions3 &#x3D; {
+      series: [44, 55, 41, 17],
+      chart: {
+        width: 350,
+        type: &#x27;donut&#x27;,
+      },
+      colors: [&#x27;#4A00E5&#x27;, &#x27;#FFA201&#x27;, &#x27;#0092E4&#x27;, &#x27;#E41F07&#x27;],
+      labels: [&#x27;Campaigns&#x27;, &#x27;Google&#x27;, &#x27;Referrals&#x27;, &#x27;Paid Social&#x27;],
+      plotOptions: {
+        pie: {
+          startAngle: -90,
+          endAngle: 270,
+        },
+      },
+      legend: {
+        position: &#x27;bottom&#x27;,
+        formatter: function (val: any, opts: any) {
+          return val + &#x27; - &#x27; + opts.w.globals.series[opts.seriesIndex];
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: &#x27;bottom&#x27;,
+            },
+          },
+        },
+      ],
+    };
+  }
+
+  /**
+   * getTableData function.
+   * @param {*} pageOption - Parameter.
+   * @returns {*} Result.
+   */
+  private getTableData(pageOption: pageSelection): void {
+    this.data.getContactReports().subscribe((apiRes: apiResultFormat) &#x3D;&gt; {
+      this.tableData &#x3D; [];
+      this.tableDataCopy &#x3D; [];
+      this.serialNumberArray &#x3D; [];
+      this.totalData &#x3D; apiRes.totalData;
+      apiRes.data.map((res: contactReports, index: number) &#x3D;&gt; {
+        const serialNumber &#x3D; index + 1;
+        if (index &gt;&#x3D; pageOption.skip &amp;&amp; serialNumber &lt;&#x3D; pageOption.limit) {
+          res.id &#x3D; serialNumber;
+          this.tableData.push(res);
+          this.serialNumberArray.push(serialNumber);
+          this.tableDataCopy.push(res);
+        }
+      });
+      this.dataSource &#x3D; new MatTableDataSource&lt;contactReports&gt;(this.actualData);
+      this.pagination.calculatePageSize.next({
+        totalData: this.totalData,
+        pageSize: this.pageSize,
+        tableData: this.tableData,
+        tableDataCopy: this.tableDataCopy,
+        serialNumberArray: this.serialNumberArray,
+      });
+    });
+  }
+
+  /**
+   * sortData function.
+   * @param {*} sort - Parameter.
+   * @returns {*} Result.
+   */
+  public sortData(sort: Sort) {
+    const data &#x3D; this.tableData.slice();
+    if (!sort.active || sort.direction &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this.tableData &#x3D; data;
+    } else {
+      this.tableData &#x3D; data.sort((a, b) &#x3D;&gt; {
+        /**
+         * aValue function.
+         * @returns {*} Result.
+         */
+        const aValue &#x3D; (a as never)[sort.active];
+        /**
+         * bValue function.
+         * @returns {*} Result.
+         */
+        const bValue &#x3D; (b as never)[sort.active];
+        return (aValue &lt; bValue ? -1 : 1) * (sort.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27; ? 1 : -1);
+      });
+    }
+  }
+public row&#x3D;true;
+ /**
+  * searchData function.
+  * @param {*} value - Parameter.
+  * @returns {*} Result.
+  */
+ public searchData(value: string): void {
+  this.searchDataValue &#x3D; value.trim().toLowerCase();
+  this.dataSource.filter &#x3D; this.searchDataValue;
+  this.tableData &#x3D; this.dataSource.filteredData;
+  this.row &#x3D; this.tableData.length &gt; 0;
+
+  if (this.searchDataValue !&#x3D;&#x3D; &#x27;&#x27;) {
+    // Handle filtered data
+    this.pagination.calculatePageSize.next({
+      totalData: this.tableData.length,
+      pageSize: this.pageSize,
+      tableData: this.tableData,
+      serialNumberArray: this.tableData.map((_, i) &#x3D;&gt; i + 1), 
+    });
+  } else {
+    // Handle reset to full data
+    this.pagination.calculatePageSize.next({
+      totalData: this.totalData,
+      pageSize: this.pageSize,
+      tableData: this.tableData,
+      serialNumberArray: this.serialNumberArray,
+    });
+  }
+}
+
+  /**
+   * selectAll function.
+   * @param {*} initChecked - Parameter.
+   * @returns {*} Result.
+   */
+  selectAll(initChecked: boolean) {
+      if (!initChecked) {
+        this.tableData.forEach((f) &#x3D;&gt; {
+          f.isSelected &#x3D; true;
+        });
+      } else {
+        this.tableData.forEach((f) &#x3D;&gt; {
+          f.isSelected &#x3D; false;
+        });
+      }
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ChartOptions-2.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

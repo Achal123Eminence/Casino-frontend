@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+  <div class="mb-3">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center gap-2">
+        <label class="form-label">BALANCE</label> <!-- change to logged in user balance here -->
+        <label class="form-label fw-bold" style="color: red">{{fromBalanceUser || 0}}</label>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <label class="form-label">USER BALANCE</label>
+        <label class="form-label fw-bold"  style="color: red">{{selectedUser?.balance['$numberDecimal'] || 0}}</label>
+      </div>
+      <!-- <button class="btn btn-sm btn-info">Logs</button> -->
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Enter Amount</label>
+    <input type="text" class="form-control" formControlName="amount" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Google Authenticator OTP</label>
+    <div class="input-group input-group-flat pass-group">
+      <input type="number" class="pass-input form-control" formControlName="googleOtp">
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label class="form-label">Transaction Type</label>
+    <select id="type" class="form-select" formControlName="type">
+      <option [value]="deposit">Deposit</option>
+      <option [value]="withdraw">Withdrawl</option>
+    </select>
+    @if (controls['type'].invalid && controls['type'].touched) {
+      <div class="text-danger">
+        Please select a role type.
+      </div>
+    }
+  </div>
+</form>

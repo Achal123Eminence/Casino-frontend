@@ -1,0 +1,2266 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  UiToastsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-ui-toasts</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../interfaces/Module.html" target="_self" >ToastModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ui-toasts.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ui-toasts.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#show" >show</a>
+                            </li>
+                            <li>
+                                <a href="#showBottomCenter" >showBottomCenter</a>
+                            </li>
+                            <li>
+                                <a href="#showBottomLeft" >showBottomLeft</a>
+                            </li>
+                            <li>
+                                <a href="#showBottomRight" >showBottomRight</a>
+                            </li>
+                            <li>
+                                <a href="#showDangerBackground" >showDangerBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showDangerColor" >showDangerColor</a>
+                            </li>
+                            <li>
+                                <a href="#showInfoBackground" >showInfoBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showInfoColor" >showInfoColor</a>
+                            </li>
+                            <li>
+                                <a href="#showMiddleLeft" >showMiddleLeft</a>
+                            </li>
+                            <li>
+                                <a href="#showPrimaryBackground" >showPrimaryBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showPrimaryColor" >showPrimaryColor</a>
+                            </li>
+                            <li>
+                                <a href="#showSecondaryBackground" >showSecondaryBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showSecondaryColor" >showSecondaryColor</a>
+                            </li>
+                            <li>
+                                <a href="#showSuccessBackground" >showSuccessBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showSuccessColor" >showSuccessColor</a>
+                            </li>
+                            <li>
+                                <a href="#showTopCenter" >showTopCenter</a>
+                            </li>
+                            <li>
+                                <a href="#showTopLeft" >showTopLeft</a>
+                            </li>
+                            <li>
+                                <a href="#showTopRight" >showTopRight</a>
+                            </li>
+                            <li>
+                                <a href="#showWarningBackground" >showWarningBackground</a>
+                            </li>
+                            <li>
+                                <a href="#showWarningColor" >showWarningColor</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(messageService: MessageService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor function.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="show"></a>
+                    <span class="name">
+                        <span ><b>show</b></span>
+                        <a href="#show"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>show()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>show function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBottomCenter"></a>
+                    <span class="name">
+                        <span ><b>showBottomCenter</b></span>
+                        <a href="#showBottomCenter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showBottomCenter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:242</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showBottomCenter function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBottomLeft"></a>
+                    <span class="name">
+                        <span ><b>showBottomLeft</b></span>
+                        <a href="#showBottomLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showBottomLeft()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:229</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showBottomLeft function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showBottomRight"></a>
+                    <span class="name">
+                        <span ><b>showBottomRight</b></span>
+                        <a href="#showBottomRight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showBottomRight()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showBottomRight function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDangerBackground"></a>
+                    <span class="name">
+                        <span ><b>showDangerBackground</b></span>
+                        <a href="#showDangerBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDangerBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showDangerBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDangerColor"></a>
+                    <span class="name">
+                        <span ><b>showDangerColor</b></span>
+                        <a href="#showDangerColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDangerColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showDangerColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showInfoBackground"></a>
+                    <span class="name">
+                        <span ><b>showInfoBackground</b></span>
+                        <a href="#showInfoBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showInfoBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showInfoBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showInfoColor"></a>
+                    <span class="name">
+                        <span ><b>showInfoColor</b></span>
+                        <a href="#showInfoColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showInfoColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showInfoColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMiddleLeft"></a>
+                    <span class="name">
+                        <span ><b>showMiddleLeft</b></span>
+                        <a href="#showMiddleLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showMiddleLeft()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showMiddleLeft function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showPrimaryBackground"></a>
+                    <span class="name">
+                        <span ><b>showPrimaryBackground</b></span>
+                        <a href="#showPrimaryBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showPrimaryBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showPrimaryBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showPrimaryColor"></a>
+                    <span class="name">
+                        <span ><b>showPrimaryColor</b></span>
+                        <a href="#showPrimaryColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showPrimaryColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showPrimaryColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSecondaryBackground"></a>
+                    <span class="name">
+                        <span ><b>showSecondaryBackground</b></span>
+                        <a href="#showSecondaryBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSecondaryBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showSecondaryBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSecondaryColor"></a>
+                    <span class="name">
+                        <span ><b>showSecondaryColor</b></span>
+                        <a href="#showSecondaryColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSecondaryColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showSecondaryColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSuccessBackground"></a>
+                    <span class="name">
+                        <span ><b>showSuccessBackground</b></span>
+                        <a href="#showSuccessBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSuccessBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showSuccessBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSuccessColor"></a>
+                    <span class="name">
+                        <span ><b>showSuccessColor</b></span>
+                        <a href="#showSuccessColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSuccessColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showSuccessColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showTopCenter"></a>
+                    <span class="name">
+                        <span ><b>showTopCenter</b></span>
+                        <a href="#showTopCenter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showTopCenter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showTopCenter function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showTopLeft"></a>
+                    <span class="name">
+                        <span ><b>showTopLeft</b></span>
+                        <a href="#showTopLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showTopLeft()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showTopLeft function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showTopRight"></a>
+                    <span class="name">
+                        <span ><b>showTopRight</b></span>
+                        <a href="#showTopRight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showTopRight()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:203</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showTopRight function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showWarningBackground"></a>
+                    <span class="name">
+                        <span ><b>showWarningBackground</b></span>
+                        <a href="#showWarningBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showWarningBackground()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showWarningBackground function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showWarningColor"></a>
+                    <span class="name">
+                        <span ><b>showWarningColor</b></span>
+                        <a href="#showWarningColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showWarningColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>showWarningColor function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/ui-interface/base-ui/ui-toasts/ui-toasts.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+
+import { ToastModule } from &#x27;primeng/toast&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+@Component({
+    selector: &#x27;app-ui-toasts&#x27;,
+    templateUrl: &#x27;./ui-toasts.component.html&#x27;,
+    styleUrl: &#x27;./ui-toasts.component.scss&#x27;,
+    providers: [MessageService],
+    imports: [ToastModule,RouterLink]
+})
+export class UiToastsComponent {
+  public routes &#x3D; routes;
+  /**
+   * constructor function.
+   * @param {*} messageService - Parameter.
+   * @returns {*} Result.
+   */
+  constructor(private messageService: MessageService) {}
+
+  /**
+   * show function.
+   * @returns {*} Result.
+   */
+  show() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Hello, world! This is a toast message.&#x27;,
+    });
+  }
+
+  /**
+   * showPrimaryColor function.
+   * @returns {*} Result.
+   */
+  showPrimaryColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showSecondaryColor function.
+   * @returns {*} Result.
+   */
+  showSecondaryColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;secondary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showWarningColor function.
+   * @returns {*} Result.
+   */
+  showWarningColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showInfoColor function.
+   * @returns {*} Result.
+   */
+  showInfoColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;info-light-popover&#x27;,
+    });
+  }
+  /**
+   * showSuccessColor function.
+   * @returns {*} Result.
+   */
+  showSuccessColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;success-light-popover&#x27;,
+    });
+  }
+  /**
+   * showDangerColor function.
+   * @returns {*} Result.
+   */
+  showDangerColor() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;danger-light-popover&#x27;,
+    });
+  }
+  /**
+   * showPrimaryBackground function.
+   * @returns {*} Result.
+   */
+  showPrimaryBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-background-popover&#x27;,
+    });
+  }
+
+  /**
+   * showSecondaryBackground function.
+   * @returns {*} Result.
+   */
+  showSecondaryBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;secondary-background-popover&#x27;,
+    });
+  }
+
+  /**
+   * showWarningBackground function.
+   * @returns {*} Result.
+   */
+  showWarningBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;warning-background-popover&#x27;,
+    });
+  }
+
+  /**
+   * showInfoBackground function.
+   * @returns {*} Result.
+   */
+  showInfoBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;info-background-popover&#x27;,
+    });
+  }
+  /**
+   * showSuccessBackground function.
+   * @returns {*} Result.
+   */
+  showSuccessBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;success-background-popover&#x27;,
+    });
+  }
+  /**
+   * showDangerBackground function.
+   * @returns {*} Result.
+   */
+  showDangerBackground() {
+    this.messageService.add({
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;danger-background-popover&#x27;,
+    });
+  }
+
+  /**
+   * showTopLeft function.
+   * @returns {*} Result.
+   */
+  showTopLeft() {
+    this.messageService.add({
+      key: &#x27;tl&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showTopCenter function.
+   * @returns {*} Result.
+   */
+  showTopCenter() {
+    this.messageService.add({
+      key: &#x27;tc&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showTopRight function.
+   * @returns {*} Result.
+   */
+  showTopRight() {
+    this.messageService.add({
+      key: &#x27;tr&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showMiddleLeft function.
+   * @returns {*} Result.
+   */
+  showMiddleLeft() {
+    this.messageService.add({
+      key: &#x27;ml&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showBottomLeft function.
+   * @returns {*} Result.
+   */
+  showBottomLeft() {
+    this.messageService.add({
+      key: &#x27;bl&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showBottomCenter function.
+   * @returns {*} Result.
+   */
+  showBottomCenter() {
+    this.messageService.add({
+      key: &#x27;bc&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+
+  /**
+   * showBottomRight function.
+   * @returns {*} Result.
+   */
+  showBottomRight() {
+    this.messageService.add({
+      key: &#x27;br&#x27;,
+      summary: &#x27;Toast&#x27;,
+      detail: &#x27;Your,toast message here.&#x27;,
+      styleClass: &#x27;primary-light-popover&#x27;,
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">  &lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Toast&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Base UI&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Toast&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Toastr --&gt;
+    &lt;div class&#x3D;&quot;col-xl-4&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Live example
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;p-toast&gt;&lt;/p-toast&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary btn-wave&quot; id&#x3D;&quot;liveToastBtn&quot; pButton pRipple
+                    (click)&#x3D;&quot;show()&quot; label&#x3D;&quot;Show&quot;&gt;Show live
+                    toast&lt;/button&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 end-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;liveToast&quot; class&#x3D;&quot;toast&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;small&gt;11 mins ago&lt;/small&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is a toast message.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Color schemes
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;toast align-items-center text-bg-primary border-0 fade show mb-4&quot; role&#x3D;&quot;alert&quot;
+                    aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is the Primary toast message.
+                        &lt;/div&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close btn-close-white me-2 m-auto&quot; data-bs-dismiss&#x3D;&quot;toast&quot;
+                            aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast align-items-center text-bg-secondary border-0 fade show mb-4&quot; role&#x3D;&quot;alert&quot;
+                    aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is the Secondary toast.
+                        &lt;/div&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close btn-close-white me-2 m-auto&quot; data-bs-dismiss&#x3D;&quot;toast&quot;
+                            aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast align-items-center text-bg-success border-0 fade show mb-4&quot; role&#x3D;&quot;alert&quot;
+                    aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is the Success toast message.
+                        &lt;/div&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close btn-close-white me-2 m-auto&quot; data-bs-dismiss&#x3D;&quot;toast&quot;
+                            aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast align-items-center text-bg-info border-0 fade show&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot;
+                    aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is the info toast message.
+                        &lt;/div&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close btn-close-white me-2 m-auto&quot; data-bs-dismiss&#x3D;&quot;toast&quot;
+                            aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Toastr --&gt;
+
+    &lt;!-- Toastr --&gt;
+    &lt;div class&#x3D;&quot;col-xl-4&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Basic example
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;toast fade show&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                        &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                        &lt;small&gt;11 mins ago&lt;/small&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                        Hello, world! This is a toast message.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Stacking
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;toast-container position-static&quot;&gt;
+                    &lt;div class&#x3D;&quot;toast fade show&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;small class&#x3D;&quot;text-muted&quot;&gt;just now&lt;/small&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            See? Just like this.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;toast fade show&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;small class&#x3D;&quot;text-muted&quot;&gt;2 seconds ago&lt;/small&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Heads up, toasts will stack automatically
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Toastr --&gt;
+
+    &lt;!-- Translucent --&gt;
+    &lt;div class&#x3D;&quot;col-xl-4&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Translucent
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;toast fade show&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                        &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                        &lt;small class&#x3D;&quot;text-muted&quot;&gt;11 mins ago&lt;/small&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                        Hello, world! This is a toast message.
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Custom content
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;toast align-items-center fade show mb-3&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot;
+                    aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Hello, world! This is a toast message.
+                        &lt;/div&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close me-2 m-auto&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;span class&#x3D;&quot;my-4 text-muted&quot;&gt;
+                        Alternatively, you can also add additional controls and components to
+                        toasts.
+                    &lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast fade show mt-2&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                    &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                        Hello, world! This is a toast message.
+                        &lt;div class&#x3D;&quot;mt-2 pt-2 border-top&quot;&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary btn-sm btn-wave me-1&quot;&gt;Take
+                                action&lt;/button&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary btn-sm btn-wave&quot;
+                                data-bs-dismiss&#x3D;&quot;toast&quot;&gt;Close&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Translucent --&gt;
+
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Color Variants Live --&gt;
+    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Color Variants Live
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;btn-list&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showPrimaryColor()&quot; class&#x3D;&quot;btn btn-primary-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;primaryToastBtn&quot;&gt;Primary&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast1&quot;&gt;&lt;/p-toast&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showSecondaryColor()&quot; class&#x3D;&quot;btn btn-secondary-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;secondaryToastBtn&quot;&gt;secondary&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast2&quot;&gt;&lt;/p-toast&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showWarningColor()&quot; class&#x3D;&quot;btn btn-warning-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;warningToastBtn&quot;&gt;warning&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast3&quot;&gt;&lt;/p-toast&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showInfoColor()&quot; class&#x3D;&quot;btn btn-info-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;infoToastBtn&quot;&gt;info&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast4&quot;&gt;&lt;/p-toast&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showSuccessColor()&quot; class&#x3D;&quot;btn btn-success-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;successToastBtn&quot;&gt;success&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast5&quot;&gt;&lt;/p-toast&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showDangerColor()&quot; class&#x3D;&quot;btn btn-danger-light me-2 btn-wave&quot;
+                        id&#x3D;&quot;dangerToastBtn&quot;&gt;danger&lt;/button&gt;
+                    &lt;p-toast key&#x3D;&quot;toast6&quot;&gt;&lt;/p-toast&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 end-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;primaryToast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;secondaryToast&quot; class&#x3D;&quot;toast colored-toast bg-secondary-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-secondary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;warningToast&quot; class&#x3D;&quot;toast colored-toast bg-warning-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-warning text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;infoToast&quot; class&#x3D;&quot;toast colored-toast bg-info-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-info text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;successToast&quot; class&#x3D;&quot;toast colored-toast bg-success-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-success text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;dangerToast&quot; class&#x3D;&quot;toast colored-toast bg-danger-transparent&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-danger text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Color Variants Live --&gt;
+
+    &lt;!-- Solid Background Toasts --&gt;
+    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Solid Background Toasts
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;btn-list&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showPrimaryBackground()&quot; class&#x3D;&quot;btn btn-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;solidprimaryToastBtn&quot;&gt;Primary&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showSecondaryBackground()&quot; class&#x3D;&quot;btn btn-secondary me-2 btn-wave&quot;
+                        id&#x3D;&quot;solidsecondaryToastBtn&quot;&gt;secondary&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showWarningBackground()&quot; class&#x3D;&quot;btn btn-warning me-2 btn-wave&quot;
+                        id&#x3D;&quot;solidwarningToastBtn&quot;&gt;warning&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showInfoBackground()&quot; class&#x3D;&quot;btn btn-info me-2 btn-wave&quot;
+                        id&#x3D;&quot;solidinfoToastBtn&quot;&gt;info&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showSuccessBackground()&quot; class&#x3D;&quot;btn btn-success me-2 btn-wave&quot;
+                        id&#x3D;&quot;solidsuccessToastBtn&quot;&gt;success&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showDangerBackground()&quot; class&#x3D;&quot;btn btn-danger me-2 btn-wave&quot;
+                        id&#x3D;&quot;soliddangerToastBtn&quot;&gt;danger&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 end-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;solid-primaryToast&quot; class&#x3D;&quot;toast colored-toast bg-primary text-fixed-white&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;solid-secondaryToast&quot; class&#x3D;&quot;toast colored-toast bg-secondary text-fixed-white&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-secondary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;solid-warningToast&quot; class&#x3D;&quot;toast colored-toast bg-warning text-fixed-white&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-warning text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;solid-infoToast&quot; class&#x3D;&quot;toast colored-toast bg-info text-fixed-white&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-info text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;solid-successToast&quot; class&#x3D;&quot;toast colored-toast bg-success text-fixed-white&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-success text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;solid-dangerToast&quot; class&#x3D;&quot;toast colored-toast bg-danger text-fixed-white&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-danger text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Solid Background Toasts --&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Toast Placements --&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Toast Placements
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;btn-list&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showTopLeft()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;topleftToastBtn&quot;&gt;Top
+                        Left&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;top-left&quot; key&#x3D;&quot;tl&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showTopCenter()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;topcenterToastBtn&quot;&gt;Top
+                        Center&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;top-center&quot; key&#x3D;&quot;tc&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showTopRight()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;toprightToastBtn&quot;&gt;Top
+                        Right&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;top-right&quot; key&#x3D;&quot;tr&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;!-- &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showMiddleLeft()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;middleleftToastBtn&quot;&gt;
+                        Middle Left
+                    &lt;/button&gt;
+                    &lt;p-toast class&#x3D;&quot;custom-toast middle-left-toast&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot; id&#x3D;&quot;middlecenterToastBtn&quot;&gt;Middle
+                        Center&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;top-center&quot; key&#x3D;&quot;ml&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot; id&#x3D;&quot;middlerightToastBtn&quot;&gt;Middle
+                        Right&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;top-center&quot; key&#x3D;&quot;tc&quot;&gt;&lt;/p-toast&gt; --&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showBottomLeft()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;bottomleftToastBtn&quot;&gt;Bottom
+                        Left&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;bottom-left&quot; key&#x3D;&quot;bl&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showBottomCenter()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;bottomcenterToastBtn&quot;&gt;Bottom
+                        Center&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;bottom-center&quot; key&#x3D;&quot;bc&quot;&gt;&lt;/p-toast&gt;
+
+                    &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showBottomRight()&quot; class&#x3D;&quot;btn btn-outline-primary me-2 btn-wave&quot;
+                        id&#x3D;&quot;bottomrightToastBtn&quot;&gt;Bottom
+                        Right&lt;/button&gt;
+                    &lt;p-toast position&#x3D;&quot;bottom-right&quot; key&#x3D;&quot;br&quot;&gt;&lt;/p-toast&gt;
+
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 start-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;topleft-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot; role&#x3D;&quot;alert&quot;
+                        aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 start-50 translate-middle-x p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;topcenter-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-0 end-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;topright-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-50 start-0 translate-middle-y p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;middleleft-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-50 start-50 translate-middle&quot;&gt;
+                    &lt;div id&#x3D;&quot;middlecenter-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed top-50 end-0 translate-middle-y p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;middleright-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed bottom-0 start-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;bottomleft-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed bottom-0 start-50 translate-middle-x p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;bottomcenter-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;toast-container position-fixed bottom-0 end-0 p-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;bottomright-Toast&quot; class&#x3D;&quot;toast colored-toast bg-primary-transparent text-primary&quot;
+                        role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast-header bg-primary text-fixed-white&quot;&gt;
+                            &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                            Your,toast message here.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Toast Placements --&gt;
+
+&lt;!-- Aligning Toast Using Flexbox --&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header justify-content-between&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;
+                    Aligning Toast Using Flexbox
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;bd-example bd-example-toasts d-flex p-2&quot;&gt;
+                    &lt;div aria-live&#x3D;&quot;polite&quot; aria-atomic&#x3D;&quot;true&quot;
+                        class&#x3D;&quot;d-flex justify-content-center align-items-center w-100&quot;&gt;
+                        &lt;div class&#x3D;&quot;toast fade show shadow-lg&quot; role&#x3D;&quot;alert&quot; aria-live&#x3D;&quot;assertive&quot; aria-atomic&#x3D;&quot;true&quot;&gt;
+                            &lt;div class&#x3D;&quot;toast-header text-default&quot;&gt;
+                                &lt;strong class&#x3D;&quot;me-auto&quot;&gt;Toast&lt;/strong&gt;
+                                &lt;small&gt;11 mins ago&lt;/small&gt;
+                                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn-close&quot; data-bs-dismiss&#x3D;&quot;toast&quot;
+                                    aria-label&#x3D;&quot;Close&quot;&gt;&lt;/button&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;toast-body&quot;&gt;
+                                Hello, world! This is a toast message.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Aligning Toast Using Flexbox --&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>  <!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Toast</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Base UI</a></li>                            <li class="breadcrumb-item active" aria-current="page">Toast</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Toastr -->    <div class="col-xl-4">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Live example                </div>            </div>            <div class="card-body">                <p-toast></p-toast>                <button type="button" class="btn btn-primary btn-wave" id="liveToastBtn" pButton pRipple                    (click)="show()" label="Show">Show live                    toast</button>                <div class="toast-container position-fixed top-0 end-0 p-3">                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header text-default">                            <strong class="me-auto">Toast</strong>                            <small>11 mins ago</small>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Hello, world! This is a toast message.                        </div>                    </div>                </div>            </div>        </div>        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Color schemes                </div>            </div>            <div class="card-body">                <div class="toast align-items-center text-bg-primary border-0 fade show mb-4" role="alert"                    aria-live="assertive" aria-atomic="true">                    <div class="d-flex">                        <div class="toast-body">                            Hello, world! This is the Primary toast message.                        </div>                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"                            aria-label="Close"></button>                    </div>                </div>                <div class="toast align-items-center text-bg-secondary border-0 fade show mb-4" role="alert"                    aria-live="assertive" aria-atomic="true">                    <div class="d-flex">                        <div class="toast-body">                            Hello, world! This is the Secondary toast.                        </div>                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"                            aria-label="Close"></button>                    </div>                </div>                <div class="toast align-items-center text-bg-success border-0 fade show mb-4" role="alert"                    aria-live="assertive" aria-atomic="true">                    <div class="d-flex">                        <div class="toast-body">                            Hello, world! This is the Success toast message.                        </div>                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"                            aria-label="Close"></button>                    </div>                </div>                <div class="toast align-items-center text-bg-info border-0 fade show" role="alert" aria-live="assertive"                    aria-atomic="true">                    <div class="d-flex">                        <div class="toast-body">                            Hello, world! This is the info toast message.                        </div>                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"                            aria-label="Close"></button>                    </div>                </div>            </div>        </div>    </div>    <!-- /Toastr -->    <!-- Toastr -->    <div class="col-xl-4">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Basic example                </div>            </div>            <div class="card-body">                <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">                    <div class="toast-header text-default">                        <strong class="me-auto">Toast</strong>                        <small>11 mins ago</small>                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                    </div>                    <div class="toast-body">                        Hello, world! This is a toast message.                    </div>                </div>            </div>        </div>        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Stacking                </div>            </div>            <div class="card-body">                <div class="toast-container position-static">                    <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header text-default">                            <strong class="me-auto">Toast</strong>                            <small class="text-muted">just now</small>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            See? Just like this.                        </div>                    </div>                    <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header text-default">                            <strong class="me-auto">Toast</strong>                            <small class="text-muted">2 seconds ago</small>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Heads up, toasts will stack automatically                        </div>                    </div>                </div>            </div>        </div>    </div>    <!-- /Toastr -->    <!-- Translucent -->    <div class="col-xl-4">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Translucent                </div>            </div>            <div class="card-body">                <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">                    <div class="toast-header text-default">                        <strong class="me-auto">Toast</strong>                        <small class="text-muted">11 mins ago</small>                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                    </div>                    <div class="toast-body">                        Hello, world! This is a toast message.                    </div>                </div>            </div>        </div>        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Custom content                </div>            </div>            <div class="card-body">                <div class="toast align-items-center fade show mb-3" role="alert" aria-live="assertive"                    aria-atomic="true">                    <div class="d-flex">                        <div class="toast-body">                            Hello, world! This is a toast message.                        </div>                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">                        </button>                    </div>                </div>                <div>                    <span class="my-4 text-muted">                        Alternatively, you can also add additional controls and components to                        toasts.                    </span>                </div>                <div class="toast fade show mt-2" role="alert" aria-live="assertive" aria-atomic="true">                    <div class="toast-body">                        Hello, world! This is a toast message.                        <div class="mt-2 pt-2 border-top">                            <button type="button" class="btn btn-primary btn-sm btn-wave me-1">Take                                action</button>                            <button type="button" class="btn btn-secondary btn-sm btn-wave"                                data-bs-dismiss="toast">Close</button>                        </div>                    </div>                </div>            </div>        </div>    </div>    <!-- /Translucent --></div><div class="row">    <!-- Color Variants Live -->    <div class="col-xl-6">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Color Variants Live                </div>            </div>            <div class="card-body">                <div class="btn-list">                    <button type="button" (click)="showPrimaryColor()" class="btn btn-primary-light me-2 btn-wave"                        id="primaryToastBtn">Primary</button>                    <p-toast key="toast1"></p-toast>                    <button type="button" (click)="showSecondaryColor()" class="btn btn-secondary-light me-2 btn-wave"                        id="secondaryToastBtn">secondary</button>                    <p-toast key="toast2"></p-toast>                    <button type="button" (click)="showWarningColor()" class="btn btn-warning-light me-2 btn-wave"                        id="warningToastBtn">warning</button>                    <p-toast key="toast3"></p-toast>                    <button type="button" (click)="showInfoColor()" class="btn btn-info-light me-2 btn-wave"                        id="infoToastBtn">info</button>                    <p-toast key="toast4"></p-toast>                    <button type="button" (click)="showSuccessColor()" class="btn btn-success-light me-2 btn-wave"                        id="successToastBtn">success</button>                    <p-toast key="toast5"></p-toast>                    <button type="button" (click)="showDangerColor()" class="btn btn-danger-light me-2 btn-wave"                        id="dangerToastBtn">danger</button>                    <p-toast key="toast6"></p-toast>                </div>                <div class="toast-container position-fixed top-0 end-0 p-3">                    <div id="primaryToast" class="toast colored-toast bg-primary-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="secondaryToast" class="toast colored-toast bg-secondary-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-secondary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="warningToast" class="toast colored-toast bg-warning-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-warning text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="infoToast" class="toast colored-toast bg-info-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-info text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="successToast" class="toast colored-toast bg-success-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-success text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="dangerToast" class="toast colored-toast bg-danger-transparent" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-danger text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>            </div>        </div>    </div>    <!-- /Color Variants Live -->    <!-- Solid Background Toasts -->    <div class="col-xl-6">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Solid Background Toasts                </div>            </div>            <div class="card-body">                <div class="btn-list">                    <button type="button" (click)="showPrimaryBackground()" class="btn btn-primary me-2 btn-wave"                        id="solidprimaryToastBtn">Primary</button>                    <button type="button" (click)="showSecondaryBackground()" class="btn btn-secondary me-2 btn-wave"                        id="solidsecondaryToastBtn">secondary</button>                    <button type="button" (click)="showWarningBackground()" class="btn btn-warning me-2 btn-wave"                        id="solidwarningToastBtn">warning</button>                    <button type="button" (click)="showInfoBackground()" class="btn btn-info me-2 btn-wave"                        id="solidinfoToastBtn">info</button>                    <button type="button" (click)="showSuccessBackground()" class="btn btn-success me-2 btn-wave"                        id="solidsuccessToastBtn">success</button>                    <button type="button" (click)="showDangerBackground()" class="btn btn-danger me-2 btn-wave"                        id="soliddangerToastBtn">danger</button>                </div>                <div class="toast-container position-fixed top-0 end-0 p-3">                    <div id="solid-primaryToast" class="toast colored-toast bg-primary text-fixed-white" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="solid-secondaryToast" class="toast colored-toast bg-secondary text-fixed-white"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-secondary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="solid-warningToast" class="toast colored-toast bg-warning text-fixed-white" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-warning text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="solid-infoToast" class="toast colored-toast bg-info text-fixed-white" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-info text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="solid-successToast" class="toast colored-toast bg-success text-fixed-white" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-success text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                    <div id="solid-dangerToast" class="toast colored-toast bg-danger text-fixed-white" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-danger text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>            </div>        </div>    </div>    <!-- /Solid Background Toasts --></div><!-- Toast Placements --><div class="row">    <div class="col-xl-12">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Toast Placements                </div>            </div>            <div class="card-body">                <div class="btn-list">                    <button type="button" (click)="showTopLeft()" class="btn btn-outline-primary me-2 btn-wave"                        id="topleftToastBtn">Top                        Left</button>                    <p-toast position="top-left" key="tl"></p-toast>                    <button type="button" (click)="showTopCenter()" class="btn btn-outline-primary me-2 btn-wave"                        id="topcenterToastBtn">Top                        Center</button>                    <p-toast position="top-center" key="tc"></p-toast>                    <button type="button" (click)="showTopRight()" class="btn btn-outline-primary me-2 btn-wave"                        id="toprightToastBtn">Top                        Right</button>                    <p-toast position="top-right" key="tr"></p-toast>                    <!-- <button type="button" (click)="showMiddleLeft()" class="btn btn-outline-primary me-2 btn-wave"                        id="middleleftToastBtn">                        Middle Left                    </button>                    <p-toast class="custom-toast middle-left-toast"></p-toast>                    <button type="button" class="btn btn-outline-primary me-2 btn-wave" id="middlecenterToastBtn">Middle                        Center</button>                    <p-toast position="top-center" key="ml"></p-toast>                    <button type="button" class="btn btn-outline-primary me-2 btn-wave" id="middlerightToastBtn">Middle                        Right</button>                    <p-toast position="top-center" key="tc"></p-toast> -->                    <button type="button" (click)="showBottomLeft()" class="btn btn-outline-primary me-2 btn-wave"                        id="bottomleftToastBtn">Bottom                        Left</button>                    <p-toast position="bottom-left" key="bl"></p-toast>                    <button type="button" (click)="showBottomCenter()" class="btn btn-outline-primary me-2 btn-wave"                        id="bottomcenterToastBtn">Bottom                        Center</button>                    <p-toast position="bottom-center" key="bc"></p-toast>                    <button type="button" (click)="showBottomRight()" class="btn btn-outline-primary me-2 btn-wave"                        id="bottomrightToastBtn">Bottom                        Right</button>                    <p-toast position="bottom-right" key="br"></p-toast>                </div>                <div class="toast-container position-fixed top-0 start-0 p-3">                    <div id="topleft-Toast" class="toast colored-toast bg-primary-transparent text-primary" role="alert"                        aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">                    <div id="topcenter-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed top-0 end-0 p-3">                    <div id="topright-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed top-50 start-0 translate-middle-y p-3">                    <div id="middleleft-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed top-50 start-50 translate-middle">                    <div id="middlecenter-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed top-50 end-0 translate-middle-y p-3">                    <div id="middleright-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed bottom-0 start-0 p-3">                    <div id="bottomleft-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">                    <div id="bottomcenter-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>                <div class="toast-container position-fixed bottom-0 end-0 p-3">                    <div id="bottomright-Toast" class="toast colored-toast bg-primary-transparent text-primary"                        role="alert" aria-live="assertive" aria-atomic="true">                        <div class="toast-header bg-primary text-fixed-white">                            <strong class="me-auto">Toast</strong>                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>                        </div>                        <div class="toast-body">                            Your,toast message here.                        </div>                    </div>                </div>            </div>        </div>    </div></div><!-- Toast Placements --><!-- Aligning Toast Using Flexbox --><div class="row">    <div class="col-xl-12">        <div class="card">            <div class="card-header justify-content-between">                <div class="card-title">                    Aligning Toast Using Flexbox                </div>            </div>            <div class="card-body">                <div class="bd-example bd-example-toasts d-flex p-2">                    <div aria-live="polite" aria-atomic="true"                        class="d-flex justify-content-center align-items-center w-100">                        <div class="toast fade show shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">                            <div class="toast-header text-default">                                <strong class="me-auto">Toast</strong>                                <small>11 mins ago</small>                                <button type="button" class="btn-close" data-bs-dismiss="toast"                                    aria-label="Close"></button>                            </div>                            <div class="toast-body">                                Hello, world! This is a toast message.                            </div>                        </div>                    </div>                </div>            </div>        </div>    </div></div><!-- Aligning Toast Using Flexbox --></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'UiToastsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UiToastsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

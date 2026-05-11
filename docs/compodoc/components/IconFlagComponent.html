@@ -1,0 +1,699 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconFlagComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-flag/icon-flag.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-flag</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-flag.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-flag.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-flag/icon-flag.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-flag&#x27;,
+    templateUrl: &#x27;./icon-flag.component.html&#x27;,
+    styleUrls: [&#x27;./icon-flag.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconFlagComponent {
+    routes&#x3D;routes
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Flag Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Flag Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Chart --&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;Flag Icons&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+                    &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ad&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ad&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ae&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ae&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-af&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-af&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ai&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ai&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-al&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-al&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-am&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-am&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ao&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ao&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ar&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ar&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-as&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-as&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-at&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-at&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-au&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-au&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-aw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-aw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ax&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ax&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-az&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-az&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ba&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ba&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bd&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bd&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-be&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-be&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bj&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bj&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bq&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bq&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-br&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-br&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bs&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bs&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-by&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-by&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-bz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-bz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ca&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ca&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cd&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cd&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ch&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ch&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ci&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ci&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ck&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ck&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-co&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-co&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cx&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cx&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-cz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-cz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-de&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-de&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-dj&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-dj&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-dk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-dk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-dm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-dm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-do&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-do&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-dz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-dz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ec&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ec&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ee&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ee&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-eg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-eg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-er&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-er&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-es&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-es&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-et&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-et&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fj&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fj&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-fr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-fr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ga&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ga&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gd&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gd&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ge&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ge&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gp&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gq&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gq&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gs&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gs&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-gy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-gy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-hk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-hk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-hn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-hn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-hr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-hr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ht&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ht&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-hu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-hu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-id&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-id&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ie&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ie&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-il&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-il&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-im&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-im&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-in&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-in&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-io&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-io&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-iq&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-iq&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ir&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ir&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-is&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-is&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-it&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-it&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-je&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-je&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-jm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-jm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-jo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-jo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-jp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-jp&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ke&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ke&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ki&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ki&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-km&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-km&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kp&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ky&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ky&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-kz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-kz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-la&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-la&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-li&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-li&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ls&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ls&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-lv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-lv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ly&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ly&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ma&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ma&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-md&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-md&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-me&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-me&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ml&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ml&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mp&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mq&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mq&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ms&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ms&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mx&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mx&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-my&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-my&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-mz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-mz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-na&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-na&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ne&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ne&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ng&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ng&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ni&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ni&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-no&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-no&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-np&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-np&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-nz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-nz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-om&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-om&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pa&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pa&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pe&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pe&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ph&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ph&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ps&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ps&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-pw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-pw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-py&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-py&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-qa&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-qa&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-re&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-re&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ro&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ro&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-rs&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-rs&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ru&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ru&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-rw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-rw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sa&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sa&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sd&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sd&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-se&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-se&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-si&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-si&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-so&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-so&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ss&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ss&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-st&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-st&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sx&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sx&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-sz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-sz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-td&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-td&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-th&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-th&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tj&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tj&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tl&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tl&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-to&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-to&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-tz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-tz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ua&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ua&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ug&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ug&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-um&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-um&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-us&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-us&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-uy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-uy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-uz&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-uz&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-va&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-va&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-vc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-vc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ve&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ve&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-vg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-vg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-vi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-vi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-vn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-vn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-vu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-vu&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-wf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-wf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ws&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ws&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-ye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-ye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-yt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-yt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-za&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-za&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-zm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-zm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;flag flag-zw&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;flag flag-zw&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-flag.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Flag Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Flag Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Chart -->    <div class="col-md-12">        <div class="card">            <div class="card-header">                <div class="card-title">Flag Icons</div>            </div>            <div class="card-body">                <div class="icons-items">                    <ul class="icons-list">                        <li><i class="flag flag-ad" data-bs-toggle="tooltip" title="flag flag-ad"></i></li>                        <li><i class="flag flag-ae" data-bs-toggle="tooltip" title="flag flag-ae"></i></li>                        <li><i class="flag flag-af" data-bs-toggle="tooltip" title="flag flag-af"></i></li>                        <li><i class="flag flag-ag" data-bs-toggle="tooltip" title="flag flag-ag"></i></li>                        <li><i class="flag flag-ai" data-bs-toggle="tooltip" title="flag flag-ai"></i></li>                        <li><i class="flag flag-al" data-bs-toggle="tooltip" title="flag flag-al"></i></li>                        <li><i class="flag flag-am" data-bs-toggle="tooltip" title="flag flag-am"></i></li>                        <li><i class="flag flag-ao" data-bs-toggle="tooltip" title="flag flag-ao"></i></li>                        <li><i class="flag flag-ar" data-bs-toggle="tooltip" title="flag flag-ar"></i></li>                        <li><i class="flag flag-as" data-bs-toggle="tooltip" title="flag flag-as"></i></li>                        <li><i class="flag flag-at" data-bs-toggle="tooltip" title="flag flag-at"></i></li>                        <li><i class="flag flag-au" data-bs-toggle="tooltip" title="flag flag-au"></i></li>                        <li><i class="flag flag-aw" data-bs-toggle="tooltip" title="flag flag-aw"></i></li>                        <li><i class="flag flag-ax" data-bs-toggle="tooltip" title="flag flag-ax"></i></li>                        <li><i class="flag flag-az" data-bs-toggle="tooltip" title="flag flag-az"></i></li>                        <li><i class="flag flag-ba" data-bs-toggle="tooltip" title="flag flag-ba"></i></li>                        <li><i class="flag flag-bb" data-bs-toggle="tooltip" title="flag flag-bb"></i></li>                        <li><i class="flag flag-bd" data-bs-toggle="tooltip" title="flag flag-bd"></i></li>                        <li><i class="flag flag-be" data-bs-toggle="tooltip" title="flag flag-be"></i></li>                        <li><i class="flag flag-bf" data-bs-toggle="tooltip" title="flag flag-bf"></i></li>                        <li><i class="flag flag-bg" data-bs-toggle="tooltip" title="flag flag-bg"></i></li>                        <li><i class="flag flag-bh" data-bs-toggle="tooltip" title="flag flag-bh"></i></li>                        <li><i class="flag flag-bi" data-bs-toggle="tooltip" title="flag flag-bi"></i></li>                        <li><i class="flag flag-bj" data-bs-toggle="tooltip" title="flag flag-bj"></i></li>                        <li><i class="flag flag-bl" data-bs-toggle="tooltip" title="flag flag-bl"></i></li>                        <li><i class="flag flag-bm" data-bs-toggle="tooltip" title="flag flag-bm"></i></li>                        <li><i class="flag flag-bn" data-bs-toggle="tooltip" title="flag flag-bn"></i></li>                        <li><i class="flag flag-bo" data-bs-toggle="tooltip" title="flag flag-bo"></i></li>                        <li><i class="flag flag-bq" data-bs-toggle="tooltip" title="flag flag-bq"></i></li>                        <li><i class="flag flag-br" data-bs-toggle="tooltip" title="flag flag-br"></i></li>                        <li><i class="flag flag-bs" data-bs-toggle="tooltip" title="flag flag-bs"></i></li>                        <li><i class="flag flag-bt" data-bs-toggle="tooltip" title="flag flag-bt"></i></li>                        <li><i class="flag flag-bv" data-bs-toggle="tooltip" title="flag flag-bv"></i></li>                        <li><i class="flag flag-bw" data-bs-toggle="tooltip" title="flag flag-bw"></i></li>                        <li><i class="flag flag-by" data-bs-toggle="tooltip" title="flag flag-by"></i></li>                        <li><i class="flag flag-bz" data-bs-toggle="tooltip" title="flag flag-bz"></i></li>                        <li><i class="flag flag-ca" data-bs-toggle="tooltip" title="flag flag-ca"></i></li>                        <li><i class="flag flag-cc" data-bs-toggle="tooltip" title="flag flag-cc"></i></li>                        <li><i class="flag flag-cd" data-bs-toggle="tooltip" title="flag flag-cd"></i></li>                        <li><i class="flag flag-cf" data-bs-toggle="tooltip" title="flag flag-cf"></i></li>                        <li><i class="flag flag-cg" data-bs-toggle="tooltip" title="flag flag-cg"></i></li>                        <li><i class="flag flag-ch" data-bs-toggle="tooltip" title="flag flag-ch"></i></li>                        <li><i class="flag flag-ci" data-bs-toggle="tooltip" title="flag flag-ci"></i></li>                        <li><i class="flag flag-ck" data-bs-toggle="tooltip" title="flag flag-ck"></i></li>                        <li><i class="flag flag-cl" data-bs-toggle="tooltip" title="flag flag-cl"></i></li>                        <li><i class="flag flag-cm" data-bs-toggle="tooltip" title="flag flag-cm"></i></li>                        <li><i class="flag flag-cn" data-bs-toggle="tooltip" title="flag flag-cn"></i></li>                        <li><i class="flag flag-co" data-bs-toggle="tooltip" title="flag flag-co"></i></li>                        <li><i class="flag flag-cr" data-bs-toggle="tooltip" title="flag flag-cr"></i></li>                        <li><i class="flag flag-cu" data-bs-toggle="tooltip" title="flag flag-cu"></i></li>                        <li><i class="flag flag-cv" data-bs-toggle="tooltip" title="flag flag-cv"></i></li>                        <li><i class="flag flag-cw" data-bs-toggle="tooltip" title="flag flag-cw"></i></li>                        <li><i class="flag flag-cx" data-bs-toggle="tooltip" title="flag flag-cx"></i></li>                        <li><i class="flag flag-cy" data-bs-toggle="tooltip" title="flag flag-cy"></i></li>                        <li><i class="flag flag-cz" data-bs-toggle="tooltip" title="flag flag-cz"></i></li>                        <li><i class="flag flag-de" data-bs-toggle="tooltip" title="flag flag-de"></i></li>                        <li><i class="flag flag-dj" data-bs-toggle="tooltip" title="flag flag-dj"></i></li>                        <li><i class="flag flag-dk" data-bs-toggle="tooltip" title="flag flag-dk"></i></li>                        <li><i class="flag flag-dm" data-bs-toggle="tooltip" title="flag flag-dm"></i></li>                        <li><i class="flag flag-do" data-bs-toggle="tooltip" title="flag flag-do"></i></li>                        <li><i class="flag flag-dz" data-bs-toggle="tooltip" title="flag flag-dz"></i></li>                        <li><i class="flag flag-ec" data-bs-toggle="tooltip" title="flag flag-ec"></i></li>                        <li><i class="flag flag-ee" data-bs-toggle="tooltip" title="flag flag-ee"></i></li>                        <li><i class="flag flag-eg" data-bs-toggle="tooltip" title="flag flag-eg"></i></li>                        <li><i class="flag flag-er" data-bs-toggle="tooltip" title="flag flag-er"></i></li>                        <li><i class="flag flag-es" data-bs-toggle="tooltip" title="flag flag-es"></i></li>                        <li><i class="flag flag-et" data-bs-toggle="tooltip" title="flag flag-et"></i></li>                        <li><i class="flag flag-fi" data-bs-toggle="tooltip" title="flag flag-fi"></i></li>                        <li><i class="flag flag-fj" data-bs-toggle="tooltip" title="flag flag-fj"></i></li>                        <li><i class="flag flag-fk" data-bs-toggle="tooltip" title="flag flag-fk"></i></li>                        <li><i class="flag flag-fm" data-bs-toggle="tooltip" title="flag flag-fm"></i></li>                        <li><i class="flag flag-fo" data-bs-toggle="tooltip" title="flag flag-fo"></i></li>                        <li><i class="flag flag-fr" data-bs-toggle="tooltip" title="flag flag-fr"></i></li>                        <li><i class="flag flag-ga" data-bs-toggle="tooltip" title="flag flag-ga"></i></li>                        <li><i class="flag flag-gb" data-bs-toggle="tooltip" title="flag flag-gb"></i></li>                        <li><i class="flag flag-gd" data-bs-toggle="tooltip" title="flag flag-gd"></i></li>                        <li><i class="flag flag-ge" data-bs-toggle="tooltip" title="flag flag-ge"></i></li>                        <li><i class="flag flag-gf" data-bs-toggle="tooltip" title="flag flag-gf"></i></li>                        <li><i class="flag flag-gg" data-bs-toggle="tooltip" title="flag flag-gg"></i></li>                        <li><i class="flag flag-gh" data-bs-toggle="tooltip" title="flag flag-gh"></i></li>                        <li><i class="flag flag-gi" data-bs-toggle="tooltip" title="flag flag-gi"></i></li>                        <li><i class="flag flag-gl" data-bs-toggle="tooltip" title="flag flag-gl"></i></li>                        <li><i class="flag flag-gm" data-bs-toggle="tooltip" title="flag flag-gm"></i></li>                        <li><i class="flag flag-gn" data-bs-toggle="tooltip" title="flag flag-gn"></i></li>                        <li><i class="flag flag-gp" data-bs-toggle="tooltip" title="flag flag-gp"></i></li>                        <li><i class="flag flag-gq" data-bs-toggle="tooltip" title="flag flag-gq"></i></li>                        <li><i class="flag flag-gr" data-bs-toggle="tooltip" title="flag flag-gr"></i></li>                        <li><i class="flag flag-gs" data-bs-toggle="tooltip" title="flag flag-gs"></i></li>                        <li><i class="flag flag-gt" data-bs-toggle="tooltip" title="flag flag-gt"></i></li>                        <li><i class="flag flag-gu" data-bs-toggle="tooltip" title="flag flag-gu"></i></li>                        <li><i class="flag flag-gw" data-bs-toggle="tooltip" title="flag flag-gw"></i></li>                        <li><i class="flag flag-gy" data-bs-toggle="tooltip" title="flag flag-gy"></i></li>                        <li><i class="flag flag-hk" data-bs-toggle="tooltip" title="flag flag-hk"></i></li>                        <li><i class="flag flag-hn" data-bs-toggle="tooltip" title="flag flag-hn"></i></li>                        <li><i class="flag flag-hr" data-bs-toggle="tooltip" title="flag flag-hr"></i></li>                        <li><i class="flag flag-ht" data-bs-toggle="tooltip" title="flag flag-ht"></i></li>                        <li><i class="flag flag-hu" data-bs-toggle="tooltip" title="flag flag-hu"></i></li>                        <li><i class="flag flag-id" data-bs-toggle="tooltip" title="flag flag-id"></i></li>                        <li><i class="flag flag-ie" data-bs-toggle="tooltip" title="flag flag-ie"></i></li>                        <li><i class="flag flag-il" data-bs-toggle="tooltip" title="flag flag-il"></i></li>                        <li><i class="flag flag-im" data-bs-toggle="tooltip" title="flag flag-im"></i></li>                        <li><i class="flag flag-in" data-bs-toggle="tooltip" title="flag flag-in"></i></li>                        <li><i class="flag flag-io" data-bs-toggle="tooltip" title="flag flag-io"></i></li>                        <li><i class="flag flag-iq" data-bs-toggle="tooltip" title="flag flag-iq"></i></li>                        <li><i class="flag flag-ir" data-bs-toggle="tooltip" title="flag flag-ir"></i></li>                        <li><i class="flag flag-is" data-bs-toggle="tooltip" title="flag flag-is"></i></li>                        <li><i class="flag flag-it" data-bs-toggle="tooltip" title="flag flag-it"></i></li>                        <li><i class="flag flag-je" data-bs-toggle="tooltip" title="flag flag-je"></i></li>                        <li><i class="flag flag-jm" data-bs-toggle="tooltip" title="flag flag-jm"></i></li>                        <li><i class="flag flag-jo" data-bs-toggle="tooltip" title="flag flag-jo"></i></li>                        <li><i class="flag flag-jp" data-bs-toggle="tooltip" title="flag flag-jp"></i></li>                        <li><i class="flag flag-ke" data-bs-toggle="tooltip" title="flag flag-ke"></i></li>                        <li><i class="flag flag-kg" data-bs-toggle="tooltip" title="flag flag-kg"></i></li>                        <li><i class="flag flag-kh" data-bs-toggle="tooltip" title="flag flag-kh"></i></li>                        <li><i class="flag flag-ki" data-bs-toggle="tooltip" title="flag flag-ki"></i></li>                        <li><i class="flag flag-km" data-bs-toggle="tooltip" title="flag flag-km"></i></li>                        <li><i class="flag flag-kn" data-bs-toggle="tooltip" title="flag flag-kn"></i></li>                        <li><i class="flag flag-kp" data-bs-toggle="tooltip" title="flag flag-kp"></i></li>                        <li><i class="flag flag-kr" data-bs-toggle="tooltip" title="flag flag-kr"></i></li>                        <li><i class="flag flag-kw" data-bs-toggle="tooltip" title="flag flag-kw"></i></li>                        <li><i class="flag flag-ky" data-bs-toggle="tooltip" title="flag flag-ky"></i></li>                        <li><i class="flag flag-kz" data-bs-toggle="tooltip" title="flag flag-kz"></i></li>                        <li><i class="flag flag-la" data-bs-toggle="tooltip" title="flag flag-la"></i></li>                        <li><i class="flag flag-lb" data-bs-toggle="tooltip" title="flag flag-lb"></i></li>                        <li><i class="flag flag-lc" data-bs-toggle="tooltip" title="flag flag-lc"></i></li>                        <li><i class="flag flag-li" data-bs-toggle="tooltip" title="flag flag-li"></i></li>                        <li><i class="flag flag-lk" data-bs-toggle="tooltip" title="flag flag-lk"></i></li>                        <li><i class="flag flag-lr" data-bs-toggle="tooltip" title="flag flag-lr"></i></li>                        <li><i class="flag flag-ls" data-bs-toggle="tooltip" title="flag flag-ls"></i></li>                        <li><i class="flag flag-lt" data-bs-toggle="tooltip" title="flag flag-lt"></i></li>                        <li><i class="flag flag-lu" data-bs-toggle="tooltip" title="flag flag-lu"></i></li>                        <li><i class="flag flag-lv" data-bs-toggle="tooltip" title="flag flag-lv"></i></li>                        <li><i class="flag flag-ly" data-bs-toggle="tooltip" title="flag flag-ly"></i></li>                        <li><i class="flag flag-ma" data-bs-toggle="tooltip" title="flag flag-ma"></i></li>                        <li><i class="flag flag-mc" data-bs-toggle="tooltip" title="flag flag-mc"></i></li>                        <li><i class="flag flag-md" data-bs-toggle="tooltip" title="flag flag-md"></i></li>                        <li><i class="flag flag-me" data-bs-toggle="tooltip" title="flag flag-me"></i></li>                        <li><i class="flag flag-mg" data-bs-toggle="tooltip" title="flag flag-mg"></i></li>                        <li><i class="flag flag-mh" data-bs-toggle="tooltip" title="flag flag-mh"></i></li>                        <li><i class="flag flag-mk" data-bs-toggle="tooltip" title="flag flag-mk"></i></li>                        <li><i class="flag flag-ml" data-bs-toggle="tooltip" title="flag flag-ml"></i></li>                        <li><i class="flag flag-mm" data-bs-toggle="tooltip" title="flag flag-mm"></i></li>                        <li><i class="flag flag-mn" data-bs-toggle="tooltip" title="flag flag-mn"></i></li>                        <li><i class="flag flag-mo" data-bs-toggle="tooltip" title="flag flag-mo"></i></li>                        <li><i class="flag flag-mp" data-bs-toggle="tooltip" title="flag flag-mp"></i></li>                        <li><i class="flag flag-mq" data-bs-toggle="tooltip" title="flag flag-mq"></i></li>                        <li><i class="flag flag-mr" data-bs-toggle="tooltip" title="flag flag-mr"></i></li>                        <li><i class="flag flag-ms" data-bs-toggle="tooltip" title="flag flag-ms"></i></li>                        <li><i class="flag flag-mt" data-bs-toggle="tooltip" title="flag flag-mt"></i></li>                        <li><i class="flag flag-mu" data-bs-toggle="tooltip" title="flag flag-mu"></i></li>                        <li><i class="flag flag-mv" data-bs-toggle="tooltip" title="flag flag-mv"></i></li>                        <li><i class="flag flag-mw" data-bs-toggle="tooltip" title="flag flag-mw"></i></li>                        <li><i class="flag flag-mx" data-bs-toggle="tooltip" title="flag flag-mx"></i></li>                        <li><i class="flag flag-my" data-bs-toggle="tooltip" title="flag flag-my"></i></li>                        <li><i class="flag flag-mz" data-bs-toggle="tooltip" title="flag flag-mz"></i></li>                        <li><i class="flag flag-na" data-bs-toggle="tooltip" title="flag flag-na"></i></li>                        <li><i class="flag flag-nc" data-bs-toggle="tooltip" title="flag flag-nc"></i></li>                        <li><i class="flag flag-ne" data-bs-toggle="tooltip" title="flag flag-ne"></i></li>                        <li><i class="flag flag-nf" data-bs-toggle="tooltip" title="flag flag-nf"></i></li>                        <li><i class="flag flag-ng" data-bs-toggle="tooltip" title="flag flag-ng"></i></li>                        <li><i class="flag flag-ni" data-bs-toggle="tooltip" title="flag flag-ni"></i></li>                        <li><i class="flag flag-nl" data-bs-toggle="tooltip" title="flag flag-nl"></i></li>                        <li><i class="flag flag-no" data-bs-toggle="tooltip" title="flag flag-no"></i></li>                        <li><i class="flag flag-np" data-bs-toggle="tooltip" title="flag flag-np"></i></li>                        <li><i class="flag flag-nr" data-bs-toggle="tooltip" title="flag flag-nr"></i></li>                        <li><i class="flag flag-nu" data-bs-toggle="tooltip" title="flag flag-nu"></i></li>                        <li><i class="flag flag-nz" data-bs-toggle="tooltip" title="flag flag-nz"></i></li>                        <li><i class="flag flag-om" data-bs-toggle="tooltip" title="flag flag-om"></i></li>                        <li><i class="flag flag-pa" data-bs-toggle="tooltip" title="flag flag-pa"></i></li>                        <li><i class="flag flag-pe" data-bs-toggle="tooltip" title="flag flag-pe"></i></li>                        <li><i class="flag flag-pf" data-bs-toggle="tooltip" title="flag flag-pf"></i></li>                        <li><i class="flag flag-pg" data-bs-toggle="tooltip" title="flag flag-pg"></i></li>                        <li><i class="flag flag-ph" data-bs-toggle="tooltip" title="flag flag-ph"></i></li>                        <li><i class="flag flag-pk" data-bs-toggle="tooltip" title="flag flag-pk"></i></li>                        <li><i class="flag flag-pl" data-bs-toggle="tooltip" title="flag flag-pl"></i></li>                        <li><i class="flag flag-pm" data-bs-toggle="tooltip" title="flag flag-pm"></i></li>                        <li><i class="flag flag-pn" data-bs-toggle="tooltip" title="flag flag-pn"></i></li>                        <li><i class="flag flag-pr" data-bs-toggle="tooltip" title="flag flag-pr"></i></li>                        <li><i class="flag flag-ps" data-bs-toggle="tooltip" title="flag flag-ps"></i></li>                        <li><i class="flag flag-pt" data-bs-toggle="tooltip" title="flag flag-pt"></i></li>                        <li><i class="flag flag-pw" data-bs-toggle="tooltip" title="flag flag-pw"></i></li>                        <li><i class="flag flag-py" data-bs-toggle="tooltip" title="flag flag-py"></i></li>                        <li><i class="flag flag-qa" data-bs-toggle="tooltip" title="flag flag-qa"></i></li>                        <li><i class="flag flag-re" data-bs-toggle="tooltip" title="flag flag-re"></i></li>                        <li><i class="flag flag-ro" data-bs-toggle="tooltip" title="flag flag-ro"></i></li>                        <li><i class="flag flag-rs" data-bs-toggle="tooltip" title="flag flag-rs"></i></li>                        <li><i class="flag flag-ru" data-bs-toggle="tooltip" title="flag flag-ru"></i></li>                        <li><i class="flag flag-rw" data-bs-toggle="tooltip" title="flag flag-rw"></i></li>                        <li><i class="flag flag-sa" data-bs-toggle="tooltip" title="flag flag-sa"></i></li>                        <li><i class="flag flag-sb" data-bs-toggle="tooltip" title="flag flag-sb"></i></li>                        <li><i class="flag flag-sc" data-bs-toggle="tooltip" title="flag flag-sc"></i></li>                        <li><i class="flag flag-sd" data-bs-toggle="tooltip" title="flag flag-sd"></i></li>                        <li><i class="flag flag-se" data-bs-toggle="tooltip" title="flag flag-se"></i></li>                        <li><i class="flag flag-sg" data-bs-toggle="tooltip" title="flag flag-sg"></i></li>                        <li><i class="flag flag-sh" data-bs-toggle="tooltip" title="flag flag-sh"></i></li>                        <li><i class="flag flag-si" data-bs-toggle="tooltip" title="flag flag-si"></i></li>                        <li><i class="flag flag-sk" data-bs-toggle="tooltip" title="flag flag-sk"></i></li>                        <li><i class="flag flag-sl" data-bs-toggle="tooltip" title="flag flag-sl"></i></li>                        <li><i class="flag flag-sm" data-bs-toggle="tooltip" title="flag flag-sm"></i></li>                        <li><i class="flag flag-sn" data-bs-toggle="tooltip" title="flag flag-sn"></i></li>                        <li><i class="flag flag-so" data-bs-toggle="tooltip" title="flag flag-so"></i></li>                        <li><i class="flag flag-sr" data-bs-toggle="tooltip" title="flag flag-sr"></i></li>                        <li><i class="flag flag-ss" data-bs-toggle="tooltip" title="flag flag-ss"></i></li>                        <li><i class="flag flag-st" data-bs-toggle="tooltip" title="flag flag-st"></i></li>                        <li><i class="flag flag-sv" data-bs-toggle="tooltip" title="flag flag-sv"></i></li>                        <li><i class="flag flag-sx" data-bs-toggle="tooltip" title="flag flag-sx"></i></li>                        <li><i class="flag flag-sy" data-bs-toggle="tooltip" title="flag flag-sy"></i></li>                        <li><i class="flag flag-sz" data-bs-toggle="tooltip" title="flag flag-sz"></i></li>                        <li><i class="flag flag-tc" data-bs-toggle="tooltip" title="flag flag-tc"></i></li>                        <li><i class="flag flag-td" data-bs-toggle="tooltip" title="flag flag-td"></i></li>                        <li><i class="flag flag-tf" data-bs-toggle="tooltip" title="flag flag-tf"></i></li>                        <li><i class="flag flag-tg" data-bs-toggle="tooltip" title="flag flag-tg"></i></li>                        <li><i class="flag flag-th" data-bs-toggle="tooltip" title="flag flag-th"></i></li>                        <li><i class="flag flag-tj" data-bs-toggle="tooltip" title="flag flag-tj"></i></li>                        <li><i class="flag flag-tk" data-bs-toggle="tooltip" title="flag flag-tk"></i></li>                        <li><i class="flag flag-tl" data-bs-toggle="tooltip" title="flag flag-tl"></i></li>                        <li><i class="flag flag-tm" data-bs-toggle="tooltip" title="flag flag-tm"></i></li>                        <li><i class="flag flag-tn" data-bs-toggle="tooltip" title="flag flag-tn"></i></li>                        <li><i class="flag flag-to" data-bs-toggle="tooltip" title="flag flag-to"></i></li>                        <li><i class="flag flag-tr" data-bs-toggle="tooltip" title="flag flag-tr"></i></li>                        <li><i class="flag flag-tt" data-bs-toggle="tooltip" title="flag flag-tt"></i></li>                        <li><i class="flag flag-tv" data-bs-toggle="tooltip" title="flag flag-tv"></i></li>                        <li><i class="flag flag-tw" data-bs-toggle="tooltip" title="flag flag-tw"></i></li>                        <li><i class="flag flag-tz" data-bs-toggle="tooltip" title="flag flag-tz"></i></li>                        <li><i class="flag flag-ua" data-bs-toggle="tooltip" title="flag flag-ua"></i></li>                        <li><i class="flag flag-ug" data-bs-toggle="tooltip" title="flag flag-ug"></i></li>                        <li><i class="flag flag-um" data-bs-toggle="tooltip" title="flag flag-um"></i></li>                        <li><i class="flag flag-us" data-bs-toggle="tooltip" title="flag flag-us"></i></li>                        <li><i class="flag flag-uy" data-bs-toggle="tooltip" title="flag flag-uy"></i></li>                        <li><i class="flag flag-uz" data-bs-toggle="tooltip" title="flag flag-uz"></i></li>                        <li><i class="flag flag-va" data-bs-toggle="tooltip" title="flag flag-va"></i></li>                        <li><i class="flag flag-vc" data-bs-toggle="tooltip" title="flag flag-vc"></i></li>                        <li><i class="flag flag-ve" data-bs-toggle="tooltip" title="flag flag-ve"></i></li>                        <li><i class="flag flag-vg" data-bs-toggle="tooltip" title="flag flag-vg"></i></li>                        <li><i class="flag flag-vi" data-bs-toggle="tooltip" title="flag flag-vi"></i></li>                        <li><i class="flag flag-vn" data-bs-toggle="tooltip" title="flag flag-vn"></i></li>                        <li><i class="flag flag-vu" data-bs-toggle="tooltip" title="flag flag-vu"></i></li>                        <li><i class="flag flag-wf" data-bs-toggle="tooltip" title="flag flag-wf"></i></li>                        <li><i class="flag flag-ws" data-bs-toggle="tooltip" title="flag flag-ws"></i></li>                        <li><i class="flag flag-ye" data-bs-toggle="tooltip" title="flag flag-ye"></i></li>                        <li><i class="flag flag-yt" data-bs-toggle="tooltip" title="flag flag-yt"></i></li>                        <li><i class="flag flag-za" data-bs-toggle="tooltip" title="flag flag-za"></i></li>                        <li><i class="flag flag-zm" data-bs-toggle="tooltip" title="flag flag-zm"></i></li>                        <li><i class="flag flag-zw" data-bs-toggle="tooltip" title="flag flag-zw"></i></li>                    </ul>                </div>            </div>        </div>    </div>    <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconFlagComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconFlagComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

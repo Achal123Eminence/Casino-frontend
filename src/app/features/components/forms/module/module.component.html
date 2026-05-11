@@ -1,0 +1,58 @@
+<form [formGroup]="moduleForm">
+  <div class="form-group mb-3">
+    <label for="category">Category</label>
+    <ng-multiselect-dropdown
+      [placeholder]="'Select Category'"
+      [settings]="categoryDropdownSettings"
+      [data]="categories"
+      formControlName="category"
+    >
+    </ng-multiselect-dropdown>
+    @if (controls["category"].invalid && controls["category"].touched) {
+      <div class="text-danger">Category is required.</div>
+    }
+  </div>
+  <div class="form-group mb-3">
+    <label for="name">Module Name</label>
+    <input
+      type="text"
+      id="name"
+      class="form-control"
+      formControlName="name"
+      placeholder="Enter module name"
+    />
+    @if (controls["name"].invalid && controls["name"].touched) {
+      <div class="text-danger">
+        Name is required and must contain only letters and spaces.
+      </div>
+    }
+  </div>
+@if(!moduleData?.shortName){
+  <div class="form-group mb-3">
+    <label for="shortName">Short Name</label>
+    <input
+      type="text"
+      id="shortName"
+      class="form-control"
+      formControlName="shortName"
+      placeholder="E.g. USER_MGMT"
+    />
+    @if (controls["shortName"].invalid && controls["shortName"].touched) {
+      <div class="text-danger">
+        Short name is required and must be uppercase letters or underscores
+        only.
+      </div>
+    }
+  </div>
+}
+
+  <div class="form-group mb-3">
+    <label for="parentId">Parent Module (optional)</label>
+    <select id="parentId" class="form-select" formControlName="parentId">
+      <option [ngValue]="null">None</option>
+      @for (module of parentModules; track module.uuid) {
+        <option [ngValue]="module.uuid">{{ module.name }}</option>
+      }
+    </select>
+  </div>
+</form>

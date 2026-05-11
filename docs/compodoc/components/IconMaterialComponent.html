@@ -1,0 +1,1081 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconMaterialComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-material/icon-material.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-material</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-material.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-material.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-material/icon-material.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-material&#x27;,
+    templateUrl: &#x27;./icon-material.component.html&#x27;,
+    styleUrls: [&#x27;./icon-material.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconMaterialComponent {
+    routes&#x3D;routes
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Material Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Material Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+  &lt;!-- Chart --&gt;
+  &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+    &lt;div class&#x3D;&quot;card&quot;&gt;
+      &lt;div class&#x3D;&quot;card-header&quot;&gt;
+        &lt;div class&#x3D;&quot;card-title&quot;&gt;Material Icons&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+          &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-access-point&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-access-point&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-access-point-network&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-access-point-network&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-alert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-alert&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-box-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-box-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-check&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-check&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-convert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-convert&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-edit&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-edit&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-key&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-key&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-minus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-multiple&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-multiple&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-multiple-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-multiple-minus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-multiple-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-account-multiple-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-multiple-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-multiple-plus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-network&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-network&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-off&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-plus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-remove&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-remove&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-search&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-search&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-settings&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-settings&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-star&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-star&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-account-switch&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-account-switch&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-adjust&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-adjust&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-air-conditioner&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-air-conditioner&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-airballoon&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-airballoon&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-airplane&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-airplane&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-airplane-landing&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-airplane-landing&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-airplane-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-airplane-off&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-airplane-takeoff&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-airplane-takeoff&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-bell&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-bell&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-check&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-check&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-light&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-light&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-multiple&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-multiple&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-off&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-plus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alarm-snooze&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alarm-snooze&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-album&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-album&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-decagram&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-decagram&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-octagon&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-octagon&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-octagram&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-octagram&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alert-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alert-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-all-inclusive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-all-inclusive&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alpha&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alpha&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-alphabetical&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-alphabetical&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-altimeter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-altimeter&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-ambulance&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-ambulance&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-amplifier&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-amplifier&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-anchor&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-anchor&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-android&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-android&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-android-studio&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-android-studio&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-angular&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-angular&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-angularjs&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-angularjs&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-animation&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-animation&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-finder&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-finder&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-ios&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-ios&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-keyboard-caps&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-keyboard-caps&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-keyboard-command&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-keyboard-command&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-keyboard-control&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-keyboard-control&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-keyboard-option&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-keyboard-option&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-keyboard-shift&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-keyboard-shift&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apple-safari&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apple-safari&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-application&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-application&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-apps&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-apps&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-archive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-archive&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrange-bring-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrange-bring-forward&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrange-send-to-back&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrange-send-to-back&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrange-bring-to-front&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrange-bring-to-front&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrange-send-backward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrange-send-backward&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-all&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-all&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-bottom-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-bottom-left&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-bottom-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-bottom-right&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse-all&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse-all&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse-down&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse-left&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse-right&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-collapse-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-collapse-up&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-bold&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-bold&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-bold-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-bold-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-bold-box-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-down-bold-box-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-bold-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-bold-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-bold-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-down-bold-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-drop-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-drop-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-drop-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-down-drop-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-down-thick&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-down-thick&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand-all&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand-all&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand-down&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand-left&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand-right&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-expand-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-expand-up&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-bold&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-bold&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-bold-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-bold-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-bold-box-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-left-bold-box-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-bold-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-bold-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-bold-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-left-bold-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-drop-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-drop-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-drop-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-left-drop-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-left-thick&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-left-thick&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-right&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-bold&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-right-bold&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-bold-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-right-bold-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-bold-box-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-right-bold-box-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-bold-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-right-bold-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-bold-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-right-bold-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-right-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-drop-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-right-drop-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-drop-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-right-drop-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-right-thick&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-right-thick&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-top-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-top-left&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-top-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-top-right&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-bold&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-bold&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-bold-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-bold-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-bold-box-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-up-bold-box-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-bold-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-bold-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-bold-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-up-bold-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-drop-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-drop-circle&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-drop-circle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                title&#x3D;&quot;mdi-arrow-up-drop-circle-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-arrow-up-thick&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-arrow-up-thick&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-assistant&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-assistant&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-asterisk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-asterisk&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-at&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-at&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-atom&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-atom&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-attachment&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-attachment&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-auto-fix&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-auto-fix&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-auto-upload&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-auto-upload&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-autorenew&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-autorenew&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-av-timer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-av-timer&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-baby&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-baby&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-baby-buggy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-baby-buggy&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-backburger&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-backburger&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-backspace&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-backspace&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-backup-restore&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-backup-restore&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-bank&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-bank&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-barcode&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-barcode&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-barcode-scan&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-barcode-scan&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-barley&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-barley&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-barrel&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-barrel&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-basket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-basket&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-basket-fill&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-basket-fill&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-basket-unfill&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-basket-unfill&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-10&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-10&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-20&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-20&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-30&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-30&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-40&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-40&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-50&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-50&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-60&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-60&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-70&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-70&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-80&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-80&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-90&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-90&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-alert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-alert&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-100&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-100&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-20&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-20&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-30&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-30&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-40&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-40&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-60&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-60&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-80&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-80&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-charging-90&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-charging-90&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-minus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-negative&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-negative&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-outline&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-plus&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-battery-unknown&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-battery-unknown&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-beach&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-beach&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-zip-box&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-zip-box&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-yin-yang&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-yin-yang&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-xmpp&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-xmpp&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-xml&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-xml&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-wrench&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-wrench&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-wrap&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-wrap&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-wrench&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-wrench&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-vpn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-vpn&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-volume-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-volume-off&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-volume-mute&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-volume-mute&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-vlc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-vlc&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-video&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-video&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-usb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-usb&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-upload-network&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-upload-network&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-update&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-update&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-unity&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-unity&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-undo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-undo&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-ubuntu&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-ubuntu&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-tune&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-tune&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-truck-trailer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-truck-trailer&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-truck&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-truck&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-svg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-svg&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;i class&#x3D;&quot;mdi mdi-subway&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;mdi-subway&quot;&gt;&lt;/i&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-material.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Material Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Material Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">  <!-- Chart -->  <div class="col-md-12">    <div class="card">      <div class="card-header">        <div class="card-title">Material Icons</div>      </div>      <div class="card-body">        <div class="icons-items">          <ul class="icons-list">            <li>              <i class="mdi mdi-access-point" data-bs-toggle="tooltip" title="mdi-access-point"></i>            </li>            <li>              <i class="mdi mdi-access-point-network" data-bs-toggle="tooltip" title="mdi-access-point-network"></i>            </li>            <li>              <i class="mdi mdi-account" data-bs-toggle="tooltip" title="mdi-account"></i>            </li>            <li>              <i class="mdi mdi-account-alert" data-bs-toggle="tooltip" title="mdi-account-alert"></i>            </li>            <li>              <i class="mdi mdi-account-box" data-bs-toggle="tooltip" title="mdi-account-box"></i>            </li>            <li>              <i class="mdi mdi-account-box-outline" data-bs-toggle="tooltip" title="mdi-account-box-outline"></i>            </li>            <li>              <i class="mdi mdi-account-check" data-bs-toggle="tooltip" title="mdi-account-check"></i>            </li>            <li>              <i class="mdi mdi-account-circle" data-bs-toggle="tooltip" title="mdi-account-circle"></i>            </li>            <li>              <i class="mdi mdi-account-convert" data-bs-toggle="tooltip" title="mdi-account-convert"></i>            </li>            <li>              <i class="mdi mdi-account-edit" data-bs-toggle="tooltip" title="mdi-account-edit"></i>            </li>            <li>              <i class="mdi mdi-account-key" data-bs-toggle="tooltip" title="mdi-account-key"></i>            </li>            <li>              <i class="mdi mdi-account-minus" data-bs-toggle="tooltip" title="mdi-account-minus"></i>            </li>            <li>              <i class="mdi mdi-account-multiple" data-bs-toggle="tooltip" title="mdi-account-multiple"></i>            </li>            <li>              <i class="mdi mdi-account-multiple-minus" data-bs-toggle="tooltip" title="mdi-account-multiple-minus"></i>            </li>            <li>              <i class="mdi mdi-account-multiple-outline" data-bs-toggle="tooltip"                title="mdi-account-multiple-outline"></i>            </li>            <li>              <i class="mdi mdi-account-multiple-plus" data-bs-toggle="tooltip" title="mdi-account-multiple-plus"></i>            </li>            <li>              <i class="mdi mdi-account-network" data-bs-toggle="tooltip" title="mdi-account-network"></i>            </li>            <li>              <i class="mdi mdi-account-off" data-bs-toggle="tooltip" title="mdi-account-off"></i>            </li>            <li>              <i class="mdi mdi-account-outline" data-bs-toggle="tooltip" title="mdi-account-outline"></i>            </li>            <li>              <i class="mdi mdi-account-plus" data-bs-toggle="tooltip" title="mdi-account-plus"></i>            </li>            <li>              <i class="mdi mdi-account-remove" data-bs-toggle="tooltip" title="mdi-account-remove"></i>            </li>            <li>              <i class="mdi mdi-account-search" data-bs-toggle="tooltip" title="mdi-account-search"></i>            </li>            <li>              <i class="mdi mdi-account-settings" data-bs-toggle="tooltip" title="mdi-account-settings"></i>            </li>            <li>              <i class="mdi mdi-account-star" data-bs-toggle="tooltip" title="mdi-account-star"></i>            </li>            <li>              <i class="mdi mdi-account-switch" data-bs-toggle="tooltip" title="mdi-account-switch"></i>            </li>            <li>              <i class="mdi mdi-adjust" data-bs-toggle="tooltip" title="mdi-adjust"></i>            </li>            <li>              <i class="mdi mdi-air-conditioner" data-bs-toggle="tooltip" title="mdi-air-conditioner"></i>            </li>            <li>              <i class="mdi mdi-airballoon" data-bs-toggle="tooltip" title="mdi-airballoon"></i>            </li>            <li>              <i class="mdi mdi-airplane" data-bs-toggle="tooltip" title="mdi-airplane"></i>            </li>            <li>              <i class="mdi mdi-airplane-landing" data-bs-toggle="tooltip" title="mdi-airplane-landing"></i>            </li>            <li>              <i class="mdi mdi-airplane-off" data-bs-toggle="tooltip" title="mdi-airplane-off"></i>            </li>            <li>              <i class="mdi mdi-airplane-takeoff" data-bs-toggle="tooltip" title="mdi-airplane-takeoff"></i>            </li>            <li>              <i class="mdi mdi-alarm" data-bs-toggle="tooltip" title="mdi-alarm"></i>            </li>            <li>              <i class="mdi mdi-alarm-bell" data-bs-toggle="tooltip" title="mdi-alarm-bell"></i>            </li>            <li>              <i class="mdi mdi-alarm-check" data-bs-toggle="tooltip" title="mdi-alarm-check"></i>            </li>            <li>              <i class="mdi mdi-alarm-light" data-bs-toggle="tooltip" title="mdi-alarm-light"></i>            </li>            <li>              <i class="mdi mdi-alarm-multiple" data-bs-toggle="tooltip" title="mdi-alarm-multiple"></i>            </li>            <li>              <i class="mdi mdi-alarm-off" data-bs-toggle="tooltip" title="mdi-alarm-off"></i>            </li>            <li>              <i class="mdi mdi-alarm-plus" data-bs-toggle="tooltip" title="mdi-alarm-plus"></i>            </li>            <li>              <i class="mdi mdi-alarm-snooze" data-bs-toggle="tooltip" title="mdi-alarm-snooze"></i>            </li>            <li>              <i class="mdi mdi-album" data-bs-toggle="tooltip" title="mdi-album"></i>            </li>            <li>              <i class="mdi mdi-alert" data-bs-toggle="tooltip" title="mdi-alert"></i>            </li>            <li>              <i class="mdi mdi-alert-box" data-bs-toggle="tooltip" title="mdi-alert-box"></i>            </li>            <li>              <i class="mdi mdi-alert-circle" data-bs-toggle="tooltip" title="mdi-alert-circle"></i>            </li>            <li>              <i class="mdi mdi-alert-circle-outline" data-bs-toggle="tooltip" title="mdi-alert-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-alert-decagram" data-bs-toggle="tooltip" title="mdi-alert-decagram"></i>            </li>            <li>              <i class="mdi mdi-alert-octagon" data-bs-toggle="tooltip" title="mdi-alert-octagon"></i>            </li>            <li>              <i class="mdi mdi-alert-octagram" data-bs-toggle="tooltip" title="mdi-alert-octagram"></i>            </li>            <li>              <i class="mdi mdi-alert-outline" data-bs-toggle="tooltip" title="mdi-alert-outline"></i>            </li>            <li>              <i class="mdi mdi-all-inclusive" data-bs-toggle="tooltip" title="mdi-all-inclusive"></i>            </li>            <li>              <i class="mdi mdi-alpha" data-bs-toggle="tooltip" title="mdi-alpha"></i>            </li>            <li>              <i class="mdi mdi-alphabetical" data-bs-toggle="tooltip" title="mdi-alphabetical"></i>            </li>            <li>              <i class="mdi mdi-altimeter" data-bs-toggle="tooltip" title="mdi-altimeter"></i>            </li>            <li>              <i class="mdi mdi-ambulance" data-bs-toggle="tooltip" title="mdi-ambulance"></i>            </li>            <li>              <i class="mdi mdi-amplifier" data-bs-toggle="tooltip" title="mdi-amplifier"></i>            </li>            <li>              <i class="mdi mdi-anchor" data-bs-toggle="tooltip" title="mdi-anchor"></i>            </li>            <li>              <i class="mdi mdi-android" data-bs-toggle="tooltip" title="mdi-android"></i>            </li>            <li>              <i class="mdi mdi-android-studio" data-bs-toggle="tooltip" title="mdi-android-studio"></i>            </li>            <li>              <i class="mdi mdi-angular" data-bs-toggle="tooltip" title="mdi-angular"></i>            </li>            <li>              <i class="mdi mdi-angularjs" data-bs-toggle="tooltip" title="mdi-angularjs"></i>            </li>            <li>              <i class="mdi mdi-animation" data-bs-toggle="tooltip" title="mdi-animation"></i>            </li>            <li>              <i class="mdi mdi-apple" data-bs-toggle="tooltip" title="mdi-apple"></i>            </li>            <li>              <i class="mdi mdi-apple-finder" data-bs-toggle="tooltip" title="mdi-apple-finder"></i>            </li>            <li>              <i class="mdi mdi-apple-ios" data-bs-toggle="tooltip" title="mdi-apple-ios"></i>            </li>            <li>              <i class="mdi mdi-apple-keyboard-caps" data-bs-toggle="tooltip" title="mdi-apple-keyboard-caps"></i>            </li>            <li>              <i class="mdi mdi-apple-keyboard-command" data-bs-toggle="tooltip" title="mdi-apple-keyboard-command"></i>            </li>            <li>              <i class="mdi mdi-apple-keyboard-control" data-bs-toggle="tooltip" title="mdi-apple-keyboard-control"></i>            </li>            <li>              <i class="mdi mdi-apple-keyboard-option" data-bs-toggle="tooltip" title="mdi-apple-keyboard-option"></i>            </li>            <li>              <i class="mdi mdi-apple-keyboard-shift" data-bs-toggle="tooltip" title="mdi-apple-keyboard-shift"></i>            </li>            <li>              <i class="mdi mdi-apple-safari" data-bs-toggle="tooltip" title="mdi-apple-safari"></i>            </li>            <li>              <i class="mdi mdi-application" data-bs-toggle="tooltip" title="mdi-application"></i>            </li>            <li>              <i class="mdi mdi-apps" data-bs-toggle="tooltip" title="mdi-apps"></i>            </li>            <li>              <i class="mdi mdi-archive" data-bs-toggle="tooltip" title="mdi-archive"></i>            </li>            <li>              <i class="mdi mdi-arrange-bring-forward" data-bs-toggle="tooltip" title="mdi-arrange-bring-forward"></i>            </li>            <li>              <i class="mdi mdi-arrange-send-to-back" data-bs-toggle="tooltip" title="mdi-arrange-send-to-back"></i>            </li>            <li>              <i class="mdi mdi-arrange-bring-to-front" data-bs-toggle="tooltip" title="mdi-arrange-bring-to-front"></i>            </li>            <li>              <i class="mdi mdi-arrange-send-backward" data-bs-toggle="tooltip" title="mdi-arrange-send-backward"></i>            </li>            <li>              <i class="mdi mdi-arrow-all" data-bs-toggle="tooltip" title="mdi-arrow-all"></i>            </li>            <li>              <i class="mdi mdi-arrow-bottom-left" data-bs-toggle="tooltip" title="mdi-arrow-bottom-left"></i>            </li>            <li>              <i class="mdi mdi-arrow-bottom-right" data-bs-toggle="tooltip" title="mdi-arrow-bottom-right"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse" data-bs-toggle="tooltip" title="mdi-arrow-collapse"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse-all" data-bs-toggle="tooltip" title="mdi-arrow-collapse-all"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse-down" data-bs-toggle="tooltip" title="mdi-arrow-collapse-down"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse-left" data-bs-toggle="tooltip" title="mdi-arrow-collapse-left"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse-right" data-bs-toggle="tooltip" title="mdi-arrow-collapse-right"></i>            </li>            <li>              <i class="mdi mdi-arrow-collapse-up" data-bs-toggle="tooltip" title="mdi-arrow-collapse-up"></i>            </li>            <li>              <i class="mdi mdi-arrow-down" data-bs-toggle="tooltip" title="mdi-arrow-down"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-bold" data-bs-toggle="tooltip" title="mdi-arrow-down-bold"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-bold-box" data-bs-toggle="tooltip" title="mdi-arrow-down-bold-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-bold-box-outline" data-bs-toggle="tooltip"                title="mdi-arrow-down-bold-box-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-bold-circle" data-bs-toggle="tooltip" title="mdi-arrow-down-bold-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-bold-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-down-bold-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-box" data-bs-toggle="tooltip" title="mdi-arrow-down-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-drop-circle" data-bs-toggle="tooltip" title="mdi-arrow-down-drop-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-drop-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-down-drop-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-down-thick" data-bs-toggle="tooltip" title="mdi-arrow-down-thick"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand" data-bs-toggle="tooltip" title="mdi-arrow-expand"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand-all" data-bs-toggle="tooltip" title="mdi-arrow-expand-all"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand-down" data-bs-toggle="tooltip" title="mdi-arrow-expand-down"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand-left" data-bs-toggle="tooltip" title="mdi-arrow-expand-left"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand-right" data-bs-toggle="tooltip" title="mdi-arrow-expand-right"></i>            </li>            <li>              <i class="mdi mdi-arrow-expand-up" data-bs-toggle="tooltip" title="mdi-arrow-expand-up"></i>            </li>            <li>              <i class="mdi mdi-arrow-left" data-bs-toggle="tooltip" title="mdi-arrow-left"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-bold" data-bs-toggle="tooltip" title="mdi-arrow-left-bold"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-bold-box" data-bs-toggle="tooltip" title="mdi-arrow-left-bold-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-bold-box-outline" data-bs-toggle="tooltip"                title="mdi-arrow-left-bold-box-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-bold-circle" data-bs-toggle="tooltip" title="mdi-arrow-left-bold-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-bold-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-left-bold-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-box" data-bs-toggle="tooltip" title="mdi-arrow-left-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-drop-circle" data-bs-toggle="tooltip" title="mdi-arrow-left-drop-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-drop-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-left-drop-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-left-thick" data-bs-toggle="tooltip" title="mdi-arrow-left-thick"></i>            </li>            <li>              <i class="mdi mdi-arrow-right" data-bs-toggle="tooltip" title="mdi-arrow-right"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-bold" data-bs-toggle="tooltip" title="mdi-arrow-right-bold"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-bold-box" data-bs-toggle="tooltip" title="mdi-arrow-right-bold-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-bold-box-outline" data-bs-toggle="tooltip"                title="mdi-arrow-right-bold-box-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-bold-circle" data-bs-toggle="tooltip"                title="mdi-arrow-right-bold-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-bold-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-right-bold-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-box" data-bs-toggle="tooltip" title="mdi-arrow-right-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-drop-circle" data-bs-toggle="tooltip"                title="mdi-arrow-right-drop-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-drop-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-right-drop-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-right-thick" data-bs-toggle="tooltip" title="mdi-arrow-right-thick"></i>            </li>            <li>              <i class="mdi mdi-arrow-top-left" data-bs-toggle="tooltip" title="mdi-arrow-top-left"></i>            </li>            <li>              <i class="mdi mdi-arrow-top-right" data-bs-toggle="tooltip" title="mdi-arrow-top-right"></i>            </li>            <li>              <i class="mdi mdi-arrow-up" data-bs-toggle="tooltip" title="mdi-arrow-up"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-bold" data-bs-toggle="tooltip" title="mdi-arrow-up-bold"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-bold-box" data-bs-toggle="tooltip" title="mdi-arrow-up-bold-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-bold-box-outline" data-bs-toggle="tooltip"                title="mdi-arrow-up-bold-box-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-bold-circle" data-bs-toggle="tooltip" title="mdi-arrow-up-bold-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-bold-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-up-bold-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-box" data-bs-toggle="tooltip" title="mdi-arrow-up-box"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-drop-circle" data-bs-toggle="tooltip" title="mdi-arrow-up-drop-circle"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-drop-circle-outline" data-bs-toggle="tooltip"                title="mdi-arrow-up-drop-circle-outline"></i>            </li>            <li>              <i class="mdi mdi-arrow-up-thick" data-bs-toggle="tooltip" title="mdi-arrow-up-thick"></i>            </li>            <li>              <i class="mdi mdi-assistant" data-bs-toggle="tooltip" title="mdi-assistant"></i>            </li>            <li>              <i class="mdi mdi-asterisk" data-bs-toggle="tooltip" title="mdi-asterisk"></i>            </li>            <li>              <i class="mdi mdi-at" data-bs-toggle="tooltip" title="mdi-at"></i>            </li>            <li>              <i class="mdi mdi-atom" data-bs-toggle="tooltip" title="mdi-atom"></i>            </li>            <li>              <i class="mdi mdi-attachment" data-bs-toggle="tooltip" title="mdi-attachment"></i>            </li>            <li>              <i class="mdi mdi-auto-fix" data-bs-toggle="tooltip" title="mdi-auto-fix"></i>            </li>            <li>              <i class="mdi mdi-auto-upload" data-bs-toggle="tooltip" title="mdi-auto-upload"></i>            </li>            <li>              <i class="mdi mdi-autorenew" data-bs-toggle="tooltip" title="mdi-autorenew"></i>            </li>            <li>              <i class="mdi mdi-av-timer" data-bs-toggle="tooltip" title="mdi-av-timer"></i>            </li>            <li>              <i class="mdi mdi-baby" data-bs-toggle="tooltip" title="mdi-baby"></i>            </li>            <li>              <i class="mdi mdi-baby-buggy" data-bs-toggle="tooltip" title="mdi-baby-buggy"></i>            </li>            <li>              <i class="mdi mdi-backburger" data-bs-toggle="tooltip" title="mdi-backburger"></i>            </li>            <li>              <i class="mdi mdi-backspace" data-bs-toggle="tooltip" title="mdi-backspace"></i>            </li>            <li>              <i class="mdi mdi-backup-restore" data-bs-toggle="tooltip" title="mdi-backup-restore"></i>            </li>            <li>              <i class="mdi mdi-bank" data-bs-toggle="tooltip" title="mdi-bank"></i>            </li>            <li>              <i class="mdi mdi-barcode" data-bs-toggle="tooltip" title="mdi-barcode"></i>            </li>            <li>              <i class="mdi mdi-barcode-scan" data-bs-toggle="tooltip" title="mdi-barcode-scan"></i>            </li>            <li>              <i class="mdi mdi-barley" data-bs-toggle="tooltip" title="mdi-barley"></i>            </li>            <li>              <i class="mdi mdi-barrel" data-bs-toggle="tooltip" title="mdi-barrel"></i>            </li>            <li>              <i class="mdi mdi-basket" data-bs-toggle="tooltip" title="mdi-basket"></i>            </li>            <li>              <i class="mdi mdi-basket-fill" data-bs-toggle="tooltip" title="mdi-basket-fill"></i>            </li>            <li>              <i class="mdi mdi-basket-unfill" data-bs-toggle="tooltip" title="mdi-basket-unfill"></i>            </li>            <li>              <i class="mdi mdi-battery" data-bs-toggle="tooltip" title="mdi-battery"></i>            </li>            <li>              <i class="mdi mdi-battery-10" data-bs-toggle="tooltip" title="mdi-battery-10"></i>            </li>            <li>              <i class="mdi mdi-battery-20" data-bs-toggle="tooltip" title="mdi-battery-20"></i>            </li>            <li>              <i class="mdi mdi-battery-30" data-bs-toggle="tooltip" title="mdi-battery-30"></i>            </li>            <li>              <i class="mdi mdi-battery-40" data-bs-toggle="tooltip" title="mdi-battery-40"></i>            </li>            <li>              <i class="mdi mdi-battery-50" data-bs-toggle="tooltip" title="mdi-battery-50"></i>            </li>            <li>              <i class="mdi mdi-battery-60" data-bs-toggle="tooltip" title="mdi-battery-60"></i>            </li>            <li>              <i class="mdi mdi-battery-70" data-bs-toggle="tooltip" title="mdi-battery-70"></i>            </li>            <li>              <i class="mdi mdi-battery-80" data-bs-toggle="tooltip" title="mdi-battery-80"></i>            </li>            <li>              <i class="mdi mdi-battery-90" data-bs-toggle="tooltip" title="mdi-battery-90"></i>            </li>            <li>              <i class="mdi mdi-battery-alert" data-bs-toggle="tooltip" title="mdi-battery-alert"></i>            </li>            <li>              <i class="mdi mdi-battery-charging" data-bs-toggle="tooltip" title="mdi-battery-charging"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-100" data-bs-toggle="tooltip" title="mdi-battery-charging-100"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-20" data-bs-toggle="tooltip" title="mdi-battery-charging-20"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-30" data-bs-toggle="tooltip" title="mdi-battery-charging-30"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-40" data-bs-toggle="tooltip" title="mdi-battery-charging-40"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-60" data-bs-toggle="tooltip" title="mdi-battery-charging-60"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-80" data-bs-toggle="tooltip" title="mdi-battery-charging-80"></i>            </li>            <li>              <i class="mdi mdi-battery-charging-90" data-bs-toggle="tooltip" title="mdi-battery-charging-90"></i>            </li>            <li>              <i class="mdi mdi-battery-minus" data-bs-toggle="tooltip" title="mdi-battery-minus"></i>            </li>            <li>              <i class="mdi mdi-battery-negative" data-bs-toggle="tooltip" title="mdi-battery-negative"></i>            </li>            <li>              <i class="mdi mdi-battery-outline" data-bs-toggle="tooltip" title="mdi-battery-outline"></i>            </li>            <li>              <i class="mdi mdi-battery-plus" data-bs-toggle="tooltip" title="mdi-battery-plus"></i>            </li>            <li>              <i class="mdi mdi-battery-unknown" data-bs-toggle="tooltip" title="mdi-battery-unknown"></i>            </li>            <li>              <i class="mdi mdi-beach" data-bs-toggle="tooltip" title="mdi-beach"></i>            </li>            <li>              <i class="mdi mdi-zip-box" data-bs-toggle="tooltip" title="mdi-zip-box"></i>            </li>            <li>              <i class="mdi mdi-yin-yang" data-bs-toggle="tooltip" title="mdi-yin-yang"></i>            </li>            <li>              <i class="mdi mdi-xmpp" data-bs-toggle="tooltip" title="mdi-xmpp"></i>            </li>            <li>              <i class="mdi mdi-xml" data-bs-toggle="tooltip" title="mdi-xml"></i>            </li>            <li>              <i class="mdi mdi-wrench" data-bs-toggle="tooltip" title="mdi-wrench"></i>            </li>            <li>              <i class="mdi mdi-wrap" data-bs-toggle="tooltip" title="mdi-wrap"></i>            </li>            <li>              <i class="mdi mdi-wrench" data-bs-toggle="tooltip" title="mdi-wrench"></i>            </li>            <li>              <i class="mdi mdi-vpn" data-bs-toggle="tooltip" title="mdi-vpn"></i>            </li>            <li>              <i class="mdi mdi-volume-off" data-bs-toggle="tooltip" title="mdi-volume-off"></i>            </li>            <li>              <i class="mdi mdi-volume-mute" data-bs-toggle="tooltip" title="mdi-volume-mute"></i>            </li>            <li>              <i class="mdi mdi-vlc" data-bs-toggle="tooltip" title="mdi-vlc"></i>            </li>            <li>              <i class="mdi mdi-video" data-bs-toggle="tooltip" title="mdi-video"></i>            </li>            <li>              <i class="mdi mdi-usb" data-bs-toggle="tooltip" title="mdi-usb"></i>            </li>            <li>              <i class="mdi mdi-upload-network" data-bs-toggle="tooltip" title="mdi-upload-network"></i>            </li>            <li>              <i class="mdi mdi-update" data-bs-toggle="tooltip" title="mdi-update"></i>            </li>            <li>              <i class="mdi mdi-unity" data-bs-toggle="tooltip" title="mdi-unity"></i>            </li>            <li>              <i class="mdi mdi-undo" data-bs-toggle="tooltip" title="mdi-undo"></i>            </li>            <li>              <i class="mdi mdi-ubuntu" data-bs-toggle="tooltip" title="mdi-ubuntu"></i>            </li>            <li>              <i class="mdi mdi-tune" data-bs-toggle="tooltip" title="mdi-tune"></i>            </li>            <li>              <i class="mdi mdi-truck-trailer" data-bs-toggle="tooltip" title="mdi-truck-trailer"></i>            </li>            <li>              <i class="mdi mdi-truck" data-bs-toggle="tooltip" title="mdi-truck"></i>            </li>            <li>              <i class="mdi mdi-svg" data-bs-toggle="tooltip" title="mdi-svg"></i>            </li>            <li>              <i class="mdi mdi-subway" data-bs-toggle="tooltip" title="mdi-subway"></i>            </li>          </ul>        </div>      </div>    </div>  </div>  <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconMaterialComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconMaterialComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

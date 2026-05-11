@@ -1,0 +1,25 @@
+<ul
+  class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1"
+>
+  @for (tab of allowedTabs; track tab.index) {
+  <li class="nav-item">
+    <!-- Tab button: highlights when activeIndex matches tab.index -->
+    <a
+      class="nav-link fw-semibold"
+      [class.active]="activeIndex === tab.index"
+      (click)="changeTab(tab.index)"
+    >
+      {{ tab.title }}
+    </a>
+  </li>
+  }
+</ul>
+
+<div class="mt-3">
+  @if (activeIndex === 1) {
+    <app-modules></app-modules>
+  }
+  @if (activeIndex === 0) {
+    <app-category></app-category>
+  }
+</div>

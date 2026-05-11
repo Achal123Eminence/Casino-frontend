@@ -1,0 +1,1276 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  UiUtilitiesComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/base-ui/ui-utilities/ui-utilities.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-ui-utilities</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ui-utilities.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ui-utilities.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/features/ui-interface/base-ui/ui-utilities/ui-utilities.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+@Component({
+  selector: &#x27;app-ui-utilities&#x27;,
+  imports: [RouterLink],
+  templateUrl: &#x27;./ui-utilities.component.html&#x27;,
+  styleUrl: &#x27;./ui-utilities.component.scss&#x27;
+})
+export class UiUtilitiesComponent {
+routes&#x3D;routes
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">
+                
+                &lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Utilities&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Base UI&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Utilities&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+                
+				&lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Background Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities &lt;strong&gt;do not set &lt;code&gt;color&lt;/code&gt;&lt;/strong&gt;, so in some cases you’ll want to use &lt;code&gt;.text-*&lt;/code&gt;color utilities.&lt;/p&gt;
+
+                                &lt;div class&#x3D;&quot;bg-primary text-white p-2 mb-2&quot;&gt;.bg-primary&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-secondary text-white p-2 mb-2&quot;&gt;.bg-secondary&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-success text-white p-2 mb-2&quot;&gt;.bg-success&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-danger text-white p-2 mb-2&quot;&gt;.bg-danger&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-warning text-dark p-2 mb-2&quot;&gt;.bg-warning&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-info text-dark p-2 mb-2&quot;&gt;.bg-info&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-light text-dark p-2 mb-2&quot;&gt;.bg-light&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-dark p-2 mb-2&quot;&gt;.bg-dark&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-body text-dark p-2 mb-2&quot;&gt;.bg-body&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-body-secondary text-dark p-2 mb-2&quot;&gt;.bg-body-secondary&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-body-tertiary text-dark p-2 mb-2&quot;&gt;.bg-body-tertiary&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-white p-2 mb-2&quot;&gt;.bg-white&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-black text-white p-2 mb-2&quot;&gt;.bg-black&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-transparent text-dark p-2&quot;&gt;.bg-transparent&lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card card-h-100&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Background Gradient Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;By adding a &lt;code&gt;.bg-gradient&lt;/code&gt; class, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom.&lt;/p&gt;
+
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-primary bg-gradient text-white&quot;&gt;.bg-gradient.bg-primary&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-secondary bg-gradient text-white&quot;&gt;.bg-secondary.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-success bg-gradient text-white&quot;&gt;.bg-success.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-danger bg-gradient text-white&quot;&gt;.bg-danger.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-warning bg-gradient text-dark&quot;&gt;.bg-warning.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-info bg-gradient text-dark&quot;&gt;.bg-info.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-light bg-gradient text-dark&quot;&gt;.bg-light.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-dark bg-gradient text-white&quot;&gt;.bg-dark.bg-gradient&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;p-2 mb-2 bg-black bg-gradient text-white&quot;&gt;.bg-black.bg-gradient&lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Soft Background&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities do not set &lt;code&gt;color&lt;/code&gt;, so in some cases you’ll want to use &lt;code&gt;.text-*&lt;/code&gt; &lt;a href&#x3D;&quot;https://getbootstrap.com/docs/5.3/utilities/colors/&quot;&gt;color utilities&lt;/a&gt;. &lt;/p&gt;
+
+                                &lt;div class&#x3D;&quot;row&quot;&gt;
+                                    &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                                        &lt;div class&#x3D;&quot;d-flex flex-column gap-2&quot;&gt;
+                                            &lt;div class&#x3D;&quot;bg-primary-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-primary-emphasis&quot;&gt;.bg-primary-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-secondary-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-secondary-emphasis&quot;&gt;.bg-secondary-subtle &lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-success-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-success-emphasis&quot;&gt;.bg-success-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-danger-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-danger-emphasis&quot;&gt;.bg-danger-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-warning-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-warning-emphasis&quot;&gt;.bg-warning-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-info-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-info-emphasis&quot;&gt;.bg-info-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-light-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-light-emphasis&quot;&gt;.bg-light-subtle&lt;/code&gt;&lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;bg-dark-subtle p-2&quot;&gt;&lt;code class&#x3D;&quot;text-dark-emphasis&quot;&gt;.bg-dark-subtle&lt;/code&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Background Gradient Color 2&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities do not set &lt;code&gt;color&lt;/code&gt;, so in some cases you’ll want to use &lt;code&gt;.text-*&lt;/code&gt; &lt;a href&#x3D;&quot;https://getbootstrap.com/docs/5.3/utilities/colors/&quot;&gt;color utilities&lt;/a&gt;.&lt;/p&gt;
+
+								&lt;div class&#x3D;&quot;row row-cols-12 d-flex align-items-center&quot;&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-primary-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-primary-gradient&lt;/code&gt;
+                                        &lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-secondary-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-secondary-gradient&lt;/code&gt;
+                                        &lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-warning-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-warning-gradient&lt;/code&gt;
+                                        &lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-info-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-info-gradient&lt;/code&gt;&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-success-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-success-gradient&lt;/code&gt;
+                                        &lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-danger-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-danger-gradient&lt;/code&gt;
+                                        &lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-light-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-light-gradient&lt;/code&gt;&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;p-3 col&quot;&gt;
+                                        &lt;div class&#x3D;&quot;m-2 bg-dark-gradient mx-auto color-container&quot;&gt;&lt;/div&gt;
+                                        &lt;p class&#x3D;&quot;pb-0 mb-0 fw-semibold text-center&quot;&gt;&lt;code&gt;.bg-dark-gradient&lt;/code&gt;&lt;/p&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Color &amp; Background&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Color and background helpers combine the power of our &lt;code&gt;.text-*&lt;/code&gt; utilities and &lt;code&gt;.bg-*&lt;/code&gt; utilities in one class. Using our Sass &lt;code&gt;color-contrast()&lt;/code&gt; function, we automatically determine a contrasting &lt;code&gt;color&lt;/code&gt; for a particular &lt;code&gt;background-color&lt;/code&gt;.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex flex-column gap-2&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-primary p-2&quot;&gt;Primary with contrasting color (.text-bg-primary)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-secondary p-2&quot;&gt;Secondary with contrasting color (.text-bg-secondary)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-success p-2&quot;&gt;Success with contrasting color (.text-bg-success)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-danger p-2&quot;&gt;Danger with contrasting color (.text-bg-danger)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-warning p-2&quot;&gt;Warning with contrasting color (.text-bg-warning)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-info p-2&quot;&gt;Info with contrasting color (.text-bg-info)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-light p-2&quot;&gt;Light with contrasting color (.text-bg-light)&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-bg-dark p-2&quot;&gt;Dark with contrasting color (.text-bg-dark)&lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card card-h-100&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Colored links&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted fs-14&quot;&gt;You can use the &lt;code&gt;.link-*&lt;/code&gt; classes to colorize links. Unlike the &lt;code&gt;.text-*&lt;/code&gt; classes, these classes have a &lt;code&gt;:hover&lt;/code&gt; and &lt;code&gt;:focus&lt;/code&gt; state.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex flex-column gap-2&quot;&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-primary&quot;&gt;Primary link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-secondary&quot;&gt;Secondary link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-success&quot;&gt;Success link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-danger&quot;&gt;Danger link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-warning&quot;&gt;Warning link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-info&quot;&gt;Info link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-light&quot;&gt;Light link&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;link-dark&quot;&gt;Dark link&lt;/a&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Background Opacity&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;&lt;code&gt;background-color&lt;/code&gt; utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;bg-primary p-2 text-white&quot;&gt;This is default primary background&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-primary p-2 text-white bg-opacity-75&quot;&gt;This is 75% opacity primary background&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-primary p-2 text-dark bg-opacity-50&quot;&gt;This is 50% opacity primary background&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-primary p-2 text-dark bg-opacity-25&quot;&gt;This is 25% opacity primary background&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;bg-primary p-2 text-dark bg-opacity-10&quot;&gt;This is 10% opacity success background&lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Text Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body pb-1&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Colorize text with color utilities. If you want to colorize links, you can use the &lt;code&gt;.link-*&lt;/code&gt; helper classes which have &lt;code&gt;:hover&lt;/code&gt; and &lt;code&gt;:focus&lt;/code&gt; states.&lt;/p&gt;
+
+                                &lt;!-- start row --&gt;
+                                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                        &lt;p class&#x3D;&quot;text-primary&quot;&gt;.text-primary&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-primary-emphasis&quot;&gt;.text-primary-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-secondary&quot;&gt;.text-secondary&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-secondary-emphasis&quot;&gt;.text-secondary-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-success&quot;&gt;.text-success&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-success-emphasis&quot;&gt;.text-success-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-danger&quot;&gt;.text-danger&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-danger-emphasis&quot;&gt;.text-danger-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-warning&quot;&gt;.text-warning&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-warning-emphasis&quot;&gt;.text-warning-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-info&quot;&gt;.text-info&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-info-emphasis&quot;&gt;.text-info-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-light bg-dark&quot;&gt;.text-light&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-light-emphasis&quot;&gt;.text-light-emphasis&lt;/p&gt;
+                                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                                        &lt;p class&#x3D;&quot;text-dark&quot;&gt;.text-dark&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-dark-emphasis&quot;&gt;.text-dark-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-muted&quot;&gt;.text-muted&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-body&quot;&gt;.text-body&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-body-emphasis&quot;&gt;.text-body-emphasis&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-body-secondary&quot;&gt;.text-body-secondary&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-body-tertiary&quot;&gt;.text-body-tertiary&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-black&quot;&gt;.text-black&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-white bg-dark&quot;&gt;.text-white&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-black-50&quot;&gt;.text-black-50&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;text-white-50 bg-dark&quot;&gt;.text-white-50&lt;/p&gt;
+                                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                                &lt;/div&gt;
+                                &lt;!-- end row --&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+                    
+                &lt;/div&gt; 
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Text Opacity Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;text color utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;text-primary&quot;&gt;This is default primary text&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;text-primary text-opacity-75&quot;&gt;This is 75% opacity primary text&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;text-primary text-opacity-50&quot;&gt;This is 50% opacity primary text&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;text-primary text-opacity-25&quot;&gt;This is 25% opacity primary text&lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card card-h-100&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Opacity&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;The &lt;code&gt;opacity&lt;/code&gt; property sets the opacity level for an element. The opacity level describes the transparency level, where &lt;code&gt;1&lt;/code&gt; is not transparent at all, &lt;code&gt;.5&lt;/code&gt; is 50% visible, and &lt;code&gt;0&lt;/code&gt; is completely transparent. Set the &lt;code&gt;opacity&lt;/code&gt; of an element using &lt;code&gt;.opacity-{{&#x27;{&#x27;}}value{{&#x27;}&#x27;}}&lt;/code&gt; utilities.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex flex-wrap gap-2&quot;&gt;
+                                    &lt;div class&#x3D;&quot;opacity-100 p-2 bg-primary text-light fw-bold rounded&quot;&gt;100%&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;opacity-75 p-2 bg-primary text-light fw-bold rounded&quot;&gt;75%&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;opacity-50 p-2 bg-primary text-light fw-bold rounded&quot;&gt;50%&lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;opacity-25 p-2 bg-primary text-light fw-bold rounded&quot;&gt;25%&lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Additive(Add) Border&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Use border utilities to &lt;b&gt;add&lt;/b&gt; an element’s borders. Choose from all borders or one at a time.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-4&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border-top avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border-end avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border-bottom avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border-start avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Subtractive(Remove) Border&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Use border utilities to &lt;b&gt;remove&lt;/b&gt; an element’s borders. Choose from all borders or one at a time.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-4&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-0 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-top-0 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-end-0 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-bottom-0 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-start-0 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Change the border color using utilities built on our theme colors.
+                                &lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-2&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-primary avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-secondary avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-success avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-danger avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-warning avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-info avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-light avatar-xl&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-dark avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Width Size&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-2&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-1 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-2 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-3 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-4 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-5 avatar-xl bg-light bg-opacity-50&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card card-h-100&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Opacity&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;choose from any of the &lt;code&gt;.border-opacity&lt;/code&gt; utilities:&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;border border-success p-2 mb-2&quot;&gt;This is default success border&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;border border-success p-2 mb-2 border-opacity-75&quot;&gt;This is 75% opacity success border&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;border border-success p-2 mb-2 border-opacity-50&quot;&gt;This is 50% opacity success border&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;border border-success p-2 mb-2 border-opacity-25&quot;&gt;This is 25% opacity success border&lt;/div&gt;
+                                &lt;div class&#x3D;&quot;border border-success p-2 border-opacity-10&quot;&gt;This is 10% opacity success border&lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Subtle Color&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Change the border color using utilities built on our theme colors.
+                                &lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-2&quot;&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-primary-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-secondary-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-success-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-danger-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-warning-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-info-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-light-subtle avatar-xl&quot;&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                                        &lt;div class&#x3D;&quot;border border-dark-subtle avatar-xl bg-light bg-opacity-50&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt; 
+                &lt;!--end row--&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Radius&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Add classes to an element to easily round its corners.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-2&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded&quot; alt&#x3D;&quot;rounded&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded-top&quot; alt&#x3D;&quot;rounded-top&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded-end&quot; alt&#x3D;&quot;rounded-end&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded-bottom&quot; alt&#x3D;&quot;rounded-bottom&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded-start&quot; alt&#x3D;&quot;rounded-start&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-2.jpg&quot; class&#x3D;&quot;avatar-lg rounded-circle&quot; alt&#x3D;&quot;rounded-circle&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-10.jpg&quot; class&#x3D;&quot;avatar-lg w-auto rounded-pill&quot; alt&#x3D;&quot;rounded-pill&quot;&gt;
+                                &lt;/div&gt;
+
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Border Radius Size&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Use the scaling classes for larger or smaller rounded corners. Sizes range from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;5&lt;/code&gt;.&lt;/p&gt;
+                                &lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-2&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-0&quot; alt&#x3D;&quot;rounded-0&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-1&quot; alt&#x3D;&quot;rounded-1&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-2&quot; alt&#x3D;&quot;rounded-2&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-3&quot; alt&#x3D;&quot;rounded-3&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-4&quot; alt&#x3D;&quot;rounded-4&quot;&gt;
+                                    &lt;img src&#x3D;&quot;assets/img/users/avatar-4.jpg&quot; class&#x3D;&quot;avatar-lg rounded-5&quot; alt&#x3D;&quot;rounded-5&quot;&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Text Selection&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Use &lt;code&gt;user-select-all&lt;/code&gt;, &lt;code&gt;user-select-auto&lt;/code&gt;, or &lt;code&gt;user-select-none&lt;/code&gt; class to the content which is selected when the user interacts with it. &lt;/p&gt;
+                                &lt;p class&#x3D;&quot;user-select-all&quot;&gt;This paragraph will be entirely selected when clicked by the user.&lt;/p&gt;
+                                &lt;p class&#x3D;&quot;user-select-auto&quot;&gt;This paragraph has default select behavior.&lt;/p&gt;
+                                &lt;p class&#x3D;&quot;user-select-none mb-0&quot;&gt;This paragraph will not be selectable when clicked by the user.&lt;/p&gt;
+                            &lt;/div&gt; &lt;!-- end card body --&gt;
+                        &lt;/div&gt; &lt;!-- end card --&gt;
+                    &lt;/div&gt; &lt;!-- end col --&gt;
+
+                    &lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;card&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                                &lt;h5 class&#x3D;&quot;header-title&quot;&gt;Pointer Events&lt;/h5&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;p class&#x3D;&quot;text-muted&quot;&gt;Bootstrap provides &lt;code&gt;.pe-none&lt;/code&gt; and &lt;code&gt;.pe-auto&lt;/code&gt; classes to prevent or add element interactions.&lt;/p&gt;
+                                &lt;p&gt;&lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;pe-none&quot; tabindex&#x3D;&quot;-1&quot;&gt;This link&lt;/a&gt; can not be clicked.&lt;/p&gt;
+                                &lt;p&gt;&lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;pe-auto&quot;&gt;This link&lt;/a&gt; can be clicked (this is default behavior).&lt;/p&gt;
+                                &lt;p class&#x3D;&quot;pe-none&quot;&gt;&lt;a href&#x3D;&quot;#&quot; tabindex&#x3D;&quot;-1&quot;&gt;This link&lt;/a&gt; can not be clicked because the &lt;code&gt;pointer-events&lt;/code&gt; property is inherited from its parent. However, &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;pe-auto&quot;&gt;this link&lt;/a&gt; has a &lt;code&gt;pe-auto&lt;/code&gt; class and can be clicked.&lt;/p&gt;
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Overflow&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Adjust the &lt;code&gt;overflow&lt;/code&gt; property on the fly with four default values and classes. These classes are not responsive by default.&lt;/p&gt;
+								&lt;div class&#x3D;&quot;d-flex flex-wrap gap-3&quot;&gt;
+									&lt;div class&#x3D;&quot;overflow-auto p-3 bg-light&quot; style&#x3D;&quot;max-width: 260px; max-height: 100px;&quot;&gt;
+										This is an example of using &lt;code&gt;.overflow-auto&lt;/code&gt; on an element with set width and height dimensions. By design, this content will vertically scroll.
+									&lt;/div&gt;
+									&lt;div class&#x3D;&quot;overflow-hidden p-3 bg-light&quot; style&#x3D;&quot;max-width: 260px; max-height: 100px;&quot;&gt;
+										This is an example of using &lt;code&gt;.overflow-hidden&lt;/code&gt; on an element with set width and height dimensions.
+									&lt;/div&gt;
+									&lt;div class&#x3D;&quot;overflow-visible p-3 bg-light&quot; style&#x3D;&quot;max-width: 260px; max-height: 100px;&quot;&gt;
+										This is an example of using &lt;code&gt;.overflow-visible&lt;/code&gt; on an elementwith set width and height dimensions.
+									&lt;/div&gt;
+									&lt;div class&#x3D;&quot;overflow-scroll p-3 bg-light&quot; style&#x3D;&quot;max-width: 260px; max-height: 100px;&quot;&gt;
+										This is an example of using &lt;code&gt;.overflow-scroll&lt;/code&gt; on an elementwith set width and height dimensions.
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Position in Arrange&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Arrange elements easily with the edge positioning utilities. The format is &lt;code&gt;{{&#x27;{&#x27;}}property{{&#x27;}&#x27;}}-{{&#x27;{&#x27;}}position{{&#x27;}&#x27;}}&lt;/code&gt;.&lt;/p&gt;
+								&lt;!-- Arrange elements --&gt;
+								&lt;div class&#x3D;&quot;position-relative p-5 bg-light bg-opacity-50 m-3 border rounded&quot; style&#x3D;&quot;height: 180px;&quot;&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 end-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-50 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute bottom-50 end-50 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute bottom-0 start-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute bottom-0 end-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Position in Center&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;In addition, you can also center the elements with the transform utility class &lt;code&gt;.translate-middle&lt;/code&gt;.&lt;/p&gt;
+								&lt;!-- Center elements --&gt;
+								&lt;div class&#x3D;&quot;position-relative m-3 bg-light bg-opacity-50 border rounded&quot; style&#x3D;&quot;height: 180px;&quot;&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-0 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-50 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-100 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-0 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-50 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-100 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-100 start-0 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-100 start-50 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-100 start-100 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Position in Axis&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;By adding &lt;code&gt;.translate-middle-x&lt;/code&gt; or &lt;code&gt;.translate-middle-y&lt;/code&gt; classes, elements can be positioned only in horizontal or vertical direction. &lt;/p&gt;
+
+								&lt;!-- Center elements --&gt;
+								&lt;div class&#x3D;&quot;position-relative m-3 bg-light border rounded&quot; style&#x3D;&quot;height: 180px;&quot;&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-0 avatar-xs bg-dark rounded &quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 start-50 translate-middle-x avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-0 end-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-0 translate-middle-y avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 start-50 translate-middle avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute top-50 end-0 translate-middle-y avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;position-absolute bottom-0 start-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute bottom-0 start-50 translate-middle-x avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;position-absolute bottom-0 end-0 avatar-xs bg-dark rounded&quot;&gt;&lt;/div&gt;
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Shadows&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;While shadows on components are disabled by default in Bootstrap and can be enabled via &lt;code&gt;$enable-shadows&lt;/code&gt;, you can also quickly add or remove a shadow with our &lt;code&gt;box-shadow&lt;/code&gt; utility classes. Includes support for &lt;code&gt;.shadow-none&lt;/code&gt; and three default sizes (which have associated variables to match).&lt;/p&gt;
+								&lt;div class&#x3D;&quot;shadow-none p-2 mb-2 bg-light rounded&quot;&gt;No shadow&lt;/div&gt;
+								&lt;div class&#x3D;&quot;shadow-sm p-2 mb-2 rounded&quot;&gt;Small shadow&lt;/div&gt;
+								&lt;div class&#x3D;&quot;shadow p-2 mb-2 rounded&quot;&gt;Regular shadow&lt;/div&gt;
+								&lt;div class&#x3D;&quot;shadow-lg p-2 rounded&quot;&gt;Larger shadow&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Width&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Width utilities are generated from the utility API in &lt;code&gt;_utilities.scss&lt;/code&gt;. Includes support for &lt;code&gt;25%&lt;/code&gt;, &lt;code&gt;50%&lt;/code&gt;, &lt;code&gt;75%&lt;/code&gt;, &lt;code&gt;100%&lt;/code&gt;, and &lt;code&gt;auto&lt;/code&gt; by default. Modify those values as you need to generate different utilities here.&lt;/p&gt;
+
+								&lt;!-- Width --&gt;
+								&lt;div class&#x3D;&quot;w-25 p-2 bg-light mb-2&quot;&gt;Width 25%&lt;/div&gt;
+
+								&lt;div class&#x3D;&quot;w-50 p-2 bg-light mb-2&quot;&gt;Width 50%&lt;/div&gt;
+
+								&lt;div class&#x3D;&quot;w-75 p-2 bg-light mb-2&quot;&gt;Width 75%&lt;/div&gt;
+
+								&lt;div class&#x3D;&quot;w-100 p-2 bg-light mb-2&quot;&gt;Width 100%&lt;/div&gt;
+
+								&lt;div class&#x3D;&quot;w-auto p-2 bg-light&quot;&gt;Width auto&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-6&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Height&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Height utilities are generated from the utility API in &lt;code&gt;_utilities.scss&lt;/code&gt;. Includes support for &lt;code&gt;25%&lt;/code&gt;, &lt;code&gt;50%&lt;/code&gt;, &lt;code&gt;75%&lt;/code&gt;, &lt;code&gt;100%&lt;/code&gt;, and &lt;code&gt;auto&lt;/code&gt; by default. Modify those values as you need to generate different utilities here.&lt;/p&gt;
+								&lt;div class&#x3D;&quot;d-flex flex-wrap gap-2 align-items-start overflow-hidden&quot; style&#x3D;&quot;height: 255px;&quot;&gt;
+
+									&lt;!-- Height --&gt;
+									&lt;div class&#x3D;&quot;h-25 p-2 bg-light&quot;&gt;Height25%&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;h-50 p-2 bg-light&quot;&gt;Height50%&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;h-75 p-2 bg-light&quot;&gt;Height75%&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;h-100 p-2 bg-light&quot;&gt;Height100%&lt;/div&gt;
+
+									&lt;div class&#x3D;&quot;h-auto p-2 bg-light&quot;&gt;auto&lt;/div&gt;
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt;
+				&lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+					&lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Object Fit&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Change the value of the &lt;a href&#x3D;&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit&quot;&gt;&lt;code&gt;object-fit&lt;/code&gt; property&lt;/a&gt; with our responsive &lt;code&gt;object-fit&lt;/code&gt; utility classes. This property tells the content to fill the parent container in a variety of ways, such as preserving the aspect ratio or stretching to take up as much space as possible.&lt;/p&gt;
+								&lt;div class&#x3D;&quot;d-flex align-items-start flex-wrap gap-3 text-center&quot;&gt;
+									&lt;div&gt;
+										&lt;img src&#x3D;&quot;assets/img/media/img-2.jpg&quot; class&#x3D;&quot;object-fit-contain border rounded avatar-xl&quot; alt&#x3D;&quot;...&quot;&gt;
+										&lt;p class&#x3D;&quot;mt-1 mb-0&quot;&gt;&lt;code class&#x3D;&quot;user-select-all&quot;&gt;.object-fit-contain&lt;/code&gt;&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;div&gt;
+										&lt;img src&#x3D;&quot;assets/img/media/img-2.jpg&quot; class&#x3D;&quot;object-fit-cover border rounded avatar-xl&quot; alt&#x3D;&quot;...&quot;&gt;
+										&lt;p class&#x3D;&quot;mt-1 mb-0&quot;&gt;&lt;code class&#x3D;&quot;user-select-all&quot;&gt;.object-fit-cover&lt;/code&gt;&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;div&gt;
+										&lt;img src&#x3D;&quot;assets/img/media/img-2.jpg&quot; class&#x3D;&quot;object-fit-fill border rounded avatar-xl&quot; alt&#x3D;&quot;...&quot;&gt;
+										&lt;p class&#x3D;&quot;mt-1 mb-0&quot;&gt;&lt;code class&#x3D;&quot;user-select-all&quot;&gt;.object-fit-fill&lt;/code&gt;&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;div&gt;
+										&lt;img src&#x3D;&quot;assets/img/media/img-2.jpg&quot; class&#x3D;&quot;object-fit-scale border rounded avatar-xl&quot; alt&#x3D;&quot;...&quot;&gt;
+										&lt;p class&#x3D;&quot;mt-1 mb-0&quot;&gt;&lt;code class&#x3D;&quot;user-select-all&quot;&gt;.object-fit-scale&lt;/code&gt;&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;div&gt;
+										&lt;img src&#x3D;&quot;assets/img/media/img-2.jpg&quot; class&#x3D;&quot;object-fit-none border rounded avatar-xl&quot; alt&#x3D;&quot;...&quot;&gt;
+										&lt;p class&#x3D;&quot;mt-1 mb-0&quot;&gt;&lt;code class&#x3D;&quot;user-select-all&quot;&gt;.object-fit-none&lt;/code&gt;&lt;/p&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt; 
+                &lt;!-- end row --&gt;
+
+                &lt;!-- start row --&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+
+					&lt;div class&#x3D;&quot;col-xl-12&quot;&gt;
+						&lt;div class&#x3D;&quot;card&quot;&gt;
+							&lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;h5 class&#x3D;&quot;header-title&quot;&gt;Z-index&lt;/h5&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;card-body pb-0&quot;&gt;
+								&lt;p class&#x3D;&quot;text-muted&quot;&gt;Use &lt;code&gt;z-index&lt;/code&gt; utilities to stack elements on top of one another. Requires a &lt;code&gt;position&lt;/code&gt; value other than &lt;code&gt;static&lt;/code&gt;, which can be set with custom styles or using our &lt;a href&#x3D;&quot;/docs/5.3/utilities/position/&quot;&gt;position utilities&lt;/a&gt;.&lt;/p&gt;
+
+								&lt;div class&#x3D;&quot;bd-example-zindex-levels position-relative&quot;&gt;
+
+									&lt;div class&#x3D;&quot;z-3 position-absolute p-5 rounded-3 bg-primary&quot;&gt;&lt;span&gt;z-3&lt;/span&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;z-2 position-absolute p-5 rounded-3 bg-success&quot;&gt;&lt;span&gt;z-2&lt;/span&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;z-1 position-absolute p-5 rounded-3 bg-warning&quot;&gt;&lt;span&gt;z-1&lt;/span&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;z-0 position-absolute p-5 rounded-3 bg-danger&quot;&gt;&lt;span&gt;z-0&lt;/span&gt;&lt;/div&gt;
+									&lt;div class&#x3D;&quot;z-n1 position-absolute p-5 rounded-3 bg-info&quot;&gt;&lt;span&gt;z-n1&lt;/span&gt;&lt;/div&gt;
+
+								&lt;/div&gt;
+
+							&lt;/div&gt; &lt;!-- end card body --&gt;
+						&lt;/div&gt; &lt;!-- end card --&gt;
+					&lt;/div&gt; &lt;!-- end col --&gt;
+
+				&lt;/div&gt; 
+                &lt;!-- end row --&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>                                <!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Utilities</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Base UI</a></li>                            <li class="breadcrumb-item active" aria-current="page">Utilities</li>                        </ol>                    </nav>				</div>				<!-- End Page Header -->                				<!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Background Color</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities <strong>do not set <code>color</code></strong>, so in some cases you’ll want to use <code>.text-*</code>color utilities.</p>                                <div class="bg-primary text-white p-2 mb-2">.bg-primary</div>                                <div class="bg-secondary text-white p-2 mb-2">.bg-secondary</div>                                <div class="bg-success text-white p-2 mb-2">.bg-success</div>                                <div class="bg-danger text-white p-2 mb-2">.bg-danger</div>                                <div class="bg-warning text-dark p-2 mb-2">.bg-warning</div>                                <div class="bg-info text-dark p-2 mb-2">.bg-info</div>                                <div class="bg-light text-dark p-2 mb-2">.bg-light</div>                                <div class="bg-dark p-2 mb-2">.bg-dark</div>                                <div class="bg-body text-dark p-2 mb-2">.bg-body</div>                                <div class="bg-body-secondary text-dark p-2 mb-2">.bg-body-secondary</div>                                <div class="bg-body-tertiary text-dark p-2 mb-2">.bg-body-tertiary</div>                                <div class="bg-white p-2 mb-2">.bg-white</div>                                <div class="bg-black text-white p-2 mb-2">.bg-black</div>                                <div class="bg-transparent text-dark p-2">.bg-transparent</div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card card-h-100">                            <div class="card-header">                                <h5 class="header-title">Background Gradient Color</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">By adding a <code>.bg-gradient</code> class, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom.</p>                                <div class="p-2 mb-2 bg-primary bg-gradient text-white">.bg-gradient.bg-primary</div>                                <div class="p-2 mb-2 bg-secondary bg-gradient text-white">.bg-secondary.bg-gradient</div>                                <div class="p-2 mb-2 bg-success bg-gradient text-white">.bg-success.bg-gradient</div>                                <div class="p-2 mb-2 bg-danger bg-gradient text-white">.bg-danger.bg-gradient</div>                                <div class="p-2 mb-2 bg-warning bg-gradient text-dark">.bg-warning.bg-gradient</div>                                <div class="p-2 mb-2 bg-info bg-gradient text-dark">.bg-info.bg-gradient</div>                                <div class="p-2 mb-2 bg-light bg-gradient text-dark">.bg-light.bg-gradient</div>                                <div class="p-2 mb-2 bg-dark bg-gradient text-white">.bg-dark.bg-gradient</div>                                <div class="p-2 mb-2 bg-black bg-gradient text-white">.bg-black.bg-gradient</div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-12">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Soft Background</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities do not set <code>color</code>, so in some cases you’ll want to use <code>.text-*</code> <a href="https://getbootstrap.com/docs/5.3/utilities/colors/">color utilities</a>. </p>                                <div class="row">                                    <div class="col-12">                                        <div class="d-flex flex-column gap-2">                                            <div class="bg-primary-subtle p-2"><code class="text-primary-emphasis">.bg-primary-subtle</code></div>                                            <div class="bg-secondary-subtle p-2"><code class="text-secondary-emphasis">.bg-secondary-subtle </code></div>                                            <div class="bg-success-subtle p-2"><code class="text-success-emphasis">.bg-success-subtle</code></div>                                            <div class="bg-danger-subtle p-2"><code class="text-danger-emphasis">.bg-danger-subtle</code></div>                                            <div class="bg-warning-subtle p-2"><code class="text-warning-emphasis">.bg-warning-subtle</code></div>                                            <div class="bg-info-subtle p-2"><code class="text-info-emphasis">.bg-info-subtle</code></div>                                            <div class="bg-light-subtle p-2"><code class="text-light-emphasis">.bg-light-subtle</code></div>                                            <div class="bg-dark-subtle p-2"><code class="text-dark-emphasis">.bg-dark-subtle</code></div>                                        </div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-12">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Background Gradient Color 2</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities do not set <code>color</code>, so in some cases you’ll want to use <code>.text-*</code> <a href="https://getbootstrap.com/docs/5.3/utilities/colors/">color utilities</a>.</p>								<div class="row row-cols-12 d-flex align-items-center">                                    <div class="p-3 col">                                        <div class="m-2 bg-primary-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-primary-gradient</code>                                        </p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-secondary-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-secondary-gradient</code>                                        </p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-warning-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-warning-gradient</code>                                        </p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-info-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-info-gradient</code></p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-success-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-success-gradient</code>                                        </p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-danger-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-danger-gradient</code>                                        </p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-light-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-light-gradient</code></p>                                    </div>                                    <div class="p-3 col">                                        <div class="m-2 bg-dark-gradient mx-auto color-container"></div>                                        <p class="pb-0 mb-0 fw-semibold text-center"><code>.bg-dark-gradient</code></p>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>				<!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Color & Background</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Color and background helpers combine the power of our <code>.text-*</code> utilities and <code>.bg-*</code> utilities in one class. Using our Sass <code>color-contrast()</code> function, we automatically determine a contrasting <code>color</code> for a particular <code>background-color</code>.</p>                                <div class="d-flex flex-column gap-2">                                    <div class="text-bg-primary p-2">Primary with contrasting color (.text-bg-primary)</div>                                    <div class="text-bg-secondary p-2">Secondary with contrasting color (.text-bg-secondary)</div>                                    <div class="text-bg-success p-2">Success with contrasting color (.text-bg-success)</div>                                    <div class="text-bg-danger p-2">Danger with contrasting color (.text-bg-danger)</div>                                    <div class="text-bg-warning p-2">Warning with contrasting color (.text-bg-warning)</div>                                    <div class="text-bg-info p-2">Info with contrasting color (.text-bg-info)</div>                                    <div class="text-bg-light p-2">Light with contrasting color (.text-bg-light)</div>                                    <div class="text-bg-dark p-2">Dark with contrasting color (.text-bg-dark)</div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card card-h-100">                            <div class="card-header">                                <h5 class="header-title">Colored links</h5>                            </div>                            <div class="card-body">                                <p class="text-muted fs-14">You can use the <code>.link-*</code> classes to colorize links. Unlike the <code>.text-*</code> classes, these classes have a <code>:hover</code> and <code>:focus</code> state.</p>                                <div class="d-flex flex-column gap-2">                                    <a href="#" class="link-primary">Primary link</a>                                    <a href="#" class="link-secondary">Secondary link</a>                                    <a href="#" class="link-success">Success link</a>                                    <a href="#" class="link-danger">Danger link</a>                                    <a href="#" class="link-warning">Warning link</a>                                    <a href="#" class="link-info">Info link</a>                                    <a href="#" class="link-light">Light link</a>                                    <a href="#" class="link-dark">Dark link</a>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-12">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Background Opacity</h5>                            </div>                            <div class="card-body">                                <p class="text-muted"><code>background-color</code> utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.</p>                                <div class="bg-primary p-2 text-white">This is default primary background</div>                                <div class="bg-primary p-2 text-white bg-opacity-75">This is 75% opacity primary background</div>                                <div class="bg-primary p-2 text-dark bg-opacity-50">This is 50% opacity primary background</div>                                <div class="bg-primary p-2 text-dark bg-opacity-25">This is 25% opacity primary background</div>                                <div class="bg-primary p-2 text-dark bg-opacity-10">This is 10% opacity success background</div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-12">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Text Color</h5>                            </div>                            <div class="card-body pb-1">                                <p class="text-muted">Colorize text with color utilities. If you want to colorize links, you can use the <code>.link-*</code> helper classes which have <code>:hover</code> and <code>:focus</code> states.</p>                                <!-- start row -->                                <div class="row">                                    <div class="col-md-6">                                        <p class="text-primary">.text-primary</p>                                        <p class="text-primary-emphasis">.text-primary-emphasis</p>                                        <p class="text-secondary">.text-secondary</p>                                        <p class="text-secondary-emphasis">.text-secondary-emphasis</p>                                        <p class="text-success">.text-success</p>                                        <p class="text-success-emphasis">.text-success-emphasis</p>                                        <p class="text-danger">.text-danger</p>                                        <p class="text-danger-emphasis">.text-danger-emphasis</p>                                        <p class="text-warning">.text-warning</p>                                        <p class="text-warning-emphasis">.text-warning-emphasis</p>                                        <p class="text-info">.text-info</p>                                        <p class="text-info-emphasis">.text-info-emphasis</p>                                        <p class="text-light bg-dark">.text-light</p>                                        <p class="text-light-emphasis">.text-light-emphasis</p>                                    </div> <!-- end col -->                                    <div class="col-md-6">                                        <p class="text-dark">.text-dark</p>                                        <p class="text-dark-emphasis">.text-dark-emphasis</p>                                        <p class="text-muted">.text-muted</p>                                        <p class="text-body">.text-body</p>                                        <p class="text-body-emphasis">.text-body-emphasis</p>                                        <p class="text-body-secondary">.text-body-secondary</p>                                        <p class="text-body-tertiary">.text-body-tertiary</p>                                        <p class="text-black">.text-black</p>                                        <p class="text-white bg-dark">.text-white</p>                                        <p class="text-black-50">.text-black-50</p>                                        <p class="text-white-50 bg-dark">.text-white-50</p>                                    </div> <!-- end col -->                                </div>                                <!-- end row -->                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                                    </div>                 <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Text Opacity Color</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">text color utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.</p>                                <div class="text-primary">This is default primary text</div>                                <div class="text-primary text-opacity-75">This is 75% opacity primary text</div>                                <div class="text-primary text-opacity-50">This is 50% opacity primary text</div>                                <div class="text-primary text-opacity-25">This is 25% opacity primary text</div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card card-h-100">                            <div class="card-header">                                <h5 class="header-title">Opacity</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">The <code>opacity</code> property sets the opacity level for an element. The opacity level describes the transparency level, where <code>1</code> is not transparent at all, <code>.5</code> is 50% visible, and <code>0</code> is completely transparent. Set the <code>opacity</code> of an element using <code>.opacity-{{\'{\'}}value{{\'}\'}}</code> utilities.</p>                                <div class="d-flex flex-wrap gap-2">                                    <div class="opacity-100 p-2 bg-primary text-light fw-bold rounded">100%</div>                                    <div class="opacity-75 p-2 bg-primary text-light fw-bold rounded">75%</div>                                    <div class="opacity-50 p-2 bg-primary text-light fw-bold rounded">50%</div>                                    <div class="opacity-25 p-2 bg-primary text-light fw-bold rounded">25%</div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Additive(Add) Border</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Use border utilities to <b>add</b> an element’s borders. Choose from all borders or one at a time.</p>                                <div class="d-flex align-items-start flex-wrap gap-4">                                    <div class="text-center">                                        <div class="border avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border-top avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border-end avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border-bottom avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border-start avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Subtractive(Remove) Border</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Use border utilities to <b>remove</b> an element’s borders. Choose from all borders or one at a time.</p>                                <div class="d-flex align-items-start flex-wrap gap-4">                                    <div class="text-center">                                        <div class="border border-0 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-top-0 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-end-0 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-bottom-0 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-start-0 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Border Color</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Change the border color using utilities built on our theme colors.                                </p>                                <div class="d-flex align-items-start flex-wrap gap-2">                                    <div class="text-center">                                        <div class="border border-primary avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-secondary avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-success avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-danger avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-warning avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-info avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-light avatar-xl"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-dark avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Border Width Size</h5>                            </div>                            <div class="card-body">                                <div class="d-flex align-items-start flex-wrap gap-2">                                    <div class="text-center">                                        <div class="border border-1 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-2 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-3 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-4 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-5 avatar-xl bg-light bg-opacity-50"></div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card card-h-100">                            <div class="card-header">                                <h5 class="header-title">Border Opacity</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">choose from any of the <code>.border-opacity</code> utilities:</p>                                <div class="border border-success p-2 mb-2">This is default success border</div>                                <div class="border border-success p-2 mb-2 border-opacity-75">This is 75% opacity success border</div>                                <div class="border border-success p-2 mb-2 border-opacity-50">This is 50% opacity success border</div>                                <div class="border border-success p-2 mb-2 border-opacity-25">This is 25% opacity success border</div>                                <div class="border border-success p-2 border-opacity-10">This is 10% opacity success border</div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-12">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Border Subtle Color</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Change the border color using utilities built on our theme colors.                                </p>                                <div class="d-flex align-items-start flex-wrap gap-2">                                    <div class="text-center">                                        <div class="border border-primary-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-secondary-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-success-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-danger-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-warning-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-info-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                    <div class="text-center">                                        <div class="border border-light-subtle avatar-xl"></div>                                    </div>                                    <div class="text-center">                                        <div class="border border-dark-subtle avatar-xl bg-light bg-opacity-50">                                        </div>                                    </div>                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                 <!--end row-->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Border Radius</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Add classes to an element to easily round its corners.</p>                                <div class="d-flex align-items-start flex-wrap gap-2">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded" alt="rounded">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded-top" alt="rounded-top">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded-end" alt="rounded-end">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded-bottom" alt="rounded-bottom">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded-start" alt="rounded-start">                                    <img src="assets/img/users/avatar-2.jpg" class="avatar-lg rounded-circle" alt="rounded-circle">                                    <img src="assets/img/users/avatar-10.jpg" class="avatar-lg w-auto rounded-pill" alt="rounded-pill">                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Border Radius Size</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Use the scaling classes for larger or smaller rounded corners. Sizes range from <code>0</code> to <code>5</code>.</p>                                <div class="d-flex align-items-start flex-wrap gap-2">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-0" alt="rounded-0">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-1" alt="rounded-1">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-2" alt="rounded-2">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-3" alt="rounded-3">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-4" alt="rounded-4">                                    <img src="assets/img/users/avatar-4.jpg" class="avatar-lg rounded-5" alt="rounded-5">                                </div>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                </div>                <!-- end row -->                <!-- start row -->                <div class="row">                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Text Selection</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Use <code>user-select-all</code>, <code>user-select-auto</code>, or <code>user-select-none</code> class to the content which is selected when the user interacts with it. </p>                                <p class="user-select-all">This paragraph will be entirely selected when clicked by the user.</p>                                <p class="user-select-auto">This paragraph has default select behavior.</p>                                <p class="user-select-none mb-0">This paragraph will not be selectable when clicked by the user.</p>                            </div> <!-- end card body -->                        </div> <!-- end card -->                    </div> <!-- end col -->                    <div class="col-xl-6">                        <div class="card">                            <div class="card-header">                                <h5 class="header-title">Pointer Events</h5>                            </div>                            <div class="card-body">                                <p class="text-muted">Bootstrap provides <code>.pe-none</code> and <code>.pe-auto</code> classes to prevent or add element interactions.</p>                                <p><a href="#" class="pe-none" tabindex="-1">This link</a> can not be clicked.</p>                                <p><a href="#" class="pe-auto">This link</a> can be clicked (this is default behavior).</p>                                <p class="pe-none"><a href="#" tabindex="-1">This link</a> can not be clicked because the <code>pointer-events</code> property is inherited from its parent. However, <a href="#" class="pe-auto">this link</a> has a <code>pe-auto</code> class and can be clicked.</p>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>				<!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-12">						<div class="card">							<div class="card-header">								<h5 class="header-title">Overflow</h5>							</div>							<div class="card-body">								<p class="text-muted">Adjust the <code>overflow</code> property on the fly with four default values and classes. These classes are not responsive by default.</p>								<div class="d-flex flex-wrap gap-3">									<div class="overflow-auto p-3 bg-light" style="max-width: 260px; max-height: 100px;">										This is an example of using <code>.overflow-auto</code> on an element with set width and height dimensions. By design, this content will vertically scroll.									</div>									<div class="overflow-hidden p-3 bg-light" style="max-width: 260px; max-height: 100px;">										This is an example of using <code>.overflow-hidden</code> on an element with set width and height dimensions.									</div>									<div class="overflow-visible p-3 bg-light" style="max-width: 260px; max-height: 100px;">										This is an example of using <code>.overflow-visible</code> on an elementwith set width and height dimensions.									</div>									<div class="overflow-scroll p-3 bg-light" style="max-width: 260px; max-height: 100px;">										This is an example of using <code>.overflow-scroll</code> on an elementwith set width and height dimensions.									</div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>				<!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Position in Arrange</h5>							</div>							<div class="card-body">								<p class="text-muted">Arrange elements easily with the edge positioning utilities. The format is <code>{{\'{\'}}property{{\'}\'}}-{{\'{\'}}position{{\'}\'}}</code>.</p>								<!-- Arrange elements -->								<div class="position-relative p-5 bg-light bg-opacity-50 m-3 border rounded" style="height: 180px;">									<div class="position-absolute top-0 start-0 avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-0 end-0 avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-50 avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-50 end-50 avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-0 start-0 avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-0 end-0 avatar-xs bg-dark rounded"></div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Position in Center</h5>							</div>							<div class="card-body">								<p class="text-muted">In addition, you can also center the elements with the transform utility class <code>.translate-middle</code>.</p>								<!-- Center elements -->								<div class="position-relative m-3 bg-light bg-opacity-50 border rounded" style="height: 180px;">									<div class="position-absolute top-0 start-0 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-0 start-50 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-0 start-100 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-0 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-50 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-100 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-100 start-0 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-100 start-50 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-100 start-100 translate-middle avatar-xs bg-dark rounded"></div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>				<!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Position in Axis</h5>							</div>							<div class="card-body">								<p class="text-muted">By adding <code>.translate-middle-x</code> or <code>.translate-middle-y</code> classes, elements can be positioned only in horizontal or vertical direction. </p>								<!-- Center elements -->								<div class="position-relative m-3 bg-light border rounded" style="height: 180px;">									<div class="position-absolute top-0 start-0 avatar-xs bg-dark rounded "></div>									<div class="position-absolute top-0 start-50 translate-middle-x avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-0 end-0 avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-0 translate-middle-y avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 start-50 translate-middle avatar-xs bg-dark rounded"></div>									<div class="position-absolute top-50 end-0 translate-middle-y avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-0 start-0 avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-0 start-50 translate-middle-x avatar-xs bg-dark rounded"></div>									<div class="position-absolute bottom-0 end-0 avatar-xs bg-dark rounded"></div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Shadows</h5>							</div>							<div class="card-body">								<p class="text-muted">While shadows on components are disabled by default in Bootstrap and can be enabled via <code>$enable-shadows</code>, you can also quickly add or remove a shadow with our <code>box-shadow</code> utility classes. Includes support for <code>.shadow-none</code> and three default sizes (which have associated variables to match).</p>								<div class="shadow-none p-2 mb-2 bg-light rounded">No shadow</div>								<div class="shadow-sm p-2 mb-2 rounded">Small shadow</div>								<div class="shadow p-2 mb-2 rounded">Regular shadow</div>								<div class="shadow-lg p-2 rounded">Larger shadow</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>				<!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Width</h5>							</div>							<div class="card-body">								<p class="text-muted">Width utilities are generated from the utility API in <code>_utilities.scss</code>. Includes support for <code>25%</code>, <code>50%</code>, <code>75%</code>, <code>100%</code>, and <code>auto</code> by default. Modify those values as you need to generate different utilities here.</p>								<!-- Width -->								<div class="w-25 p-2 bg-light mb-2">Width 25%</div>								<div class="w-50 p-2 bg-light mb-2">Width 50%</div>								<div class="w-75 p-2 bg-light mb-2">Width 75%</div>								<div class="w-100 p-2 bg-light mb-2">Width 100%</div>								<div class="w-auto p-2 bg-light">Width auto</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->					<div class="col-xl-6">						<div class="card">							<div class="card-header">								<h5 class="header-title">Height</h5>							</div>							<div class="card-body">								<p class="text-muted">Height utilities are generated from the utility API in <code>_utilities.scss</code>. Includes support for <code>25%</code>, <code>50%</code>, <code>75%</code>, <code>100%</code>, and <code>auto</code> by default. Modify those values as you need to generate different utilities here.</p>								<div class="d-flex flex-wrap gap-2 align-items-start overflow-hidden" style="height: 255px;">									<!-- Height -->									<div class="h-25 p-2 bg-light">Height25%</div>									<div class="h-50 p-2 bg-light">Height50%</div>									<div class="h-75 p-2 bg-light">Height75%</div>									<div class="h-100 p-2 bg-light">Height100%</div>									<div class="h-auto p-2 bg-light">auto</div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>				<!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-12">						<div class="card">							<div class="card-header">								<h5 class="header-title">Object Fit</h5>							</div>							<div class="card-body">								<p class="text-muted">Change the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code>object-fit</code> property</a> with our responsive <code>object-fit</code> utility classes. This property tells the content to fill the parent container in a variety of ways, such as preserving the aspect ratio or stretching to take up as much space as possible.</p>								<div class="d-flex align-items-start flex-wrap gap-3 text-center">									<div>										<img src="assets/img/media/img-2.jpg" class="object-fit-contain border rounded avatar-xl" alt="...">										<p class="mt-1 mb-0"><code class="user-select-all">.object-fit-contain</code></p>									</div>									<div>										<img src="assets/img/media/img-2.jpg" class="object-fit-cover border rounded avatar-xl" alt="...">										<p class="mt-1 mb-0"><code class="user-select-all">.object-fit-cover</code></p>									</div>									<div>										<img src="assets/img/media/img-2.jpg" class="object-fit-fill border rounded avatar-xl" alt="...">										<p class="mt-1 mb-0"><code class="user-select-all">.object-fit-fill</code></p>									</div>									<div>										<img src="assets/img/media/img-2.jpg" class="object-fit-scale border rounded avatar-xl" alt="...">										<p class="mt-1 mb-0"><code class="user-select-all">.object-fit-scale</code></p>									</div>									<div>										<img src="assets/img/media/img-2.jpg" class="object-fit-none border rounded avatar-xl" alt="...">										<p class="mt-1 mb-0"><code class="user-select-all">.object-fit-none</code></p>									</div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>                 <!-- end row -->                <!-- start row -->				<div class="row">					<div class="col-xl-12">						<div class="card">							<div class="card-header">								<h5 class="header-title">Z-index</h5>							</div>							<div class="card-body pb-0">								<p class="text-muted">Use <code>z-index</code> utilities to stack elements on top of one another. Requires a <code>position</code> value other than <code>static</code>, which can be set with custom styles or using our <a href="/docs/5.3/utilities/position/">position utilities</a>.</p>								<div class="bd-example-zindex-levels position-relative">									<div class="z-3 position-absolute p-5 rounded-3 bg-primary"><span>z-3</span></div>									<div class="z-2 position-absolute p-5 rounded-3 bg-success"><span>z-2</span></div>									<div class="z-1 position-absolute p-5 rounded-3 bg-warning"><span>z-1</span></div>									<div class="z-0 position-absolute p-5 rounded-3 bg-danger"><span>z-0</span></div>									<div class="z-n1 position-absolute p-5 rounded-3 bg-info"><span>z-n1</span></div>								</div>							</div> <!-- end card body -->						</div> <!-- end card -->					</div> <!-- end col -->				</div>                 <!-- end row --></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'UiUtilitiesComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UiUtilitiesComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

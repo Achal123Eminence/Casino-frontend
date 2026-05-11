@@ -1,0 +1,89 @@
+.website-guide-page {
+  min-height: 100vh;
+
+  .page-toolbar {
+    margin-bottom: 0.875rem !important;
+  }
+
+  .compact-card-body {
+    padding: 0.75rem 0.875rem;
+    min-height: calc(100vh - 220px);
+  }
+
+  .website-guide-table {
+    width: 100%;
+    table-layout: fixed;
+
+    thead th {
+      padding: 0.55rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    tbody td {
+      padding: 0.45rem 0.6rem;
+      font-size: 0.82rem;
+      line-height: 1.2;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 56px;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 34%;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 40%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 30%;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 220px;
+    }
+  }
+
+  .custom-table,
+  .table-responsive {
+    height: 100%;
+    min-height: calc(100vh - 320px);
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .text-wrap-cell {
+    white-space: normal !important;
+    word-break: break-word;
+  }
+
+  .icon-btn-link {
+    color: #f59f00;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .icon-btn-link i {
+    font-size: 0.9rem;
+  }
+
+  .autoplay-label {
+    font-size: 0.78rem;
+    color: #5b6572;
+    white-space: nowrap;
+  }
+}

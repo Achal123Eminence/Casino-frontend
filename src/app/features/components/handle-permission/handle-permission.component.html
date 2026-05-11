@@ -1,0 +1,95 @@
+<div class="content pb-0">
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap">
+    <div>
+      <h4 class="mb-1">Default Login Permissions<span class="badge badge-soft-primary ms-2">4</span></h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Handle Permission</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <div class="input-icon input-icon-start position-relative">
+        <!-- Search UI -->
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-sm btn-info" (click)="goBack()">
+          <i class="ti ti-arrow-left me-1"></i> Back
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Default Login Permissions</div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table text-nowrap align-middle">
+          <thead>
+            <tr>
+              <th>Permission Name</th>
+              <th>Select Level</th>
+              <th>Select User</th>
+              <th>Select Value</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (perm of permissions; track perm) {
+              <tr>
+                <td>{{ perm.label }}</td>
+                <td>
+                  <select class="form-select" (change)="onChangeRole($event, perm)" [(ngModel)]="perm.roleSelected">
+                    <option value="">Select Level</option>
+                    @for (role of role_values; track role) {
+                      <option [value]="role.level">{{ role.title }}</option>
+                    }
+                  </select>
+                </td>
+                <td>
+                  <app-multi-select-dropdown [items]="perm.usersList" [(selectedItems)]="perm.usersSelected"
+                    displayField="email" valueField="uuid" (loadMore)="fetchMoreUsers(perm)">
+                  </app-multi-select-dropdown>
+                </td>
+                <td>
+                  @if (perm.key === 'multiLoginCount') {
+                    <select class="form-select" [(ngModel)]="perm.statusSelected">
+                      <option value="">Select Count</option>
+                      @for (count of [].constructor(10); track count; let i = $index) {
+                        <option [value]="i + 1">
+                          {{ i + 1 }}
+                        </option>
+                      }
+                    </select>
+                  } @else {
+                    <select class="form-select" [(ngModel)]="perm.statusSelected">
+                      <option value="">Select Value</option>
+                      <option value="true">On</option>
+                      <option value="false">Off</option>
+                    </select>
+                  }
+                </td>
+                <td>
+                  @if(authService.hasPermission('HANDLPERM', 'update')){
+                    <button type="button" class="btn btn-success btn-sm px-3 py-1" (click)="onSave($event, perm)"
+                      [disabled]="isLoadingMap[perm.key]">
+                      @if (isLoadingMap[perm.key]) {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                      }
+                      {{ isLoadingMap[perm.key] ? 'Please wait...' : 'Save' }}
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

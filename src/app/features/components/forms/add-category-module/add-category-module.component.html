@@ -1,0 +1,11 @@
+<form [formGroup]="moduleForm">
+  <div class="form-group mb-3">
+    <label for="name">Name</label>
+    <input [appValidation]="3" [maxlength]="30" type="text" id="name" class="form-control" formControlName="name" placeholder="Enter category name" />
+    @if(controls['name'].invalid && controls['name'].touched){
+    <div class="text-danger">
+      Name is required and must contain only letters and spaces.
+    </div>
+  }
+  </div>
+</form>

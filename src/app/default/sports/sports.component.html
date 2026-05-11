@@ -1,0 +1,156 @@
+<div class="content pb-0">
+
+  <ul class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1 mb-3">
+    @for (type of sportTypes; track type.id) {
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="activeType === type.id" (click)="changeTypeTab(type.id)">
+          {{ type.name }}
+        </a>
+      </li>
+    }
+    @if(auth.hasPermission('SPORTS', 'write')) {
+    <button
+      type="button"
+      class="btn btn-sm btn-primary ml-auto"
+      data-bs-toggle="modal"
+      data-bs-target="#sportModal"
+      (click)="openAddModal()"
+    >
+      <i class="ti ti-square-rounded-plus-filled me-1"></i> Add Sport
+    </button>
+  }
+  </ul>
+
+  <div class="card border-0 rounded-0">
+    <div class="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <div class="input-icon input-icon-start position-relative">
+        <span class="input-icon-addon text-dark"><i class="ti ti-search"></i></span>
+        <input
+          [(ngModel)]="search"
+          [ngModelOptions]="{ standalone: true }"
+          type="search"
+          class="form-control"
+          placeholder="Search by sport name or id"
+        />
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive custom-table">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>SPORT NAME</th>
+              <th>SPORT ID</th>
+              <th>TYPE</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (filteredSports.length === 0) {
+              <tr>
+                <td colspan="6" class="text-center text-muted py-4">No sports found</td>
+              </tr>
+            } @else {
+              @for (item of filteredSports; track item.uuid; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.sportName }}</td>
+                  <td>{{ item.sportId }}</td>
+                  <td>{{ getTypeName(item.type) }}</td>
+                  <td>
+                    <div class="d-flex form-check form-switch form-check-reverse mb-0">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [checked]="item.status === 1"
+                        [disabled]="!auth.hasPermission('SPORTS', 'update')"
+                        (click)="onStatusToggle($event, item)"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    @if(auth.hasPermission('SPORTS', 'update')) {
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#sportModal"
+                      (click)="openEditModal(item)"
+                    >
+                      Edit
+                    </button>
+                  }
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sportModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditMode ? 'Edit Sports' : 'Add Sports' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="sportForm" (ngSubmit)="submitSport()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Sports Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="sportName" placeholder="cricket" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Sports Id <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" formControlName="sportId" placeholder="4" />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Type <span class="text-danger">*</span></label>
+              <select class="form-select" formControlName="type">
+                @for (type of sportTypes; track type.id) {
+                  <option [value]="type.id">{{ type.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Is Dynamic <span class="text-danger">*</span></label>
+              <select class="form-select" formControlName="isDynamic">
+                <option [value]="1">Yes</option>
+                <option [value]="0">No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="border rounded p-3 bg-light">
+            <h6 class="mb-2">Non-Available Sports (ID - Name)</h6>
+            <div class="row">
+              @for (item of reservedSports; track item.sportId) {
+                <div class="col-md-6 mb-2">{{ item.sportId }} - {{ item.sportName }}</div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary" [disabled]="sportForm.invalid || isSubmitting">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-confirm-modal
+  [title]="modalTitle"
+  [message]="modalMessage"
+  modalId="changeSportStatus"
+  (confirmed)="confirmStatusChange()"
+></app-confirm-modal>

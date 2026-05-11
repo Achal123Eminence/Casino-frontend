@@ -1,0 +1,256 @@
+<div class="content pb-0">
+  <!-- Page Header -->
+  <div
+    class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-header-sticky"
+  >
+    <!-- <div>
+      <h4 class="mb-1">
+        Modules<span class="badge badge-soft-primary ms-2">{{
+          modules.length
+        }}</span>
+      </h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="routes.index">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Modules</li>
+        </ol>
+      </nav>
+    </div> -->
+    <div class="gap-2 d-flex align-items-center flex-wrap ml-auto">
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-sm btn-info" (click)="goBack()">
+          <i class="ti ti-arrow-left me-1"></i> Back
+        </button>
+        @if (auth.hasPermission("MODULES", "write")) {
+          <a
+            class="btn btn-dark ms-auto btn-sm"
+            (click)="openModal('categoryFormModal')"
+            ><i class="ti ti-square-rounded-plus-filled me-1"></i>Add Category
+          </a>
+        }
+        @if (auth.hasPermission("MODULES", "write")) {
+          <a
+            class="btn btn-sm btn-primary ms-auto"
+            (click)="openModal('moduleFormModal')"
+            ><i class="ti ti-square-rounded-plus-filled me-1"></i>Add Module
+          </a>
+        }
+      </div>
+      <a
+        href="javascript:void(0);"
+        class="btn btn-sm btn-icon btn-outline-light shadow"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        aria-label="Refresh"
+        data-bs-original-title="Refresh"
+        ><i class="ti ti-refresh"></i
+      ></a>
+      <app-collapse-header></app-collapse-header>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- Category Tabs -->
+  <ul
+    class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1 mb-3"
+  >
+    @for (category of categories; track $index) {
+      <li
+        class="nav-item"
+        (click)="selectedCategory = category.uuid; getModules(category.uuid)"
+      >
+        <!-- Highlight active category -->
+        <a
+          class="nav-link fw-semibold"
+          [ngClass]="{
+            active: selectedCategory && selectedCategory === category.uuid,
+          }"
+          data-bs-toggle="pill"
+          href="#{{ category.name }}"
+        >
+          {{ category.name }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- card start -->
+  <div class="card border-0 rounded-0">
+    <div class="card-body">
+      <!-- Role List -->
+      <div class="table-responsive custom-table table-scroll">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th>Module Name</th>
+              <th>Module Status</th>
+              <th>Module Action</th>
+              <th>Submodule Name</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (module of modules; track $index) {
+              <!-- MODULE WITH SUBMODULES -->
+              @if (module.children?.length > 0) {
+                @for (sub of module.children; track $index; let j = $index) {
+                  <tr>
+                    <!-- Module Name (rowspan for submodules) -->
+                    @if (j === 0) {
+                      <td
+                        [attr.rowspan]="module.children.length"
+                        class="fw-semibold text-primary align-middle"
+                      >
+                        {{ module.name }}
+                      </td>
+                    }
+
+                    <!-- Module Status (rowspan) -->
+                    @if (j === 0) {
+                      <td
+                        [attr.rowspan]="module.children.length"
+                        class="align-middle text-center"
+                      >
+                        <div
+                          class="d-flex form-check form-switch form-check-reverse"
+                        >
+                          <input
+                            type="checkbox"
+                            [disabled]="
+                              !auth.hasPermission('MODULES', 'update')
+                            "
+                            id="switchCheckReverse"
+                            [checked]="module.status"
+                            (click)="updateStatus(module)"
+                            class="form-check-input"
+                          />
+                        </div>
+                      </td>
+                    }
+
+                    <!-- Module Action (rowspan) -->
+                    @if (j === 0) {
+                      <td
+                        [attr.rowspan]="module.children.length"
+                        class="align-middle text-center"
+                      >
+                        @if (auth.hasPermission("MODULES", "update")) {
+                          <button
+                            class="btn btn-sm btn-warning"
+                            (click)="openEditModule(module)"
+                          >
+                            Edit Module
+                          </button>
+                        }
+                      </td>
+                    }
+                    <!-- Submodule Name -->
+                    <td>{{ sub.name }}</td>
+                    <!-- Submodule Status -->
+                    <td>
+                      <div
+                        class="d-flex form-check form-switch form-check-reverse"
+                      >
+                        <input
+                          type="checkbox"
+                          [disabled]="!auth.hasPermission('MODULES', 'update')"
+                          id="switchCheckReverse"
+                          [checked]="sub.status"
+                          (click)="updateStatus(sub)"
+                          class="form-check-input"
+                        />
+                      </div>
+                    </td>
+
+                    <!-- Submodule Action -->
+                    <td>
+                      @if (auth.hasPermission("MODULES", "update")) {
+                        <button
+                          class="btn btn-sm btn-info"
+                          (click)="openEditModule(sub)"
+                        >
+                          Edit Submodule
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                }
+              }
+
+              <!-- MODULE WITHOUT SUBMODULES -->
+              @else {
+                <tr>
+                  <td class="fw-semibold text-primary">{{ module.name }}</td>
+                  <td class="text-center">
+                    <div
+                      class="d-flex form-check form-switch form-check-reverse"
+                    >
+                      <input
+                        type="checkbox"
+                        [disabled]="!auth.hasPermission('MODULES', 'update')"
+                        id="switchCheckReverse"
+                        [checked]="module.status"
+                        (click)="updateStatus(module)"
+                        class="form-check-input"
+                      />
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    @if (auth.hasPermission("MODULES", "update")) {
+                      <button
+                        class="btn btn-sm btn-warning"
+                        (click)="openEditModule(module)"
+                      >
+                        Edit Module
+                      </button>
+                    }
+                  </td>
+                  <td class="text-muted text-center">-</td>
+                  <td class="text-muted text-center">-</td>
+                  <td class="text-muted text-center">-</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- Optional Pagination -->
+      <app-custom-pagination></app-custom-pagination>
+    </div>
+  </div>
+
+  <!-- card end -->
+</div>
+<!-- End Content -->
+@if (isModuleLoaded) {
+  <app-common-form-modal
+    modalId="moduleFormModal"
+    [title]="moduleData ? 'Edit Module' : 'Add Module'"
+    (save)="handleModuleFormSubmit()"
+    (cancel)="handleFormCancel()"
+  >
+    <app-module
+      #addModuleForm
+      (formSubmit)="onModuleFormSubmit($event)"
+      [parentModules]="parentModules"
+      [categories]="categories"
+      [moduleData]="moduleData"
+    ></app-module>
+  </app-common-form-modal>
+}
+
+<app-common-form-modal
+  modalId="categoryFormModal"
+  [title]="categoryData ? 'Edit Category' : 'Add Category'"
+  (save)="handleCategoryModuleFormSubmit()"
+  (cancel)="handleCategoryFormCancel()"
+>
+  <app-add-category-module
+    #categoryForm
+    [categoryData]="categoryData"
+    (formSubmit)="onCategoryFormSubmit($event)"
+  ></app-add-category-module>
+</app-common-form-modal>

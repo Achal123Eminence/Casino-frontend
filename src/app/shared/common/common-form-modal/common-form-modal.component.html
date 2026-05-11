@@ -1,0 +1,31 @@
+<div class="modal fade" [id]="modalId" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ title }}</h5>
+                <!-- <button class="btn-close custom-btn-close border p-1 me-0 text-dark" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i class="ti ti-x"></i>
+                </button> -->
+                <button data-bs-dismiss="modal" aria-label="Close" class="border p-1 me-0" style="
+                    border-radius: 50%;
+                    font-size: 16px;
+                "
+                (click)="onCancel()"><i class="fa fa-close"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Projected custom form goes here -->
+                <ng-content></ng-content>
+            </div>
+
+            <div class="modal-footer">
+                <div class="d-flex align-items-center justify-content-end m-0">
+                    <a href="javascript:void(0);" class="btn btn-primary me-2" data-bs-dismiss="modal"
+                        (click)="onCancel()">Cancel</a>
+                    <button type="button" (click)="onSave($event)" class="btn btn-success">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

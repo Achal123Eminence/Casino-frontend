@@ -1,0 +1,886 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  ChartOptions</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#chart" 
+>
+                                            chart
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#colors" 
+>
+                                            colors
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#dataLabels" 
+>
+                                            dataLabels
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#grid" 
+>
+                                            grid
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#plotOptions" 
+>
+                                            plotOptions
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#series" 
+>
+                                            series
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#xaxis" 
+>
+                                            xaxis
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="chart"></a>
+                                        <span class="name "><b>chart</b>
+                                            <a href="#chart">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>chart:     <code>ApexChart | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexChart | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="colors"></a>
+                                        <span class="name "><b>colors</b>
+                                            <a href="#colors">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>colors:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="dataLabels"></a>
+                                        <span class="name "><b>dataLabels</b>
+                                            <a href="#dataLabels">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>dataLabels:     <code>ApexDataLabels | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexDataLabels | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="grid"></a>
+                                        <span class="name "><b>grid</b>
+                                            <a href="#grid">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>grid:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="plotOptions"></a>
+                                        <span class="name "><b>plotOptions</b>
+                                            <a href="#plotOptions">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>plotOptions:     <code>ApexPlotOptions | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexPlotOptions | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="series"></a>
+                                        <span class="name "><b>series</b>
+                                            <a href="#series">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>series:     <code>ApexAxisChartSeries | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexAxisChartSeries | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="xaxis"></a>
+                                        <span class="name "><b>xaxis</b>
+                                            <a href="#xaxis">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>xaxis:     <code>ApexXAxis | any</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>ApexXAxis | any</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ViewChild, OnInit, Renderer2 } from &#x27;@angular/core&#x27;;
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+  NgApexchartsModule,
+} from &#x27;ng-apexcharts&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../../common/collapse-header/collapse-header.component&#x27;;
+import { DateRangePickerComponent } from &#x27;../../../common/date-range-picker/date-range-picker.component&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { SelectModule } from &#x27;primeng/select&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+export interface ChartOptions {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
+  xaxis: ApexXAxis | any;
+  grid:  any;
+  colors:  any;
+}
+
+@Component({
+    selector: &#x27;app-project-dashboard&#x27;,
+    templateUrl: &#x27;./project-dashboard.component.html&#x27;,
+    styleUrl: &#x27;./project-dashboard.component.scss&#x27;,
+    imports: [NgApexchartsModule,CollapseHeaderComponent,DateRangePickerComponent,RouterLink,BsDatepickerModule,SelectModule,CommonModule,FormsModule,MatSelectModule,MatChipsModule,MatIconModule]
+})
+export class ProjectDashboardComponent implements OnInit {
+  public sidebarPopup1 &#x3D; false;
+  public sidebarPopup2 &#x3D; false;
+  bsValue &#x3D; new Date();
+  bsRangeValue: Date[];
+  maxDate &#x3D; new Date();
+  @ViewChild(&#x27;chart&#x27;) chart!: ChartComponent;
+  public chartOptions: Partial&lt;ChartOptions&gt;;
+  public chartOptions2: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions3: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions4: Partial&lt;ChartOptions&gt; | any;
+  public routes &#x3D; routes;
+  /**
+   * constructor function.
+   * @param {*} renderer - Parameter.
+   * @returns {*} Result.
+   */
+  constructor(private renderer:Renderer2) {
+   this.chartOptions &#x3D; {
+          series: [{
+          data: [400, 220, 448,]
+      }],
+          chart: {
+          type: &#x27;bar&#x27;,
+          height: 180,
+    	toolbar: {
+    	  show: false
+    	}
+      },
+    
+      plotOptions: {
+          bar: {
+          horizontal: true,
+          }
+      },
+      dataLabels: {
+          enabled: false
+      },
+     colors: [&#x27;#EF1E1E&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,
+    },
+      xaxis: {
+          categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+          ],
+      }
+      };
+    this.chartOptions2 &#x3D; {
+        series: [{
+        data: [400, 122, 250]
+    }],
+        chart: {
+        type: &#x27;bar&#x27;,
+        height: 180,
+    	toolbar: {
+    	  show: false
+    	}
+    },
+    plotOptions: {
+        bar: {
+        horizontal: true,
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    colors: [&#x27;#27AE60&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,     
+    },
+    xaxis: {
+        categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+        ],
+    }
+    };
+    this.chartOptions3 &#x3D;{
+      series: [44, 55, 41, 17],
+      chart: {
+      type: &#x27;donut&#x27;,
+          height: 450
+    },
+    colors: [&#x27;#4A00E5&#x27;, &#x27;#FFA201&#x27; , &#x27;#0092E4&#x27; , &#x27;#E41F07&#x27; ],
+    labels: [&#x27;Campaigns&#x27;, &#x27;Google&#x27;, &#x27;Referrals&#x27;, &#x27;Paid Social&#x27;],  
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 270
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    legend: {
+       position: &#x27;bottom&#x27;,  
+      formatter: function(val:any, opts:any) {
+        return val + &quot; - &quot; + opts.w.globals.series[opts.seriesIndex]
+      }
+    },
+    responsive: [{
+      breakpoint: 1199,
+      options: {
+        chart: {
+          height: 320
+        },
+        legend: {
+          position: &#x27;bottom&#x27;
+        }
+      }
+    },{
+      breakpoint: 575,
+      options: {
+        chart: {
+          height: 280
+        },
+        legend: {
+          position: &#x27;bottom&#x27;
+        }
+      }
+    }]
+    };
+    this.chartOptions4 &#x3D;  {
+      series: [
+      {
+        name: &quot;&quot;,
+        data: [1200, 1000, 800, 600, 400, 200],
+      },
+    ],
+      chart: {
+      type: &#x27;bar&#x27;,
+      height: 420,
+    			toolbar: {
+    				show: false
+    			}
+    },
+    
+    plotOptions: {
+      bar: {
+        borderRadius: 0,
+        horizontal: true,
+        distributed: true,
+        barHeight: &#x27;100%&#x27;,
+        isFunnel: true,
+      },
+     
+    },
+    colors: [
+      &#x27;#3538CD&#x27;,
+      &#x27;#06AED4&#x27;,
+      &#x27;#FFA201&#x27;,
+      &#x27;#0E9384&#x27;,
+      &#x27;#27AE60&#x27;,
+      &#x27;#E41F07&#x27;,
+    ],
+    
+    dataLabels: {
+      enabled: true,
+      formatter: function (val:any, opt:any) {
+        return opt.w.globals.labels[opt.dataPointIndex] 
+      },
+      dropShadow: {
+        enabled: true,
+      },
+     
+    },
+    xaxis: {
+      categories: [&#x27;Inpipeline : 1454&#x27;, &#x27;Follow Up : 1454&#x27;, &#x27;Schedule service : 1454&#x27;, &#x27;Conversation : 1454&#x27;, &#x27;Win : 1454&#x27;, &#x27;Lost : 1454&#x27;],
+    },
+    legend: {
+      show: false,
+    },
+    };
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue &#x3D; [this.bsValue, this.maxDate];
+  }
+  /**
+   * openSidebarPopup1 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup1() {
+    this.sidebarPopup1 &#x3D; !this.sidebarPopup1;
+  }
+  /**
+   * openSidebarPopup2 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup2() {
+    this.sidebarPopup2 &#x3D; !this.sidebarPopup2;
+  }
+
+  selectedValue1: any[] | undefined;
+  selectedValue2: any[] | undefined;
+
+  selectedDatas1: any[] | undefined;
+  selectedDatas2: any[] | undefined;
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit() {
+     this.renderer.addClass(document.body,&#x27;date-picker&#x27;)
+    this.selectedValue1 &#x3D; [
+      { name: &#x27;Mobile App&#x27; },
+      { name: &#x27;Meeting&#x27; }
+    ];
+    this.selectedValue2 &#x3D; [
+      { name: &#x27;Mobile App&#x27; },
+      { name: &#x27;Meeting&#x27; }
+    ];
+  }
+
+  selectedOption1: any;
+  selectedOption2: any;
+  selectedOption3: any;
+  selectedOption4: any;
+
+  option1 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option2 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option3 &#x3D; [
+    {
+      id: 1,
+      name: &#x27; Robert Johnson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-02.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option4 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  /**
+   * removeOption1 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption1(user: any) {
+    const index &#x3D; this.selectedOption1.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption1.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption2 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption2(user: any) {
+    const index &#x3D; this.selectedOption2.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption2.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption3 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption3(user: any) {
+    const index &#x3D; this.selectedOption3.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption3.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption4 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption4(user: any) {
+    const index &#x3D; this.selectedOption4.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption4.splice(index, 1);
+    }
+  }
+//    ngOnInit():void{
+//   this.renderer.addClass(document.body,&#x27;date-picker&#x27;)
+// }
+/**
+ * ngOnDestroy function.
+ * @returns {*} Result.
+ */
+ngOnDestroy():void{
+  this.renderer.removeClass(document.body,&#x27;date-picker&#x27;)
+}
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ChartOptions-11.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

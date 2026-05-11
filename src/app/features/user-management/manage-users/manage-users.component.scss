@@ -1,0 +1,82 @@
+.manage-users-page {
+    .page-toolbar {
+        margin-bottom: 0.875rem !important;
+    }
+
+    .compact-card-body {
+        padding: 0.75rem 0.875rem;
+    }
+
+    .manage-users-table {
+        width: 100%;
+
+        thead th {
+            padding: 0.55rem 0.6rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        tbody td {
+            padding: 0.45rem 0.6rem;
+            font-size: 0.82rem;
+            line-height: 1.2;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .form-check {
+            min-height: auto;
+            margin-bottom: 0;
+        }
+
+        .form-switch {
+            padding-left: 2rem;
+        }
+
+        .form-check-input {
+            margin-top: 0;
+        }
+    }
+
+    .user-level-badge {
+        font-size: 0.68rem;
+        padding: 0.22rem 0.38rem;
+        margin-right: 0.35rem;
+        vertical-align: middle;
+    }
+
+    .action-group {
+        flex-wrap: nowrap;
+
+        .btn {
+            padding: 0.28rem 0.45rem;
+            min-width: 1.9rem;
+        }
+    }
+
+    .compact-value {
+        min-width: 0;
+    }
+}
+
+.balanceDiv{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    .addIcon{
+        background: #2789ce;
+        font-size: 12px;
+        color: white;
+        padding: 1px;
+        border-radius: 3px;
+    }
+    .editIcon{
+        color: #2789ce;
+        font-size: 11px;
+        cursor: pointer;
+    }
+}

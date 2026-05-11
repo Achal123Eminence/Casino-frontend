@@ -1,0 +1,101 @@
+<!-- Start Content -->
+<div class="content pb-0">
+  <!-- Page Header -->
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap">
+    <div>
+      <h4 class="mb-1">User Levels<span class="badge badge-soft-primary ms-2">0</span></h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Manage User Levels</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="gap-2 d-flex align-items-center flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn  btn-sm btn-info" (click)="goBack()">
+          <i class="ti ti-arrow-left me-1"></i> Back
+        </button>
+        @if(auth.hasPermission('DEFLS','write')) {
+        <a href="javascript:void(0);" class="btn  btn-sm btn-primary ms-auto" (click)="openForm()">
+          <i class="ti ti-square-rounded-plus-filled me-1"></i>Add Level
+        </a>
+      }
+      </div>
+      <a href="javascript:void(0);" class="btn  btn-sm btn-icon btn-outline-light shadow" data-bs-toggle="tooltip"
+        data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh"><i class="ti ti-refresh"></i></a>
+      <app-collapse-header></app-collapse-header>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- card start -->
+  <div class="card border-0 rounded-0">
+    <div class="card-body">
+      <!-- Role List -->
+      <div class="table-responsive custom-table">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Title</th>
+              <th scope="col">Short Name</th>
+              <th scope="col">Can User Be Created</th>
+              <th scope="col">Level</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of userLevels; track item.uuid; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.shortName }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="item.canUserBeCreated ? 'bg-success' : 'bg-danger'">
+                  {{ item.canUserBeCreated ? 'Yes' : 'No' }}
+                </span>
+              </td>
+              <td>{{ item.level }}</td>
+              <td>
+                @if(auth.hasPermission('DEFLS','update')) {
+                <button class="btn btn-sm btn-info me-2" (click)="openForm(item)">Edit Level</button>
+                }
+                @if(auth.hasPermission('DEFLS','update')) {
+                <button class="btn btn-sm btn-secondary me-2" (click)="openModal('levelFieldsForm', item)">Form Fields</button>
+                }
+                @if(auth.hasPermission('DEFLS','update')) {
+                <button class="btn btn-sm btn-success me-2" [routerLink]="[routes.permissions, item.uuid, 'level', item.title]">Assign Permission</button>
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Optional Pagination -->
+      <app-custom-pagination></app-custom-pagination>
+    </div>
+  </div>
+
+  <!-- card end -->
+
+</div>
+<!-- End Content -->
+
+<app-side-form-modal formId="addLevelForm" [title]="isEditMode ? 'Update Level' : 'Create New Level'">
+  <app-user-level-form
+    [levelData]="selectedLevelData"
+    (submitForm)="handleFormSubmit($event)">
+  </app-user-level-form>
+</app-side-form-modal>
+
+@if(formFieldLoaded) {
+  <app-common-form-modal modalId="levelFieldsForm" title="Configure Level Fields" (save)="handleLevelDefaultFormSubmit()"
+      (cancel)="handleFormCancel()">
+    <app-level-default-fields #updateLevelDefaultForm [defaultFields]="formFields" [selectedLevel]="selectedLevel" [selectedLevelFormFields]="selectedLevelFormFields" (formSubmit)="handleLevelFormSubmit($event)"></app-level-default-fields>
+  </app-common-form-modal>
+}

@@ -1,0 +1,342 @@
+<div class="account-page bg-white">
+  <!-- Begin Wrapper -->
+  <div class="main-wrapper">
+
+    <div class="overflow-hidden p-3 acc-vh">
+
+      <!-- start row -->
+      <div class="row vh-100 w-100 g-0">
+
+        <div class="col-lg-6 vh-100 overflow-y-auto overflow-x-hidden">
+
+          <!-- STEP 1: Login -->
+          @if (step === 1) {
+            <div class="row h-100">
+              <div class="col-md-10 mx-auto">
+                <form [formGroup]="loggedData" (ngSubmit)="login()"
+                  class="d-flex justify-content-center flex-column p-4 pb-0 h-100">
+                  <div class="text-center mb-4 auth-logo">
+                    <img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+                  </div>
+                  <div>
+                    <div class="mb-3">
+                      <h3 class="mb-2">Sign In</h3>
+                      <p class="mb-0">Access the CRMS panel using your email and passcode.</p>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">UserId</label>
+                      <div class="input-group input-group-flat">
+                        <input maxlength="50" type="email" [appValidation]="2" class="form-control" formControlName="userId">
+                        <span class="input-group-text">
+                          <i class="ti ti-mail"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <div class="input-group pass-group">
+                        <input [type]="password[1] ? 'text' : 'password' " [appValidation]="1"
+                          class="pass-input form-control" formControlName="pass">
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary toggle-password-btn"
+                          (click)="togglePassword(1)"
+                        >
+                          <i class="fa" [class.fa-eye]="!password[1]" [class.fa-eye-slash]="password[1]"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      formControlName="honeypot"
+                      tabindex="-1"
+                      autocomplete="off"
+                      aria-hidden="true"
+                      class="d-none"
+                    />
+                    <div class="mb-3">
+                      <label class="form-label">Validation Code</label>
+                      <div class="input-group mb-1">
+                        <span class="input-group-text">
+                          <i class="bi bi-shield-lock"></i>
+                        </span>
+                        <input type="text" id="validCode" maxlength="6" pattern="[A-HJ-NP-Z2-9]*"
+                          formControlName="validCode" inputmode="text"
+                          placeholder="Enter 6-character code" autocomplete="off" autocapitalize="characters"
+                          (input)="sanitizeCaptchaInput()"
+                          class="form-control" />
+                        <span class="input-group-text p-0">
+                          @if (captchaUrl) {
+                            <img [src]="captchaUrl" alt="CAPTCHA" width="95" height="40"
+                              class="captchcan" (load)="captchaLoaded = true"
+                              (error)="captchaLoaded = false" />
+                          } @else {
+                            <div class="captcha-placeholder">Loading...</div>
+                          }
+                        </span>
+                        <button class="btn btn-sm btn-outline-secondary" type="button"
+                          (click)="loadCaptcha()">
+                          <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+                      </div>
+                      <small class="text-muted">The code is case-insensitive. It expires quickly and refreshes after failed verification.</small>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                      <div class="form-check form-check-md d-flex align-items-center">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                          id="checkebox-md" checked="">
+                        <label class="form-check-label text-dark ms-1" for="checkebox-md">
+                          Remember Me
+                        </label>
+                      </div>
+                      <div class="text-end">
+                        <a [routerLink]="routes.forgotPassword"
+                        class="link-danger fw-medium link-hover">Forgot Password?</a>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <button type="submit" class="btn btn-primary w-100" [disabled]="isSubmittingLogin || !captchaLoaded">
+                        {{ isSubmittingLogin ? 'Signing In...' : 'Sign In' }}
+                      </button>
+                    </div>
+                    <div class="mb-3">
+                      <p class="mb-0">New on our platform?<a [routerLink]="routes.register"
+                      class="link-indigo fw-bold link-hover"> Create an account</a></p>
+                    </div>
+                  </div>
+                </form>
+              </div> <!-- end col -->
+            </div>
+          }
+
+          <!-- STEP 2: Google Authenticator Verification -->
+          @if (step === 2) {
+            <div class="d-flex justify-content-center flex-column p-4 pb-0 h-100">
+              <div class="card p-4 shadow-sm">
+                <div class="card-body">
+                  <h2 class="mb-3">Google Authenticator Verification</h2>
+                  <p class="text-secondary">Enter the 6-digit OTP from your Google Authenticator app.</p>
+                  <form [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text">
+                        <i class="bi bi-shield-lock"></i>
+                      </span>
+                      <input type="text" formControlName="otp" placeholder="Enter OTP"
+                        autocomplete="off" class="form-control" maxlength="6" inputmode="numeric"
+                        (keypress)="onlyDigits($event)" />
+                    </div>
+                    @if (otpForm.controls['otp'].touched && otpForm.controls['otp'].invalid) {
+                      <div class="text-danger small mt-1"
+                        >
+                        @if (otpForm.controls['otp'].errors?.['required']) {
+                          <span>
+                            OTP is required.
+                          </span>
+                        }
+                        @if (otpForm.controls['otp'].errors?.['pattern']) {
+                          <span>
+                            Enter a valid 6-digit OTP.
+                          </span>
+                        }
+                      </div>
+                    }
+                    <button type="submit" class="btn btn-primary w-100">
+                      Verify OTP
+                    </button>
+                    <!-- google auth button -->
+                    @if (googleAuthQrCode && !isgoogleQrCodeScanned) {
+                      <div
+                        class="btn btn-warning w-100 mt-2" (click)="showGoogleModal()"> Setup Google
+                      Authentication </div>
+                    }
+                  </form>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- STEP 3: Email verification otp -->
+          @if (step === 3) {
+            <div class="d-flex justify-content-center flex-column p-4 pb-0 h-100">
+              <div class="col-md-10 mx-auto">
+                <form (ngSubmit)="verifyOtp()"
+                  class=" vh-100 d-flex justify-content-between flex-column p-4 pb-0">
+                  <div class="text-center mb-4 auth-logo">
+                    <img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+                  </div>
+                  <div class="digit-group login-form-control" data-group-name="digits"
+                    data-autosubmit="false">
+                    <div class="mb-4">
+                      <h4 class="mb-2 fs-20">Login With Your Email Address</h4>
+                      <p>We sent a verification code to your email. Enter the code from the email in
+                      the field below</p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center gap-3 mb-4">
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-1"
+                        maxlength="1" [formControl]="getOtpControl(0, 'email')"
+                        (input)="onOtpInput($event, 0, 'email')"
+                        (keydown)="onOtpKeydown($event, 0, 'email')" inputmode="numeric" />
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-2"
+                        maxlength="1" [formControl]="getOtpControl(1, 'email')"
+                        (input)="onOtpInput($event, 1, 'email')"
+                        (keydown)="onOtpKeydown($event, 1, 'email')" inputmode="numeric" />
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-3"
+                        maxlength="1" [formControl]="getOtpControl(2, 'email')"
+                        (input)="onOtpInput($event, 2, 'email')"
+                        (keydown)="onOtpKeydown($event, 2, 'email')" inputmode="numeric" />
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-4"
+                        maxlength="1" [formControl]="getOtpControl(3, 'email')"
+                        (input)="onOtpInput($event, 3, 'email')"
+                        (keydown)="onOtpKeydown($event, 3, 'email')" inputmode="numeric" />
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-5"
+                        maxlength="1" [formControl]="getOtpControl(4, 'email')"
+                        (input)="onOtpInput($event, 4, 'email')"
+                        (keydown)="onOtpKeydown($event, 4, 'email')" inputmode="numeric" />
+                      <input type="text" class="text-center fs-26 fw-bold rounded" id="email-digit-6"
+                        maxlength="1" [formControl]="getOtpControl(5, 'email')"
+                        (input)="onOtpInput($event, 5, 'email')"
+                        (keydown)="onOtpKeydown($event, 5, 'email')" inputmode="numeric" />
+                    </div>
+                    <div class="mb-3">
+                      <button type="submit" class="btn btn-primary w-100">Verify Email</button>
+                    </div>
+                  </div>
+                  <div class="text-center pb-4">
+                    <p class="text-dark mb-0">Copyright &copy; 2025 - CRMS</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          }
+
+          <!-- STEP 4: WhatsApp verification otp -->
+          @if (step === 4) {
+            <div class="d-flex justify-content-center flex-column p-4 pb-0 h-100">
+              <div class="col-md-10 mx-auto">
+                <form (ngSubmit)="verifyOtp()"
+                  class=" vh-100 d-flex justify-content-between flex-column p-4 pb-0">
+                  <div class="text-center mb-4 auth-logo">
+                    <img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+                  </div>
+                  <div class="digit-group login-form-control" data-group-name="digits"
+                    data-autosubmit="false">
+                    <div class="mb-4">
+                      <h4 class="mb-2 fs-20">Login With WhatsApp OTP</h4>
+                      <p>We sent a verification code to your WhatsApp No. Enter the code from the
+                      WhatsApp in the field below</p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center gap-3 mb-4">
+                      <!-- six separate boxes for whatsapp OTP; bound to reactive FormArray controls -->
+                      <div class="d-flex align-items-center justify-content-center gap-3 mb-4">
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-1" maxlength="1"
+                          [formControl]="getOtpControl(0, 'whatsapp')"
+                          (input)="onOtpInput($event, 0, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 0, 'whatsapp')" inputmode="numeric" />
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-2" maxlength="1"
+                          [formControl]="getOtpControl(1, 'whatsapp')"
+                          (input)="onOtpInput($event, 1, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 1, 'whatsapp')" inputmode="numeric" />
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-3" maxlength="1"
+                          [formControl]="getOtpControl(2, 'whatsapp')"
+                          (input)="onOtpInput($event, 2, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 2, 'whatsapp')" inputmode="numeric" />
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-4" maxlength="1"
+                          [formControl]="getOtpControl(3, 'whatsapp')"
+                          (input)="onOtpInput($event, 3, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 3, 'whatsapp')" inputmode="numeric" />
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-5" maxlength="1"
+                          [formControl]="getOtpControl(4, 'whatsapp')"
+                          (input)="onOtpInput($event, 4, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 4, 'whatsapp')" inputmode="numeric" />
+                        <input type="text" class="text-center fs-26 fw-bold rounded"
+                          id="whatsapp-digit-6" maxlength="1"
+                          [formControl]="getOtpControl(5, 'whatsapp')"
+                          (input)="onOtpInput($event, 5, 'whatsapp')"
+                          (keydown)="onOtpKeydown($event, 5, 'whatsapp')" inputmode="numeric" />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <button type="submit" class="btn btn-primary w-100">Verify WhatsApp</button>
+                    </div>
+                  </div>
+                  <div class="text-center pb-4">
+                    <p class="text-dark mb-0">Copyright &copy; 2025 - CRMS</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          }
+
+        </div>
+
+        <div class="col-lg-6 account-bg-01"></div> <!-- end col -->
+
+      </div>
+      <!-- end row -->
+
+    </div>
+
+  </div>
+  <!-- End Wrapper -->
+</div>
+
+<!-- Google Auth Setup Modal -->
+<div class="modal" id="detailModal" tabindex="-1" role="dialog" [ngStyle]="{ display: showGoogleSetupModalFlag }">
+  <div class="modal-dialog col-12" style="margin-top: 80px" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h6 class="modal-title mb-0" id="passwordModalLabel">Setup Google Authenticator</h6>
+        <button (click)="hideGoogleModal()" type="button" class="btn-close btn-close-white"
+        data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row row1"></div>
+
+        <ol class="auth-steps">
+          <li>
+            <strong>Install Google Authenticator App</strong>
+            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"
+            target="_blank">Android (Google Play Store)</a><br>
+            <a href="https://apps.apple.com/app/google-authenticator/id388497605" target="_blank">iOS (App
+            Store)</a>
+          </li>
+          <li>
+            <strong>If You Have Multiple Google Accounts:</strong>
+            Tap your <b>profile icon</b> in the Google Authenticator app<br />
+            Select the <b>desired Google account</b> to link with the setup
+          </li>
+          <li>
+            <strong>Add a New Account</strong> Tap the “+” button → Choose “Scan QR code”
+          </li>
+          <li>
+            <strong>Scan the QR Code</strong>
+            <div class="qr-container">
+              @if (googleAuthQrCode) {
+                <img [src]="googleAuthQrCode" alt="Google Auth QR"
+                  class="img-fluid d-block mx-auto mb-3" />
+              }
+            </div>
+          </li>
+          <li>
+            <strong>Enter the 6-Digit Code</strong>
+            Enter the code generated by the app to verify:
+          </li>
+          <li>
+            <strong>Done!</strong>
+            Your 2FA setup is complete. You’ll need a new code every time you log in.
+          </li>
+        </ol>
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="hideGoogleModal()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

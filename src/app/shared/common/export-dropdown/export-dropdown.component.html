@@ -1,0 +1,21 @@
+<div class="dropdown">
+  <a href="javascript:void(0);" 
+     class="dropdown-toggle btn btn-sm btn-outline-light px-2 shadow"
+     data-bs-toggle="dropdown">
+    <i class="ti ti-package-export me-2"></i>Export
+  </a>
+  <div class="dropdown-menu dropdown-menu-end">
+    <ul>
+      <li>
+        <a href="javascript:void(0);" class="dropdown-item" (click)="requestExport('pdf')">
+          <i class="ti ti-file-type-pdf me-1"></i>Export as PDF
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="dropdown-item" (click)="requestExport('xls')">
+          <i class="ti ti-file-type-xls me-1"></i>Export as Excel
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

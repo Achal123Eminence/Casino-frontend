@@ -1,0 +1,809 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  select</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/features/crm/leads/leads-list/leads-list.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#data" 
+>
+                                            data
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name "><b>data</b>
+                                            <a href="#data">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { apiResultFormat, leadsList, pageSelection } from &#x27;../../../../shared/model/pages.model&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { DataService } from &#x27;../../../../shared/data/data.service&#x27;;
+import { PaginationService, tablePageSize } from &#x27;../../../../shared/custom-pagination/pagination.service&#x27;;
+import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { MatSort, MatSortModule, Sort } from &#x27;@angular/material/sort&#x27;;
+import { Editor, NgxEditorModule, Toolbar } from &#x27;ngx-editor&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { DragDropModule } from &#x27;@angular/cdk/drag-drop&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../../common/collapse-header/collapse-header.component&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { TagInputModule } from &#x27;ngx-chips&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { DateRangePickerComponent } from &#x27;../../../common/date-range-picker/date-range-picker.component&#x27;;
+import { CustomPaginationComponent } from &#x27;../../../../shared/custom-pagination/custom-pagination.component&#x27;;
+import { SelectModule } from &#x27;primeng/select&#x27;;
+interface select{
+  data:string;
+}
+@Component({
+  selector: &#x27;app-leads-list&#x27;,
+  imports: [CommonModule,FormsModule,RouterLink,CollapseHeaderComponent,MatSelectModule,MatIconModule,MatChipsModule,TagInputModule,NgxEditorModule,BsDatepickerModule,DateRangePickerComponent,CustomPaginationComponent,MatSort,MatSortModule,
+    SelectModule
+  ],
+  templateUrl: &#x27;./leads-list.component.html&#x27;,
+  styleUrl: &#x27;./leads-list.component.scss&#x27;
+})
+export class LeadsListComponent {
+  public routes &#x3D; routes;
+   tags&#x3D;[&#x27;Collab&#x27;];
+  tags2&#x3D;[&#x27;Devops Design&#x27;,&#x27;MargrateDesign&#x27;];
+  tags3&#x3D;[&#x27;Collab&#x27;,&#x27;Rated&#x27;];
+   select!: select[];
+  select2!: select[];
+  select3!: select[];
+  select4!: select[];
+  select5!: select[];
+selected!: select[];
+selected2!: select[];
+selected3!: select[];
+selected4!: select[];
+selected5!: select[];
+  // pagination variables
+  public tableData: leadsList[] &#x3D; [];
+  public pageSize &#x3D; 10;
+  public serialNumberArray: number[] &#x3D; [];
+  public totalData &#x3D; 0;
+  showFilter &#x3D; false;
+  dataSource!: MatTableDataSource&lt;leadsList&gt;;
+  public searchDataValue &#x3D; &#x27;&#x27;;
+  public tableDataCopy: leadsList[] &#x3D; [];
+  public actualData: leadsList[] &#x3D; [];
+  //** pagination variables
+  selectedValue1: any[] | undefined;
+  selectedValue2: any[] | undefined;
+  selectedValue3: any[] | undefined;
+  selectedValue4: any[] | undefined;
+  selectedValue5: any[] | undefined;
+  selectedValue6: any[] | undefined;
+  selectedDatas1: any[] | undefined;
+  selectedDatas2: any[] | undefined;
+  selectedDatas3: any[] | undefined;
+  selectedDatas4: any[] | undefined;
+  selectedDatas5: any[] | undefined;
+  selectedDatas6: any[] | undefined;
+
+  public sidebarPopup &#x3D; false;
+  public sidebarPopup2 &#x3D; false;
+  public sidebarPopup3 &#x3D; false;
+
+  initChecked &#x3D; false;
+
+  bsValue &#x3D; new Date();
+  bsRangeValue: Date[];
+  maxDate &#x3D; new Date();
+
+  selectedOption3: any;
+  
+
+  /**
+   * constructor function.
+   * @param {*} data - Parameter.
+   * @param {*} pagination - Parameter.
+   * @param {*} router - Parameter.
+   * @returns {*} Result.
+   */
+  constructor(
+    private data: DataService,
+    private pagination: PaginationService,
+    private router: Router
+  ) {
+     this.select &#x3D; [
+          {data: &#x27;Select&#x27;},
+          {data: &#x27;NovaWave LLC&#x27;},
+          {data: &#x27;BlueSky Industries&#x27;},
+          {data: &#x27;Summit Peak&#x27;},
+          {data: &#x27;RiverStone Ventur&#x27;}
+      ];
+      this.select2 &#x3D; [
+          {data: &#x27;Select&#x27;},
+          {data: &#x27;Collins&#x27;},
+          {data: &#x27;Konopelski&#x27;},
+          {data: &#x27;Adams&#x27;},
+          {data: &#x27;Schumm&#x27;},
+          {data: &#x27;Wisozk&#x27;},
+      ];
+      this.select3 &#x3D; [
+          {data: &#x27;Select&#x27;},
+          {data: &#x27;Hendry Milner&#x27;},
+          {data: &#x27;Guilory Berggren&#x27;},
+          {data: &#x27;Jami Carlile&#x27;},
+          {data: &#x27;Theresa Nelson&#x27;},
+          {data: &#x27;Smith Cooper&#x27;},
+      ];
+       this.select4 &#x3D; [
+          {data: &#x27;Select&#x27;},
+          {data: &#x27;Phone Calls&#x27;},
+          {data: &#x27;Social Media&#x27;},
+          {data: &#x27;Referral Sites&#x27;},
+          {data: &#x27;Web Analytics&#x27;},
+          {data: &#x27;Previous Purchases&#x27;},
+      ];
+    this.data.getLeadsList().subscribe((apiRes: apiResultFormat) &#x3D;&gt; {
+      this.actualData &#x3D; apiRes.data;
+      this.pagination.tablePageSize.subscribe((res: tablePageSize) &#x3D;&gt; {
+        if (this.router.url &#x3D;&#x3D; this.routes.leadsList) {
+          this.getTableData({ skip: res.skip, limit: res.limit });
+          this.pageSize &#x3D; res.pageSize;
+        }
+      });
+    });
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue &#x3D; [this.bsValue, this.maxDate];
+
+  }
+
+  /**
+   * getTableData function.
+   * @param {*} pageOption - Parameter.
+   * @returns {*} Result.
+   */
+  private getTableData(pageOption: pageSelection): void {
+    this.data.getLeadsList().subscribe((apiRes: apiResultFormat) &#x3D;&gt; {
+      this.tableData &#x3D; [];
+      this.tableDataCopy &#x3D; [];
+      this.serialNumberArray &#x3D; [];
+      this.totalData &#x3D; apiRes.totalData;
+      apiRes.data.map((res: leadsList, index: number) &#x3D;&gt; {
+        const serialNumber &#x3D; index + 1;
+        if (index &gt;&#x3D; pageOption.skip &amp;&amp; serialNumber &lt;&#x3D; pageOption.limit) {
+          res.id &#x3D; serialNumber;
+          this.tableData.push(res);
+          this.serialNumberArray.push(serialNumber);
+          this.tableDataCopy.push(res);
+        }
+      });
+      this.dataSource &#x3D; new MatTableDataSource&lt;leadsList&gt;(this.actualData);
+      this.pagination.calculatePageSize.next({
+        totalData: this.totalData,
+        pageSize: this.pageSize,
+        tableData: this.tableData,
+        tableDataCopy: this.tableDataCopy,
+        serialNumberArray: this.serialNumberArray,
+      });
+    });
+  }
+
+  /**
+   * sortData function.
+   * @param {*} sort - Parameter.
+   * @returns {*} Result.
+   */
+  public sortData(sort: Sort) {
+    const data &#x3D; this.tableData.slice();
+    if (!sort.active || sort.direction &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this.tableData &#x3D; data;
+    } else {
+      this.tableData &#x3D; data.sort((a, b) &#x3D;&gt; {
+        /**
+         * aValue function.
+         * @returns {*} Result.
+         */
+        const aValue &#x3D; (a as never)[sort.active];
+        /**
+         * bValue function.
+         * @returns {*} Result.
+         */
+        const bValue &#x3D; (b as never)[sort.active];
+        return (aValue &lt; bValue ? -1 : 1) * (sort.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27; ? 1 : -1);
+      });
+    }
+  }
+ public row&#x3D;true;
+ /**
+  * searchData function.
+  * @param {*} value - Parameter.
+  * @returns {*} Result.
+  */
+ public searchData(value: string): void {
+  this.searchDataValue &#x3D; value.trim().toLowerCase();
+  this.dataSource.filter &#x3D; this.searchDataValue;
+  this.tableData &#x3D; this.dataSource.filteredData;
+  this.row &#x3D; this.tableData.length &gt; 0;
+
+  if (this.searchDataValue !&#x3D;&#x3D; &#x27;&#x27;) {
+    // Handle filtered data
+    this.pagination.calculatePageSize.next({
+      totalData: this.tableData.length,
+      pageSize: this.pageSize,
+      tableData: this.tableData,
+      serialNumberArray: this.tableData.map((_, i) &#x3D;&gt; i + 1), 
+    });
+  } else {
+    // Handle reset to full data
+    this.pagination.calculatePageSize.next({
+      totalData: this.totalData,
+      pageSize: this.pageSize,
+      tableData: this.tableData,
+      serialNumberArray: this.serialNumberArray,
+    });
+  }
+}
+  /**
+   * selectAll function.
+   * @param {*} initChecked - Parameter.
+   * @returns {*} Result.
+   */
+  selectAll(initChecked: boolean) {
+    if (!initChecked) {
+      this.tableData.forEach((f) &#x3D;&gt; {
+        f.isSelected &#x3D; true;
+      });
+    } else {
+      this.tableData.forEach((f) &#x3D;&gt; {
+        f.isSelected &#x3D; false;
+      });
+    }
+  }
+
+  /**
+   * openSidebarPopup function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup() {
+    this.sidebarPopup &#x3D; !this.sidebarPopup;
+  }
+  /**
+   * openSidebarPopup2 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup2() {
+    this.sidebarPopup2 &#x3D; !this.sidebarPopup2;
+  }
+  /**
+   * openSidebarPopup3 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup3() {
+    this.sidebarPopup3 &#x3D; !this.sidebarPopup3;
+  }
+  selectedUser: any;
+  selectedUser2: any;
+
+  users &#x3D; [
+    { name: &#x27;Jerald&#x27;, image: &#x27;assets/img/profiles/avatar-14.jpg&#x27; },
+    { name: &#x27;Guillory&#x27;, image: &#x27;assets/img/profiles/avatar-15.jpg&#x27; },
+    { name: &#x27;Jami&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+    { name: &#x27;Theresa&#x27;, image: &#x27;assets/img/profiles/avatar-13.jpg&#x27; },
+    { name: &#x27;Espinosa&#x27;, image: &#x27;assets/img/profiles/avatar-24.jpg&#x27; },
+  ];
+  users2 &#x3D; [
+    { name: &#x27;Jerald&#x27;, image: &#x27;assets/img/profiles/avatar-14.jpg&#x27; },
+    { name: &#x27;Guillory&#x27;, image: &#x27;assets/img/profiles/avatar-15.jpg&#x27; },
+    { name: &#x27;Jami&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+    { name: &#x27;Theresa&#x27;, image: &#x27;assets/img/profiles/avatar-13.jpg&#x27; },
+    { name: &#x27;Espinosa&#x27;, image: &#x27;assets/img/profiles/avatar-24.jpg&#x27; },
+  ];
+
+  editor!: Editor;
+  toolbar: Toolbar &#x3D; [
+    [&#x27;bold&#x27;, &#x27;italic&#x27;],
+    [&#x27;underline&#x27;, &#x27;strike&#x27;],
+    [&#x27;code&#x27;, &#x27;blockquote&#x27;],
+    [&#x27;ordered_list&#x27;, &#x27;bullet_list&#x27;],
+    [{ heading: [&#x27;h1&#x27;, &#x27;h2&#x27;, &#x27;h3&#x27;, &#x27;h4&#x27;, &#x27;h5&#x27;, &#x27;h6&#x27;] }],
+    [&#x27;link&#x27;, &#x27;image&#x27;],
+    [&#x27;text_color&#x27;, &#x27;background_color&#x27;],
+    [&#x27;align_left&#x27;, &#x27;align_center&#x27;, &#x27;align_right&#x27;, &#x27;align_justify&#x27;],
+  ];
+
+
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit(): void {
+    this.editor &#x3D; new Editor();
+    this.selectedValue1 &#x3D; [
+      { name: &#x27;Collins&#x27; },
+      { name: &#x27;Konopelski&#x27; },
+      { name: &#x27;Adams&#x27; },
+      { name: &#x27;Schumm&#x27; },
+      { name: &#x27;Wisozk&#x27; }
+    ];
+    this.selectedValue2 &#x3D; [
+      { name: &#x27;Choose&#x27; },
+      { name: &#x27;Phone Calls&#x27; },
+      { name: &#x27;Social Media&#x27; },
+      { name: &#x27;Referral Sites&#x27; },
+      { name: &#x27;Web Analytics&#x27; },
+      { name: &#x27;Previous Purchases&#x27; }
+    ];
+    this.selectedValue3 &#x3D; [
+      { name: &#x27;Collins&#x27; },
+      { name: &#x27;Konopelski&#x27; },
+      { name: &#x27;Adams&#x27; },
+      { name: &#x27;Schumm&#x27; },
+      { name: &#x27;Wisozk&#x27; }
+    ];
+    this.selectedValue4 &#x3D; [
+      { name: &#x27;Choose&#x27; },
+      { name: &#x27;Phone Calls&#x27; },
+      { name: &#x27;Social Media&#x27; },
+      { name: &#x27;Referral Sites&#x27; },
+      { name: &#x27;Web Analytics&#x27; },
+      { name: &#x27;Previous Purchases&#x27; }
+    ];
+    this.selectedValue5 &#x3D; [
+      { name: &#x27;Sales&#x27; },
+      { name: &#x27;Marketing&#x27; },
+      { name: &#x27;Calls&#x27; },
+    ];
+    this.selectedValue6 &#x3D; [
+      { name: &#x27;Open&#x27; },
+      { name: &#x27;Lost&#x27; },
+      { name: &#x27;Won&#x27; },
+    ];
+  }
+
+  /**
+   * ngOnDestroy function.
+   * @returns {*} Result.
+   */
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+  /**
+   * onClickStar function.
+   * @param {*} item - Parameter.
+   * @returns {*} Result.
+   */
+  onClickStar(item: leadsList) {
+    item.isStarActive &#x3D; !item.isStarActive;
+  }
+  values1: string[] &#x3D; [&#x27;Rated&#x27;];
+  values2: string[] &#x3D; [&#x27;Rated&#x27;];
+  selectedOption1: any;
+  selectedOption2: any;
+
+  selectedOption4: any;
+  selectedOption5: any;
+  selectedOption6: any;
+
+  option1 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option2 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option3 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option4 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option5 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option6 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Jerald&#x27;,
+      image: &#x27;assets/img/profiles/avatar-18.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  /**
+   * removeOption1 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption1(user: any) {
+    const index &#x3D; this.selectedOption1.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption1.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption2 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption2(user: any) {
+    const index &#x3D; this.selectedOption2.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption2.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption3 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption3(user: any) {
+    const index &#x3D; this.selectedOption3.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption3.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption4 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption4(user: any) {
+    const index &#x3D; this.selectedOption4.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption4.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption5 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption5(user: any) {
+    const index &#x3D; this.selectedOption5.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption5.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption6 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption6(user: any) {
+    const index &#x3D; this.selectedOption5.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption5.splice(index, 1);
+    }
+  }
+  newContents: number[] &#x3D; [0];
+
+  /**
+   * addNewContent function.
+   * @returns {*} Result.
+   */
+  addNewContent() {
+    this.newContents.push(this.newContents.length);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'select-7.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

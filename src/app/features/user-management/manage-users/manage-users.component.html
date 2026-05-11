@@ -1,0 +1,340 @@
+<!-- Start Content -->
+<div class="content pb-0 manage-users-page">
+  <!-- Page Header -->
+  <div
+    class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-toolbar"
+    >
+    <div>
+      <h4 class="mb-1">
+        Manage Users<span class="badge badge-soft-primary ms-2">{{
+        totalCount
+      }}</span>
+    </h4>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 p-0">
+        <li class="breadcrumb-item">
+          <a [routerLink]="routes.index">Home</a>
+        </li>
+
+        @for (item of breadcrumbData; track item; let i = $index) {
+          <li
+            class="breadcrumb-item"
+            [class.active]="i === breadcrumbData.length - 1"
+            [attr.aria-current]="
+              i === breadcrumbData.length - 1 ? 'page' : null
+            "
+            >
+            @if (i !== breadcrumbData.length - 1) {
+              <a
+                (click)="navigateToBreadcrumb(i)"
+                class="breadcrumb-link"
+                style="cursor: pointer"
+                >
+                {{ item?.designation }}
+              </a>
+            }
+            @if (i === breadcrumbData.length - 1) {
+              <span>
+                {{ item?.designation }}
+              </span>
+            }
+          </li>
+        }
+      </ol>
+    </nav>
+  </div>
+  <div class="gap-1 d-flex align-items-center flex-wrap header-actions">
+    <div class="d-flex align-items-center gap-1">
+      <button type="button" class="btn btn-info btn-sm" (click)="goBack()">
+        <i class="ti ti-arrow-left me-1"></i> Back
+      </button>
+      @if (
+        user?.canUserBeCreated &&
+        authService.hasPermission("MNGUSRS", "write")
+        ) {
+        <a
+          href="javascript:void(0);"
+          class="btn btn-primary btn-sm"
+          (click)="openModal('createUserFormModal')"
+          >
+          <i class="ti ti-square-rounded-plus-filled me-1"></i>Add
+          {{ currentLevel?.title | titlecase }}
+        </a>
+      }
+      @if (authService.hasPermission('MNGUSRS', 'update')) {
+        <button
+          type="button"
+          class="btn btn-outline-danger btn-sm"
+          (click)="confirmLogoutAllUsers()"
+        >
+          <i class="fa fa-users-slash me-1"></i>
+          Logout All Users
+        </button>
+      }
+    </div>
+
+    <!-- <app-export-dropdown [exportData]="downloadData" [fileName]="fileName"
+    (exportRequest)="onExportRequest($event)">
+  </app-export-dropdown> -->
+
+  <a
+    href="javascript:void(0);"
+    class="btn btn-sm btn-icon btn-outline-light shadow-sm"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    aria-label="Refresh"
+    data-bs-original-title="Refresh"
+    ><i class="ti ti-refresh"></i
+  ></a>
+  <app-collapse-header></app-collapse-header>
+</div>
+</div>
+<!-- End Page Header -->
+
+<!-- card start -->
+<div class="card border-0 rounded-0">
+  <div class="card-body compact-card-body">
+    <!-- Contact List -->
+    <div class="table-responsive custom-table">
+      <table class="table text-nowrap align-middle manage-users-table mb-0">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Status</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Credit Ref.</th>
+            <th scope="col" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of userList; track user; let i = $index) {
+            <tr>
+              <td>{{ serialNumberArray[i] || i + 1 }}</td>
+              <td
+                (click)="getNextLevelUsers(user)"
+                style="color: blue; cursor: pointer"
+                >
+                <span class="badge badge-pill badge-status bg-success user-level-badge">{{
+                  userLevel[userLevel.length - 1]?.shortName
+                }}</span>
+                {{ user.userName }}
+              </td>
+              <td
+                (click)="getNextLevelUsers(user)"
+                style="color: blue; cursor: pointer"
+                >
+                {{ user.userId }}
+              </td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.mobile }}</td>
+              <td>
+                <div class="d-flex form-check form-switch form-check-reverse">
+                  <input
+                    (click)="confirmStatusChange($event, user)"
+                    type="checkbox"
+                    id="switchCheckReverse"
+                    [checked]="user.status"
+                    class="form-check-input"
+                    [disabled]="!authService.hasPermission('MNGUSRS', 'update')"
+                    />
+                </div>
+              </td>
+              <td>
+                <div class="balanceDiv compact-value">
+                  <span>{{ user.balance["$numberDecimal"] }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="balanceDiv compact-value">
+                  <span>{{ user?.creditReference || 0 }} </span>
+                  @if(authService.hasPermission('MNGUSRS','update')){
+                    <i
+                      data-bs-toggle="tooltip"
+                      title="fa fa-pencil"
+                      class="fa fa-pencil editIcon"
+                      (click)="openModal('creditReferenceModal', user)"
+                    ></i>
+                  }
+                </div>
+              </td>
+              <td>
+                <div class="hstack gap-1 justify-content-center action-group">
+                  <!-- Edit User -->
+                  @if (authService.hasPermission("MNGUSRS", "update")) {
+                    <a
+                      title="Edit User"
+                      class="btn btn-icon btn-sm btn-success"
+                      (click)="openModal('createUserFormModal', user)"
+                      ><i class="feather icon-edit"></i
+                    ></a>
+                  }
+                  @if (authService.hasPermission("MNGUSERBALANCE", "write")) {
+                    <a
+                      href="javascript:void(0);"
+                      class="btn btn-icon btn-sm btn-info"
+                      title="Add Balance"
+                      (click)="openModal('rechargeModal', user)"
+                      >
+                      <i class="fa fa-add"></i>
+                    </a>
+                  }
+                  @if (authService.hasPermission("MNGUSRPASSWORD", "update")) {
+                    <a
+                      class="btn btn-icon btn-sm btn-primary"
+                      title="Change Password"
+                      (click)="openChangePassword(user)"
+                      >
+                      <i class="fa fa-key"></i>
+                    </a>
+                  }
+                  @if (authService.hasPermission("MNGUSRPASSWORD", "update")) {
+                    <a
+                      class="btn btn-icon btn-sm btn-warning"
+                      title="Assign Permission"
+                      [routerLink]="[routes.permissions, user.uuid, 'user', user.userId]"
+                      >
+                      <i class="fa fa-user-times"></i>
+                    </a>
+                  }
+                  <a
+                    class="btn btn-icon btn-sm btn-secondary"
+                    title="Profile & Activity"
+                    [routerLink]="[routes.profileActivity]"
+                    [queryParams]="{ userId: user.uuid }"
+                  >
+                    <i class="fa fa-user"></i>
+                  </a>
+                  @if (authService.hasPermission('MNGUSRS', 'update')) {
+                    <button
+                      type="button"
+                      class="btn btn-icon btn-sm btn-danger"
+                      title="Logout User"
+                      (click)="confirmLogoutUser(user)"
+                    >
+                      <i class="fa fa-power-off"></i>
+                    </button>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-custom-pagination></app-custom-pagination>
+    <!-- /Contact List -->
+  </div>
+</div>
+<!-- card end -->
+</div>
+
+<!-- status update modal -->
+<app-confirm-modal
+  [title]="modalTitle"
+  [message]="modalMessage"
+  modalId="changeUserStatus"
+  (confirmed)="confirmChange()"
+></app-confirm-modal>
+<!-- status update modal end -->
+
+<!-- logout single user modal -->
+<app-confirm-modal
+  [title]="logoutUserModalTitle"
+  [message]="logoutUserModalMessage"
+  modalId="confirmLogoutUser"
+  (confirmed)="confirmLogoutUserAction()"
+></app-confirm-modal>
+<!-- logout single user modal end -->
+
+<!-- logout all users modal -->
+<app-confirm-modal
+  [title]="logoutAllModalTitle"
+  [message]="logoutAllModalMessage"
+  modalId="confirmLogoutAllUsers"
+  (confirmed)="logoutAllExceptCurrentUser()"
+></app-confirm-modal>
+<!-- logout all users modal end -->
+
+<!-- credit reference modal -->
+<app-common-form-modal
+  modalId="creditReferenceModal"
+  title="Edit Credit Reference"
+  (save)="handleFormSave()"
+  (cancel)="handleFormCancel()"
+  >
+  <!-- This content is projected into ng-content of the modal -->
+  <app-credit-reference
+    #creditRefForm
+    (formSubmit)="onFormSubmit($event)"
+    [selectedUser]="selectedUser"
+  ></app-credit-reference>
+</app-common-form-modal>
+<!-- credit reference modal end -->
+
+<!-- Recharge Modal -->
+
+<!-- Add or Edit Users -->
+<!-- @if(nextLevel){
+<app-common-form-modal
+  modalId="createUserFormModal"
+  [title]="editMode ? 'Edit User' : 'Add User'"
+  (save)="handleUserFormSave()"
+  (cancel)="handleFormCancel()">
+
+  <app-create-level-user
+    #createUserForm
+    (formSubmit)="onUserFormSubmit($event)"
+    [nextLevel]="nextLevel"
+    [selectedUser]="selectedUser">
+  </app-create-level-user>
+</app-common-form-modal>
+} -->
+
+@if (nextLevel) {
+  <app-common-form-modal
+    modalId="createUserFormModal"
+    [title]="editMode ? 'Edit User' : 'Add User'"
+    (save)="handleUserFormSave()"
+    (cancel)="handleFormCancel()"
+    >
+    <app-create-level-user
+      #createUserForm
+      (formSubmit)="onUserFormSubmit($event)"
+      [nextLevel]="currentLevel"
+      [selectedUser]="selectedUser"
+      >
+    </app-create-level-user>
+  </app-common-form-modal>
+}
+
+<app-common-form-modal
+  modalId="rechargeModal"
+  title="Update Balance"
+  (save)="handleRechargeFormSave()"
+  (cancel)="handleFormCancel()"
+  >
+  <!-- This content is projected into ng-content of the modal -->
+  <app-recharge
+    #rechargeForm
+    (formSubmit)="onRechargeFormSubmit($event)"
+    [selectedUser]="selectedUser"
+    [fromBalanceUser]="fromBalanceUser"
+  ></app-recharge>
+</app-common-form-modal>
+
+<app-common-form-modal
+  modalId="changeUserPasswordModal"
+  [title]="'Change Password'"
+  (save)="handleChangePasswordFormSubmit()"
+  (cancel)="handleChangePasswordFormCancel()"
+  >
+  <app-change-password-form
+    #changePasswordForm
+    (formSubmit)="submitChangePasswordForm($event)"
+    >
+  </app-change-password-form>
+</app-common-form-modal>

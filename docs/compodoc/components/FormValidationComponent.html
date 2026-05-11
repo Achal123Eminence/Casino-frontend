@@ -1,0 +1,1215 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FormValidationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/forms/form-validation/form-validation.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-form-validation</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../interfaces/Module.html" target="_self" >CommonModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >FormsModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >ReactiveFormsModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./form-validation.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./form-validation.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#myForm" >myForm</a>
+                            </li>
+                            <li>
+                                <a href="#myForm1" >myForm1</a>
+                            </li>
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit1" >onSubmit1</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor function.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnInit function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>onSubmit function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit1"></a>
+                    <span class="name">
+                        <span ><b>onSubmit1</b></span>
+                        <a href="#onSubmit1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit1()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>onSubmit1 function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="myForm"></a>
+                    <span class="name">
+                        <span ><b>myForm</b></span>
+                        <a href="#myForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="myForm1"></a>
+                    <span class="name">
+                        <span ><b>myForm1</b></span>
+                        <a href="#myForm1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/ui-interface/forms/form-validation/form-validation.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component } from &#x27;@angular/core&#x27;;
+
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+@Component({
+    selector: &#x27;app-form-validation&#x27;,
+    templateUrl: &#x27;./form-validation.component.html&#x27;,
+    styleUrls: [&#x27;./form-validation.component.scss&#x27;],
+    imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterLink]
+})
+export class FormValidationComponent {
+  routes&#x3D;routes
+  myForm!: FormGroup;
+  myForm1!: FormGroup;
+
+  /**
+   * constructor function.
+   * @param {*} fb - Parameter.
+   * @returns {*} Result.
+   */
+  constructor(private fb: FormBuilder) {}
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit(): void {
+    this.myForm &#x3D; this.fb.group({
+      firstName: [&#x27;&#x27;, Validators.required],
+      lastName: [&#x27;&#x27;, Validators.required],
+      username: [&#x27;&#x27;, Validators.required],
+      city: [&#x27;&#x27;, Validators.required],
+      state: [&#x27;&#x27;, Validators.required],
+      zip: [&#x27;&#x27;, Validators.required],
+      agree: [false, Validators.requiredTrue]
+    });
+    this.myForm1 &#x3D; this.fb.group({
+      firstName: [&#x27;&#x27;, Validators.required],
+      lastName: [&#x27;&#x27;, Validators.required],
+      username: [&#x27;&#x27;, Validators.required],
+      city: [&#x27;&#x27;, Validators.required],
+      state: [&#x27;&#x27;, Validators.required],
+      zip: [&#x27;&#x27;, Validators.required],
+      agree: [false, Validators.requiredTrue]
+    });
+  }
+
+  /**
+   * onSubmit function.
+   * @returns {*} Result.
+   */
+  onSubmit(): void {
+    if (this.myForm.valid) {
+      console.log(&#x27;Form Submitted!&#x27;, this.myForm.value);
+    } else {
+      this.myForm.markAllAsTouched(); // Trigger validation messages
+    }
+  }
+  /**
+   * onSubmit1 function.
+   * @returns {*} Result.
+   */
+  onSubmit1(): void {
+    if (this.myForm1.valid) {
+      console.log(&#x27;Form Submitted!&#x27;, this.myForm1.value);
+    } else {
+      this.myForm1.markAllAsTouched(); // Trigger validation messages
+    }
+  }
+ 
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Form Validation&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Forms&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Form Validation&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;!-- Row --&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+
+        &lt;!-- Custom Boostrap Validation --&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Custom  Form Validation&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;For custom  form validation messages, you’ll need to add the
+                    &lt;code&gt;novalidate&lt;/code&gt; boolean attribute to your form. For server side validation &lt;a
+                        href&#x3D;&quot;https://getbootstrap.com/docs/4.1/components/forms/#server-side&quot; target&#x3D;&quot;_blank&quot;&gt;read full
+                        documentation&lt;/a&gt;.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm&quot;&gt;
+                        &lt;form [formGroup]&#x3D;&quot;myForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
+                            &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                              &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                &lt;label for&#x3D;&quot;validationCustom01&quot; class&#x3D;&quot;form-label&quot;&gt;First name&lt;/label&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustom01&quot; formControlName&#x3D;&quot;firstName&quot; placeholder&#x3D;&quot;First name&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;firstName&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;firstName&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;firstName&#x27;)?.valid}&quot;&gt;
+                                &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;firstName&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;firstName&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                  Please provide a first name.
+                                &lt;/div&gt;
+                                &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;firstName&#x27;)?.valid&quot; class&#x3D;&quot;valid-feedback&quot;&gt;
+                                  Looks good!
+                                &lt;/div&gt;
+                              &lt;/div&gt;
+                              &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                &lt;label for&#x3D;&quot;validationCustom02&quot; class&#x3D;&quot;form-label&quot;&gt;Last name&lt;/label&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustom02&quot; formControlName&#x3D;&quot;lastName&quot; placeholder&#x3D;&quot;Last name&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;lastName&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;lastName&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;lastName&#x27;)?.valid}&quot;&gt;
+                                &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;lastName&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;lastName&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                  Please provide a last name.
+                                &lt;/div&gt;
+                                &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;lastName&#x27;)?.valid&quot; class&#x3D;&quot;valid-feedback&quot;&gt;
+                                  Looks good!
+                                &lt;/div&gt;
+                              &lt;/div&gt;
+                              &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                &lt;label for&#x3D;&quot;validationCustomUsername&quot;&gt;Username&lt;/label&gt;
+                                &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                                  &lt;span class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;inputGroupPrepend&quot;&gt;&amp;#64;&lt;/span&gt;
+                                  &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomUsername&quot; formControlName&#x3D;&quot;username&quot; placeholder&#x3D;&quot;Username&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;username&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;username&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;username&#x27;)?.valid}&quot; required&gt;
+                                  &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;username&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;username&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                    Please choose a username.
+                                  &lt;/div&gt;
+                                &lt;/div&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                                &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationTooltip03&quot;&gt;City&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomcityname&quot; formControlName&#x3D;&quot;city&quot; placeholder&#x3D;&quot;City&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;city&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;city&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;city&#x27;)?.valid}&quot; required
+                                        required&gt;
+                                    &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;city&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;city&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                        Please provide a valid city.
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationTooltip04&quot;&gt;State&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomstatename&quot; formControlName&#x3D;&quot;state&quot; placeholder&#x3D;&quot;State&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;state&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;state&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;state&#x27;)?.valid}&quot; required
+                                        required&gt;
+                                    &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;state&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;state&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                        Please provide a valid state.
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationTooltip05&quot;&gt;Zip&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomzipname&quot; formControlName&#x3D;&quot;zip&quot; placeholder&#x3D;&quot;Zip&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;zip&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;zip&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;zip&#x27;)?.valid}&quot; required &gt;
+                                    &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;zip&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;zip&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                        Please provide a valid zip.
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                              &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                                &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; formControlName&#x3D;&quot;agree&quot; id&#x3D;&quot;invalidCheck&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm.get(&#x27;agree&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;agree&#x27;)?.touched, &#x27;is-valid&#x27;: myForm.get(&#x27;agree&#x27;)?.valid}&quot; required&gt;
+                                &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;invalidCheck&quot; class&#x3D;&quot;form-label&quot;&gt;
+                                  Agree to terms and conditions
+                                &lt;/label&gt;
+                                &lt;div *ngIf&#x3D;&quot;myForm.get(&#x27;agree&#x27;)?.invalid &amp;&amp; myForm.get(&#x27;agree&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                  You must agree before submitting.
+                                &lt;/div&gt;
+                              &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;button class&#x3D;&quot;btn btn-primary&quot; type&#x3D;&quot;submit&quot;&gt;Submit form&lt;/button&gt;
+                          &lt;/form&gt;
+                      
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /Custom Boostrap Validation --&gt;
+
+        &lt;!-- Default Browser Validation --&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Browser defaults&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;Not interested in custom validation feedback messages or writing JavaScript to
+                    change form behaviors? All good, you can use the browser defaults. Try submitting the form below.
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm&quot;&gt;
+                        &lt;form&gt;
+                            &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefault01&quot; class&#x3D;&quot;form-label&quot;&gt;First name&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefault01&quot;
+                                        placeholder&#x3D;&quot;First name&quot; value&#x3D;&quot;Mark&quot; required&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefault02&quot; class&#x3D;&quot;form-label&quot;&gt;Last name&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefault02&quot;
+                                        placeholder&#x3D;&quot;Last name&quot; value&#x3D;&quot;Otto&quot; required&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefaultUsername&quot; class&#x3D;&quot;form-label&quot;&gt;Username&lt;/label&gt;
+                                    &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                                        &lt;span class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;inputGroupPrepend2&quot;&gt;&amp;#64;&lt;/span&gt;
+                                        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefaultUsername&quot;
+                                            placeholder&#x3D;&quot;Username&quot; aria-describedby&#x3D;&quot;inputGroupPrepend2&quot; required&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                                &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefault03&quot; class&#x3D;&quot;form-label&quot;&gt;City&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefault03&quot; placeholder&#x3D;&quot;City&quot;
+                                        required&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefault04&quot; class&#x3D;&quot;form-label&quot;&gt;State&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefault04&quot; placeholder&#x3D;&quot;State&quot;
+                                        required&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                                    &lt;label for&#x3D;&quot;validationDefault05&quot; class&#x3D;&quot;form-label&quot;&gt;Zip&lt;/label&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationDefault05&quot; placeholder&#x3D;&quot;Zip&quot;
+                                        required&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;&quot; id&#x3D;&quot;invalidCheck2&quot;
+                                        required&gt;
+                                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;invalidCheck2&quot; class&#x3D;&quot;form-label&quot;&gt;
+                                        Agree to terms and conditions
+                                    &lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/form&gt;
+                        &lt;button class&#x3D;&quot;btn btn-primary&quot; type&#x3D;&quot;submit&quot;&gt;Submit form&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /Default Browser Validation --&gt;
+
+        &lt;!-- Server Side Validation --&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Server side&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;We recommend using client side validation, but in case you require server side, you
+                    can indicate invalid and valid form fields with &lt;code&gt;.is-invalid&lt;/code&gt; and &lt;code&gt;.is-valid&lt;/code&gt;.
+                    Note that &lt;code&gt;.invalid-feedback&lt;/code&gt; is also supported with these classes.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;form&gt;
+                    &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServer01&quot; class&#x3D;&quot;form-label&quot;&gt;First name&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-valid&quot; id&#x3D;&quot;validationServer01&quot;
+                                placeholder&#x3D;&quot;First name&quot; value&#x3D;&quot;Mark&quot; required&gt;
+                            &lt;div class&#x3D;&quot;valid-feedback&quot;&gt;
+                                Looks good!
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServer02&quot; class&#x3D;&quot;form-label&quot;&gt;Last name&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-valid&quot; id&#x3D;&quot;validationServer02&quot;
+                                placeholder&#x3D;&quot;Last name&quot; value&#x3D;&quot;Otto&quot; required&gt;
+                            &lt;div class&#x3D;&quot;valid-feedback&quot;&gt;
+                                Looks good!
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServerUsername&quot; class&#x3D;&quot;form-label&quot;&gt;Username&lt;/label&gt;
+                            &lt;div class&#x3D;&quot;input-group input-grp&quot;&gt;
+                                &lt;span class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;inputGroupPrepend3&quot;&gt;&amp;#64;&lt;/span&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-invalid&quot; id&#x3D;&quot;validationServerUsername&quot;
+                                    placeholder&#x3D;&quot;Username&quot; aria-describedby&#x3D;&quot;inputGroupPrepend3&quot; required&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                    Please choose a username.
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServer03&quot; class&#x3D;&quot;form-label&quot;&gt;City&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-invalid&quot; id&#x3D;&quot;validationServer03&quot;
+                                placeholder&#x3D;&quot;City&quot; required&gt;
+                            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                Please provide a valid city.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServer04&quot; class&#x3D;&quot;form-label&quot;&gt;State&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-invalid&quot; id&#x3D;&quot;validationServer04&quot;
+                                placeholder&#x3D;&quot;State&quot; required&gt;
+                            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                Please provide a valid state.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationServer05&quot; class&#x3D;&quot;form-label&quot;&gt;Zip&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control is-invalid&quot; id&#x3D;&quot;validationServer05&quot; placeholder&#x3D;&quot;Zip&quot;
+                                required&gt;
+                            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                Please provide a valid zip.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                            &lt;input class&#x3D;&quot;form-check-input is-invalid&quot; type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;&quot; id&#x3D;&quot;invalidCheck3&quot;
+                                required&gt;
+                            &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;invalidCheck3&quot; class&#x3D;&quot;form-label&quot;&gt;
+                                Agree to terms and conditions
+                            &lt;/label&gt;
+                            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                You must agree before submitting.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+                &lt;button class&#x3D;&quot;btn btn-primary&quot; type&#x3D;&quot;submit&quot;&gt;Submit form&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /Server Side Validation --&gt;
+
+        &lt;!-- Supported Elements --&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Supported elements&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;Form validation styles are also available for bootstrap custom form controls.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-sm&quot;&gt;
+                        &lt;form class&#x3D;&quot;was-validated&quot;&gt;
+                            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                &lt;label for&#x3D;&quot;validationTextarea&quot; class&#x3D;&quot;form-label&quot;&gt;Textarea&lt;/label&gt;
+                                &lt;textarea class&#x3D;&quot;form-control is-invalid&quot; id&#x3D;&quot;validationTextarea&quot;
+                                    placeholder&#x3D;&quot;Required example textarea&quot; required&gt;&lt;/textarea&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                                    Please enter a message in the textarea.
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;form-check mb-3&quot;&gt;
+                                &lt;input type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;&quot;validationFormCheck1&quot; required&gt;
+                                &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;validationFormCheck1&quot;&gt;Check this checkbox&lt;/label&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Example invalid feedback text&lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                                &lt;input type&#x3D;&quot;radio&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;&quot;validationFormCheck2&quot;
+                                    name&#x3D;&quot;radio-stacked&quot; required&gt;
+                                &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;validationFormCheck2&quot;&gt;Toggle this radio&lt;/label&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;form-check mb-3&quot;&gt;
+                                &lt;input type&#x3D;&quot;radio&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;&quot;validationFormCheck3&quot;
+                                    name&#x3D;&quot;radio-stacked&quot; required&gt;
+                                &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;validationFormCheck3&quot;&gt;Or toggle this other
+                                    radio&lt;/label&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;More example invalid feedback text&lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                &lt;select class&#x3D;&quot;form-select&quot; required aria-label&#x3D;&quot;select example&quot;&gt;
+                                    &lt;option value&#x3D;&quot;&quot;&gt;Open this select menu&lt;/option&gt;
+                                    &lt;option value&#x3D;&quot;1&quot;&gt;One&lt;/option&gt;
+                                    &lt;option value&#x3D;&quot;2&quot;&gt;Two&lt;/option&gt;
+                                    &lt;option value&#x3D;&quot;3&quot;&gt;Three&lt;/option&gt;
+                                &lt;/select&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Example invalid select feedback&lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                &lt;input type&#x3D;&quot;file&quot; class&#x3D;&quot;form-control&quot; aria-label&#x3D;&quot;file example&quot; required&gt;
+                                &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Example invalid form file feedback&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /Supported Elements --&gt;
+
+        &lt;!-- Validation Tooltips --&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Tooltips&lt;/h5&gt;
+                &lt;p class&#x3D;&quot;card-text&quot;&gt;You can swap the &lt;code&gt;.valid|invalid-feedback&lt;/code&gt; classes for
+                    &lt;code&gt;.valid|invalid-tooltip&lt;/code&gt; classes to display validation feedback in a styled tooltip.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+               
+                &lt;form [formGroup]&#x3D;&quot;myForm1&quot; (ngSubmit)&#x3D;&quot;onSubmit1()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
+                    &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                        &lt;label for&#x3D;&quot;validationCustom01&quot; class&#x3D;&quot;form-label&quot;&gt;First name&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustom01&quot; formControlName&#x3D;&quot;firstName&quot; placeholder&#x3D;&quot;First name&quot; value&#x3D;&quot;Mark&quot; required [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;firstName&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;firstName&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;firstName&#x27;)?.valid}&quot;&gt;
+                        &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;firstName&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;firstName&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                          Please provide a first name.
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;firstName&#x27;)?.valid&quot; class&#x3D;&quot;valid-tooltip&quot;&gt;
+                          Looks good!
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                        &lt;label for&#x3D;&quot;validationCustom02&quot; class&#x3D;&quot;form-label&quot;&gt;Last name&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustom02&quot; formControlName&#x3D;&quot;lastName&quot; placeholder&#x3D;&quot;Last name&quot; value&#x3D;&quot;hh&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;lastName&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;lastName&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;lastName&#x27;)?.valid}&quot;&gt;
+                        &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;lastName&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;lastName&#x27;)?.touched&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                          Please provide a last name.
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;lastName&#x27;)?.valid&quot; class&#x3D;&quot;valid-tooltip&quot;&gt;
+                          Looks good!
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;div class&#x3D;&quot;col-md-4 mb-3&quot;&gt;
+                        &lt;label for&#x3D;&quot;validationCustomUsername&quot; class&#x3D;&quot;form-label&quot;&gt;Username&lt;/label&gt;
+                        &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                          &lt;span class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;inputGroupPrepend&quot;&gt;&amp;#64;&lt;/span&gt;
+                          &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomUsername&quot; formControlName&#x3D;&quot;username&quot; placeholder&#x3D;&quot;Username&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;username&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;username&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;username&#x27;)?.valid}&quot; required&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;form-row row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationTooltip03&quot; class&#x3D;&quot;form-label&quot;&gt;City&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomcityname&quot; formControlName&#x3D;&quot;city&quot; placeholder&#x3D;&quot;City&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;city&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;city&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;city&#x27;)?.valid}&quot; required
+                                required&gt;
+                            &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;city&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;city&#x27;)?.touched&quot; class&#x3D;&quot;invalid-tooltip&quot;&gt;
+                                Please provide a valid city.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationTooltip04&quot; class&#x3D;&quot;form-label&quot;&gt;State&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomstatename&quot; formControlName&#x3D;&quot;state&quot; placeholder&#x3D;&quot;State&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;state&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;state&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;state&#x27;)?.valid}&quot; required
+                                required&gt;
+                            &lt;div *ngIf&#x3D;&quot;myForm1.get(&#x27;state&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;state&#x27;)?.touched&quot; class&#x3D;&quot;invalid-tooltip&quot;&gt;
+                                Please provide a valid state.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-3 mb-3&quot;&gt;
+                            &lt;label for&#x3D;&quot;validationTooltip05&quot; class&#x3D;&quot;form-label&quot;&gt;Zip&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;validationCustomstatename&quot; formControlName&#x3D;&quot;zip&quot; placeholder&#x3D;&quot;Zip&quot; aria-describedby&#x3D;&quot;inputGroupPrepend&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: myForm1.get(&#x27;zip&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;zip&#x27;)?.touched, &#x27;is-valid&#x27;: myForm1.get(&#x27;zip&#x27;)?.valid}&quot; required&gt;
+                            &lt;div class&#x3D;&quot;invalid-tooltip&quot; *ngIf&#x3D;&quot;myForm1.get(&#x27;zip&#x27;)?.invalid &amp;&amp; myForm1.get(&#x27;zip&#x27;)?.touched&quot; class&#x3D;&quot;invalid-tooltip&quot;&gt;
+                                Please provide a valid zip.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;button class&#x3D;&quot;btn btn-primary&quot; type&#x3D;&quot;submit&quot;&gt;Submit form&lt;/button&gt;
+                  &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /Validation Tooltips --&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- /Row --&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./form-validation.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* General styles for the form */
+.needs-validation {
+    margin: 20px;
+  }
+  
+  /* Styles for valid inputs */
+  .is-valid {
+    border-color: #28a745;
+  }
+  
+  .is-valid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  }
+  
+  .valid-feedback {
+    display: none;
+  }
+  
+  .is-valid ~ .valid-feedback {
+    display: block;
+    color: #28a745;
+  }
+  
+  /* Styles for invalid inputs */
+  .is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .is-invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  .invalid-feedback {
+    display: none;
+  }
+  
+  .is-invalid ~ .invalid-feedback {
+    display: block;
+    color: #dc3545;
+  }
+  
+  /* Custom styles for the input-group */
+  .input-group .input-group-text {
+    border-color: inherit;
+  }
+  
+  .input-group .form-control.is-valid ~ .input-group-text {
+    border-color: #28a745;
+    color: #28a745;
+  }
+  
+  .input-group .form-control.is-invalid ~ .input-group-text {
+    border-color: #dc3545;
+    color: #dc3545;
+  }
+
+  .invalid-tooltip {
+    color: white;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    
+  }
+  // .invalid-tooltip{
+  //   width:50%;
+  // }
+.invalid-tooltip,.valid-tooltip{
+position: relative;
+top: 0;
+}
+.needs-validation{
+ margin: 0 !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Form Validation</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Forms</a></li>                            <li class="breadcrumb-item active" aria-current="page">Form Validation</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><!-- Row --><div class="row">    <div class="col-sm-12">        <!-- Custom Boostrap Validation -->        <div class="card">            <div class="card-header">                <h5 class="card-title">Custom  Form Validation</h5>                <p class="card-text">For custom  form validation messages, you’ll need to add the                    <code>novalidate</code> boolean attribute to your form. For server side validation <a                        href="https://getbootstrap.com/docs/4.1/components/forms/#server-side" target="_blank">read full                        documentation</a>.</p>            </div>            <div class="card-body">                <div class="row">                    <div class="col-sm">                        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>                            <div class="form-row row">                              <div class="col-md-4 mb-3">                                <label for="validationCustom01" class="form-label">First name</label>                                <input type="text" class="form-control" id="validationCustom01" formControlName="firstName" placeholder="First name" [ngClass]="{\'is-invalid\': myForm.get(\'firstName\')?.invalid && myForm.get(\'firstName\')?.touched, \'is-valid\': myForm.get(\'firstName\')?.valid}">                                <div *ngIf="myForm.get(\'firstName\')?.invalid && myForm.get(\'firstName\')?.touched" class="invalid-feedback">                                  Please provide a first name.                                </div>                                <div *ngIf="myForm.get(\'firstName\')?.valid" class="valid-feedback">                                  Looks good!                                </div>                              </div>                              <div class="col-md-4 mb-3">                                <label for="validationCustom02" class="form-label">Last name</label>                                <input type="text" class="form-control" id="validationCustom02" formControlName="lastName" placeholder="Last name" [ngClass]="{\'is-invalid\': myForm.get(\'lastName\')?.invalid && myForm.get(\'lastName\')?.touched, \'is-valid\': myForm.get(\'lastName\')?.valid}">                                <div *ngIf="myForm.get(\'lastName\')?.invalid && myForm.get(\'lastName\')?.touched" class="invalid-feedback">                                  Please provide a last name.                                </div>                                <div *ngIf="myForm.get(\'lastName\')?.valid" class="valid-feedback">                                  Looks good!                                </div>                              </div>                              <div class="col-md-4 mb-3">                                <label for="validationCustomUsername">Username</label>                                <div class="input-group">                                  <span class="input-group-text" id="inputGroupPrepend">&#64;</span>                                  <input type="text" class="form-control" id="validationCustomUsername" formControlName="username" placeholder="Username" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm.get(\'username\')?.invalid && myForm.get(\'username\')?.touched, \'is-valid\': myForm.get(\'username\')?.valid}" required>                                  <div *ngIf="myForm.get(\'username\')?.invalid && myForm.get(\'username\')?.touched" class="invalid-feedback">                                    Please choose a username.                                  </div>                                </div>                              </div>                            </div>                            <div class="form-row row">                                <div class="col-md-6 mb-3">                                    <label for="validationTooltip03">City</label>                                    <input type="text" class="form-control" id="validationCustomcityname" formControlName="city" placeholder="City" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm.get(\'city\')?.invalid && myForm.get(\'city\')?.touched, \'is-valid\': myForm.get(\'city\')?.valid}" required                                        required>                                    <div *ngIf="myForm.get(\'city\')?.invalid && myForm.get(\'city\')?.touched" class="invalid-feedback">                                        Please provide a valid city.                                    </div>                                </div>                                <div class="col-md-3 mb-3">                                    <label for="validationTooltip04">State</label>                                    <input type="text" class="form-control" id="validationCustomstatename" formControlName="state" placeholder="State" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm.get(\'state\')?.invalid && myForm.get(\'state\')?.touched, \'is-valid\': myForm.get(\'state\')?.valid}" required                                        required>                                    <div *ngIf="myForm.get(\'state\')?.invalid && myForm.get(\'state\')?.touched" class="invalid-feedback">                                        Please provide a valid state.                                    </div>                                </div>                                <div class="col-md-3 mb-3">                                    <label for="validationTooltip05">Zip</label>                                    <input type="text" class="form-control" id="validationCustomzipname" formControlName="zip" placeholder="Zip" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm.get(\'zip\')?.invalid && myForm.get(\'zip\')?.touched, \'is-valid\': myForm.get(\'zip\')?.valid}" required >                                    <div *ngIf="myForm.get(\'zip\')?.invalid && myForm.get(\'zip\')?.touched" class="invalid-feedback">                                        Please provide a valid zip.                                    </div>                                </div>                            </div>                            <div class="form-group">                              <div class="form-check">                                <input class="form-check-input" type="checkbox" formControlName="agree" id="invalidCheck" [ngClass]="{\'is-invalid\': myForm.get(\'agree\')?.invalid && myForm.get(\'agree\')?.touched, \'is-valid\': myForm.get(\'agree\')?.valid}" required>                                <label class="form-check-label" for="invalidCheck" class="form-label">                                  Agree to terms and conditions                                </label>                                <div *ngIf="myForm.get(\'agree\')?.invalid && myForm.get(\'agree\')?.touched" class="invalid-feedback">                                  You must agree before submitting.                                </div>                              </div>                            </div>                            <button class="btn btn-primary" type="submit">Submit form</button>                          </form>                                          </div>                </div>            </div>        </div>        <!-- /Custom Boostrap Validation -->        <!-- Default Browser Validation -->        <div class="card">            <div class="card-header">                <h5 class="card-title">Browser defaults</h5>                <p class="card-text">Not interested in custom validation feedback messages or writing JavaScript to                    change form behaviors? All good, you can use the browser defaults. Try submitting the form below.                </p>            </div>            <div class="card-body">                <div class="row">                    <div class="col-sm">                        <form>                            <div class="form-row row">                                <div class="col-md-4 mb-3">                                    <label for="validationDefault01" class="form-label">First name</label>                                    <input type="text" class="form-control" id="validationDefault01"                                        placeholder="First name" value="Mark" required>                                </div>                                <div class="col-md-4 mb-3">                                    <label for="validationDefault02" class="form-label">Last name</label>                                    <input type="text" class="form-control" id="validationDefault02"                                        placeholder="Last name" value="Otto" required>                                </div>                                <div class="col-md-4 mb-3">                                    <label for="validationDefaultUsername" class="form-label">Username</label>                                    <div class="input-group">                                        <span class="input-group-text" id="inputGroupPrepend2">&#64;</span>                                        <input type="text" class="form-control" id="validationDefaultUsername"                                            placeholder="Username" aria-describedby="inputGroupPrepend2" required>                                    </div>                                </div>                            </div>                            <div class="form-row row">                                <div class="col-md-6 mb-3">                                    <label for="validationDefault03" class="form-label">City</label>                                    <input type="text" class="form-control" id="validationDefault03" placeholder="City"                                        required>                                </div>                                <div class="col-md-3 mb-3">                                    <label for="validationDefault04" class="form-label">State</label>                                    <input type="text" class="form-control" id="validationDefault04" placeholder="State"                                        required>                                </div>                                <div class="col-md-3 mb-3">                                    <label for="validationDefault05" class="form-label">Zip</label>                                    <input type="text" class="form-control" id="validationDefault05" placeholder="Zip"                                        required>                                </div>                            </div>                            <div class="form-group">                                <div class="form-check">                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2"                                        required>                                    <label class="form-check-label" for="invalidCheck2" class="form-label">                                        Agree to terms and conditions                                    </label>                                </div>                            </div>                        </form>                        <button class="btn btn-primary" type="submit">Submit form</button>                    </div>                </div>            </div>        </div>        <!-- /Default Browser Validation -->        <!-- Server Side Validation -->        <div class="card">            <div class="card-header">                <h5 class="card-title">Server side</h5>                <p class="card-text">We recommend using client side validation, but in case you require server side, you                    can indicate invalid and valid form fields with <code>.is-invalid</code> and <code>.is-valid</code>.                    Note that <code>.invalid-feedback</code> is also supported with these classes.</p>            </div>            <div class="card-body">                <form>                    <div class="form-row row">                        <div class="col-md-4 mb-3">                            <label for="validationServer01" class="form-label">First name</label>                            <input type="text" class="form-control is-valid" id="validationServer01"                                placeholder="First name" value="Mark" required>                            <div class="valid-feedback">                                Looks good!                            </div>                        </div>                        <div class="col-md-4 mb-3">                            <label for="validationServer02" class="form-label">Last name</label>                            <input type="text" class="form-control is-valid" id="validationServer02"                                placeholder="Last name" value="Otto" required>                            <div class="valid-feedback">                                Looks good!                            </div>                        </div>                        <div class="col-md-4 mb-3">                            <label for="validationServerUsername" class="form-label">Username</label>                            <div class="input-group input-grp">                                <span class="input-group-text" id="inputGroupPrepend3">&#64;</span>                                <input type="text" class="form-control is-invalid" id="validationServerUsername"                                    placeholder="Username" aria-describedby="inputGroupPrepend3" required>                                <div class="invalid-feedback">                                    Please choose a username.                                </div>                            </div>                        </div>                    </div>                    <div class="form-row row">                        <div class="col-md-6 mb-3">                            <label for="validationServer03" class="form-label">City</label>                            <input type="text" class="form-control is-invalid" id="validationServer03"                                placeholder="City" required>                            <div class="invalid-feedback">                                Please provide a valid city.                            </div>                        </div>                        <div class="col-md-3 mb-3">                            <label for="validationServer04" class="form-label">State</label>                            <input type="text" class="form-control is-invalid" id="validationServer04"                                placeholder="State" required>                            <div class="invalid-feedback">                                Please provide a valid state.                            </div>                        </div>                        <div class="col-md-3 mb-3">                            <label for="validationServer05" class="form-label">Zip</label>                            <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip"                                required>                            <div class="invalid-feedback">                                Please provide a valid zip.                            </div>                        </div>                    </div>                    <div class="form-group">                        <div class="form-check">                            <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"                                required>                            <label class="form-check-label" for="invalidCheck3" class="form-label">                                Agree to terms and conditions                            </label>                            <div class="invalid-feedback">                                You must agree before submitting.                            </div>                        </div>                    </div>                </form>                <button class="btn btn-primary" type="submit">Submit form</button>            </div>        </div>        <!-- /Server Side Validation -->        <!-- Supported Elements -->        <div class="card">            <div class="card-header">                <h5 class="card-title">Supported elements</h5>                <p class="card-text">Form validation styles are also available for bootstrap custom form controls.</p>            </div>            <div class="card-body">                <div class="row">                    <div class="col-sm">                        <form class="was-validated">                            <div class="mb-3">                                <label for="validationTextarea" class="form-label">Textarea</label>                                <textarea class="form-control is-invalid" id="validationTextarea"                                    placeholder="Required example textarea" required></textarea>                                <div class="invalid-feedback">                                    Please enter a message in the textarea.                                </div>                            </div>                            <div class="form-check mb-3">                                <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>                                <label class="form-check-label" for="validationFormCheck1">Check this checkbox</label>                                <div class="invalid-feedback">Example invalid feedback text</div>                            </div>                            <div class="form-check">                                <input type="radio" class="form-check-input" id="validationFormCheck2"                                    name="radio-stacked" required>                                <label class="form-check-label" for="validationFormCheck2">Toggle this radio</label>                            </div>                            <div class="form-check mb-3">                                <input type="radio" class="form-check-input" id="validationFormCheck3"                                    name="radio-stacked" required>                                <label class="form-check-label" for="validationFormCheck3">Or toggle this other                                    radio</label>                                <div class="invalid-feedback">More example invalid feedback text</div>                            </div>                            <div class="mb-3">                                <select class="form-select" required aria-label="select example">                                    <option value="">Open this select menu</option>                                    <option value="1">One</option>                                    <option value="2">Two</option>                                    <option value="3">Three</option>                                </select>                                <div class="invalid-feedback">Example invalid select feedback</div>                            </div>                            <div class="mb-3">                                <input type="file" class="form-control" aria-label="file example" required>                                <div class="invalid-feedback">Example invalid form file feedback</div>                            </div>                        </form>                    </div>                </div>            </div>        </div>        <!-- /Supported Elements -->        <!-- Validation Tooltips -->        <div class="card">            <div class="card-header">                <h5 class="card-title">Tooltips</h5>                <p class="card-text">You can swap the <code>.valid|invalid-feedback</code> classes for                    <code>.valid|invalid-tooltip</code> classes to display validation feedback in a styled tooltip.</p>            </div>            <div class="card-body">                               <form [formGroup]="myForm1" (ngSubmit)="onSubmit1()" class="needs-validation" novalidate>                    <div class="form-row row">                      <div class="col-md-4 mb-3">                        <label for="validationCustom01" class="form-label">First name</label>                        <input type="text" class="form-control" id="validationCustom01" formControlName="firstName" placeholder="First name" value="Mark" required [ngClass]="{\'is-invalid\': myForm1.get(\'firstName\')?.invalid && myForm1.get(\'firstName\')?.touched, \'is-valid\': myForm1.get(\'firstName\')?.valid}">                        <div *ngIf="myForm1.get(\'firstName\')?.invalid && myForm1.get(\'firstName\')?.touched" class="invalid-feedback">                          Please provide a first name.                        </div>                        <div *ngIf="myForm1.get(\'firstName\')?.valid" class="valid-tooltip">                          Looks good!                        </div>                      </div>                      <div class="col-md-4 mb-3">                        <label for="validationCustom02" class="form-label">Last name</label>                        <input type="text" class="form-control" id="validationCustom02" formControlName="lastName" placeholder="Last name" value="hh" [ngClass]="{\'is-invalid\': myForm1.get(\'lastName\')?.invalid && myForm1.get(\'lastName\')?.touched, \'is-valid\': myForm1.get(\'lastName\')?.valid}">                        <div *ngIf="myForm1.get(\'lastName\')?.invalid && myForm1.get(\'lastName\')?.touched" class="invalid-feedback">                          Please provide a last name.                        </div>                        <div *ngIf="myForm1.get(\'lastName\')?.valid" class="valid-tooltip">                          Looks good!                        </div>                      </div>                      <div class="col-md-4 mb-3">                        <label for="validationCustomUsername" class="form-label">Username</label>                        <div class="input-group">                          <span class="input-group-text" id="inputGroupPrepend">&#64;</span>                          <input type="text" class="form-control" id="validationCustomUsername" formControlName="username" placeholder="Username" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm1.get(\'username\')?.invalid && myForm1.get(\'username\')?.touched, \'is-valid\': myForm1.get(\'username\')?.valid}" required>                        </div>                      </div>                    </div>                    <div class="form-row row">                        <div class="col-md-6 mb-3">                            <label for="validationTooltip03" class="form-label">City</label>                            <input type="text" class="form-control" id="validationCustomcityname" formControlName="city" placeholder="City" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm1.get(\'city\')?.invalid && myForm1.get(\'city\')?.touched, \'is-valid\': myForm1.get(\'city\')?.valid}" required                                required>                            <div *ngIf="myForm1.get(\'city\')?.invalid && myForm1.get(\'city\')?.touched" class="invalid-tooltip">                                Please provide a valid city.                            </div>                        </div>                        <div class="col-md-3 mb-3">                            <label for="validationTooltip04" class="form-label">State</label>                            <input type="text" class="form-control" id="validationCustomstatename" formControlName="state" placeholder="State" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm1.get(\'state\')?.invalid && myForm1.get(\'state\')?.touched, \'is-valid\': myForm1.get(\'state\')?.valid}" required                                required>                            <div *ngIf="myForm1.get(\'state\')?.invalid && myForm1.get(\'state\')?.touched" class="invalid-tooltip">                                Please provide a valid state.                            </div>                        </div>                        <div class="col-md-3 mb-3">                            <label for="validationTooltip05" class="form-label">Zip</label>                            <input type="text" class="form-control" id="validationCustomstatename" formControlName="zip" placeholder="Zip" aria-describedby="inputGroupPrepend" [ngClass]="{\'is-invalid\': myForm1.get(\'zip\')?.invalid && myForm1.get(\'zip\')?.touched, \'is-valid\': myForm1.get(\'zip\')?.valid}" required>                            <div class="invalid-tooltip" *ngIf="myForm1.get(\'zip\')?.invalid && myForm1.get(\'zip\')?.touched" class="invalid-tooltip">                                Please provide a valid zip.                            </div>                        </div>                    </div>                    <button class="btn btn-primary" type="submit">Submit form</button>                  </form>            </div>        </div>        <!-- /Validation Tooltips -->    </div></div><!-- /Row --></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'FormValidationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FormValidationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

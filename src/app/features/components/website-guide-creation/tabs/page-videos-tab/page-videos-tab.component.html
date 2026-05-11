@@ -1,0 +1,209 @@
+<div class="content pb-0 website-guide-page">
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-toolbar">
+    <div>
+      <h4 class="mb-1">Page Videos</h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item">Website Guide Creation</li>
+          <li class="breadcrumb-item active" aria-current="page">Page Videos</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button type="button" class="btn btn-info btn-sm" (click)="goBack()"><i class="ti ti-arrow-left me-1"></i> Back</button>
+      @if (canCreate) {
+        <button type="button" class="btn btn-primary btn-sm" (click)="openAddModal()"><i class="ti ti-square-rounded-plus-filled me-1"></i> Add Page Video</button>
+      }
+    </div>
+  </div>
+
+  <div class="card border-0 rounded-0">
+    <div class="card-body compact-card-body">
+      <div class="d-flex justify-content-end align-items-center gap-2 flex-wrap mb-2">
+        <input
+          class="form-control form-control-sm w-auto"
+          type="text"
+          placeholder="Search by page name or URL"
+          [(ngModel)]="search"
+          (keyup.enter)="loadRows()"
+          style="min-width: 260px"
+        />
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="loadRows()">
+          Search
+        </button>
+      </div>
+
+      <div class="table-responsive custom-table">
+        <table class="table align-middle website-guide-table mb-0">
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>PAGE NAME</th>
+              <th>PAGE URL</th>
+              <th>PAGE VIDEO</th>
+              <th>AUTOPLAY</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (isLoading) {
+              <tr>
+                <td colspan="5" class="text-center py-3">Loading page videos...</td>
+              </tr>
+            } @else {
+              @for (row of visibleRows; track row.uuid) {
+                <tr>
+                  <td>{{ row.sNo }}</td>
+                  <td class="text-wrap-cell">
+                    <div class="d-flex align-items-center gap-2">
+                      <span>{{ row.pageName }}</span>
+                      @if (canEditPageMeta) {
+                        <button type="button" class="btn btn-link p-0 border-0 shadow-none icon-btn-link" (click)="openEditFieldModal(row, 'pageName')" title="Edit Page Name">
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                      }
+                    </div>
+                  </td>
+                  <td class="text-wrap-cell">
+                    <div class="d-flex align-items-center gap-2">
+                      <span>{{ row.pagePathName }}</span>
+                      @if (canEditPageMeta) {
+                        <button type="button" class="btn btn-link p-0 border-0 shadow-none icon-btn-link" (click)="openEditFieldModal(row, 'pagePathName')" title="Edit Page URL">
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                      }
+                    </div>
+                  </td>
+                  <td class="text-wrap-cell">
+                    <div class="d-flex align-items-center gap-2">
+                      <span>{{ row.videoUrl }}</span>
+                      @if (canEditVideo) {
+                        <button type="button" class="btn btn-link p-0 border-0 shadow-none icon-btn-link" (click)="openEditFieldModal(row, 'videoUrl')" title="Edit Page Video URL">
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                      }
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="autoplay-label">OFF</span>
+                      <div class="form-check form-switch mb-0">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [checked]="row.autoPlay"
+                          [disabled]="!canToggleAutoPlay"
+                          (change)="onAutoPlayToggleIntent(row, $event)"
+                        />
+                      </div>
+                      <span class="autoplay-label">ON</span>
+                    </div>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-3">No page videos found</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between mt-2">
+        <small class="text-muted">Total Records: {{ pagination.totalRecords }}</small>
+        <div class="d-flex align-items-center gap-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            [disabled]="pagination.currentPage <= 1 || isLoading"
+            (click)="changePage(pagination.currentPage - 1)">
+            Prev
+          </button>
+          <small class="text-muted">Page {{ pagination.currentPage }} of {{ pagination.totalPages || 1 }}</small>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            [disabled]="pagination.currentPage >= (pagination.totalPages || 1) || isLoading"
+            (click)="changePage(pagination.currentPage + 1)">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pageVideoAutoPlayConfirmModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body p-4 text-center">
+        <div class="mb-3">
+          <span class="avatar avatar-xl badge-soft-danger border-0 text-danger rounded-circle">
+            <i class="fa fa-check-circle fs-24"></i>
+          </span>
+        </div>
+        <h5 class="mb-1">{{ autoPlayConfirmTitle }}</h5>
+        <p class="mb-3">{{ autoPlayConfirmMessage }}</p>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-light me-2 w-100" (click)="closeModal('autoPlayConfirm')">Cancel</button>
+          <button type="button" class="btn btn-primary w-100" (click)="confirmAutoPlayChange()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pageVideoAddModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Page Video</h5>
+        <button type="button" class="btn-close" (click)="closeModal('add')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2">
+          <label class="form-label">Page Name</label>
+          <input type="text" class="form-control" [(ngModel)]="addForm.pageName" placeholder="Enter page name" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Page URL Path</label>
+          <input type="text" class="form-control" [(ngModel)]="addForm.pagePathName" placeholder="Example: /manage-users" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Video URL (YouTube)</label>
+          <input type="text" class="form-control" [(ngModel)]="addForm.videoUrl" placeholder="https://youtube.com/watch?v=..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('add')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" [disabled]="isSubmitting" (click)="saveAdd()">
+          @if (isSubmitting) { Saving... } @else { Save }
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pageVideoEditFieldModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ editFieldModalState.title }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal('editField')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-0">
+          <label class="form-label">{{ editFieldModalState.title }}</label>
+          <input type="text" class="form-control" [(ngModel)]="editFieldModalState.value" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal('editField')">Cancel</button>
+        <button type="button" class="btn btn-success btn-sm" [disabled]="isSubmitting" (click)="saveEditField()">
+          @if (isSubmitting) { Saving... } @else { Update }
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

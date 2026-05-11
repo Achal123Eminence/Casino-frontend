@@ -1,0 +1,2860 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProjectDashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-project-dashboard</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../interfaces/Module.html" target="_self" >NgApexchartsModule</a></code>
+                                <code><a href="../components/CollapseHeaderComponent.html" target="_self" >CollapseHeaderComponent</a></code>
+                                <code><a href="../components/DateRangePickerComponent.html" target="_self" >DateRangePickerComponent</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >BsDatepickerModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >SelectModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >CommonModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >FormsModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >MatSelectModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >MatChipsModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >MatIconModule</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./project-dashboard.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./project-dashboard.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bsRangeValue" >bsRangeValue</a>
+                            </li>
+                            <li>
+                                <a href="#bsValue" >bsValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#chart" >chart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions" >chartOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions2" >chartOptions2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions3" >chartOptions3</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions4" >chartOptions4</a>
+                            </li>
+                            <li>
+                                <a href="#maxDate" >maxDate</a>
+                            </li>
+                            <li>
+                                <a href="#option1" >option1</a>
+                            </li>
+                            <li>
+                                <a href="#option2" >option2</a>
+                            </li>
+                            <li>
+                                <a href="#option3" >option3</a>
+                            </li>
+                            <li>
+                                <a href="#option4" >option4</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#routes" >routes</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDatas1" >selectedDatas1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDatas2" >selectedDatas2</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOption1" >selectedOption1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOption2" >selectedOption2</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOption3" >selectedOption3</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOption4" >selectedOption4</a>
+                            </li>
+                            <li>
+                                <a href="#selectedValue1" >selectedValue1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedValue2" >selectedValue2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#sidebarPopup1" >sidebarPopup1</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#sidebarPopup2" >sidebarPopup2</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openSidebarPopup1" >openSidebarPopup1</a>
+                            </li>
+                            <li>
+                                <a href="#openSidebarPopup2" >openSidebarPopup2</a>
+                            </li>
+                            <li>
+                                <a href="#removeOption1" >removeOption1</a>
+                            </li>
+                            <li>
+                                <a href="#removeOption2" >removeOption2</a>
+                            </li>
+                            <li>
+                                <a href="#removeOption3" >removeOption3</a>
+                            </li>
+                            <li>
+                                <a href="#removeOption4" >removeOption4</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor function.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="352"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:352</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnDestroy function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnInit function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSidebarPopup1"></a>
+                    <span class="name">
+                        <span ><b>openSidebarPopup1</b></span>
+                        <a href="#openSidebarPopup1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSidebarPopup1()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>openSidebarPopup1 function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSidebarPopup2"></a>
+                    <span class="name">
+                        <span ><b>openSidebarPopup2</b></span>
+                        <a href="#openSidebarPopup2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSidebarPopup2()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>openSidebarPopup2 function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeOption1"></a>
+                    <span class="name">
+                        <span ><b>removeOption1</b></span>
+                        <a href="#removeOption1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeOption1(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="306"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:306</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>removeOption1 function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeOption2"></a>
+                    <span class="name">
+                        <span ><b>removeOption2</b></span>
+                        <a href="#removeOption2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeOption2(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="317"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:317</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>removeOption2 function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeOption3"></a>
+                    <span class="name">
+                        <span ><b>removeOption3</b></span>
+                        <a href="#removeOption3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeOption3(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="328"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:328</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>removeOption3 function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeOption4"></a>
+                    <span class="name">
+                        <span ><b>removeOption4</b></span>
+                        <a href="#removeOption4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeOption4(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>removeOption4 function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>user</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bsRangeValue"></a>
+                    <span class="name">
+                        <span ><b>bsRangeValue</b></span>
+                        <a href="#bsRangeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bsValue"></a>
+                    <span class="name">
+                        <span ><b>bsValue</b></span>
+                        <a href="#bsValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chart"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>chart</b></span>
+                        <a href="#chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ChartComponent</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;chart&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions</b></span>
+                        <a href="#chartOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions2"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions2</b></span>
+                        <a href="#chartOptions2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions3"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions3</b></span>
+                        <a href="#chartOptions3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions4"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions4</b></span>
+                        <a href="#chartOptions4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxDate"></a>
+                    <span class="name">
+                        <span ><b>maxDate</b></span>
+                        <a href="#maxDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="option1"></a>
+                    <span class="name">
+                        <span ><b>option1</b></span>
+                        <a href="#option1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="option2"></a>
+                    <span class="name">
+                        <span ><b>option2</b></span>
+                        <a href="#option2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="option3"></a>
+                    <span class="name">
+                        <span ><b>option3</b></span>
+                        <a href="#option3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      id: 1,
+      name: &#x27; Robert Johnson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-02.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:279</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="option4"></a>
+                    <span class="name">
+                        <span ><b>option4</b></span>
+                        <a href="#option4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:290</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDatas1"></a>
+                    <span class="name">
+                        <span ><b>selectedDatas1</b></span>
+                        <a href="#selectedDatas1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[] | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:233</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDatas2"></a>
+                    <span class="name">
+                        <span ><b>selectedDatas2</b></span>
+                        <a href="#selectedDatas2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[] | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOption1"></a>
+                    <span class="name">
+                        <span ><b>selectedOption1</b></span>
+                        <a href="#selectedOption1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:252</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOption2"></a>
+                    <span class="name">
+                        <span ><b>selectedOption2</b></span>
+                        <a href="#selectedOption2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOption3"></a>
+                    <span class="name">
+                        <span ><b>selectedOption3</b></span>
+                        <a href="#selectedOption3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:254</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOption4"></a>
+                    <span class="name">
+                        <span ><b>selectedOption4</b></span>
+                        <a href="#selectedOption4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedValue1"></a>
+                    <span class="name">
+                        <span ><b>selectedValue1</b></span>
+                        <a href="#selectedValue1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[] | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedValue2"></a>
+                    <span class="name">
+                        <span ><b>selectedValue2</b></span>
+                        <a href="#selectedValue2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[] | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarPopup1"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>sidebarPopup1</b></span>
+                        <a href="#sidebarPopup1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarPopup2"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>sidebarPopup2</b></span>
+                        <a href="#sidebarPopup2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/features/main-menu/dashboards/project-dashboard/project-dashboard.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ViewChild, OnInit, Renderer2 } from &#x27;@angular/core&#x27;;
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+  NgApexchartsModule,
+} from &#x27;ng-apexcharts&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../../common/collapse-header/collapse-header.component&#x27;;
+import { DateRangePickerComponent } from &#x27;../../../common/date-range-picker/date-range-picker.component&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { SelectModule } from &#x27;primeng/select&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+export interface ChartOptions {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
+  xaxis: ApexXAxis | any;
+  grid:  any;
+  colors:  any;
+}
+
+@Component({
+    selector: &#x27;app-project-dashboard&#x27;,
+    templateUrl: &#x27;./project-dashboard.component.html&#x27;,
+    styleUrl: &#x27;./project-dashboard.component.scss&#x27;,
+    imports: [NgApexchartsModule,CollapseHeaderComponent,DateRangePickerComponent,RouterLink,BsDatepickerModule,SelectModule,CommonModule,FormsModule,MatSelectModule,MatChipsModule,MatIconModule]
+})
+export class ProjectDashboardComponent implements OnInit {
+  public sidebarPopup1 &#x3D; false;
+  public sidebarPopup2 &#x3D; false;
+  bsValue &#x3D; new Date();
+  bsRangeValue: Date[];
+  maxDate &#x3D; new Date();
+  @ViewChild(&#x27;chart&#x27;) chart!: ChartComponent;
+  public chartOptions: Partial&lt;ChartOptions&gt;;
+  public chartOptions2: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions3: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions4: Partial&lt;ChartOptions&gt; | any;
+  public routes &#x3D; routes;
+  /**
+   * constructor function.
+   * @param {*} renderer - Parameter.
+   * @returns {*} Result.
+   */
+  constructor(private renderer:Renderer2) {
+   this.chartOptions &#x3D; {
+          series: [{
+          data: [400, 220, 448,]
+      }],
+          chart: {
+          type: &#x27;bar&#x27;,
+          height: 180,
+    	toolbar: {
+    	  show: false
+    	}
+      },
+    
+      plotOptions: {
+          bar: {
+          horizontal: true,
+          }
+      },
+      dataLabels: {
+          enabled: false
+      },
+     colors: [&#x27;#EF1E1E&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,
+    },
+      xaxis: {
+          categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+          ],
+      }
+      };
+    this.chartOptions2 &#x3D; {
+        series: [{
+        data: [400, 122, 250]
+    }],
+        chart: {
+        type: &#x27;bar&#x27;,
+        height: 180,
+    	toolbar: {
+    	  show: false
+    	}
+    },
+    plotOptions: {
+        bar: {
+        horizontal: true,
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    colors: [&#x27;#27AE60&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,     
+    },
+    xaxis: {
+        categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+        ],
+    }
+    };
+    this.chartOptions3 &#x3D;{
+      series: [44, 55, 41, 17],
+      chart: {
+      type: &#x27;donut&#x27;,
+          height: 450
+    },
+    colors: [&#x27;#4A00E5&#x27;, &#x27;#FFA201&#x27; , &#x27;#0092E4&#x27; , &#x27;#E41F07&#x27; ],
+    labels: [&#x27;Campaigns&#x27;, &#x27;Google&#x27;, &#x27;Referrals&#x27;, &#x27;Paid Social&#x27;],  
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 270
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    legend: {
+       position: &#x27;bottom&#x27;,  
+      formatter: function(val:any, opts:any) {
+        return val + &quot; - &quot; + opts.w.globals.series[opts.seriesIndex]
+      }
+    },
+    responsive: [{
+      breakpoint: 1199,
+      options: {
+        chart: {
+          height: 320
+        },
+        legend: {
+          position: &#x27;bottom&#x27;
+        }
+      }
+    },{
+      breakpoint: 575,
+      options: {
+        chart: {
+          height: 280
+        },
+        legend: {
+          position: &#x27;bottom&#x27;
+        }
+      }
+    }]
+    };
+    this.chartOptions4 &#x3D;  {
+      series: [
+      {
+        name: &quot;&quot;,
+        data: [1200, 1000, 800, 600, 400, 200],
+      },
+    ],
+      chart: {
+      type: &#x27;bar&#x27;,
+      height: 420,
+    			toolbar: {
+    				show: false
+    			}
+    },
+    
+    plotOptions: {
+      bar: {
+        borderRadius: 0,
+        horizontal: true,
+        distributed: true,
+        barHeight: &#x27;100%&#x27;,
+        isFunnel: true,
+      },
+     
+    },
+    colors: [
+      &#x27;#3538CD&#x27;,
+      &#x27;#06AED4&#x27;,
+      &#x27;#FFA201&#x27;,
+      &#x27;#0E9384&#x27;,
+      &#x27;#27AE60&#x27;,
+      &#x27;#E41F07&#x27;,
+    ],
+    
+    dataLabels: {
+      enabled: true,
+      formatter: function (val:any, opt:any) {
+        return opt.w.globals.labels[opt.dataPointIndex] 
+      },
+      dropShadow: {
+        enabled: true,
+      },
+     
+    },
+    xaxis: {
+      categories: [&#x27;Inpipeline : 1454&#x27;, &#x27;Follow Up : 1454&#x27;, &#x27;Schedule service : 1454&#x27;, &#x27;Conversation : 1454&#x27;, &#x27;Win : 1454&#x27;, &#x27;Lost : 1454&#x27;],
+    },
+    legend: {
+      show: false,
+    },
+    };
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue &#x3D; [this.bsValue, this.maxDate];
+  }
+  /**
+   * openSidebarPopup1 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup1() {
+    this.sidebarPopup1 &#x3D; !this.sidebarPopup1;
+  }
+  /**
+   * openSidebarPopup2 function.
+   * @returns {*} Result.
+   */
+  openSidebarPopup2() {
+    this.sidebarPopup2 &#x3D; !this.sidebarPopup2;
+  }
+
+  selectedValue1: any[] | undefined;
+  selectedValue2: any[] | undefined;
+
+  selectedDatas1: any[] | undefined;
+  selectedDatas2: any[] | undefined;
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit() {
+     this.renderer.addClass(document.body,&#x27;date-picker&#x27;)
+    this.selectedValue1 &#x3D; [
+      { name: &#x27;Mobile App&#x27; },
+      { name: &#x27;Meeting&#x27; }
+    ];
+    this.selectedValue2 &#x3D; [
+      { name: &#x27;Mobile App&#x27; },
+      { name: &#x27;Meeting&#x27; }
+    ];
+  }
+
+  selectedOption1: any;
+  selectedOption2: any;
+  selectedOption3: any;
+  selectedOption4: any;
+
+  option1 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option2 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option3 &#x3D; [
+    {
+      id: 1,
+      name: &#x27; Robert Johnson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-02.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  option4 &#x3D; [
+    {
+      id: 1,
+      name: &#x27;Darlee Robertson&#x27;,
+      image: &#x27;assets/img/profiles/avatar-19.jpg&#x27;,
+    },
+    { id: 2, name: &#x27;Sharon Roy&#x27;, image: &#x27;assets/img/profiles/avatar-20.jpg&#x27; },
+    { id: 3, name: &#x27;Vaughan&#x27;, image: &#x27;assets/img/profiles/avatar-21.jpg&#x27; },
+    { id: 4, name: &#x27;Jessica&#x27;, image: &#x27;assets/img/profiles/avatar-23.jpg&#x27; },
+    { id: 5, name: &#x27;Carol Thomas&#x27;, image: &#x27;assets/img/profiles/avatar-16.jpg&#x27; },
+  ];
+  /**
+   * removeOption1 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption1(user: any) {
+    const index &#x3D; this.selectedOption1.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption1.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption2 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption2(user: any) {
+    const index &#x3D; this.selectedOption2.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption2.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption3 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption3(user: any) {
+    const index &#x3D; this.selectedOption3.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption3.splice(index, 1);
+    }
+  }
+  /**
+   * removeOption4 function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  removeOption4(user: any) {
+    const index &#x3D; this.selectedOption4.indexOf(user);
+    if (index !&#x3D;&#x3D; -1) {
+      this.selectedOption4.splice(index, 1);
+    }
+  }
+//    ngOnInit():void{
+//   this.renderer.addClass(document.body,&#x27;date-picker&#x27;)
+// }
+/**
+ * ngOnDestroy function.
+ * @returns {*} Result.
+ */
+ngOnDestroy():void{
+  this.renderer.removeClass(document.body,&#x27;date-picker&#x27;)
+}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Start Content --&gt;
+&lt;div class&#x3D;&quot;content pb-0&quot;&gt;
+  &lt;!-- Page Header --&gt;
+  &lt;div
+    class&#x3D;&quot;d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap&quot;
+  &gt;
+    &lt;div&gt;
+      &lt;h4 class&#x3D;&quot;mb-0&quot;&gt;Project Dashboard&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;gap-2 d-flex align-items-center flex-wrap&quot;&gt;
+      &lt;div class&#x3D;&quot;daterangepick form-control w-auto d-flex align-items-center&quot;&gt;
+        &lt;app-date-range-picker&gt;&lt;/app-date-range-picker&gt;
+      &lt;/div&gt;
+      &lt;a
+        href&#x3D;&quot;javascript:void(0);&quot;
+        class&#x3D;&quot;btn btn-icon btn-outline-light shadow&quot;
+        data-bs-toggle&#x3D;&quot;tooltip&quot;
+        data-bs-placement&#x3D;&quot;top&quot;
+        aria-label&#x3D;&quot;Refresh&quot;
+        data-bs-original-title&#x3D;&quot;Refresh&quot;
+        &gt;&lt;i class&#x3D;&quot;ti ti-refresh&quot;&gt;&lt;/i
+      &gt;&lt;/a&gt;
+      &lt;app-collapse-header&gt;&lt;/app-collapse-header&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- End Page Header --&gt;
+
+  &lt;!-- start row --&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12 col-xl-6 d-flex&quot;&gt;
+      &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;
+          &gt;
+            &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Recent Projects&lt;/h6&gt;
+            &lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+              &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Last 30 days
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 15 days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 30 days
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;a
+                class&#x3D;&quot;btn btn-primary d-inline-flex align-items-center&quot;
+                href&#x3D;&quot;javascript:void(0);&quot;
+                data-bs-toggle&#x3D;&quot;offcanvas&quot;
+                data-bs-target&#x3D;&quot;#offcanvas_add&quot;
+              &gt;
+                &lt;i class&#x3D;&quot;ti ti-square-rounded-plus-filled me-1&quot;&gt;&lt;/i&gt;Add Project
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+          &lt;div class&#x3D;&quot;table-responsive custom-table&quot;&gt;
+            &lt;table class&#x3D;&quot;table table-nowrap dataTable&quot; id&#x3D;&quot;recent-project&quot;&gt;
+              &lt;thead class&#x3D;&quot;table-light&quot;&gt;
+                &lt;tr&gt;
+                  &lt;th&gt;Name&lt;/th&gt;
+                  &lt;th&gt;Company Name&lt;/th&gt;
+                  &lt;th&gt;Priority&lt;/th&gt;
+                  &lt;th&gt;Due Date&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                  &lt;td&gt;
+                    &lt;h2 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.projectDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/priority/truellysel.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.projectDetails&quot;&gt;Truelysell&lt;/a&gt;
+                    &lt;/h2&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;h6 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.companiesDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/icons/company-icon-01.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.companiesDetails&quot;&gt;NovaWave LLC&lt;/a&gt;
+                    &lt;/h6&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;span
+                      class&#x3D;&quot;d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger&quot;
+                      &gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-filled me-1&quot;&gt;&lt;/i&gt;
+                      High&lt;/span
+                    &gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;23 Nov 2025&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr class&#x3D;&quot;even&quot;&gt;
+                  &lt;td&gt;
+                    &lt;h2 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.projectDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/priority/dreamchat.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.projectDetails&quot;&gt;Dreamschat&lt;/a&gt;
+                    &lt;/h2&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;h6 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.companiesDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/icons/company-icon-02.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.companiesDetails&quot;&gt;BlueSky&lt;/a&gt;
+                    &lt;/h6&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;span
+                      class&#x3D;&quot;d-inline-flex align-items-center badge badge-pill badge-soft-warning border border-warning&quot;
+                      &gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-filled me-1&quot;&gt;&lt;/i&gt;
+                      Medium&lt;/span
+                    &gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;07 Nov 2025&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                  &lt;td&gt;
+                    &lt;h2 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.projectDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/priority/truellysell.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.projectDetails&quot;&gt;DreamGigs&lt;/a&gt;
+                    &lt;/h2&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;h6 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.companiesDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/icons/company-icon-03.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.companiesDetails&quot;&gt;Silve Hawk&lt;/a&gt;
+                    &lt;/h6&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;span
+                      class&#x3D;&quot;d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger&quot;
+                      &gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-filled me-1&quot;&gt;&lt;/i&gt;
+                      High&lt;/span
+                    &gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;15 Oct 2025&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr class&#x3D;&quot;even&quot;&gt;
+                  &lt;td&gt;
+                    &lt;h2 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.projectDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/priority/servbook.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.projectDetails&quot;&gt;Servbook&lt;/a&gt;
+                    &lt;/h2&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;h6 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.companiesDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/icons/company-icon-04.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.companiesDetails&quot;&gt;Summit Peak&lt;/a&gt;
+                    &lt;/h6&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;span
+                      class&#x3D;&quot;d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger&quot;
+                      &gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-filled me-1&quot;&gt;&lt;/i&gt;
+                      High&lt;/span
+                    &gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;29 Sep 2025&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                  &lt;td&gt;
+                    &lt;h2 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.projectDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/priority/dream-pos.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.projectDetails&quot;&gt;DreamPOS&lt;/a&gt;
+                    &lt;/h2&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;h6 class&#x3D;&quot;d-flex align-items-center fs-14 fw-medium mb-0&quot;&gt;
+                      &lt;a
+                        [routerLink]&#x3D;&quot;routes.companiesDetails&quot;
+                        class&#x3D;&quot;avatar avatar-rounded border me-2&quot;
+                        &gt;&lt;img
+                          class&#x3D;&quot;w-auto h-auto&quot;
+                          src&#x3D;&quot;assets/img/icons/company-icon-05.svg&quot;
+                          alt&#x3D;&quot;User Image&quot; /&gt;&lt;/a
+                      &gt;&lt;a [routerLink]&#x3D;&quot;routes.companiesDetails&quot;&gt;RiverStone Ltd&lt;/a&gt;
+                    &lt;/h6&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;span
+                      class&#x3D;&quot;d-inline-flex align-items-center badge badge-pill badge-soft-warning border border-warning&quot;
+                      &gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-filled me-1&quot;&gt;&lt;/i&gt;
+                      Medium&lt;/span
+                    &gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;25 Sep 2025&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- end card body --&gt;
+      &lt;/div&gt;
+      &lt;!-- end card --&gt;
+    &lt;/div&gt;
+    &lt;!-- end col --&gt;
+
+    &lt;div class&#x3D;&quot;col-md-12 col-xl-6 d-flex&quot;&gt;
+      &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;
+          &gt;
+            &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Project By Stage&lt;/h6&gt;
+            &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+              &lt;a
+                class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                data-bs-toggle&#x3D;&quot;dropdown&quot;
+                href&#x3D;&quot;javascript:void(0);&quot;
+              &gt;
+                Last 30 days
+              &lt;/a&gt;
+              &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                  Last 15 days
+                &lt;/a&gt;
+                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                  Last 30 days
+                &lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+          &lt;div id&#x3D;&quot;contacts-analysis&quot;&gt;
+            &lt;apx-chart
+                    [series]&#x3D;&quot;chartOptions3.series&quot;
+                    [chart]&#x3D;&quot;chartOptions3.chart&quot;
+                    [labels]&#x3D;&quot;chartOptions3.labels&quot;
+                    [fill]&#x3D;&quot;chartOptions3.fill&quot;
+                    [dataLabels]&#x3D;&quot;chartOptions3.dataLabels&quot;
+                    [responsive]&#x3D;&quot;chartOptions3.responsive&quot;
+                    [colors]&#x3D;&quot;chartOptions3.colors&quot;
+                    [legend]&#x3D;&quot;chartOptions3.legend&quot;
+                    [plotOptions]&#x3D;&quot;chartOptions3.plotOptions&quot;
+                  &gt;&lt;/apx-chart&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- end card body --&gt;
+      &lt;/div&gt;
+      &lt;!-- end card --&gt;
+    &lt;/div&gt;
+    &lt;!-- end col --&gt;
+  &lt;/div&gt;
+  &lt;!-- end row --&gt;
+
+  &lt;!-- start row --&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12 col-xl-6 d-flex&quot;&gt;
+      &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;
+          &gt;
+            &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Projects By Stage&lt;/h6&gt;
+            &lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+              &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Sales Pipeline
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Marketing Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Sales Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Email
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Chats
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Operational
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Last 3 months
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 30 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 15 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 7 Days
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body center pt-0&quot;&gt;
+          &lt;div id&#x3D;&quot;project-stage&quot;&gt;
+            &lt;apx-chart
+                    [series]&#x3D;&quot;chartOptions4.series&quot;
+                    [chart]&#x3D;&quot;chartOptions4.chart&quot;
+                    [dataLabels]&#x3D;&quot;chartOptions4.dataLabels&quot;
+                    [plotOptions]&#x3D;&quot;chartOptions4.plotOptions&quot;
+                    [xaxis]&#x3D;&quot;chartOptions4.xaxis&quot;
+                    [colors]&#x3D;&quot;chartOptions4.colors&quot;
+                    [legend]&#x3D;&quot;chartOptions4.legend&quot;
+                  &gt;&lt;/apx-chart&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;fw-medium mb-0&quot;&gt;
+            This data collected based on the Projects for last 30 days
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- end card body --&gt;
+      &lt;/div&gt;
+      &lt;!-- end card --&gt;
+    &lt;/div&gt;
+    &lt;!-- end col --&gt;
+
+    &lt;div class&#x3D;&quot;col-md-12 col-xl-6 d-flex flex-column&quot;&gt;
+      &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;
+          &gt;
+            &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Leads By Stage&lt;/h6&gt;
+            &lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+              &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Marketing Pipeline
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Marketing Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Sales Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Email
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Chats
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Operational
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Last 3 months
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 30 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 15 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 7 Days
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body py-0&quot;&gt;
+          &lt;div id&#x3D;&quot;last-chart&quot;&gt;
+             &lt;apx-chart
+                    [series]&#x3D;&quot;chartOptions.series&quot;
+                    [chart]&#x3D;&quot;chartOptions.chart&quot;
+                    [dataLabels]&#x3D;&quot;chartOptions.dataLabels&quot;
+                    [plotOptions]&#x3D;&quot;chartOptions.plotOptions&quot;
+                    [xaxis]&#x3D;&quot;chartOptions.xaxis&quot;
+                    [colors]&#x3D;&quot;chartOptions.colors&quot;
+                  &gt;&lt;/apx-chart&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- end card body --&gt;
+      &lt;/div&gt;
+      &lt;!-- end card --&gt;
+
+      &lt;div class&#x3D;&quot;card w-100&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;div
+            class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;
+          &gt;
+            &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Won Deals Stage&lt;/h6&gt;
+            &lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+              &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Marketing Pipeline
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Marketing Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Sales Pipeline
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Email
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Chats
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Operational
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+                &lt;a
+                  class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot;
+                  data-bs-toggle&#x3D;&quot;dropdown&quot;
+                  href&#x3D;&quot;javascript:void(0);&quot;
+                &gt;
+                  Last 3 months
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 30 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 15 Days
+                  &lt;/a&gt;
+                  &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                    Last 7 Days
+                  &lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body py-0&quot;&gt;
+          &lt;div id&#x3D;&quot;won-chart&quot;&gt;
+             &lt;apx-chart
+                    [series]&#x3D;&quot;chartOptions2.series&quot;
+                    [chart]&#x3D;&quot;chartOptions2.chart&quot;
+                    [dataLabels]&#x3D;&quot;chartOptions2.dataLabels&quot;
+                    [plotOptions]&#x3D;&quot;chartOptions2.plotOptions&quot;
+                    [xaxis]&#x3D;&quot;chartOptions2.xaxis&quot;
+                    [colors]&#x3D;&quot;chartOptions2.colors&quot;
+                  &gt;&lt;/apx-chart&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- end card body --&gt;
+      &lt;/div&gt;
+      &lt;!-- end card --&gt;
+    &lt;/div&gt;
+    &lt;!-- end col --&gt;
+  &lt;/div&gt;
+  &lt;!-- end row --&gt;
+&lt;/div&gt;
+&lt;!-- End Content --&gt;
+
+
+		&lt;!-- Add Canvas --&gt;
+    &lt;div class&#x3D;&quot;offcanvas offcanvas-end offcanvas-large&quot; tabindex&#x3D;&quot;-1&quot; id&#x3D;&quot;offcanvas_add&quot;&gt;
+        &lt;div class&#x3D;&quot;offcanvas-header border-bottom&quot;&gt;
+            &lt;h5 class&#x3D;&quot;mb-0&quot;&gt;Add New Project&lt;/h5&gt;
+            &lt;button type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn-close custom-btn-close border p-1 me-0 d-flex align-items-center justify-content-center rounded-circle&quot;
+                data-bs-dismiss&#x3D;&quot;offcanvas&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;offcanvas-body&quot;&gt;
+            &lt;form&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Name &lt;span
+                                    class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Project ID&lt;span
+                                    class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Project Type &lt;span
+                                    class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                                    &lt;p-select  [options]&#x3D;&quot;selectedValue1&quot; [(ngModel)]&#x3D;&quot;selectedValue1&quot; [ngModelOptions]&#x3D;&quot;{standalone: true}&quot; optionLabel&#x3D;&quot;name&quot; placeholder&#x3D;&quot;Select&quot; [filter]&#x3D;&quot;true&quot;  class&#x3D;&quot;form-control&quot; /&gt;
+                            
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;											
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Client &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;mat-select class&#x3D;&quot;select custom-mat-select&quot; placeholder&#x3D;&quot;Select&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Select&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;NovaWave LLC&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Silver Hawk&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Harbor View&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Category &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;mat-select class&#x3D;&quot;select custom-mat-select&quot; placeholder&#x3D;&quot;Select&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Select&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Harbor View&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;LLC&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Project Timing &lt;span
+                                    class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;mat-select class&#x3D;&quot;select custom-mat-select&quot; placeholder&#x3D;&quot;Select&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Select&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Hourly&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Weekly&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Monthly&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Less than 1 Month&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Less than 3 months&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Price &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;input class&#x3D;&quot;form-control&quot; type&#x3D;&quot;text&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Responsible Persons &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                             &lt;mat-select
+                  [(value)]&#x3D;&quot;selectedOption3&quot;
+                  class&#x3D;&quot;custom-mat-select img-mat-select-mat-chip&quot;
+                  placeholder&#x3D;&quot;Select&quot;
+                  multiple
+                &gt;
+                  &lt;mat-select-trigger&gt;
+                    &lt;mat-chip-set&gt;
+                      @for (user of selectedOption3; track user) {
+                      &lt;mat-chip&gt;
+                        &lt;img
+                          [src]&#x3D;&quot;user.image&quot;
+                          alt&#x3D;&quot;{{ user.name }}&quot;
+                          width&#x3D;&quot;24&quot;
+                          height&#x3D;&quot;24&quot;
+                          style&#x3D;&quot;margin-right: 5px&quot;
+                        /&gt;
+                        {{ user.name }}
+                        &lt;mat-icon
+                          class&#x3D;&quot;cancel-icon&quot;
+                          (click)&#x3D;&quot;removeOption3(user)&quot;
+                          &gt;cancel&lt;/mat-icon
+                        &gt;
+                      &lt;/mat-chip&gt;
+                      }
+                    &lt;/mat-chip-set&gt;
+                  &lt;/mat-select-trigger&gt;
+                  @for (user of option3; track user) {
+                  &lt;mat-option
+                    [value]&#x3D;&quot;user&quot;
+                    class&#x3D;&quot;img-mat-select-mat-chip-options&quot;
+                  &gt;
+                    &lt;img
+                      src&#x3D;&quot;{{ user.image }}&quot;
+                      alt&#x3D;&quot;{{ user.name }}&quot;
+                      width&#x3D;&quot;24&quot;
+                      height&#x3D;&quot;24&quot;
+                      style&#x3D;&quot;margin-right: 5px&quot;
+                    /&gt;
+                    {{ user.name }}
+                  &lt;/mat-option&gt;
+                  }
+                &lt;/mat-select&gt;
+                           
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Team Leader &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                              &lt;mat-select
+                  [(value)]&#x3D;&quot;selectedOption4&quot;
+                  class&#x3D;&quot;custom-mat-select img-mat-select-mat-chip&quot;
+                  placeholder&#x3D;&quot;Select&quot;
+                  multiple
+                &gt;
+                  &lt;mat-select-trigger&gt;
+                    &lt;mat-chip-set&gt;
+                      @for (user of selectedOption4; track user) {
+                      &lt;mat-chip&gt;
+                        &lt;img
+                          [src]&#x3D;&quot;user.image&quot;
+                          alt&#x3D;&quot;{{ user.name }}&quot;
+                          width&#x3D;&quot;24&quot;
+                          height&#x3D;&quot;24&quot;
+                          style&#x3D;&quot;margin-right: 5px&quot;
+                        /&gt;
+                        {{ user.name }}
+                        &lt;mat-icon
+                          class&#x3D;&quot;cancel-icon&quot;
+                          (click)&#x3D;&quot;removeOption4(user)&quot;
+                          &gt;cancel&lt;/mat-icon
+                        &gt;
+                      &lt;/mat-chip&gt;
+                      }
+                    &lt;/mat-chip-set&gt;
+                  &lt;/mat-select-trigger&gt;
+                  @for (user of option4; track user) {
+                  &lt;mat-option
+                    [value]&#x3D;&quot;user&quot;
+                    class&#x3D;&quot;img-mat-select-mat-chip-options&quot;
+                  &gt;
+                    &lt;img
+                      src&#x3D;&quot;{{ user.image }}&quot;
+                      alt&#x3D;&quot;{{ user.name }}&quot;
+                      width&#x3D;&quot;24&quot;
+                      height&#x3D;&quot;24&quot;
+                      style&#x3D;&quot;margin-right: 5px&quot;
+                    /&gt;
+                    {{ user.name }}
+                  &lt;/mat-option&gt;
+                  }
+                &lt;/mat-select&gt;
+                            
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Start Date &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;div class&#x3D;&quot;input-group w-auto input-group-flat ngxdate&quot;&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; bsDatepicker [bsConfig]&#x3D;&quot;{dateInputFormat:&#x27;DD MMM,YYYY&#x27;}&quot; container&#x3D;&quot;.ngxdate&quot; placeholder&#x3D;&quot;dd/mm/yyyy&quot;&gt;
+                                &lt;span class&#x3D;&quot;input-group-text&quot;&gt;
+                                    &lt;i class&#x3D;&quot;ti ti-calendar&quot;&gt;&lt;/i&gt;
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Due Date &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;div class&#x3D;&quot;input-group w-auto input-group-flat ngxdate2&quot;&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; bsDatepicker [bsConfig]&#x3D;&quot;{dateInputFormat:&#x27;DD MMM,YYYY&#x27;}&quot; container&#x3D;&quot;.ngxdate2&quot; placeholder&#x3D;&quot;dd/mm/yyyy&quot;&gt;
+                                &lt;span class&#x3D;&quot;input-group-text&quot;&gt;
+                                    &lt;i class&#x3D;&quot;ti ti-calendar&quot;&gt;&lt;/i&gt;
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Priority&lt;/label&gt;
+                            &lt;mat-select class&#x3D;&quot;select custom-mat-select&quot; placeholder&#x3D;&quot;Select&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Select&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;High&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Low&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Medium&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                       &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Status&lt;/label&gt;
+                            &lt;mat-select class&#x3D;&quot;select custom-mat-select&quot; placeholder&#x3D;&quot;Select&quot;&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Select&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Active&lt;/mat-option&gt;
+                                &lt;mat-option value&#x3D;&quot;1&quot;&gt;Inactive&lt;/mat-option&gt;
+                            &lt;/mat-select&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Description &lt;span
+                                    class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                            &lt;textarea class&#x3D;&quot;form-control&quot; rows&#x3D;&quot;3&quot; placeholder&#x3D;&quot;Description&quot;&gt;&lt;/textarea&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-end&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; data-bs-dismiss&#x3D;&quot;offcanvas&quot; class&#x3D;&quot;btn btn-light me-2&quot;&gt;Cancel&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary&quot;  data-bs-toggle&#x3D;&quot;modal&quot; data-bs-target&#x3D;&quot;#create_success&quot;&gt;Create New&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Add Canvas --&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Start Content --><div class="content pb-0">  <!-- Page Header -->  <div    class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap"  >    <div>      <h4 class="mb-0">Project Dashboard</h4>    </div>    <div class="gap-2 d-flex align-items-center flex-wrap">      <div class="daterangepick form-control w-auto d-flex align-items-center">        <app-date-range-picker></app-date-range-picker>      </div>      <a        href="javascript:void(0);"        class="btn btn-icon btn-outline-light shadow"        data-bs-toggle="tooltip"        data-bs-placement="top"        aria-label="Refresh"        data-bs-original-title="Refresh"        ><i class="ti ti-refresh"></i      ></a>      <app-collapse-header></app-collapse-header>    </div>  </div>  <!-- End Page Header -->  <!-- start row -->  <div class="row">    <div class="col-md-12 col-xl-6 d-flex">      <div class="card flex-fill">        <div class="card-header">          <div            class="d-flex align-items-center justify-content-between flex-wrap row-gap-3"          >            <h6 class="mb-0">Recent Projects</h6>            <div class="d-flex align-items-center flex-wrap row-gap-3">              <div class="dropdown me-2">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Last 30 days                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Last 15 days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 30 days                  </a>                </div>              </div>              <a                class="btn btn-primary d-inline-flex align-items-center"                href="javascript:void(0);"                data-bs-toggle="offcanvas"                data-bs-target="#offcanvas_add"              >                <i class="ti ti-square-rounded-plus-filled me-1"></i>Add Project              </a>            </div>          </div>        </div>        <div class="card-body">          <div class="table-responsive custom-table">            <table class="table table-nowrap dataTable" id="recent-project">              <thead class="table-light">                <tr>                  <th>Name</th>                  <th>Company Name</th>                  <th>Priority</th>                  <th>Due Date</th>                </tr>              </thead>              <tbody>                <tr class="odd">                  <td>                    <h2 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.projectDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/priority/truellysel.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.projectDetails">Truelysell</a>                    </h2>                  </td>                  <td>                    <h6 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.companiesDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/icons/company-icon-01.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.companiesDetails">NovaWave LLC</a>                    </h6>                  </td>                  <td>                    <span                      class="d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger"                      ><i class="ti ti-square-rounded-filled me-1"></i>                      High</span                    >                  </td>                  <td>23 Nov 2025</td>                </tr>                <tr class="even">                  <td>                    <h2 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.projectDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/priority/dreamchat.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.projectDetails">Dreamschat</a>                    </h2>                  </td>                  <td>                    <h6 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.companiesDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/icons/company-icon-02.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.companiesDetails">BlueSky</a>                    </h6>                  </td>                  <td>                    <span                      class="d-inline-flex align-items-center badge badge-pill badge-soft-warning border border-warning"                      ><i class="ti ti-square-rounded-filled me-1"></i>                      Medium</span                    >                  </td>                  <td>07 Nov 2025</td>                </tr>                <tr class="odd">                  <td>                    <h2 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.projectDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/priority/truellysell.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.projectDetails">DreamGigs</a>                    </h2>                  </td>                  <td>                    <h6 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.companiesDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/icons/company-icon-03.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.companiesDetails">Silve Hawk</a>                    </h6>                  </td>                  <td>                    <span                      class="d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger"                      ><i class="ti ti-square-rounded-filled me-1"></i>                      High</span                    >                  </td>                  <td>15 Oct 2025</td>                </tr>                <tr class="even">                  <td>                    <h2 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.projectDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/priority/servbook.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.projectDetails">Servbook</a>                    </h2>                  </td>                  <td>                    <h6 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.companiesDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/icons/company-icon-04.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.companiesDetails">Summit Peak</a>                    </h6>                  </td>                  <td>                    <span                      class="d-inline-flex align-items-center badge badge-pill badge-soft-danger border border-danger"                      ><i class="ti ti-square-rounded-filled me-1"></i>                      High</span                    >                  </td>                  <td>29 Sep 2025</td>                </tr>                <tr class="odd">                  <td>                    <h2 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.projectDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/priority/dream-pos.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.projectDetails">DreamPOS</a>                    </h2>                  </td>                  <td>                    <h6 class="d-flex align-items-center fs-14 fw-medium mb-0">                      <a                        [routerLink]="routes.companiesDetails"                        class="avatar avatar-rounded border me-2"                        ><img                          class="w-auto h-auto"                          src="assets/img/icons/company-icon-05.svg"                          alt="User Image" /></a                      ><a [routerLink]="routes.companiesDetails">RiverStone Ltd</a>                    </h6>                  </td>                  <td>                    <span                      class="d-inline-flex align-items-center badge badge-pill badge-soft-warning border border-warning"                      ><i class="ti ti-square-rounded-filled me-1"></i>                      Medium</span                    >                  </td>                  <td>25 Sep 2025</td>                </tr>              </tbody>            </table>          </div>        </div>        <!-- end card body -->      </div>      <!-- end card -->    </div>    <!-- end col -->    <div class="col-md-12 col-xl-6 d-flex">      <div class="card flex-fill">        <div class="card-header">          <div            class="d-flex align-items-center justify-content-between flex-wrap row-gap-3"          >            <h6 class="mb-0">Project By Stage</h6>            <div class="dropdown">              <a                class="dropdown-toggle btn btn-outline-light shadow"                data-bs-toggle="dropdown"                href="javascript:void(0);"              >                Last 30 days              </a>              <div class="dropdown-menu dropdown-menu-end">                <a href="javascript:void(0);" class="dropdown-item">                  Last 15 days                </a>                <a href="javascript:void(0);" class="dropdown-item">                  Last 30 days                </a>              </div>            </div>          </div>        </div>        <div class="card-body">          <div id="contacts-analysis">            <apx-chart                    [series]="chartOptions3.series"                    [chart]="chartOptions3.chart"                    [labels]="chartOptions3.labels"                    [fill]="chartOptions3.fill"                    [dataLabels]="chartOptions3.dataLabels"                    [responsive]="chartOptions3.responsive"                    [colors]="chartOptions3.colors"                    [legend]="chartOptions3.legend"                    [plotOptions]="chartOptions3.plotOptions"                  ></apx-chart>          </div>        </div>        <!-- end card body -->      </div>      <!-- end card -->    </div>    <!-- end col -->  </div>  <!-- end row -->  <!-- start row -->  <div class="row">    <div class="col-md-12 col-xl-6 d-flex">      <div class="card flex-fill">        <div class="card-header">          <div            class="d-flex align-items-center justify-content-between flex-wrap row-gap-3"          >            <h6 class="mb-0">Projects By Stage</h6>            <div class="d-flex align-items-center flex-wrap row-gap-3">              <div class="dropdown me-2">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Sales Pipeline                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Marketing Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Sales Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Email                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Chats                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Operational                  </a>                </div>              </div>              <div class="dropdown">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Last 3 months                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Last 30 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 15 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 7 Days                  </a>                </div>              </div>            </div>          </div>        </div>        <div class="card-body center pt-0">          <div id="project-stage">            <apx-chart                    [series]="chartOptions4.series"                    [chart]="chartOptions4.chart"                    [dataLabels]="chartOptions4.dataLabels"                    [plotOptions]="chartOptions4.plotOptions"                    [xaxis]="chartOptions4.xaxis"                    [colors]="chartOptions4.colors"                    [legend]="chartOptions4.legend"                  ></apx-chart>          </div>          <p class="fw-medium mb-0">            This data collected based on the Projects for last 30 days          </p>        </div>        <!-- end card body -->      </div>      <!-- end card -->    </div>    <!-- end col -->    <div class="col-md-12 col-xl-6 d-flex flex-column">      <div class="card flex-fill">        <div class="card-header">          <div            class="d-flex align-items-center justify-content-between flex-wrap row-gap-3"          >            <h6 class="mb-0">Leads By Stage</h6>            <div class="d-flex align-items-center flex-wrap row-gap-3">              <div class="dropdown me-2">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Marketing Pipeline                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Marketing Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Sales Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Email                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Chats                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Operational                  </a>                </div>              </div>              <div class="dropdown">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Last 3 months                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Last 30 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 15 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 7 Days                  </a>                </div>              </div>            </div>          </div>        </div>        <div class="card-body py-0">          <div id="last-chart">             <apx-chart                    [series]="chartOptions.series"                    [chart]="chartOptions.chart"                    [dataLabels]="chartOptions.dataLabels"                    [plotOptions]="chartOptions.plotOptions"                    [xaxis]="chartOptions.xaxis"                    [colors]="chartOptions.colors"                  ></apx-chart>          </div>        </div>        <!-- end card body -->      </div>      <!-- end card -->      <div class="card w-100">        <div class="card-header">          <div            class="d-flex align-items-center justify-content-between flex-wrap row-gap-3"          >            <h6 class="mb-0">Won Deals Stage</h6>            <div class="d-flex align-items-center flex-wrap row-gap-3">              <div class="dropdown me-2">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Marketing Pipeline                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Marketing Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Sales Pipeline                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Email                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Chats                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Operational                  </a>                </div>              </div>              <div class="dropdown">                <a                  class="dropdown-toggle btn btn-outline-light shadow"                  data-bs-toggle="dropdown"                  href="javascript:void(0);"                >                  Last 3 months                </a>                <div class="dropdown-menu dropdown-menu-end">                  <a href="javascript:void(0);" class="dropdown-item">                    Last 30 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 15 Days                  </a>                  <a href="javascript:void(0);" class="dropdown-item">                    Last 7 Days                  </a>                </div>              </div>            </div>          </div>        </div>        <div class="card-body py-0">          <div id="won-chart">             <apx-chart                    [series]="chartOptions2.series"                    [chart]="chartOptions2.chart"                    [dataLabels]="chartOptions2.dataLabels"                    [plotOptions]="chartOptions2.plotOptions"                    [xaxis]="chartOptions2.xaxis"                    [colors]="chartOptions2.colors"                  ></apx-chart>          </div>        </div>        <!-- end card body -->      </div>      <!-- end card -->    </div>    <!-- end col -->  </div>  <!-- end row --></div><!-- End Content -->		<!-- Add Canvas -->    <div class="offcanvas offcanvas-end offcanvas-large" tabindex="-1" id="offcanvas_add">        <div class="offcanvas-header border-bottom">            <h5 class="mb-0">Add New Project</h5>            <button type="button"                class="btn-close custom-btn-close border p-1 me-0 d-flex align-items-center justify-content-center rounded-circle"                data-bs-dismiss="offcanvas" aria-label="Close">            </button>        </div>        <div class="offcanvas-body">            <form>                <div class="row">                    <div class="col-md-12">                        <div class="mb-3">                            <label class="form-label">Name <span                                    class="text-danger">*</span></label>                            <input type="text" class="form-control">                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Project ID<span                                    class="text-danger">*</span></label>                            <input type="text" class="form-control">                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Project Type <span                                    class="text-danger">*</span></label>                                    <p-select  [options]="selectedValue1" [(ngModel)]="selectedValue1" [ngModelOptions]="{standalone: true}" optionLabel="name" placeholder="Select" [filter]="true"  class="form-control" />                                                    </div>                    </div>                    <div class="col-md-6">											                        <div class="mb-3">                            <label class="form-label">Client <span class="text-danger">*</span></label>                            <mat-select class="select custom-mat-select" placeholder="Select">                                <mat-option value="1">Select</mat-option>                                <mat-option value="1">NovaWave LLC</mat-option>                                <mat-option value="1">Silver Hawk</mat-option>                                <mat-option value="1">Harbor View</mat-option>                            </mat-select>                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Category <span class="text-danger">*</span></label>                            <mat-select class="select custom-mat-select" placeholder="Select">                                <mat-option value="1">Select</mat-option>                                <mat-option value="1">Harbor View</mat-option>                                <mat-option value="1">LLC</mat-option>                            </mat-select>                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Project Timing <span                                    class="text-danger">*</span></label>                            <mat-select class="select custom-mat-select" placeholder="Select">                                <mat-option value="1">Select</mat-option>                                <mat-option value="1">Hourly</mat-option>                                <mat-option value="1">Weekly</mat-option>                                <mat-option value="1">Monthly</mat-option>                                <mat-option value="1">Less than 1 Month</mat-option>                                <mat-option value="1">Less than 3 months</mat-option>                            </mat-select>                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Price <span class="text-danger">*</span></label>                            <input class="form-control" type="text">                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Responsible Persons <span class="text-danger">*</span></label>                             <mat-select                  [(value)]="selectedOption3"                  class="custom-mat-select img-mat-select-mat-chip"                  placeholder="Select"                  multiple                >                  <mat-select-trigger>                    <mat-chip-set>                      @for (user of selectedOption3; track user) {                      <mat-chip>                        <img                          [src]="user.image"                          alt="{{ user.name }}"                          width="24"                          height="24"                          style="margin-right: 5px"                        />                        {{ user.name }}                        <mat-icon                          class="cancel-icon"                          (click)="removeOption3(user)"                          >cancel</mat-icon                        >                      </mat-chip>                      }                    </mat-chip-set>                  </mat-select-trigger>                  @for (user of option3; track user) {                  <mat-option                    [value]="user"                    class="img-mat-select-mat-chip-options"                  >                    <img                      src="{{ user.image }}"                      alt="{{ user.name }}"                      width="24"                      height="24"                      style="margin-right: 5px"                    />                    {{ user.name }}                  </mat-option>                  }                </mat-select>                                                   </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Team Leader <span class="text-danger">*</span></label>                              <mat-select                  [(value)]="selectedOption4"                  class="custom-mat-select img-mat-select-mat-chip"                  placeholder="Select"                  multiple                >                  <mat-select-trigger>                    <mat-chip-set>                      @for (user of selectedOption4; track user) {                      <mat-chip>                        <img                          [src]="user.image"                          alt="{{ user.name }}"                          width="24"                          height="24"                          style="margin-right: 5px"                        />                        {{ user.name }}                        <mat-icon                          class="cancel-icon"                          (click)="removeOption4(user)"                          >cancel</mat-icon                        >                      </mat-chip>                      }                    </mat-chip-set>                  </mat-select-trigger>                  @for (user of option4; track user) {                  <mat-option                    [value]="user"                    class="img-mat-select-mat-chip-options"                  >                    <img                      src="{{ user.image }}"                      alt="{{ user.name }}"                      width="24"                      height="24"                      style="margin-right: 5px"                    />                    {{ user.name }}                  </mat-option>                  }                </mat-select>                                                    </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Start Date <span class="text-danger">*</span></label>                            <div class="input-group w-auto input-group-flat ngxdate">                                <input type="text" class="form-control" bsDatepicker [bsConfig]="{dateInputFormat:\'DD MMM,YYYY\'}" container=".ngxdate" placeholder="dd/mm/yyyy">                                <span class="input-group-text">                                    <i class="ti ti-calendar"></i>                                </span>                            </div>                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Due Date <span class="text-danger">*</span></label>                            <div class="input-group w-auto input-group-flat ngxdate2">                                <input type="text" class="form-control" bsDatepicker [bsConfig]="{dateInputFormat:\'DD MMM,YYYY\'}" container=".ngxdate2" placeholder="dd/mm/yyyy">                                <span class="input-group-text">                                    <i class="ti ti-calendar"></i>                                </span>                            </div>                        </div>                    </div>                    <div class="col-md-6">                        <div class="mb-3">                            <label class="form-label">Priority</label>                            <mat-select class="select custom-mat-select" placeholder="Select">                                <mat-option value="1">Select</mat-option>                                <mat-option value="1">High</mat-option>                                <mat-option value="1">Low</mat-option>                                <mat-option value="1">Medium</mat-option>                            </mat-select>                        </div>                    </div>                    <div class="col-md-6">                       <div class="mb-3">                            <label class="form-label">Status</label>                            <mat-select class="select custom-mat-select" placeholder="Select">                                <mat-option value="1">Select</mat-option>                                <mat-option value="1">Active</mat-option>                                <mat-option value="1">Inactive</mat-option>                            </mat-select>                        </div>                    </div>                    <div class="col-md-12">                        <div class="mb-3">                            <label class="form-label">Description <span                                    class="text-danger">*</span></label>                            <textarea class="form-control" rows="3" placeholder="Description"></textarea>                        </div>                    </div>                </div>                <div class="d-flex align-items-center justify-content-end">                    <button type="button" data-bs-dismiss="offcanvas" class="btn btn-light me-2">Cancel</button>                    <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#create_success">Create New</button>                </div>            </form>        </div>    </div>    <!-- /Add Canvas --></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'ProjectDashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProjectDashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

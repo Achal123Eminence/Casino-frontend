@@ -1,0 +1,2944 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HeaderComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/common/header/header.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-header</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./header.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./header.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#addClass" >addClass</a>
+                            </li>
+                            <li>
+                                <a href="#base" >base</a>
+                            </li>
+                            <li>
+                                <a href="#elem" >elem</a>
+                            </li>
+                            <li>
+                                <a href="#last" >last</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#miniSidebar" >miniSidebar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#multilevel" >multilevel</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevel1" >multiLevel1</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevel2" >multiLevel2</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevel3" >multiLevel3</a>
+                            </li>
+                            <li>
+                                <a href="#openMenuItem" >openMenuItem</a>
+                            </li>
+                            <li>
+                                <a href="#openSubmenuOneItem" >openSubmenuOneItem</a>
+                            </li>
+                            <li>
+                                <a href="#page" >page</a>
+                            </li>
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#settings" >settings</a>
+                            </li>
+                            <li>
+                                <a href="#side_bar_data" >side_bar_data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#submenus" >submenus</a>
+                            </li>
+                            <li>
+                                <a href="#themeMode" >themeMode</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeTheme" >changeTheme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#changeThemeColor" >changeThemeColor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#expandSubMenus" >expandSubMenus</a>
+                            </li>
+                            <li>
+                                <a href="#fullscreen" >fullscreen</a>
+                            </li>
+                            <li>
+                                <a href="#miniSideBarBlur" >miniSideBarBlur</a>
+                            </li>
+                            <li>
+                                <a href="#miniSideBarFocus" >miniSideBarFocus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#miniSideBarMouseHover" >miniSideBarMouseHover</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevelOne" >multiLevelOne</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevelThree" >multiLevelThree</a>
+                            </li>
+                            <li>
+                                <a href="#multiLevelTwo" >multiLevelTwo</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onLogout" >onLogout</a>
+                            </li>
+                            <li>
+                                <a href="#onToggleSidebar" >onToggleSidebar</a>
+                            </li>
+                            <li>
+                                <a href="#openMenu" >openMenu</a>
+                            </li>
+                            <li>
+                                <a href="#openSubmenuOne" >openSubmenuOne</a>
+                            </li>
+                            <li>
+                                <a href="#openSubmenus" >openSubmenus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#toggleSidebar" >toggleSidebar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#toggleSidebarmini" >toggleSidebarmini</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#togglesMobileSideBar" >togglesMobileSideBar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(data: <a href="../injectables/DataService.html" target="_self">DataService</a>, common: <a href="../injectables/CommonService.html" target="_self">CommonService</a>, sidebar: <a href="../injectables/SidebarService.html" target="_self">SidebarService</a>, settings: <a href="../injectables/SettingsService.html" target="_self">SettingsService</a>, sideBar: <a href="../injectables/SidebarService.html" target="_self">SidebarService</a>, dataserve: <a href="../injectables/DatahandlerService.html" target="_self">DatahandlerService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/features/common/header/header.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>common</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommonService.html" target="_self" >CommonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sidebar</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SidebarService.html" target="_self" >SidebarService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>settings</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sideBar</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SidebarService.html" target="_self" >SidebarService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dataserve</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DatahandlerService.html" target="_self" >DatahandlerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTheme"></a>
+                    <span class="name">
+                        <span ><b>changeTheme</b></span>
+                        <a href="#changeTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTheme()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>changeTheme function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeThemeColor"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>changeThemeColor</b></span>
+                        <a href="#changeThemeColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeThemeColor(theme: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>changeThemeColor function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>theme</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expandSubMenus"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>expandSubMenus</b></span>
+                        <a href="#expandSubMenus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>expandSubMenus(menu: <a href="../interfaces/Menu.html" target="_self">Menu</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:229</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>expandSubMenus function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>menu</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Menu.html" target="_self" >Menu</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullscreen"></a>
+                    <span class="name">
+                        <span ><b>fullscreen</b></span>
+                        <a href="#fullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fullscreen()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>fullscreen function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="miniSideBarBlur"></a>
+                    <span class="name">
+                        <span ><b>miniSideBarBlur</b></span>
+                        <a href="#miniSideBarBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>miniSideBarBlur(position: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>miniSideBarBlur function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>position</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="miniSideBarFocus"></a>
+                    <span class="name">
+                        <span ><b>miniSideBarFocus</b></span>
+                        <a href="#miniSideBarFocus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>miniSideBarFocus(position: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>miniSideBarFocus function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>position</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="miniSideBarMouseHover"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>miniSideBarMouseHover</b></span>
+                        <a href="#miniSideBarMouseHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>miniSideBarMouseHover(position: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>miniSideBarMouseHover function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>position</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevelOne"></a>
+                    <span class="name">
+                        <span ><b>multiLevelOne</b></span>
+                        <a href="#multiLevelOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>multiLevelOne()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>multiLevelOne function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevelThree"></a>
+                    <span class="name">
+                        <span ><b>multiLevelThree</b></span>
+                        <a href="#multiLevelThree"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>multiLevelThree()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="264"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:264</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>multiLevelThree function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevelTwo"></a>
+                    <span class="name">
+                        <span ><b>multiLevelTwo</b></span>
+                        <a href="#multiLevelTwo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>multiLevelTwo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>multiLevelTwo function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnInit function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogout"></a>
+                    <span class="name">
+                        <span ><b>onLogout</b></span>
+                        <a href="#onLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>onLogout function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onToggleSidebar"></a>
+                    <span class="name">
+                        <span ><b>onToggleSidebar</b></span>
+                        <a href="#onToggleSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onToggleSidebar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:287</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>onToggleSidebar function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openMenu"></a>
+                    <span class="name">
+                        <span ><b>openMenu</b></span>
+                        <a href="#openMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openMenu(menu: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:205</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>openMenu function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>menu</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSubmenuOne"></a>
+                    <span class="name">
+                        <span ><b>openSubmenuOne</b></span>
+                        <a href="#openSubmenuOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSubmenuOne(subMenus: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>openSubmenuOne function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subMenus</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Parameter.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSubmenus"></a>
+                    <span class="name">
+                        <span ><b>openSubmenus</b></span>
+                        <a href="#openSubmenus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openSubmenus()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>openSubmenus function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebar"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>toggleSidebar</b></span>
+                        <a href="#toggleSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toggleSidebar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>toggleSidebar function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebarmini"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>toggleSidebarmini</b></span>
+                        <a href="#toggleSidebarmini"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toggleSidebarmini()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="301"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:301</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>toggleSidebarmini function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="togglesMobileSideBar"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>togglesMobileSideBar</b></span>
+                        <a href="#togglesMobileSideBar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>togglesMobileSideBar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/features/common/header/header.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>togglesMobileSideBar function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addClass"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>addClass</b></span>
+                        <a href="#addClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/features/common/header/header.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="base"></a>
+                    <span class="name">
+                        <span ><b>base</b></span>
+                        <a href="#base"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/features/common/header/header.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elem"></a>
+                    <span class="name">
+                        <span ><b>elem</b></span>
+                        <a href="#elem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>document.documentElement</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/features/common/header/header.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="last"></a>
+                    <span class="name">
+                        <span ><b>last</b></span>
+                        <a href="#last"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/common/header/header.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="miniSidebar"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>miniSidebar</b></span>
+                        <a href="#miniSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/features/common/header/header.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multilevel"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>multilevel</b></span>
+                        <a href="#multilevel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[false, false, false]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/common/header/header.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevel1"></a>
+                    <span class="name">
+                        <span ><b>multiLevel1</b></span>
+                        <a href="#multiLevel1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/features/common/header/header.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevel2"></a>
+                    <span class="name">
+                        <span ><b>multiLevel2</b></span>
+                        <a href="#multiLevel2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/features/common/header/header.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="multiLevel3"></a>
+                    <span class="name">
+                        <span ><b>multiLevel3</b></span>
+                        <a href="#multiLevel3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/features/common/header/header.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openMenuItem"></a>
+                    <span class="name">
+                        <span ><b>openMenuItem</b></span>
+                        <a href="#openMenuItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/features/common/header/header.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSubmenuOneItem"></a>
+                    <span class="name">
+                        <span ><b>openSubmenuOneItem</b></span>
+                        <a href="#openSubmenuOneItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/features/common/header/header.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="page"></a>
+                    <span class="name">
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/common/header/header.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/common/header/header.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="settings"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>settings</b></span>
+                        <a href="#settings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/features/common/header/header.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="side_bar_data"></a>
+                    <span class="name">
+                        <span ><b>side_bar_data</b></span>
+                        <a href="#side_bar_data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MainMenu[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/features/common/header/header.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submenus"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>submenus</b></span>
+                        <a href="#submenus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/common/header/header.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themeMode"></a>
+                    <span class="name">
+                        <span ><b>themeMode</b></span>
+                        <a href="#themeMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/common/header/header.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/features/common/header/header.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../shared/routes/routes&#x27;;
+import { MainMenu, Menu } from &#x27;../../../shared/model/sidebar.model&#x27;;
+import { DataService } from &#x27;../../../shared/data/data.service&#x27;;
+import { CommonService } from &#x27;../../../shared/common/common.service&#x27;;
+import { SidebarService } from &#x27;../../../shared/sidebar/sidebar.service&#x27;;
+import { SettingsService } from &#x27;../../../shared/settings/settings.service&#x27;;
+import { DatahandlerService } from &#x27;../../../services/datahandler.service&#x27;;
+import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;../../../services/auth.service&#x27;;
+import &#x27;bootstrap/dist/js/bootstrap.bundle.min.js&#x27;;
+
+declare var bootstrap: any
+@Component({
+  selector: &#x27;app-header&#x27;,
+  templateUrl: &#x27;./header.component.html&#x27;,
+  styleUrl: &#x27;./header.component.scss&#x27;,
+  imports: [RouterLink]
+})
+export class HeaderComponent {
+
+  base &#x3D; &#x27;&#x27;;
+  page &#x3D; &#x27;&#x27;;
+  last &#x3D; &#x27;&#x27;;
+  themeMode &#x3D; &#x27;light&#x27;;
+  public miniSidebar &#x3D; false;
+  routes &#x3D; routes;
+  public multilevel: boolean[] &#x3D; [false, false, false];
+  public submenus &#x3D; false;
+  public addClass &#x3D; false;
+  /**
+   * openSubmenus function.
+   * @returns {*} Result.
+   */
+  openSubmenus() {
+    this.submenus &#x3D; !this.submenus;
+  }
+  side_bar_data: MainMenu[] &#x3D; [];
+  openMenuItem: any &#x3D; null;
+  openSubmenuOneItem: any &#x3D; null;
+  multiLevel1 &#x3D; false;
+  multiLevel2 &#x3D; false;
+  multiLevel3 &#x3D; false;
+  user: any;
+
+  constructor(
+    private data: DataService,
+    private common: CommonService,
+    private sidebar: SidebarService,
+    public settings: SettingsService,
+    private sideBar: SidebarService,
+    private dataserve: DatahandlerService,
+    private router: Router,
+    private authService: AuthService,
+  ) {
+    this.common.base.subscribe((base: string) &#x3D;&gt; {
+      this.base &#x3D; base;
+    });
+    this.common.page.subscribe((page: string) &#x3D;&gt; {
+      this.page &#x3D; page;
+    });
+    this.common.last.subscribe((last: string) &#x3D;&gt; {
+      this.last &#x3D; last;
+    });
+    this.sidebar.sideBarPosition.subscribe((res: string) &#x3D;&gt; {
+      if (res &#x3D;&#x3D; &#x27;true&#x27;) {
+        this.miniSidebar &#x3D; true;
+      } else {
+        this.miniSidebar &#x3D; false;
+      }
+    });
+
+    this.settings.themeColor.subscribe((res: string) &#x3D;&gt; {
+      this.themeMode &#x3D; res;
+    });
+
+  }
+  elem &#x3D; document.documentElement;
+  /**
+   * fullscreen function.
+   * @returns {*} Result.
+   */
+  fullscreen() {
+    if (!document.fullscreenElement) {
+      this.elem.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit(): void {
+    console.log(window.bootstrap)
+    this.authService.user$.subscribe((user: any) &#x3D;&gt; {
+      this.user &#x3D; user;
+    });
+  }
+
+
+  /**
+   * toggleSidebar function.
+   * @returns {*} Result.
+   */
+  public toggleSidebar(): void {
+    this.sidebar.switchMobileSideBarPosition();
+    this.addClass &#x3D; !this.addClass;
+    /* eslint no-var: off */
+    var root &#x3D; document.getElementsByTagName(&#x27;html&#x27;)[0];
+    /* eslint no-var: off */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    var sidebar: any &#x3D; document.getElementById(&#x27;sidebar&#x27;)
+    var mainwrapper: any &#x3D; document.querySelector(&#x27;.main-wrapper&#x27;)
+
+    if (this.addClass) {
+      root.classList.add(&#x27;menu-opened&#x27;);
+      mainwrapper.classList.add(&#x27;slide-nav&#x27;);
+    }
+    else {
+      root.classList.remove(&#x27;menu-opened&#x27;);
+      mainwrapper.classList.remove(&#x27;slide-nav&#x27;);
+    }
+  }
+
+  /**
+   * togglesMobileSideBar function.
+   * @returns {*} Result.
+   */
+  public togglesMobileSideBar(): void {
+    this.sideBar.switchMobileSideBarPosition();
+
+  }
+
+  /**
+   * miniSideBarMouseHover function.
+   * @param {*} position - Parameter.
+   * @returns {*} Result.
+   */
+  public miniSideBarMouseHover(position: string): void {
+    if (this.settings.SideBarMouseHover &#x3D;&#x3D;&#x3D; true) {
+      if (position &#x3D;&#x3D; &#x27;over&#x27;) {
+        this.sidebar.expandSideBar.next(&#x27;true&#x27;);
+      } else {
+        this.sidebar.expandSideBar.next(&#x27;false&#x27;);
+      }
+    }
+  }
+
+  /**
+   * changeTheme function.
+   * @returns {*} Result.
+   */
+  changeTheme() {
+    if (this.themeMode &#x3D;&#x3D;&#x3D; &#x27;light&#x27;) {
+      this.changeThemeColor(&#x27;dark&#x27;)
+    }
+    else {
+      this.changeThemeColor(&#x27;light&#x27;)
+    }
+  }
+  /**
+   * changeThemeColor function.
+   * @param {*} theme - Parameter.
+   * @returns {*} Result.
+   */
+  public changeThemeColor(theme: string): void {
+    this.settings.themeColor.next(theme);
+    this.settings.changeThemeColor(theme);
+    localStorage.setItem(&#x27;themeMode&#x27;, theme);
+  }
+  /**
+   * miniSideBarBlur function.
+   * @param {*} position - Parameter.
+   * @returns {*} Result.
+   */
+  miniSideBarBlur(position: string) {
+    if (position &#x3D;&#x3D;&#x3D; &#x27;over&#x27;) {
+      this.sideBar.expandSideBar.next(&#x27;true&#x27;);
+    } else {
+      this.sideBar.expandSideBar.next(&#x27;false&#x27;);
+    }
+  }
+
+  /**
+   * miniSideBarFocus function.
+   * @param {*} position - Parameter.
+   * @returns {*} Result.
+   */
+  miniSideBarFocus(position: string) {
+    if (position &#x3D;&#x3D;&#x3D; &#x27;over&#x27;) {
+      this.sideBar.expandSideBar.next(&#x27;true&#x27;);
+    } else {
+      this.sideBar.expandSideBar.next(&#x27;false&#x27;);
+    }
+  }
+
+
+  /**
+   * openMenu function.
+   * @param {*} menu - Parameter.
+   * @returns {*} Result.
+   */
+  openMenu(menu: any): void {
+    if (this.openMenuItem &#x3D;&#x3D;&#x3D; menu) {
+      this.openMenuItem &#x3D; null;
+    } else {
+      this.openMenuItem &#x3D; menu;
+    }
+  }
+  /**
+   * openSubmenuOne function.
+   * @param {*} subMenus - Parameter.
+   * @returns {*} Result.
+   */
+  openSubmenuOne(subMenus: any): void {
+    if (this.openSubmenuOneItem &#x3D;&#x3D;&#x3D; subMenus) {
+      this.openSubmenuOneItem &#x3D; null;
+    } else {
+      this.openSubmenuOneItem &#x3D; subMenus;
+    }
+  }
+  /**
+   * expandSubMenus function.
+   * @param {*} menu - Parameter.
+   * @returns {*} Result.
+   */
+  public expandSubMenus(menu: Menu): void {
+    sessionStorage.setItem(&#x27;menuValue&#x27;, menu.menuValue);
+    this.side_bar_data.map((mainMenus: MainMenu) &#x3D;&gt; {
+      mainMenus.menu.map((resMenu: Menu) &#x3D;&gt; {
+        // collapse other submenus which are open
+        if (resMenu.menuValue &#x3D;&#x3D;&#x3D; menu.menuValue) {
+          menu.showSubRoute &#x3D; !menu.showSubRoute;
+          if (menu.showSubRoute &#x3D;&#x3D;&#x3D; false) {
+            sessionStorage.removeItem(&#x27;menuValue&#x27;);
+          }
+        } else {
+          resMenu.showSubRoute &#x3D; false;
+        }
+      });
+    });
+  }
+
+  /**
+   * multiLevelOne function.
+   * @returns {*} Result.
+   */
+  multiLevelOne() {
+    this.multiLevel1 &#x3D; !this.multiLevel1;
+  }
+  /**
+   * multiLevelTwo function.
+   * @returns {*} Result.
+   */
+  multiLevelTwo() {
+    this.multiLevel2 &#x3D; !this.multiLevel2;
+  }
+  /**
+   * multiLevelThree function.
+   * @returns {*} Result.
+   */
+  multiLevelThree() {
+    this.multiLevel3 &#x3D; !this.multiLevel3;
+  }
+  /**
+   * onLogout function.
+   * @returns {*} Result.
+   */
+  onLogout() {
+    this.dataserve.logout().subscribe({
+      next: (res: any) &#x3D;&gt; {
+        console.log(&#x27;Logout successful:&#x27;, res);
+        this.router.navigate([&#x27;/login&#x27;]);
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Logout failed:&#x27;, err);
+      }
+    });
+  }
+
+  /**
+   * onToggleSidebar function.
+   * @returns {*} Result.
+   */
+  onToggleSidebar(): void {
+    const layout &#x3D; document.documentElement.getAttribute(&#x27;data-layout&#x27;);
+
+    if (layout &#x3D;&#x3D;&#x3D; &#x27;hidden&#x27;) {
+      this.settings.togglehidden();
+    } else {
+      this.toggleSidebarmini();
+    }
+  }
+
+  /**
+   * toggleSidebarmini function.
+   * @returns {*} Result.
+   */
+  public toggleSidebarmini(): void {
+    this.sidebar.switchSideMenuPosition();
+  }
+
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Header --&gt;
+&lt;div class&#x3D;&quot;navbar-header&quot; (mouseover)&#x3D;&quot;miniSideBarMouseHover(&#x27;over&#x27;)&quot; (mouseout)&#x3D;&quot;miniSideBarMouseHover(&#x27;out&#x27;)&quot;
+    (focus)&#x3D;&quot;miniSideBarMouseHover(&#x27;over&#x27;)&quot; (blur)&#x3D;&quot;miniSideBarMouseHover(&#x27;out&#x27;)&quot; tabindex&#x3D;&quot;0&quot;&gt;
+
+    &lt;div class&#x3D;&quot;page-container topbar-menu&quot;&gt;
+        &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+
+            &lt;!-- Logo --&gt;
+            &lt;a [routerLink]&#x3D;&quot;routes.index&quot; class&#x3D;&quot;logo&quot;&gt;
+
+                &lt;!-- Logo Normal --&gt;
+                &lt;span class&#x3D;&quot;logo-light&quot;&gt;
+                    &lt;span class&#x3D;&quot;logo-lg&quot;&gt;&lt;img src&#x3D;&quot;assets/img/logo.svg&quot; alt&#x3D;&quot;logo&quot;&gt;&lt;/span&gt;
+                    &lt;span class&#x3D;&quot;logo-sm&quot;&gt;&lt;img src&#x3D;&quot;assets/img/logo-small.svg&quot; alt&#x3D;&quot;small logo&quot;&gt;&lt;/span&gt;
+                &lt;/span&gt;
+
+                &lt;!-- Logo Dark --&gt;
+                &lt;span class&#x3D;&quot;logo-dark&quot;&gt;
+                    &lt;span class&#x3D;&quot;logo-lg&quot;&gt;&lt;img src&#x3D;&quot;assets/img/logo-white.svg&quot; alt&#x3D;&quot;dark logo&quot;&gt;&lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/a&gt;
+            &lt;!-- /Logo --&gt;
+
+
+            &lt;button class&#x3D;&quot;sidenav-toggle-btn btn border-0 p-0&quot; id&#x3D;&quot;toggle_btn2&quot; (click)&#x3D;&quot;settings.togglehidden()&quot;&gt;
+                &lt;i class&#x3D;&quot;ti ti-arrow-bar-to-right&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+            &lt;a id&#x3D;&quot;mobile_btn&quot; class&#x3D;&quot;mobile-btn&quot; href&#x3D;&quot;javascript:void(0);&quot; (click)&#x3D;&quot;toggleSidebar()&quot;&gt;
+                &lt;i class&#x3D;&quot;ti ti-menu-deep fs-24&quot;&gt;&lt;/i&gt;
+            &lt;/a&gt;
+
+            &lt;h2 (click)&#x3D;&quot;onToggleSidebar()&quot; class&#x3D;&quot;hide-mobile cursor-pointer&quot;&gt; &lt;i class&#x3D;&quot;ti ti-menu-deep fs-24&quot;&gt;&lt;/i&gt;&lt;/h2&gt;
+
+            &lt;div class&#x3D;&quot;me-auto d-flex align-items-center header-search d-lg-flex d-none&quot;&gt;
+                &lt;!-- Search --&gt;
+                &lt;div class&#x3D;&quot;input-icon position-relative me-2&quot;&gt;
+                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Search Keyword&quot;&gt;
+                    &lt;span class&#x3D;&quot;input-icon-addon d-inline-flex p-0 header-search-icon&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-command&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;!-- /Search --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class&#x3D;&quot;d-flex align-items-center mb-0 level-name&quot;&gt;{{user.levelName}}&lt;/p&gt;
+        &lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+
+            &lt;!-- Search for Mobile --&gt;
+            &lt;div class&#x3D;&quot;header-item d-flex d-lg-none me-2&quot;&gt;
+                &lt;button class&#x3D;&quot;topbar-link btn&quot; data-bs-toggle&#x3D;&quot;modal&quot; data-bs-target&#x3D;&quot;#searchModal&quot; type&#x3D;&quot;button&quot;&gt;
+                    &lt;i class&#x3D;&quot;ti ti-search fs-16&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+
+
+            &lt;!-- Minimize --&gt;
+            &lt;div class&#x3D;&quot;header-item&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn topbar-link btnFullscreen&quot; (click)&#x3D;&quot;fullscreen()&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-maximize&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- Minimize --&gt;
+
+            &lt;!-- Light/Dark Mode Button --&gt;
+            &lt;div class&#x3D;&quot;header-item d-none d-sm-flex me-2&quot;&gt;
+                &lt;button class&#x3D;&quot;topbar-link btn topbar-link&quot; id&#x3D;&quot;light-dark-mode&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;changeTheme()&quot;&gt;
+                    &lt;i class&#x3D;&quot;ti ti-moon fs-16&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;!-- pages --&gt;
+            &lt;div class&#x3D;&quot;header-item d-none d-sm-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn topbar-link topbar-teal-link&quot; data-bs-toggle&#x3D;&quot;dropdown&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-layout-grid-add&quot;&gt;&lt;/i&gt;
+                    &lt;/a&gt;
+                    &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end dropdown-menu-md p-2&quot;&gt;
+
+                        &lt;!-- Item--&gt;
+                        &lt;a [routerLink]&#x3D;&quot;routes.contactGrid&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                &lt;div&gt;
+                                    &lt;span class&#x3D;&quot;d-flex mb-1 fw-semibold text-dark&quot;&gt;Contacts&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;fs-13&quot;&gt;View All the Contacts&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;i class&#x3D;&quot;ti ti-chevron-right-pipe text-dark&quot;&gt;&lt;/i&gt;
+                            &lt;/div&gt;
+                        &lt;/a&gt;
+
+                        &lt;!-- Item--&gt;
+                        &lt;a [routerLink]&#x3D;&quot;routes.pipeline&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                &lt;div&gt;
+                                    &lt;span class&#x3D;&quot;d-flex mb-1 fw-semibold text-dark&quot;&gt;Pipeline&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;fs-13&quot;&gt;View All the Pipeline&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;i class&#x3D;&quot;ti ti-chevron-right-pipe text-dark&quot;&gt;&lt;/i&gt;
+                            &lt;/div&gt;
+                        &lt;/a&gt;
+
+                        &lt;!-- Item--&gt;
+                        &lt;a [routerLink]&#x3D;&quot;routes.activitiesList&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                &lt;div&gt;
+                                    &lt;span class&#x3D;&quot;d-flex mb-1 fw-semibold text-dark&quot;&gt;Activities&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;fs-13&quot;&gt;Activities&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;i class&#x3D;&quot;ti ti-chevron-right-pipe text-dark&quot;&gt;&lt;/i&gt;
+                            &lt;/div&gt;
+                        &lt;/a&gt;
+
+                        &lt;!-- Item--&gt;
+                        &lt;a [routerLink]&#x3D;&quot;routes.analytics&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                            &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                &lt;div&gt;
+                                    &lt;span class&#x3D;&quot;d-flex mb-1 fw-semibold text-dark&quot;&gt;Analytics&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;fs-13&quot;&gt;Analytics&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;i class&#x3D;&quot;ti ti-chevron-right-pipe text-dark&quot;&gt;&lt;/i&gt;
+                            &lt;/div&gt;
+                        &lt;/a&gt;
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- faq --&gt;
+            &lt;div class&#x3D;&quot;header-item d-none d-sm-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                    &lt;a [routerLink]&#x3D;&quot;routes.faq&quot; class&#x3D;&quot;btn topbar-link topbar-indigo-link&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-help-hexagon&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- report --&gt;
+            &lt;div class&#x3D;&quot;header-item d-none d-sm-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                    &lt;a [routerLink]&#x3D;&quot;routes.leadReports&quot; class&#x3D;&quot;btn topbar-link topbar-warning-link&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-chart-pie&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;header-line&quot;&gt;&lt;/div&gt;
+
+            &lt;!-- message --&gt;
+            &lt;div class&#x3D;&quot;header-item&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+                    &lt;a [routerLink]&#x3D;&quot;routes.chat&quot; class&#x3D;&quot;btn topbar-link&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-message-circle-exclamation&quot;&gt;&lt;/i&gt;
+                        &lt;span class&#x3D;&quot;badge rounded-pill&quot;&gt;14&lt;/span&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Notification Dropdown --&gt;
+            &lt;div class&#x3D;&quot;header-item&quot;&gt;
+                &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+
+                    &lt;button class&#x3D;&quot;topbar-link btn topbar-link dropdown-toggle drop-arrow-none&quot;
+                        data-bs-toggle&#x3D;&quot;dropdown&quot; data-bs-offset&#x3D;&quot;0,24&quot; type&#x3D;&quot;button&quot; aria-haspopup&#x3D;&quot;false&quot;
+                        aria-expanded&#x3D;&quot;false&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-bell-check fs-16 animate-ring&quot;&gt;&lt;/i&gt;
+                        &lt;span class&#x3D;&quot;badge rounded-pill&quot;&gt;10&lt;/span&gt;
+                    &lt;/button&gt;
+
+                    &lt;div class&#x3D;&quot;dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg&quot; style&#x3D;&quot;min-height: 300px;&quot;&gt;
+
+                        &lt;div class&#x3D;&quot;p-2 border-bottom&quot;&gt;
+                            &lt;div class&#x3D;&quot;row align-items-center&quot;&gt;
+                                &lt;div class&#x3D;&quot;col&quot;&gt;
+                                    &lt;h6 class&#x3D;&quot;m-0 fs-16 fw-semibold&quot;&gt; Notifications&lt;/h6&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;!-- Notification Body --&gt;
+                        &lt;div class&#x3D;&quot;notification-body position-relative z-2 rounded-0&quot; data-simplebar&gt;
+
+                            &lt;!-- Item--&gt;
+                            &lt;div class&#x3D;&quot;dropdown-item notification-item py-3 text-wrap border-bottom&quot;
+                                id&#x3D;&quot;notification-1&quot;&gt;
+                                &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                                    &lt;div class&#x3D;&quot;me-2 position-relative flex-shrink-0&quot;&gt;
+                                        &lt;img src&#x3D;&quot;assets/img/users/user-01.jpg&quot; class&#x3D;&quot;avatar-md rounded-circle&quot; alt&#x3D;&quot;&quot;&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;flex-grow-1&quot;&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 fw-medium text-dark&quot;&gt;John Doe&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;mb-1 text-wrap&quot;&gt;
+                                            left 6 comments on &lt;span class&#x3D;&quot;fw-medium text-dark&quot;&gt;Isla Nublar SOC2
+                                                compliance report&lt;/span&gt;
+                                        &lt;/p&gt;
+                                        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center&quot;&gt;
+                                            &lt;span class&#x3D;&quot;fs-12&quot;&gt;&lt;i class&#x3D;&quot;ti ti-clock me-1&quot;&gt;&lt;/i&gt;4 min ago&lt;/span&gt;
+                                            &lt;div class&#x3D;&quot;notification-action d-flex align-items-center float-end gap-2&quot;&gt;
+                                                &lt;a href&#x3D;&quot;javascript:void(0);&quot;
+                                                    class&#x3D;&quot;notification-read rounded-circle bg-danger&quot;
+                                                    data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;&quot;
+                                                    data-bs-original-title&#x3D;&quot;Make as Read&quot; aria-label&#x3D;&quot;Make as Read&quot;&gt;&lt;/a&gt;
+                                                &lt;button class&#x3D;&quot;btn rounded-circle p-0&quot;
+                                                    data-dismissible&#x3D;&quot;#notification-1&quot;&gt;
+                                                    &lt;i class&#x3D;&quot;ti ti-x&quot;&gt;&lt;/i&gt;
+                                                &lt;/button&gt;
+                                            &lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;!-- Item--&gt;
+                            &lt;div class&#x3D;&quot;dropdown-item notification-item py-3 text-wrap border-bottom&quot;
+                                id&#x3D;&quot;notification-2&quot;&gt;
+                                &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                                    &lt;div class&#x3D;&quot;me-2 position-relative flex-shrink-0&quot;&gt;
+                                        &lt;img src&#x3D;&quot;assets/img/users/user-12.jpg&quot; class&#x3D;&quot;avatar-md rounded-circle&quot; alt&#x3D;&quot;&quot;&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;flex-grow-1&quot;&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 fw-medium text-dark&quot;&gt;Thomas William&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;mb-1 text-wrap&quot;&gt;
+                                            “Oh, I finished de-bugging the phones, but the system&#x27;s compiling for
+                                            eighteen minutes, or twenty...”
+                                        &lt;/p&gt;
+                                        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center&quot;&gt;
+                                            &lt;span class&#x3D;&quot;fs-12&quot;&gt;&lt;i class&#x3D;&quot;ti ti-clock me-1&quot;&gt;&lt;/i&gt;8 min ago&lt;/span&gt;
+                                            &lt;div class&#x3D;&quot;notification-action d-flex align-items-center float-end gap-2&quot;&gt;
+                                                &lt;a href&#x3D;&quot;javascript:void(0);&quot;
+                                                    class&#x3D;&quot;notification-read rounded-circle bg-danger&quot;
+                                                    data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;&quot;
+                                                    data-bs-original-title&#x3D;&quot;Make as Read&quot; aria-label&#x3D;&quot;Make as Read&quot;&gt;&lt;/a&gt;
+                                                &lt;button class&#x3D;&quot;btn rounded-circle p-0&quot;
+                                                    data-dismissible&#x3D;&quot;#notification-2&quot;&gt;
+                                                    &lt;i class&#x3D;&quot;ti ti-x&quot;&gt;&lt;/i&gt;
+                                                &lt;/button&gt;
+                                            &lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;!-- Item--&gt;
+                            &lt;div class&#x3D;&quot;dropdown-item notification-item py-3 text-wrap border-bottom&quot;
+                                id&#x3D;&quot;notification-3&quot;&gt;
+                                &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                                    &lt;div class&#x3D;&quot;me-2 position-relative flex-shrink-0&quot;&gt;
+                                        &lt;img src&#x3D;&quot;assets/img/profiles/avatar-12.jpg&quot; class&#x3D;&quot;avatar-md rounded-circle&quot;
+                                            alt&#x3D;&quot;&quot;&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;flex-grow-1&quot;&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 fw-medium text-dark&quot;&gt;Sarah Anderson&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;mb-1 text-wrap&quot;&gt;
+                                            attached a file to &lt;span class&#x3D;&quot;fw-medium text-dark&quot;&gt;Isla Nublar SOC2
+                                                compliance report&lt;/span&gt;
+                                        &lt;/p&gt;
+                                        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center&quot;&gt;
+                                            &lt;span class&#x3D;&quot;fs-12&quot;&gt;&lt;i class&#x3D;&quot;ti ti-clock me-1&quot;&gt;&lt;/i&gt;15 min ago&lt;/span&gt;
+                                            &lt;div class&#x3D;&quot;notification-action d-flex align-items-center float-end gap-2&quot;&gt;
+                                                &lt;a href&#x3D;&quot;javascript:void(0);&quot;
+                                                    class&#x3D;&quot;notification-read rounded-circle bg-danger&quot;
+                                                    data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;&quot;
+                                                    data-bs-original-title&#x3D;&quot;Make as Read&quot; aria-label&#x3D;&quot;Make as Read&quot;&gt;&lt;/a&gt;
+                                                &lt;button class&#x3D;&quot;btn rounded-circle p-0&quot;
+                                                    data-dismissible&#x3D;&quot;#notification-3&quot;&gt;
+                                                    &lt;i class&#x3D;&quot;ti ti-x&quot;&gt;&lt;/i&gt;
+                                                &lt;/button&gt;
+                                            &lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;!-- Item--&gt;
+                            &lt;div class&#x3D;&quot;dropdown-item notification-item py-3 text-wrap&quot; id&#x3D;&quot;notification-4&quot;&gt;
+                                &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+                                    &lt;div class&#x3D;&quot;me-2 position-relative flex-shrink-0&quot;&gt;
+                                        &lt;img src&#x3D;&quot;assets/img/profiles/avatar-08.jpg&quot; class&#x3D;&quot;avatar-md rounded-circle&quot;
+                                            alt&#x3D;&quot;&quot;&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;flex-grow-1&quot;&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 fw-medium text-dark&quot;&gt;Ann McClure&lt;/p&gt;
+                                        &lt;p class&#x3D;&quot;mb-1 text-wrap&quot;&gt;
+                                            mentioned you in &lt;span class&#x3D;&quot;fw-medium text-dark&quot;&gt;Bug Fix Review - Task
+                                                #432&lt;/span&gt;
+                                        &lt;/p&gt;
+                                        &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center&quot;&gt;
+                                            &lt;span class&#x3D;&quot;fs-12&quot;&gt;&lt;i class&#x3D;&quot;ti ti-clock me-1&quot;&gt;&lt;/i&gt;20 min ago&lt;/span&gt;
+                                            &lt;div class&#x3D;&quot;notification-action d-flex align-items-center float-end gap-2&quot;&gt;
+                                                &lt;a href&#x3D;&quot;javascript:void(0);&quot;
+                                                    class&#x3D;&quot;notification-read rounded-circle bg-danger&quot;
+                                                    data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;&quot;
+                                                    data-bs-original-title&#x3D;&quot;Make as Read&quot; aria-label&#x3D;&quot;Make as Read&quot;&gt;&lt;/a&gt;
+                                                &lt;button class&#x3D;&quot;btn rounded-circle p-0&quot;
+                                                    data-dismissible&#x3D;&quot;#notification-4&quot;&gt;
+                                                    &lt;i class&#x3D;&quot;ti ti-x&quot;&gt;&lt;/i&gt;
+                                                &lt;/button&gt;
+                                            &lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                        &lt;/div&gt;
+
+                        &lt;!-- View All--&gt;
+                        &lt;div class&#x3D;&quot;p-2 rounded-bottom border-top text-center&quot;&gt;
+                            &lt;a [routerLink]&#x3D;&quot;routes.notifications&quot;
+                                class&#x3D;&quot;text-center text-decoration-underline fs-14 mb-0&quot;&gt;
+                                View All Notifications
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class&#x3D;&quot;dropdown profile-dropdown d-flex align-items-center justify-content-center&quot;&gt;
+                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;topbar-link dropdown-toggle drop-arrow-none position-relative&quot;
+                    data-bs-toggle&#x3D;&quot;dropdown&quot; data-bs-offset&#x3D;&quot;0,22&quot; aria-haspopup&#x3D;&quot;false&quot; aria-expanded&#x3D;&quot;false&quot;&gt;
+                    &lt;img src&#x3D;&quot;assets/img/users/user-40.jpg&quot; width&#x3D;&quot;38&quot; class&#x3D;&quot;rounded-1 d-flex&quot; alt&#x3D;&quot;user-image&quot;&gt;
+                    &lt;span class&#x3D;&quot;online text-success&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end dropdown-menu-md p-2&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;d-flex align-items-center bg-light rounded-3 p-2 mb-2&quot;&gt;
+                        &lt;img src&#x3D;&quot;assets/img/users/user-40.jpg&quot; class&#x3D;&quot;rounded-circle&quot; width&#x3D;&quot;42&quot; height&#x3D;&quot;42&quot; alt&#x3D;&quot;&quot;&gt;
+                        &lt;div class&#x3D;&quot;ms-2&quot;&gt;
+                            &lt;p class&#x3D;&quot;fw-medium text-dark mb-0&quot;&gt;{{user.name}}&lt;/p&gt;
+                            &lt;span class&#x3D;&quot;d-block fs-13&quot;&gt;Installer&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- Item--&gt;
+                    &lt;a [routerLink]&#x3D;&quot;routes.profileSettings&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-user-circle me-1 align-middle&quot;&gt;&lt;/i&gt;
+                        &lt;span class&#x3D;&quot;align-middle&quot;&gt;Profile Settings&lt;/span&gt;
+                    &lt;/a&gt;
+
+                    &lt;!-- item --&gt;
+                    &lt;div
+                        class&#x3D;&quot;form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;notify&quot;&gt;&lt;i class&#x3D;&quot;ti ti-bell&quot;&gt;&lt;/i&gt;Notifications&lt;/label&gt;
+                        &lt;input class&#x3D;&quot;form-check-input me-0&quot; type&#x3D;&quot;checkbox&quot; role&#x3D;&quot;switch&quot; id&#x3D;&quot;notify&quot;&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- Item--&gt;
+                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-help-circle me-1 align-middle&quot;&gt;&lt;/i&gt;
+                        &lt;span class&#x3D;&quot;align-middle&quot;&gt;Help &amp; Support&lt;/span&gt;
+                    &lt;/a&gt;
+
+                    &lt;!-- Item--&gt;
+                    &lt;a [routerLink]&#x3D;&quot;routes.profileSettings&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                        &lt;i class&#x3D;&quot;ti ti-settings me-1 align-middle&quot;&gt;&lt;/i&gt;
+                        &lt;span class&#x3D;&quot;align-middle&quot;&gt;Settings&lt;/span&gt;
+                    &lt;/a&gt;
+
+                    &lt;!-- Item--&gt;
+                    &lt;div class&#x3D;&quot;pt-2 mt-2 border-top&quot;&gt;
+                        &lt;a (click)&#x3D;&quot;onLogout()&quot; class&#x3D;&quot;dropdown-item text-danger cursor-pointer&quot;&gt;
+                            &lt;i class&#x3D;&quot;ti ti-logout me-1 fs-17 align-middle&quot;&gt;&lt;/i&gt;
+                            &lt;span class&#x3D;&quot;align-middle&quot;&gt;Sign Out&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- /Header --&gt;
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;searchModal&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content bg-transparent&quot;&gt;
+            &lt;div class&#x3D;&quot;card shadow-none mb-0&quot;&gt;
+                &lt;div class&#x3D;&quot;px-3 py-2 d-flex flex-row align-items-center&quot; id&#x3D;&quot;search-top&quot;&gt;
+                    &lt;i class&#x3D;&quot;ti ti-search fs-22&quot;&gt;&lt;/i&gt;
+                    &lt;input type&#x3D;&quot;search&quot; class&#x3D;&quot;form-control border-0&quot; placeholder&#x3D;&quot;Search&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn p-0&quot; data-bs-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot;&gt;&lt;i
+                            class&#x3D;&quot;ti ti-x fs-22&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Header --><div class="navbar-header" (mouseover)="miniSideBarMouseHover(\'over\')" (mouseout)="miniSideBarMouseHover(\'out\')"    (focus)="miniSideBarMouseHover(\'over\')" (blur)="miniSideBarMouseHover(\'out\')" tabindex="0">    <div class="page-container topbar-menu">        <div class="d-flex align-items-center gap-2">            <!-- Logo -->            <a [routerLink]="routes.index" class="logo">                <!-- Logo Normal -->                <span class="logo-light">                    <span class="logo-lg"><img src="assets/img/logo.svg" alt="logo"></span>                    <span class="logo-sm"><img src="assets/img/logo-small.svg" alt="small logo"></span>                </span>                <!-- Logo Dark -->                <span class="logo-dark">                    <span class="logo-lg"><img src="assets/img/logo-white.svg" alt="dark logo"></span>                </span>            </a>            <!-- /Logo -->            <button class="sidenav-toggle-btn btn border-0 p-0" id="toggle_btn2" (click)="settings.togglehidden()">                <i class="ti ti-arrow-bar-to-right"></i>            </button>            <a id="mobile_btn" class="mobile-btn" href="javascript:void(0);" (click)="toggleSidebar()">                <i class="ti ti-menu-deep fs-24"></i>            </a>            <h2 (click)="onToggleSidebar()" class="hide-mobile cursor-pointer"> <i class="ti ti-menu-deep fs-24"></i></h2>            <div class="me-auto d-flex align-items-center header-search d-lg-flex d-none">                <!-- Search -->                <div class="input-icon position-relative me-2">                    <input type="text" class="form-control" placeholder="Search Keyword">                    <span class="input-icon-addon d-inline-flex p-0 header-search-icon"><i                            class="ti ti-command"></i></span>                </div>                <!-- /Search -->            </div>        </div>        <p class="d-flex align-items-center mb-0 level-name">{{user.levelName}}</p>        <div class="d-flex align-items-center">            <!-- Search for Mobile -->            <div class="header-item d-flex d-lg-none me-2">                <button class="topbar-link btn" data-bs-toggle="modal" data-bs-target="#searchModal" type="button">                    <i class="ti ti-search fs-16"></i>                </button>            </div>            <!-- Minimize -->            <div class="header-item">                <div class="dropdown me-2">                    <a href="javascript:void(0);" class="btn topbar-link btnFullscreen" (click)="fullscreen()"><i                            class="ti ti-maximize"></i></a>                </div>            </div>            <!-- Minimize -->            <!-- Light/Dark Mode Button -->            <div class="header-item d-none d-sm-flex me-2">                <button class="topbar-link btn topbar-link" id="light-dark-mode" type="button" (click)="changeTheme()">                    <i class="ti ti-moon fs-16"></i>                </button>            </div>            <!-- pages -->            <div class="header-item d-none d-sm-flex">                <div class="dropdown me-2">                    <a href="javascript:void(0);" class="btn topbar-link topbar-teal-link" data-bs-toggle="dropdown">                        <i class="ti ti-layout-grid-add"></i>                    </a>                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">                        <!-- Item-->                        <a [routerLink]="routes.contactGrid" class="dropdown-item">                            <div class="d-flex align-items-center justify-content-between">                                <div>                                    <span class="d-flex mb-1 fw-semibold text-dark">Contacts</span>                                    <span class="fs-13">View All the Contacts</span>                                </div>                                <i class="ti ti-chevron-right-pipe text-dark"></i>                            </div>                        </a>                        <!-- Item-->                        <a [routerLink]="routes.pipeline" class="dropdown-item">                            <div class="d-flex align-items-center justify-content-between">                                <div>                                    <span class="d-flex mb-1 fw-semibold text-dark">Pipeline</span>                                    <span class="fs-13">View All the Pipeline</span>                                </div>                                <i class="ti ti-chevron-right-pipe text-dark"></i>                            </div>                        </a>                        <!-- Item-->                        <a [routerLink]="routes.activitiesList" class="dropdown-item">                            <div class="d-flex align-items-center justify-content-between">                                <div>                                    <span class="d-flex mb-1 fw-semibold text-dark">Activities</span>                                    <span class="fs-13">Activities</span>                                </div>                                <i class="ti ti-chevron-right-pipe text-dark"></i>                            </div>                        </a>                        <!-- Item-->                        <a [routerLink]="routes.analytics" class="dropdown-item">                            <div class="d-flex align-items-center justify-content-between">                                <div>                                    <span class="d-flex mb-1 fw-semibold text-dark">Analytics</span>                                    <span class="fs-13">Analytics</span>                                </div>                                <i class="ti ti-chevron-right-pipe text-dark"></i>                            </div>                        </a>                    </div>                </div>            </div>            <!-- faq -->            <div class="header-item d-none d-sm-flex">                <div class="dropdown me-2">                    <a [routerLink]="routes.faq" class="btn topbar-link topbar-indigo-link"><i                            class="ti ti-help-hexagon"></i></a>                </div>            </div>            <!-- report -->            <div class="header-item d-none d-sm-flex">                <div class="dropdown me-2">                    <a [routerLink]="routes.leadReports" class="btn topbar-link topbar-warning-link"><i                            class="ti ti-chart-pie"></i></a>                </div>            </div>            <div class="header-line"></div>            <!-- message -->            <div class="header-item">                <div class="dropdown me-2">                    <a [routerLink]="routes.chat" class="btn topbar-link">                        <i class="ti ti-message-circle-exclamation"></i>                        <span class="badge rounded-pill">14</span>                    </a>                </div>            </div>            <!-- Notification Dropdown -->            <div class="header-item">                <div class="dropdown me-2">                    <button class="topbar-link btn topbar-link dropdown-toggle drop-arrow-none"                        data-bs-toggle="dropdown" data-bs-offset="0,24" type="button" aria-haspopup="false"                        aria-expanded="false">                        <i class="ti ti-bell-check fs-16 animate-ring"></i>                        <span class="badge rounded-pill">10</span>                    </button>                    <div class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" style="min-height: 300px;">                        <div class="p-2 border-bottom">                            <div class="row align-items-center">                                <div class="col">                                    <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>                                </div>                            </div>                        </div>                        <!-- Notification Body -->                        <div class="notification-body position-relative z-2 rounded-0" data-simplebar>                            <!-- Item-->                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom"                                id="notification-1">                                <div class="d-flex">                                    <div class="me-2 position-relative flex-shrink-0">                                        <img src="assets/img/users/user-01.jpg" class="avatar-md rounded-circle" alt="">                                    </div>                                    <div class="flex-grow-1">                                        <p class="mb-0 fw-medium text-dark">John Doe</p>                                        <p class="mb-1 text-wrap">                                            left 6 comments on <span class="fw-medium text-dark">Isla Nublar SOC2                                                compliance report</span>                                        </p>                                        <div class="d-flex justify-content-between align-items-center">                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>4 min ago</span>                                            <div class="notification-action d-flex align-items-center float-end gap-2">                                                <a href="javascript:void(0);"                                                    class="notification-read rounded-circle bg-danger"                                                    data-bs-toggle="tooltip" title=""                                                    data-bs-original-title="Make as Read" aria-label="Make as Read"></a>                                                <button class="btn rounded-circle p-0"                                                    data-dismissible="#notification-1">                                                    <i class="ti ti-x"></i>                                                </button>                                            </div>                                        </div>                                    </div>                                </div>                            </div>                            <!-- Item-->                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom"                                id="notification-2">                                <div class="d-flex">                                    <div class="me-2 position-relative flex-shrink-0">                                        <img src="assets/img/users/user-12.jpg" class="avatar-md rounded-circle" alt="">                                    </div>                                    <div class="flex-grow-1">                                        <p class="mb-0 fw-medium text-dark">Thomas William</p>                                        <p class="mb-1 text-wrap">                                            “Oh, I finished de-bugging the phones, but the system\'s compiling for                                            eighteen minutes, or twenty...”                                        </p>                                        <div class="d-flex justify-content-between align-items-center">                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>8 min ago</span>                                            <div class="notification-action d-flex align-items-center float-end gap-2">                                                <a href="javascript:void(0);"                                                    class="notification-read rounded-circle bg-danger"                                                    data-bs-toggle="tooltip" title=""                                                    data-bs-original-title="Make as Read" aria-label="Make as Read"></a>                                                <button class="btn rounded-circle p-0"                                                    data-dismissible="#notification-2">                                                    <i class="ti ti-x"></i>                                                </button>                                            </div>                                        </div>                                    </div>                                </div>                            </div>                            <!-- Item-->                            <div class="dropdown-item notification-item py-3 text-wrap border-bottom"                                id="notification-3">                                <div class="d-flex">                                    <div class="me-2 position-relative flex-shrink-0">                                        <img src="assets/img/profiles/avatar-12.jpg" class="avatar-md rounded-circle"                                            alt="">                                    </div>                                    <div class="flex-grow-1">                                        <p class="mb-0 fw-medium text-dark">Sarah Anderson</p>                                        <p class="mb-1 text-wrap">                                            attached a file to <span class="fw-medium text-dark">Isla Nublar SOC2                                                compliance report</span>                                        </p>                                        <div class="d-flex justify-content-between align-items-center">                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>15 min ago</span>                                            <div class="notification-action d-flex align-items-center float-end gap-2">                                                <a href="javascript:void(0);"                                                    class="notification-read rounded-circle bg-danger"                                                    data-bs-toggle="tooltip" title=""                                                    data-bs-original-title="Make as Read" aria-label="Make as Read"></a>                                                <button class="btn rounded-circle p-0"                                                    data-dismissible="#notification-3">                                                    <i class="ti ti-x"></i>                                                </button>                                            </div>                                        </div>                                    </div>                                </div>                            </div>                            <!-- Item-->                            <div class="dropdown-item notification-item py-3 text-wrap" id="notification-4">                                <div class="d-flex">                                    <div class="me-2 position-relative flex-shrink-0">                                        <img src="assets/img/profiles/avatar-08.jpg" class="avatar-md rounded-circle"                                            alt="">                                    </div>                                    <div class="flex-grow-1">                                        <p class="mb-0 fw-medium text-dark">Ann McClure</p>                                        <p class="mb-1 text-wrap">                                            mentioned you in <span class="fw-medium text-dark">Bug Fix Review - Task                                                #432</span>                                        </p>                                        <div class="d-flex justify-content-between align-items-center">                                            <span class="fs-12"><i class="ti ti-clock me-1"></i>20 min ago</span>                                            <div class="notification-action d-flex align-items-center float-end gap-2">                                                <a href="javascript:void(0);"                                                    class="notification-read rounded-circle bg-danger"                                                    data-bs-toggle="tooltip" title=""                                                    data-bs-original-title="Make as Read" aria-label="Make as Read"></a>                                                <button class="btn rounded-circle p-0"                                                    data-dismissible="#notification-4">                                                    <i class="ti ti-x"></i>                                                </button>                                            </div>                                        </div>                                    </div>                                </div>                            </div>                        </div>                        <!-- View All-->                        <div class="p-2 rounded-bottom border-top text-center">                            <a [routerLink]="routes.notifications"                                class="text-center text-decoration-underline fs-14 mb-0">                                View All Notifications                            </a>                        </div>                    </div>                </div>            </div>                        <div class="dropdown profile-dropdown d-flex align-items-center justify-content-center">                <a href="javascript:void(0);" class="topbar-link dropdown-toggle drop-arrow-none position-relative"                    data-bs-toggle="dropdown" data-bs-offset="0,22" aria-haspopup="false" aria-expanded="false">                    <img src="assets/img/users/user-40.jpg" width="38" class="rounded-1 d-flex" alt="user-image">                    <span class="online text-success"><i                            class="ti ti-circle-filled d-flex bg-white rounded-circle border border-1 border-white"></i></span>                </a>                <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-2">                    <div class="d-flex align-items-center bg-light rounded-3 p-2 mb-2">                        <img src="assets/img/users/user-40.jpg" class="rounded-circle" width="42" height="42" alt="">                        <div class="ms-2">                            <p class="fw-medium text-dark mb-0">{{user.name}}</p>                            <span class="d-block fs-13">Installer</span>                        </div>                    </div>                    <!-- Item-->                    <a [routerLink]="routes.profileSettings" class="dropdown-item">                        <i class="ti ti-user-circle me-1 align-middle"></i>                        <span class="align-middle">Profile Settings</span>                    </a>                    <!-- item -->                    <div                        class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">                        <label class="form-check-label" for="notify"><i class="ti ti-bell"></i>Notifications</label>                        <input class="form-check-input me-0" type="checkbox" role="switch" id="notify">                    </div>                    <!-- Item-->                    <a href="javascript:void(0);" class="dropdown-item">                        <i class="ti ti-help-circle me-1 align-middle"></i>                        <span class="align-middle">Help & Support</span>                    </a>                    <!-- Item-->                    <a [routerLink]="routes.profileSettings" class="dropdown-item">                        <i class="ti ti-settings me-1 align-middle"></i>                        <span class="align-middle">Settings</span>                    </a>                    <!-- Item-->                    <div class="pt-2 mt-2 border-top">                        <a (click)="onLogout()" class="dropdown-item text-danger cursor-pointer">                            <i class="ti ti-logout me-1 fs-17 align-middle"></i>                            <span class="align-middle">Sign Out</span>                        </a>                    </div>                </div>            </div>        </div>    </div></div><!-- /Header --><div class="modal fade" id="searchModal">    <div class="modal-dialog modal-lg">        <div class="modal-content bg-transparent">            <div class="card shadow-none mb-0">                <div class="px-3 py-2 d-flex flex-row align-items-center" id="search-top">                    <i class="ti ti-search fs-22"></i>                    <input type="search" class="form-control border-0" placeholder="Search">                    <button type="button" class="btn p-0" data-bs-dismiss="modal" aria-label="Close"><i                            class="ti ti-x fs-22"></i></button>                </div>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HeaderComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

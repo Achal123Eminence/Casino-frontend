@@ -1,0 +1,717 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconFontawesomeComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-fontawesome/icon-fontawesome.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-fontawesome</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-fontawesome.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-fontawesome.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-fontawesome/icon-fontawesome.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-fontawesome&#x27;,
+    templateUrl: &#x27;./icon-fontawesome.component.html&#x27;,
+    styleUrls: [&#x27;./icon-fontawesome.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconFontawesomeComponent {
+    routes&#x3D;routes
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Fontawesome Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Fontawesome Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Chart --&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;Fontawesome Icon&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+                    &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-address-book&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-address-book&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-address-card&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-address-card&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-align-center&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-align-center&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-align-justify&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-align-justify&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-align-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-align-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-align-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-align-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-ambulance&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-ambulance&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-american-sign-language-interpreting&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-american-sign-language-interpreting&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-anchor&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-anchor&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-double-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-angle-double-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-double-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-angle-double-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-double-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-angle-double-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-double-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-angle-double-up&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-angle-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-angle-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-angle-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fab fa-apple&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fab fa-apple&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-archive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-archive&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fas fa-chart-area&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fas fa-chart-area&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-circle-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-arrow-circle-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-circle-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-arrow-circle-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-circle-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-arrow-circle-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-circle-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrow-circle-up&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrow-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrow-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrow-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrow-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrow-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-arrows-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-arrows-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-assistive-listening-systems&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-assistive-listening-systems&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-asterisk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-asterisk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-at&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-at&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-audio-description&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-audio-description&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-backward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-balance-scale&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-balance-scale&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-ban&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-ban&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-barcode&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-barcode&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bars&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bars&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bath&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bath&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-battery-empty&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-battery-empty&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-battery-full&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-battery-full&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-battery-half&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-battery-half&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-battery-quarter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-battery-quarter&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-battery-three-quarters&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-battery-three-quarters&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bed&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bed&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-beer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-beer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bell&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bell&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bell-slash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bell-slash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bicycle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bicycle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-binoculars&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-binoculars&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-birthday-cake&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-birthday-cake&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-blind&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-blind&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bold&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bold&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bolt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bolt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bomb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bomb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-book&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-book&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bookmark&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bookmark&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-braille&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-braille&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-briefcase&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-briefcase&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bug&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bug&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-building&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-building&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bullhorn&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bullhorn&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bullseye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bullseye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-bus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-bus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-calculator&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-calculator&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-calendar&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-camera&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-camera&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-camera-retro&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-camera-retro&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-car&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-car&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-caret-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-caret-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-caret-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-caret-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-caret-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-caret-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-cart-arrow-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-cart-arrow-down&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-cart-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-cart-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-certificate&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-certificate&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-check&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-check&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-check-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-check-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-circle-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-chevron-circle-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-circle-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-chevron-circle-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-circle-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-chevron-circle-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-chevron-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-chevron-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-chevron-right&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-chevron-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-chevron-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-child&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-child&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-clipboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-clipboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-clone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-clone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-cloud&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-cloud&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-code&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-code&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-coffee&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-coffee&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-cog&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-cog&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-cogs&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-cogs&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-columns&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-columns&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-comment&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-comment&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-compress&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-compress&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-copyright&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-copyright&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-credit-card&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-credit-card&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-desktop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-desktop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-edit&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-edit&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-eject&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-eject&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-ellipsis-h&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-ellipsis-h&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-ellipsis-v&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-ellipsis-v&quot;&gt;&lt;/i&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-envelope&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-envelope&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-envelope-open&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-envelope-open&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-envelope-square&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-envelope-square&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-eraser&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-eraser&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-exclamation&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-exclamation&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-exclamation-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-exclamation-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-exclamation-triangle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-exclamation-triangle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-expand&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-eye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-eye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-eye-slash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-eye-slash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fast-backward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-fast-backward&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fast-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-fast-forward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fax&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-fax&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-female&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-female&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fighter-jet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-fighter-jet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-file&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-file&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fire&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-fire&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-fire-extinguisher&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-fire-extinguisher&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-flag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-flag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-flag-checkered&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-flag-checkered&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-road&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-road&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-rocket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-rocket&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-save&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-save&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-search&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-search&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-search-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-search-minus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-search-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-search-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-server&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-server&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-share&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-share&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-share-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-share-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-share-alt-square&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-share-alt-square&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-share-square&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-share-square&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-ship&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-ship&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-shopping-bag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-shopping-bag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-shopping-basket&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-shopping-basket&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-shopping-cart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-shopping-cart&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-shower&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-shower&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-sign-language&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-sign-language&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-signal&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-signal&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-sitemap&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-sitemap&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-sort&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-sort&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-sort-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-sort-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-square&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-square&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-star&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-star&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-star-half&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-star-half&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-step-backward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-step-backward&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-step-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-step-forward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-stethoscope&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-stethoscope&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-sticky-note&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-sticky-note&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-stop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-stop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-stop-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-stop-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-street-view&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-street-view&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-subscript&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-subscript&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-suitcase&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-suitcase&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-superscript&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-superscript&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-table&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-table&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tags&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tags&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tasks&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tasks&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-taxi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-taxi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-terminal&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-terminal&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-text-height&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-text-height&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-text-width&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-text-width&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-th&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-th&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-th-large&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-th-large&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-th-list&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-th-list&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-thermometer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer-empty&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-thermometer-empty&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer-full&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-thermometer-full&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer-half&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-thermometer-half&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer-quarter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-thermometer-quarter&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thermometer-three-quarters&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-thermometer-three-quarters&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thumbs-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-thumbs-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-thumbs-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-thumbs-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-times&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-times&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-times-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-times-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tint&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tint&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-toggle-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-toggle-off&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-toggle-on&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-toggle-on&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-trademark&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-trademark&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-train&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-train&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-transgender&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-transgender&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-transgender-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-transgender-alt&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-trash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-trash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tree&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tree&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-trophy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-trophy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tty&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tty&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-tv&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-tv&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-umbrella&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-umbrella&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-underline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-underline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-undo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-undo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-universal-access&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;fa fa-universal-access&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-university&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-university&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-unlink&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-unlink&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-unlock&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-unlock&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-unlock-alt&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-unlock-alt&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-upload&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-upload&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-user-circle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-user-circle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-user-md&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-user-md&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-user-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-user-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-user-secret&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-user-secret&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-user-times&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-user-times&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-users&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-users&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-venus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-venus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-venus-double&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-venus-double&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-venus-mars&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-venus-mars&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-volume-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-volume-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-volume-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-volume-off&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-volume-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-volume-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-wheelchair&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-wheelchair&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-wifi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-wifi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-window-close&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-window-close&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-window-maximize&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-window-maximize&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-window-minimize&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-window-minimize&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-window-restore&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-window-restore&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;fa fa-wrench&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;fa fa-wrench&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-fontawesome.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Fontawesome Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Fontawesome Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Chart -->    <div class="col-md-12">        <div class="card">            <div class="card-header">                <div class="card-title">Fontawesome Icon</div>            </div>            <div class="card-body">                <div class="icons-items">                    <ul class="icons-list">                        <li><i class="fa fa-address-book" data-bs-toggle="tooltip" title="fa fa-address-book"></i></li>                        <li><i class="fa fa-address-card" data-bs-toggle="tooltip" title="fa fa-address-card"></i></li>                        <li><i class="fa fa-align-center" data-bs-toggle="tooltip" title="fa fa-align-center"></i></li>                        <li><i class="fa fa-align-justify" data-bs-toggle="tooltip" title="fa fa-align-justify"></i>                        </li>                        <li><i class="fa fa-align-left" data-bs-toggle="tooltip" title="fa fa-align-left"></i></li>                        <li><i class="fa fa-align-right" data-bs-toggle="tooltip" title="fa fa-align-right"></i></li>                        <li><i class="fa fa-ambulance" data-bs-toggle="tooltip" title="fa fa-ambulance"></i></li>                        <li><i class="fa fa-american-sign-language-interpreting" data-bs-toggle="tooltip"                                title="fa fa-american-sign-language-interpreting"></i></li>                        <li><i class="fa fa-anchor" data-bs-toggle="tooltip" title="fa fa-anchor"></i></li>                        <li><i class="fa fa-angle-double-down" data-bs-toggle="tooltip"                                title="fa fa-angle-double-down"></i></li>                        <li><i class="fa fa-angle-double-left" data-bs-toggle="tooltip"                                title="fa fa-angle-double-left"></i></li>                        <li><i class="fa fa-angle-double-right" data-bs-toggle="tooltip"                                title="fa fa-angle-double-right"></i></li>                        <li><i class="fa fa-angle-double-up" data-bs-toggle="tooltip" title="fa fa-angle-double-up"></i>                        </li>                        <li><i class="fa fa-angle-down" data-bs-toggle="tooltip" title="fa fa-angle-down"></i></li>                        <li><i class="fa fa-angle-left" data-bs-toggle="tooltip" title="fa fa-angle-left"></i></li>                        <li><i class="fa fa-angle-right" data-bs-toggle="tooltip" title="fa fa-angle-right"></i></li>                        <li><i class="fa fa-angle-up" data-bs-toggle="tooltip" title="fa fa-angle-up"></i></li>                        <li><i class="fab fa-apple" data-bs-toggle="tooltip" title="fab fa-apple"></i></li>                        <li><i class="fa fa-archive" data-bs-toggle="tooltip" title="fa fa-archive"></i></li>                        <li><i class="fas fa-chart-area" data-bs-toggle="tooltip" title="fas fa-chart-area"></i></li>                        <li><i class="fa fa-arrow-circle-down" data-bs-toggle="tooltip"                                title="fa fa-arrow-circle-down"></i></li>                        <li><i class="fa fa-arrow-circle-left" data-bs-toggle="tooltip"                                title="fa fa-arrow-circle-left"></i></li>                        <li><i class="fa fa-arrow-circle-right" data-bs-toggle="tooltip"                                title="fa fa-arrow-circle-right"></i></li>                        <li><i class="fa fa-arrow-circle-up" data-bs-toggle="tooltip" title="fa fa-arrow-circle-up"></i>                        </li>                        <li><i class="fa fa-arrow-down" data-bs-toggle="tooltip" title="fa fa-arrow-down"></i></li>                        <li><i class="fa fa-arrow-left" data-bs-toggle="tooltip" title="fa fa-arrow-left"></i></li>                        <li><i class="fa fa-arrow-right" data-bs-toggle="tooltip" title="fa fa-arrow-right"></i></li>                        <li><i class="fa fa-arrow-up" data-bs-toggle="tooltip" title="fa fa-arrow-up"></i></li>                        <li><i class="fa fa-arrows-alt" data-bs-toggle="tooltip" title="fa fa-arrows-alt"></i></li>                        <li><i class="fa fa-assistive-listening-systems" data-bs-toggle="tooltip"                                title="fa fa-assistive-listening-systems"></i></li>                        <li><i class="fa fa-asterisk" data-bs-toggle="tooltip" title="fa fa-asterisk"></i></li>                        <li><i class="fa fa-at" data-bs-toggle="tooltip" title="fa fa-at"></i></li>                        <li><i class="fa fa-audio-description" data-bs-toggle="tooltip"                                title="fa fa-audio-description"></i></li>                        <li><i class="fa fa-backward" data-bs-toggle="tooltip" title="fa fa-backward"></i></li>                        <li><i class="fa fa-balance-scale" data-bs-toggle="tooltip" title="fa fa-balance-scale"></i>                        </li>                        <li><i class="fa fa-ban" data-bs-toggle="tooltip" title="fa fa-ban"></i></li>                        <li><i class="fa fa-barcode" data-bs-toggle="tooltip" title="fa fa-barcode"></i></li>                        <li><i class="fa fa-bars" data-bs-toggle="tooltip" title="fa fa-bars"></i></li>                        <li><i class="fa fa-bath" data-bs-toggle="tooltip" title="fa fa-bath"></i></li>                        <li><i class="fa fa-battery-empty" data-bs-toggle="tooltip" title="fa fa-battery-empty"></i>                        </li>                        <li><i class="fa fa-battery-full" data-bs-toggle="tooltip" title="fa fa-battery-full"></i></li>                        <li><i class="fa fa-battery-half" data-bs-toggle="tooltip" title="fa fa-battery-half"></i></li>                        <li><i class="fa fa-battery-quarter" data-bs-toggle="tooltip" title="fa fa-battery-quarter"></i>                        </li>                        <li><i class="fa fa-battery-three-quarters" data-bs-toggle="tooltip"                                title="fa fa-battery-three-quarters"></i></li>                        <li><i class="fa fa-bed" data-bs-toggle="tooltip" title="fa fa-bed"></i></li>                        <li><i class="fa fa-beer" data-bs-toggle="tooltip" title="fa fa-beer"></i></li>                        <li><i class="fa fa-bell" data-bs-toggle="tooltip" title="fa fa-bell"></i></li>                        <li><i class="fa fa-bell-slash" data-bs-toggle="tooltip" title="fa fa-bell-slash"></i></li>                        <li><i class="fa fa-bicycle" data-bs-toggle="tooltip" title="fa fa-bicycle"></i></li>                        <li><i class="fa fa-binoculars" data-bs-toggle="tooltip" title="fa fa-binoculars"></i></li>                        <li><i class="fa fa-birthday-cake" data-bs-toggle="tooltip" title="fa fa-birthday-cake"></i>                        </li>                        <li><i class="fa fa-blind" data-bs-toggle="tooltip" title="fa fa-blind"></i></li>                        <li><i class="fa fa-bold" data-bs-toggle="tooltip" title="fa fa-bold"></i></li>                        <li><i class="fa fa-bolt" data-bs-toggle="tooltip" title="fa fa-bolt"></i></li>                        <li><i class="fa fa-bomb" data-bs-toggle="tooltip" title="fa fa-bomb"></i></li>                        <li><i class="fa fa-book" data-bs-toggle="tooltip" title="fa fa-book"></i></li>                        <li><i class="fa fa-bookmark" data-bs-toggle="tooltip" title="fa fa-bookmark"></i></li>                        <li><i class="fa fa-braille" data-bs-toggle="tooltip" title="fa fa-braille"></i></li>                        <li><i class="fa fa-briefcase" data-bs-toggle="tooltip" title="fa fa-briefcase"></i></li>                        <li><i class="fa fa-bug" data-bs-toggle="tooltip" title="fa fa-bug"></i></li>                        <li><i class="fa fa-building" data-bs-toggle="tooltip" title="fa fa-building"></i></li>                        <li><i class="fa fa-bullhorn" data-bs-toggle="tooltip" title="fa fa-bullhorn"></i></li>                        <li><i class="fa fa-bullseye" data-bs-toggle="tooltip" title="fa fa-bullseye"></i></li>                        <li><i class="fa fa-bus" data-bs-toggle="tooltip" title="fa fa-bus"></i></li>                        <li><i class="fa fa-calculator" data-bs-toggle="tooltip" title="fa fa-calculator"></i></li>                        <li><i class="fa fa-calendar" data-bs-toggle="tooltip" title="fa fa-calendar"></i></li>                        <li><i class="fa fa-camera" data-bs-toggle="tooltip" title="fa fa-camera"></i></li>                        <li><i class="fa fa-camera-retro" data-bs-toggle="tooltip" title="fa fa-camera-retro"></i></li>                        <li><i class="fa fa-car" data-bs-toggle="tooltip" title="fa fa-car"></i></li>                        <li><i class="fa fa-caret-down" data-bs-toggle="tooltip" title="fa fa-caret-down"></i></li>                        <li><i class="fa fa-caret-left" data-bs-toggle="tooltip" title="fa fa-caret-left"></i></li>                        <li><i class="fa fa-caret-right" data-bs-toggle="tooltip" title="fa fa-caret-right"></i></li>                        <li><i class="fa fa-cart-arrow-down" data-bs-toggle="tooltip" title="fa fa-cart-arrow-down"></i>                        </li>                        <li><i class="fa fa-cart-plus" data-bs-toggle="tooltip" title="fa fa-cart-plus"></i></li>                        <li><i class="fa fa-certificate" data-bs-toggle="tooltip" title="fa fa-certificate"></i></li>                        <li><i class="fa fa-check" data-bs-toggle="tooltip" title="fa fa-check"></i></li>                        <li><i class="fa fa-check-circle" data-bs-toggle="tooltip" title="fa fa-check-circle"></i></li>                        <li><i class="fa fa-chevron-circle-left" data-bs-toggle="tooltip"                                title="fa fa-chevron-circle-left"></i></li>                        <li><i class="fa fa-chevron-circle-right" data-bs-toggle="tooltip"                                title="fa fa-chevron-circle-right"></i></li>                        <li><i class="fa fa-chevron-circle-up" data-bs-toggle="tooltip"                                title="fa fa-chevron-circle-up"></i></li>                        <li><i class="fa fa-chevron-down" data-bs-toggle="tooltip" title="fa fa-chevron-down"></i></li>                        <li><i class="fa fa-chevron-left" data-bs-toggle="tooltip" title="fa fa-chevron-left"></i></li>                        <li><i class="fa fa-chevron-right" data-bs-toggle="tooltip" title="fa fa-chevron-right"></i>                        </li>                        <li><i class="fa fa-chevron-up" data-bs-toggle="tooltip" title="fa fa-chevron-up"></i></li>                        <li><i class="fa fa-child" data-bs-toggle="tooltip" title="fa fa-child"></i></li>                        <li><i class="fa fa-circle" data-bs-toggle="tooltip" title="fa fa-circle"></i></li>                        <li><i class="fa fa-clipboard" data-bs-toggle="tooltip" title="fa fa-clipboard"></i></li>                        <li><i class="fa fa-clone" data-bs-toggle="tooltip" title="fa fa-clone"></i></li>                        <li><i class="fa fa-cloud" data-bs-toggle="tooltip" title="fa fa-cloud"></i></li>                        <li><i class="fa fa-code" data-bs-toggle="tooltip" title="fa fa-code"></i></li>                        <li><i class="fa fa-coffee" data-bs-toggle="tooltip" title="fa fa-coffee"></i></li>                        <li><i class="fa fa-cog" data-bs-toggle="tooltip" title="fa fa-cog"></i></li>                        <li><i class="fa fa-cogs" data-bs-toggle="tooltip" title="fa fa-cogs"></i></li>                        <li><i class="fa fa-columns" data-bs-toggle="tooltip" title="fa fa-columns"></i></li>                        <li><i class="fa fa-comment" data-bs-toggle="tooltip" title="fa fa-comment"></i></li>                        <li><i class="fa fa-compress" data-bs-toggle="tooltip" title="fa fa-compress"></i></li>                        <li><i class="fa fa-copyright" data-bs-toggle="tooltip" title="fa fa-copyright"></i></li>                        <li><i class="fa fa-credit-card" data-bs-toggle="tooltip" title="fa fa-credit-card"></i></li>                        <li><i class="fa fa-desktop" data-bs-toggle="tooltip" title="fa fa-desktop"></i></li>                        <li><i class="fa fa-edit" data-bs-toggle="tooltip" title="fa fa-edit"></i></li>                        <li><i class="fa fa-eject" data-bs-toggle="tooltip" title="fa fa-eject"></i></li>                        <li><i class="fa fa-ellipsis-h" data-bs-toggle="tooltip" title="fa fa-ellipsis-h"></i></li>                        <li><i class="fa fa-ellipsis-v" data-bs-toggle="tooltip" title="fa fa-ellipsis-v"></i>                        <li><i class="fa fa-envelope" data-bs-toggle="tooltip" title="fa fa-envelope"></i></li>                        <li><i class="fa fa-envelope-open" data-bs-toggle="tooltip" title="fa fa-envelope-open"></i>                        </li>                        <li><i class="fa fa-envelope-square" data-bs-toggle="tooltip" title="fa fa-envelope-square"></i>                        </li>                        <li><i class="fa fa-eraser" data-bs-toggle="tooltip" title="fa fa-eraser"></i></li>                        <li><i class="fa fa-exclamation" data-bs-toggle="tooltip" title="fa fa-exclamation"></i></li>                        <li><i class="fa fa-exclamation-circle" data-bs-toggle="tooltip"                                title="fa fa-exclamation-circle"></i></li>                        <li><i class="fa fa-exclamation-triangle" data-bs-toggle="tooltip"                                title="fa fa-exclamation-triangle"></i></li>                        <li><i class="fa fa-expand" data-bs-toggle="tooltip" title="fa fa-expand"></i></li>                        <li><i class="fa fa-eye" data-bs-toggle="tooltip" title="fa fa-eye"></i></li>                        <li><i class="fa fa-eye-slash" data-bs-toggle="tooltip" title="fa fa-eye-slash"></i></li>                        <li><i class="fa fa-fast-backward" data-bs-toggle="tooltip" title="fa fa-fast-backward"></i>                        </li>                        <li><i class="fa fa-fast-forward" data-bs-toggle="tooltip" title="fa fa-fast-forward"></i></li>                        <li><i class="fa fa-fax" data-bs-toggle="tooltip" title="fa fa-fax"></i></li>                        <li><i class="fa fa-female" data-bs-toggle="tooltip" title="fa fa-female"></i></li>                        <li><i class="fa fa-fighter-jet" data-bs-toggle="tooltip" title="fa fa-fighter-jet"></i></li>                        <li><i class="fa fa-file" data-bs-toggle="tooltip" title="fa fa-file"></i></li>                        <li><i class="fa fa-fire" data-bs-toggle="tooltip" title="fa fa-fire"></i></li>                        <li><i class="fa fa-fire-extinguisher" data-bs-toggle="tooltip"                                title="fa fa-fire-extinguisher"></i></li>                        <li><i class="fa fa-flag" data-bs-toggle="tooltip" title="fa fa-flag"></i></li>                        <li><i class="fa fa-flag-checkered" data-bs-toggle="tooltip" title="fa fa-flag-checkered"></i>                        </li>                        <li><i class="fa fa-road" data-bs-toggle="tooltip" title="fa fa-road"></i></li>                        <li><i class="fa fa-rocket" data-bs-toggle="tooltip" title="fa fa-rocket"></i></li>                        <li><i class="fa fa-save" data-bs-toggle="tooltip" title="fa fa-save"></i></li>                        <li><i class="fa fa-search" data-bs-toggle="tooltip" title="fa fa-search"></i></li>                        <li><i class="fa fa-search-minus" data-bs-toggle="tooltip" title="fa fa-search-minus"></i></li>                        <li><i class="fa fa-search-plus" data-bs-toggle="tooltip" title="fa fa-search-plus"></i></li>                        <li><i class="fa fa-server" data-bs-toggle="tooltip" title="fa fa-server"></i></li>                        <li><i class="fa fa-share" data-bs-toggle="tooltip" title="fa fa-share"></i></li>                        <li><i class="fa fa-share-alt" data-bs-toggle="tooltip" title="fa fa-share-alt"></i></li>                        <li><i class="fa fa-share-alt-square" data-bs-toggle="tooltip"                                title="fa fa-share-alt-square"></i></li>                        <li><i class="fa fa-share-square" data-bs-toggle="tooltip" title="fa fa-share-square"></i></li>                        <li><i class="fa fa-ship" data-bs-toggle="tooltip" title="fa fa-ship"></i></li>                        <li><i class="fa fa-shopping-bag" data-bs-toggle="tooltip" title="fa fa-shopping-bag"></i></li>                        <li><i class="fa fa-shopping-basket" data-bs-toggle="tooltip" title="fa fa-shopping-basket"></i>                        </li>                        <li><i class="fa fa-shopping-cart" data-bs-toggle="tooltip" title="fa fa-shopping-cart"></i>                        </li>                        <li><i class="fa fa-shower" data-bs-toggle="tooltip" title="fa fa-shower"></i></li>                        <li><i class="fa fa-sign-language" data-bs-toggle="tooltip" title="fa fa-sign-language"></i>                        </li>                        <li><i class="fa fa-signal" data-bs-toggle="tooltip" title="fa fa-signal"></i></li>                        <li><i class="fa fa-sitemap" data-bs-toggle="tooltip" title="fa fa-sitemap"></i></li>                        <li><i class="fa fa-sort" data-bs-toggle="tooltip" title="fa fa-sort"></i></li>                        <li><i class="fa fa-sort-down" data-bs-toggle="tooltip" title="fa fa-sort-down"></i></li>                        <li><i class="fa fa-square" data-bs-toggle="tooltip" title="fa fa-square"></i></li>                        <li><i class="fa fa-star" data-bs-toggle="tooltip" title="fa fa-star"></i></li>                        <li><i class="fa fa-star-half" data-bs-toggle="tooltip" title="fa fa-star-half"></i></li>                        <li><i class="fa fa-step-backward" data-bs-toggle="tooltip" title="fa fa-step-backward"></i>                        </li>                        <li><i class="fa fa-step-forward" data-bs-toggle="tooltip" title="fa fa-step-forward"></i></li>                        <li><i class="fa fa-stethoscope" data-bs-toggle="tooltip" title="fa fa-stethoscope"></i></li>                        <li><i class="fa fa-sticky-note" data-bs-toggle="tooltip" title="fa fa-sticky-note"></i></li>                        <li><i class="fa fa-stop" data-bs-toggle="tooltip" title="fa fa-stop"></i></li>                        <li><i class="fa fa-stop-circle" data-bs-toggle="tooltip" title="fa fa-stop-circle"></i></li>                        <li><i class="fa fa-street-view" data-bs-toggle="tooltip" title="fa fa-street-view"></i></li>                        <li><i class="fa fa-subscript" data-bs-toggle="tooltip" title="fa fa-subscript"></i></li>                        <li><i class="fa fa-suitcase" data-bs-toggle="tooltip" title="fa fa-suitcase"></i></li>                        <li><i class="fa fa-superscript" data-bs-toggle="tooltip" title="fa fa-superscript"></i></li>                        <li><i class="fa fa-table" data-bs-toggle="tooltip" title="fa fa-table"></i></li>                        <li><i class="fa fa-tag" data-bs-toggle="tooltip" title="fa fa-tag"></i></li>                        <li><i class="fa fa-tags" data-bs-toggle="tooltip" title="fa fa-tags"></i></li>                        <li><i class="fa fa-tasks" data-bs-toggle="tooltip" title="fa fa-tasks"></i></li>                        <li><i class="fa fa-taxi" data-bs-toggle="tooltip" title="fa fa-taxi"></i></li>                        <li><i class="fa fa-terminal" data-bs-toggle="tooltip" title="fa fa-terminal"></i></li>                        <li><i class="fa fa-text-height" data-bs-toggle="tooltip" title="fa fa-text-height"></i></li>                        <li><i class="fa fa-text-width" data-bs-toggle="tooltip" title="fa fa-text-width"></i></li>                        <li><i class="fa fa-th" data-bs-toggle="tooltip" title="fa fa-th"></i></li>                        <li><i class="fa fa-th-large" data-bs-toggle="tooltip" title="fa fa-th-large"></i></li>                        <li><i class="fa fa-th-list" data-bs-toggle="tooltip" title="fa fa-th-list"></i></li>                        <li><i class="fa fa-thermometer" data-bs-toggle="tooltip" title="fa fa-thermometer"></i></li>                        <li><i class="fa fa-thermometer-empty" data-bs-toggle="tooltip"                                title="fa fa-thermometer-empty"></i></li>                        <li><i class="fa fa-thermometer-full" data-bs-toggle="tooltip"                                title="fa fa-thermometer-full"></i></li>                        <li><i class="fa fa-thermometer-half" data-bs-toggle="tooltip"                                title="fa fa-thermometer-half"></i></li>                        <li><i class="fa fa-thermometer-quarter" data-bs-toggle="tooltip"                                title="fa fa-thermometer-quarter"></i></li>                        <li><i class="fa fa-thermometer-three-quarters" data-bs-toggle="tooltip"                                title="fa fa-thermometer-three-quarters"></i></li>                        <li><i class="fa fa-thumbs-down" data-bs-toggle="tooltip" title="fa fa-thumbs-down"></i></li>                        <li><i class="fa fa-thumbs-up" data-bs-toggle="tooltip" title="fa fa-thumbs-up"></i></li>                        <li><i class="fa fa-times" data-bs-toggle="tooltip" title="fa fa-times"></i></li>                        <li><i class="fa fa-times-circle" data-bs-toggle="tooltip" title="fa fa-times-circle"></i></li>                        <li><i class="fa fa-tint" data-bs-toggle="tooltip" title="fa fa-tint"></i></li>                        <li><i class="fa fa-toggle-off" data-bs-toggle="tooltip" title="fa fa-toggle-off"></i></li>                        <li><i class="fa fa-toggle-on" data-bs-toggle="tooltip" title="fa fa-toggle-on"></i></li>                        <li><i class="fa fa-trademark" data-bs-toggle="tooltip" title="fa fa-trademark"></i></li>                        <li><i class="fa fa-train" data-bs-toggle="tooltip" title="fa fa-train"></i></li>                        <li><i class="fa fa-transgender" data-bs-toggle="tooltip" title="fa fa-transgender"></i></li>                        <li><i class="fa fa-transgender-alt" data-bs-toggle="tooltip" title="fa fa-transgender-alt"></i>                        </li>                        <li><i class="fa fa-trash" data-bs-toggle="tooltip" title="fa fa-trash"></i></li>                        <li><i class="fa fa-tree" data-bs-toggle="tooltip" title="fa fa-tree"></i></li>                        <li><i class="fa fa-trophy" data-bs-toggle="tooltip" title="fa fa-trophy"></i></li>                        <li><i class="fa fa-tty" data-bs-toggle="tooltip" title="fa fa-tty"></i></li>                        <li><i class="fa fa-tv" data-bs-toggle="tooltip" title="fa fa-tv"></i></li>                        <li><i class="fa fa-umbrella" data-bs-toggle="tooltip" title="fa fa-umbrella"></i></li>                        <li><i class="fa fa-underline" data-bs-toggle="tooltip" title="fa fa-underline"></i></li>                        <li><i class="fa fa-undo" data-bs-toggle="tooltip" title="fa fa-undo"></i></li>                        <li><i class="fa fa-universal-access" data-bs-toggle="tooltip"                                title="fa fa-universal-access"></i></li>                        <li><i class="fa fa-university" data-bs-toggle="tooltip" title="fa fa-university"></i></li>                        <li><i class="fa fa-unlink" data-bs-toggle="tooltip" title="fa fa-unlink"></i></li>                        <li><i class="fa fa-unlock" data-bs-toggle="tooltip" title="fa fa-unlock"></i></li>                        <li><i class="fa fa-unlock-alt" data-bs-toggle="tooltip" title="fa fa-unlock-alt"></i></li>                        <li><i class="fa fa-upload" data-bs-toggle="tooltip" title="fa fa-upload"></i></li>                        <li><i class="fa fa-user-circle" data-bs-toggle="tooltip" title="fa fa-user-circle"></i></li>                        <li><i class="fa fa-user-md" data-bs-toggle="tooltip" title="fa fa-user-md"></i></li>                        <li><i class="fa fa-user-plus" data-bs-toggle="tooltip" title="fa fa-user-plus"></i></li>                        <li><i class="fa fa-user-secret" data-bs-toggle="tooltip" title="fa fa-user-secret"></i></li>                        <li><i class="fa fa-user-times" data-bs-toggle="tooltip" title="fa fa-user-times"></i></li>                        <li><i class="fa fa-users" data-bs-toggle="tooltip" title="fa fa-users"></i></li>                        <li><i class="fa fa-venus" data-bs-toggle="tooltip" title="fa fa-venus"></i></li>                        <li><i class="fa fa-venus-double" data-bs-toggle="tooltip" title="fa fa-venus-double"></i></li>                        <li><i class="fa fa-venus-mars" data-bs-toggle="tooltip" title="fa fa-venus-mars"></i></li>                        <li><i class="fa fa-volume-down" data-bs-toggle="tooltip" title="fa fa-volume-down"></i></li>                        <li><i class="fa fa-volume-off" data-bs-toggle="tooltip" title="fa fa-volume-off"></i></li>                        <li><i class="fa fa-volume-up" data-bs-toggle="tooltip" title="fa fa-volume-up"></i></li>                        <li><i class="fa fa-wheelchair" data-bs-toggle="tooltip" title="fa fa-wheelchair"></i></li>                        <li><i class="fa fa-wifi" data-bs-toggle="tooltip" title="fa fa-wifi"></i></li>                        <li><i class="fa fa-window-close" data-bs-toggle="tooltip" title="fa fa-window-close"></i></li>                        <li><i class="fa fa-window-maximize" data-bs-toggle="tooltip" title="fa fa-window-maximize"></i>                        </li>                        <li><i class="fa fa-window-minimize" data-bs-toggle="tooltip" title="fa fa-window-minimize"></i>                        </li>                        <li><i class="fa fa-window-restore" data-bs-toggle="tooltip" title="fa fa-window-restore"></i>                        </li>                        <li><i class="fa fa-wrench" data-bs-toggle="tooltip" title="fa fa-wrench"></i></li>                    </ul>                </div>            </div>        </div>    </div>    <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconFontawesomeComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconFontawesomeComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

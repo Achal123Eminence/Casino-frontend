@@ -1,0 +1,108 @@
+<div class="content pb-0">
+  <!-- Page Header -->
+  <div
+    class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-header-sticky"
+  >
+    <div>
+      <h4 class="mb-1">
+        Category<span class="badge badge-soft-primary ms-2">{{ categories.length }}</span>
+      </h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="routes.index">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Category</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="gap-2 d-flex align-items-center flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-sm btn-info" (click)="goBack()">
+          <i class="ti ti-arrow-left me-1"></i> Back
+        </button>
+        @if (auth.hasPermission("CATEGORY", "write")) {
+          <a
+            class="btn btn-sm btn-primary ms-auto"
+            (click)="openModal('moduleCategoryFormModal')"
+            ><i class="ti ti-square-rounded-plus-filled me-1"></i>Add Category
+          </a>
+        }
+      </div>
+      <a
+        href="javascript:void(0);"
+        class="btn btn-sm btn-icon btn-outline-light shadow"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        aria-label="Refresh"
+        data-bs-original-title="Refresh"
+        ><i class="ti ti-refresh"></i
+      ></a>
+      <app-collapse-header></app-collapse-header>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- card start -->
+  <div class="card border-0 rounded-0">
+    <div class="card-body">
+      <!-- Role List -->
+      <div class="table-responsive custom-table table-scroll">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (category of categories; track category) {
+              <tr>
+                <td>{{ category.name }}</td>
+                <td>
+                  <label class="switch">
+                    <span
+                      class="badge"
+                      [ngClass]="category.status ? 'bg-success' : 'bg-primary'"
+                    >
+                      {{ category.status ? "Active" : "Inactive" }}
+                    </span>
+                  </label>
+                </td>
+                <td>
+                    @if (auth.hasPermission("CATEGORY", "update")) {
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-primary"
+                      (click)="openEditCategory(category)"
+                    >
+                      Edit
+                    </button>
+                  }
+                  </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- Optional Pagination -->
+      <app-custom-pagination></app-custom-pagination>
+    </div>
+  </div>
+
+  <!-- card end -->
+</div>
+
+  <app-common-form-modal
+    modalId="moduleCategoryFormModal"
+    [title]="categoryData ? 'Edit Category' : 'Add Category'"
+    (save)="handleCategoryModuleFormSubmit()"
+    (cancel)="handleCategoryFormCancel()"
+  >
+    <app-add-category-module
+      #addCategoryForm
+      [categoryData]="categoryData"
+      (formSubmit)="onCategoryFormSubmit($event)"
+    ></app-add-category-module>
+  </app-common-form-modal>

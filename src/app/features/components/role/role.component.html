@@ -1,0 +1,102 @@
+<div class="content pb-0">
+  <!-- Page Header -->
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
+    <div>
+      <h4 class="mb-1">Roles<span class="badge badge-soft-primary ms-2">0</span></h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Roles</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="gap-2 d-flex align-items-center flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-sm btn-info" (click)="goBack()">
+            <i class="ti ti-arrow-left me-1"></i> Back
+          </button>
+          @if(auth.hasPermission('ROLE','write')) {
+        <a href="javascript:void(0);" class="btn btn-sm btn-primary ms-auto" (click)="openModal('roleFormModal')"><i
+          class="ti ti-square-rounded-plus-filled me-1"></i>Add Role
+        </a>
+      }
+      </div>
+      <a href="javascript:void(0);" class="btn btn-sm btn-icon btn-outline-light shadow" data-bs-toggle="tooltip"
+        data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh"><i class="ti ti-refresh"></i></a>
+      <app-collapse-header></app-collapse-header>
+    </div>
+  </div>
+  <!-- End Page Header -->
+
+  <!-- card start -->
+  <div class="card border-0 rounded-0">
+    <div class="card-body">
+      <!-- Role List -->
+      <div class="table-responsive custom-table">
+        <table class="table text-nowrap">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Short Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (module of roles; track module) {
+                <tr>
+                    <td>{{ module.name }}</td>
+                    <td>{{ module.shortName }}</td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        @if(auth.hasPermission('ROLE','write')) {
+                        <button class="btn btn-sm btn-warning" (click)="openModal('roleFormModal', module)">Edit</button>
+                        }@if(auth.hasPermission('ROLESU','write')) {
+                        <button class="btn btn-sm btn-success" (click)="openModal('roleUserModal', module.uuid)">Create User</button>
+                        }@if(auth.hasPermission('ROLESU','read')) {
+                        <button class="btn btn-sm btn-info" (click)="navigateToUserList(module)">User List</button>
+                        }@if(auth.hasPermission('ROLE','write')) {
+                        <button class="btn btn-sm btn-primary" [routerLink]="[routes.permissions, module.uuid, 'role', module.name]">Assign Permission</button>
+                        }
+                      </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+      </div>
+      <!-- Optional Pagination -->
+      <app-custom-pagination></app-custom-pagination>
+    </div>
+  </div>
+
+  <!-- card end -->
+
+</div>
+<!-- End Content -->
+<!-- @if(isModuleLoaded){
+  <app-common-form-modal modalId="roleFormModal" title="Add Role" (save)="handleRoleFormSubmit()"
+        (cancel)="handleFormCancel()">
+    <app-role-form #roleForm (formSubmit)="onRoleFormSubmit($event)"></app-role-form>
+  </app-common-form-modal>
+
+} -->
+
+@if(isModuleLoaded){
+  <app-common-form-modal
+    modalId="roleFormModal"
+    [title]="isEditMode ? 'Edit Role' : 'Add Role'"
+    (save)="handleRoleFormSubmit()"
+    (cancel)="handleFormCancel()"
+  >
+    <app-role-form #roleForm [roleData]="selectedRoleData" (formSubmit)="onRoleFormSubmit($event)"></app-role-form>
+  </app-common-form-modal>
+}
+
+
+@if(isModuleLoaded){
+  <app-common-form-modal modalId="roleUserModal" title="Add User" (save)="handleRoleUserFormSubmit()"
+        (cancel)="handleFormCancel()">
+    <app-role-user #roleUserForm (formSubmit)="onRoleUserSubmit($event)"></app-role-user>
+  </app-common-form-modal>
+
+}

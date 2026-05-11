@@ -1,0 +1,12 @@
+{
+  "name": "Downline Frontend",
+  "theme": "material",
+  "disableCoverage": false,
+  "disablePrivate": false,
+  "disableProtected": false,
+  "disableInternal": true,
+  "hideGenerator": false,
+  "hideDarkModeToggle": false,
+  "output": "docs/compodoc",
+  "tsconfig": "tsconfig.app.json"
+}

@@ -1,0 +1,69 @@
+<form [formGroup]="roleForm">
+  <div class="form-group mb-3">
+    <label for="name">Role Name</label>
+    <input
+      type="text"
+      id="name"
+      class="form-control"
+      formControlName="name"
+      placeholder="Enter Role name"
+      />
+    @if (controls['name'].invalid && controls['name'].touched) {
+      <div class="text-danger">
+        Name is required and must contain only letters and spaces.
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="shortName">Short Name</label>
+    <input
+      type="text"
+      id="shortName"
+      class="form-control"
+      formControlName="shortName"
+      placeholder="E.g. USER_MGMT"
+      />
+    @if (controls['shortName'].invalid && controls['shortName'].touched) {
+      <div class="text-danger">
+        Short name is required and must be uppercase letters or underscores only.
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      class="form-control"
+      formControlName="description"
+      placeholder="Enter description"
+      rows="3"
+    ></textarea>
+    @if (controls['description'].invalid && controls['description'].touched) {
+      <div class="text-danger">
+        Description is required and must contain only letters and spaces.
+      </div>
+    }
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="isAvailableForDownline">Available for Downline</label>
+    <select
+      id="isAvailableForDownline"
+      class="form-select"
+      formControlName="isAvailableForDownline"
+      >
+      <option [value]="true">Yes</option>
+      <option [value]="false">No</option>
+    </select>
+    @if (controls['isAvailableForDownline'].invalid && controls['isAvailableForDownline'].touched) {
+      <div
+        class="text-danger"
+        >
+        Please select Yes or No.
+      </div>
+    }
+  </div>
+
+</form>

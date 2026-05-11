@@ -1,0 +1,37 @@
+<ul
+  class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1"
+>
+  @for (tab of allowedTabs; track tab.index) {
+  <li class="nav-item">
+    <!-- Tab button: highlights when activeIndex matches tab.index -->
+    <a
+      class="nav-link fw-semibold"
+      [class.active]="activeIndex === tab.index"
+      (click)="changeTab(tab.index)"
+    >
+      {{ tab.title }}
+    </a>
+  </li>
+  }
+</ul>
+
+<!-- Tab content container -->
+<div class="tab-content bg-white rounded-bottom shadow-sm p-2 mt-2">
+  @if (!isUsersTabBootstrapped) {
+  <div class="tab-pane show active p-3">Loading users...</div>
+  } @else {
+    <!-- Marquee tab content (index 0) -->
+    @if (activeIndex === 0 && hasPermission('MNGUSRS')) {
+    <div class="tab-pane show active">
+      <app-manage-users></app-manage-users>
+    </div>
+    }
+
+    <!-- Important tab content (index 1) -->
+    @if (activeIndex === 1 && hasPermission('HANDLPERM')) {
+    <div class="tab-pane show active">
+      <app-handle-permission></app-handle-permission>
+    </div>
+    }
+  }
+</div>

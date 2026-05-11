@@ -1,0 +1,697 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BlogListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/content/blogs/blog-list/blog-list.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-blog-list</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/CollapseHeaderComponent.html" target="_self" >CollapseHeaderComponent</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./blog-list.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./blog-list.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/content/blogs/blog-list/blog-list.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../../common/collapse-header/collapse-header.component&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+@Component({
+  selector: &#x27;app-blog-list&#x27;,
+  imports: [CollapseHeaderComponent,RouterLink],
+  templateUrl: &#x27;./blog-list.component.html&#x27;,
+  styleUrl: &#x27;./blog-list.component.scss&#x27;
+})
+export class BlogListComponent {
+public routes &#x3D; routes;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Start Content --&gt;
+            &lt;div class&#x3D;&quot;content&quot;&gt;
+
+                &lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap&quot;&gt;
+                    &lt;div&gt;
+                        &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;All Blogs&lt;/h4&gt;
+                        &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                            &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                                &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;javascript:void(0);&quot;&gt;Blogs&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;All Blogs&lt;/li&gt;
+                            &lt;/ol&gt;
+                        &lt;/nav&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;gap-2 d-flex align-items-center flex-wrap&quot;&gt;
+                        &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+                            &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-toggle btn btn-outline-light px-2 shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot;&gt;&lt;i class&#x3D;&quot;ti ti-package-export me-2&quot;&gt;&lt;/i&gt;Export&lt;/a&gt;
+                            &lt;div class&#x3D;&quot;dropdown-menu  dropdown-menu-end&quot;&gt;
+                                &lt;ul&gt;
+                                    &lt;li&gt;
+                                        &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;&lt;i class&#x3D;&quot;ti ti-file-type-pdf me-1&quot;&gt;&lt;/i&gt;Export as
+                                            PDF&lt;/a&gt;
+                                    &lt;/li&gt;
+                                    &lt;li&gt;
+                                        &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;&lt;i class&#x3D;&quot;ti ti-file-type-xls me-1&quot;&gt;&lt;/i&gt;Export as
+                                            Excel &lt;/a&gt;
+                                    &lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-icon btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; data-bs-placement&#x3D;&quot;top&quot; aria-label&#x3D;&quot;Refresh&quot; data-bs-original-title&#x3D;&quot;Refresh&quot;&gt;&lt;i class&#x3D;&quot;ti ti-refresh&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                        &lt;app-collapse-header&gt;&lt;/app-collapse-header&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;            
+				&lt;!-- End Page Header --&gt;
+
+                &lt;div class&#x3D;&quot;card&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                        &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                            &lt;div class&#x3D;&quot;input-icon input-icon-start position-relative&quot;&gt;
+                                &lt;span class&#x3D;&quot;input-icon-addon text-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-search&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                                &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Search&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;a [routerLink]&#x3D;&quot;routes.addBlog&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;&lt;i class&#x3D;&quot;ti ti-square-rounded-plus-filled me-1&quot;&gt;&lt;/i&gt;Add Blog&lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- start row --&gt;
+                &lt;div class&#x3D;&quot;row row-gap-3&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-1.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Sales Optimization&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;40 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;27 May 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Improve Efficiency for Sales&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Discover how to optimize tools to boost your sales team’s productivity and track important metrics.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-success&quot;&gt;Active&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-2.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Automation&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;123 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;15 May 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Automation Benefits for Growth&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Learn how automation features can streamline workflows and accelerate your business’s growth effortlessly.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-danger&quot;&gt;Inactive&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-3.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Marketing&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;54 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;04 May 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Marketing Integration Guide&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Explore seamless integration strategies between customer management and marketing tools to enhance outreach and engagement.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-success&quot;&gt;Active&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-4.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Implementation&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;152 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;29 Apr 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Avoid Setup Mistakes&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Identify common pitfalls in implementation and learn proactive steps to avoid costly mistakes during setup.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-danger&quot;&gt;Inactive&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-5.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Product Features&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;58 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;17 Apr 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Top Features for 2025&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Uncover must-have features for 2025 that improve customer relationships and operational efficiency.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-success&quot;&gt;Active&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-6.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Data &amp; Analytics&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;78 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;03 Apr 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Data Insights for Success&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Leverage data insights to enhance customer engagement, identify opportunities, and make data-driven decisions.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-danger&quot;&gt;Inactive&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-7.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Customization&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;56 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;26 Mar 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Customizing Effectively&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Tailor your system to fit your business processes, improving usability, adoption, and productivity across teams.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-success&quot;&gt;Active&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-8.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Customization&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;97 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;13 Mar 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;Future Trends &amp; Innovations&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Explore emerging trends and innovations that are shaping the future of customer relationship management.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-danger&quot;&gt;Inactive&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-lg-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;card blog-item mb-0&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                               &lt;div class&#x3D;&quot;blog-img rounded position-relative mb-3&quot;&gt;
+                                    &lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;&lt;img src&#x3D;&quot;assets/img/blogs/blog-9.jpg&quot; alt&#x3D;&quot;img&quot; class&#x3D;&quot;img-fluid position-relative rounded&quot;&gt;&lt;/a&gt;
+                                    &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2&quot;&gt;Training &amp; Adoption&lt;/a&gt;
+                               &lt;/div&gt;
+                               &lt;div class&#x3D;&quot;blog-content&quot;&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3&quot;&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-message-minus me-1&quot;&gt;&lt;/i&gt;34 Comments&lt;/span&gt;
+                                        &lt;span&gt;&lt;i class&#x3D;&quot;ti ti-calendar me-1&quot;&gt;&lt;/i&gt;06 Mar 2025&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                                        &lt;h6 class&#x3D;&quot;mb-2&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.blogDetails&quot;&gt;User Training Tips&lt;/a&gt;&lt;/h6&gt;
+                                        &lt;p class&#x3D;&quot;mb-0 truncate-2-lines&quot;&gt;Ensure your team’s success with essential training strategies and onboarding tips to boost adoption rates.&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;hr&gt;
+                                    &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between&quot;&gt;
+                                        &lt;a [routerLink]&#x3D;&quot;routes.editBlog&quot; class&#x3D;&quot;btn btn-xs px-3 fs-12 btn-outline-dark&quot;&gt;&lt;i class&#x3D;&quot;ti ti-edit me-1&quot;&gt;&lt;/i&gt;Edit&lt;/a&gt;
+                                        &lt;span class&#x3D;&quot;badge badge-sm badge-soft-success&quot;&gt;Active&lt;/span&gt;
+                                    &lt;/div&gt;
+                               &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- end col --&gt;
+                &lt;/div&gt;
+                &lt;!-- end row --&gt;
+
+            &lt;/div&gt;
+            &lt;!-- End Content --&gt; </code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Start Content -->            <div class="content">                <!-- Page Header -->                <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">                    <div>                        <h4 class="mb-1">All Blogs</h4>                        <nav aria-label="breadcrumb">                            <ol class="breadcrumb mb-0 p-0">                                <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                                <li class="breadcrumb-item"><a href="javascript:void(0);">Blogs</a></li>                                <li class="breadcrumb-item active" aria-current="page">All Blogs</li>                            </ol>                        </nav>                    </div>                    <div class="gap-2 d-flex align-items-center flex-wrap">                        <div class="dropdown">                            <a href="javascript:void(0);" class="dropdown-toggle btn btn-outline-light px-2 shadow" data-bs-toggle="dropdown"><i class="ti ti-package-export me-2"></i>Export</a>                            <div class="dropdown-menu  dropdown-menu-end">                                <ul>                                    <li>                                        <a href="javascript:void(0);" class="dropdown-item"><i class="ti ti-file-type-pdf me-1"></i>Export as                                            PDF</a>                                    </li>                                    <li>                                        <a href="javascript:void(0);" class="dropdown-item"><i class="ti ti-file-type-xls me-1"></i>Export as                                            Excel </a>                                    </li>                                </ul>                            </div>                        </div>                        <a href="javascript:void(0);" class="btn btn-icon btn-outline-light shadow" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh"><i class="ti ti-refresh"></i></a>                        <app-collapse-header></app-collapse-header>                    </div>                </div>            				<!-- End Page Header -->                <div class="card">                    <div class="card-body">                        <div class="d-flex align-items-center justify-content-between">                            <div class="input-icon input-icon-start position-relative">                                <span class="input-icon-addon text-dark"><i class="ti ti-search"></i></span>                                <input type="text" class="form-control" placeholder="Search">                            </div>                            <a [routerLink]="routes.addBlog" class="btn btn-primary"><i class="ti ti-square-rounded-plus-filled me-1"></i>Add Blog</a>                        </div>                    </div>                </div>                <!-- start row -->                <div class="row row-gap-3">                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-1.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Sales Optimization</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>40 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>27 May 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Improve Efficiency for Sales</a></h6>                                        <p class="mb-0 truncate-2-lines">Discover how to optimize tools to boost your sales team’s productivity and track important metrics.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-success">Active</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-2.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Automation</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>123 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>15 May 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Automation Benefits for Growth</a></h6>                                        <p class="mb-0 truncate-2-lines">Learn how automation features can streamline workflows and accelerate your business’s growth effortlessly.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-danger">Inactive</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-3.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Marketing</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>54 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>04 May 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Marketing Integration Guide</a></h6>                                        <p class="mb-0 truncate-2-lines">Explore seamless integration strategies between customer management and marketing tools to enhance outreach and engagement.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-success">Active</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-4.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Implementation</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>152 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>29 Apr 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Avoid Setup Mistakes</a></h6>                                        <p class="mb-0 truncate-2-lines">Identify common pitfalls in implementation and learn proactive steps to avoid costly mistakes during setup.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-danger">Inactive</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-5.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Product Features</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>58 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>17 Apr 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Top Features for 2025</a></h6>                                        <p class="mb-0 truncate-2-lines">Uncover must-have features for 2025 that improve customer relationships and operational efficiency.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-success">Active</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-6.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Data & Analytics</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>78 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>03 Apr 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Data Insights for Success</a></h6>                                        <p class="mb-0 truncate-2-lines">Leverage data insights to enhance customer engagement, identify opportunities, and make data-driven decisions.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-danger">Inactive</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-7.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Customization</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>56 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>26 Mar 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Customizing Effectively</a></h6>                                        <p class="mb-0 truncate-2-lines">Tailor your system to fit your business processes, improving usability, adoption, and productivity across teams.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-success">Active</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-8.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Customization</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>97 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>13 Mar 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">Future Trends & Innovations</a></h6>                                        <p class="mb-0 truncate-2-lines">Explore emerging trends and innovations that are shaping the future of customer relationship management.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-danger">Inactive</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                    <div class="col-md-6 col-lg-4">                        <div class="card blog-item mb-0">                            <div class="card-body">                               <div class="blog-img rounded position-relative mb-3">                                    <a [routerLink]="routes.blogDetails"><img src="assets/img/blogs/blog-9.jpg" alt="img" class="img-fluid position-relative rounded"></a>                                    <a href="javascript:void(0);" class="btn btn-xs btn-info position-absolute fs-12 py-0 top-0 start-0 mt-2 ms-2">Training & Adoption</a>                               </div>                               <div class="blog-content">                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                                        <span><i class="ti ti-message-minus me-1"></i>34 Comments</span>                                        <span><i class="ti ti-calendar me-1"></i>06 Mar 2025</span>                                    </div>                                    <div class="mb-3">                                        <h6 class="mb-2"><a [routerLink]="routes.blogDetails">User Training Tips</a></h6>                                        <p class="mb-0 truncate-2-lines">Ensure your team’s success with essential training strategies and onboarding tips to boost adoption rates.</p>                                    </div>                                    <hr>                                    <div class="d-flex align-items-center justify-content-between">                                        <a [routerLink]="routes.editBlog" class="btn btn-xs px-3 fs-12 btn-outline-dark"><i class="ti ti-edit me-1"></i>Edit</a>                                        <span class="badge badge-sm badge-soft-success">Active</span>                                    </div>                               </div>                            </div>                        </div>                    </div><!-- end col -->                </div>                <!-- end row -->            </div>            <!-- End Content --> </div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'BlogListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BlogListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

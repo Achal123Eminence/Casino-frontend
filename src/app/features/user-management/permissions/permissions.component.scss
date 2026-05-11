@@ -1,0 +1,101 @@
+.text-right{
+    text-align: right;
+}
+
+/* ===== CARD HEADER (TOP BLUE BAR) ===== */
+.card-header {
+  background: #3c78d8;
+  color: #ffffff !important;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* ===== TABLE BASE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #2f6fd0;
+}
+
+/* ===== TABLE HEADER ROW ===== */
+.table thead {
+  background-color: #3c78d8 !important;
+  color: #ffffff;
+}
+
+.table thead th {
+  padding: 16px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-right: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #2f6fd0;
+  text-transform: uppercase;
+}
+
+/* First column alignment */
+.table thead th:first-child {
+  text-align: left;
+}
+
+/* Checkbox alignment in header */
+.table thead th div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* ===== TABLE BODY ===== */
+.table tbody {
+  background-color: #eeeeee;
+}
+
+.table tbody td {
+  padding: 22px 14px;
+  font-size: 15px;
+  border: 1px solid #2f6fd0;
+}
+
+/* Submodule text style */
+.table tbody td:first-child {
+  font-weight: 500;
+  color: #444;
+}
+
+/* ===== CHECKBOX STYLE ===== */
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #ec4899; /* pink */
+  cursor: pointer;
+}
+
+/* ===== SAVE BUTTON ===== */
+// .btn-success {
+//   background-color: #22c55e !important;
+//   border: none;
+//   padding: 8px 18px;
+//   font-size: 14px;
+//   font-weight: 600;
+//   border-radius: 6px;
+// }
+
+// .btn-success:hover {
+//   background-color: #16a34a !important;
+// }
+
+/* ===== CARD BORDER ===== */
+.card {
+  // border: 2px solid #2f6fd0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Remove bootstrap gray header if applied */
+.table-light,
+.table thead.table-light {
+  background-color: #3c78d8 !important;
+}

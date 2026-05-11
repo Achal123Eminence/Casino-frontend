@@ -1,0 +1,221 @@
+.profile-activity-page {
+  .page-toolbar {
+    margin-bottom: 0.875rem !important;
+  }
+
+  .page-header-block {
+    background: #ececec;
+    border: 1px solid #dde1e6;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .main-tab-list,
+  .sub-tab-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .main-tab {
+    border: 0;
+    border-radius: 7px;
+    background: #f5f5f5;
+    color: #444;
+    font-weight: 600;
+    padding: 8px 14px;
+  }
+
+  .main-tab.active {
+    background: #df1e11;
+    color: #fff;
+  }
+
+  .content-card {
+    border: 1px solid #dde1e6 !important;
+  }
+
+  .card-body {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .sub-tab-list {
+    border-bottom: 1px solid #dde1e6;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+  }
+
+  .sub-tab {
+    border: 0;
+    background: transparent;
+    color: #5e6b78;
+    padding: 7px 10px;
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .sub-tab.active {
+    color: #1f6fe5;
+    border-bottom: 3px solid #1f6fe5;
+  }
+
+  .profile-wallet-table thead th,
+  .activity-table thead th {
+    background: #3a7edc;
+    color: #fff;
+    border-color: #2e6fcc;
+    font-weight: 700;
+    padding: 0.55rem 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .profile-wallet-table tbody td,
+  .activity-table tbody td {
+    border-color: #2e6fcc;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    vertical-align: middle;
+  }
+
+  .section-title {
+    margin: 0.875rem 0 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2b2d33;
+  }
+
+  .profile-grid {
+    border: 1px solid #cfd4da;
+  }
+
+  .profile-box {
+    min-height: 100%;
+    border-right: 1px solid #cfd4da;
+  }
+
+  .profile-grid .col-lg-6:last-child .profile-box {
+    border-right: 0;
+  }
+
+  .profile-box-title {
+    background: #212830;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .profile-detail-table th,
+  .profile-detail-table td {
+    border-color: #cfd4da;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.2;
+  }
+
+  .profile-detail-table th {
+    width: 34%;
+    font-weight: 700;
+    color: #2b2d33;
+  }
+
+  .activity-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .activity-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .crumb-home {
+    color: #db1f17;
+    font-weight: 500;
+  }
+
+  .crumb-current {
+    color: #1f6fe5;
+    // font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .crumb-sep {
+    color: #8a939d;
+  }
+
+  .type-filter {
+    text-decoration: none;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .activity-type-dropdown {
+    min-width: 230px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  .activity-type-dropdown .dropdown-item.active {
+    background: #e9f1ff;
+    color: #1f6fe5;
+    font-weight: 600;
+  }
+
+  .btn-icon {
+    min-width: 1.9rem;
+    padding: 0.28rem 0.45rem;
+  }
+
+  .security-pane {
+    border: 1px solid #dde1e6;
+    background: #f7f9fc;
+    border-radius: 4px;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .security-pane h5 {
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .profile-activity-page {
+    .content-card .card-body {
+      padding: 8px;
+    }
+
+    .profile-detail-table th {
+      width: 42%;
+    }
+
+    .profile-detail-table th,
+    .profile-detail-table td,
+    .activity-table tbody td {
+      font-size: 12px;
+      padding: 6px 7px;
+    }
+
+    .profile-wallet-table thead th,
+    .activity-table thead th {
+      padding: 6px 7px;
+      font-size: 11px;
+    }
+  }
+}

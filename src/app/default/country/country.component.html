@@ -1,0 +1,204 @@
+<div class="content pb-0">
+  <!-- <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap">
+    <div>
+      <h4 class="mb-1">
+        Country Master
+        <span class="badge badge-soft-primary ms-2">{{ filteredCountries.length }}</span>
+      </h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Manage Country</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button
+        type="button"
+        class="btn btn-sm btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#countryModal"
+        (click)="openAddModal()"
+      >
+        <i class="ti ti-square-rounded-plus-filled me-1"></i> Add Country
+      </button>
+    </div>
+  </div> -->
+
+  <div class="card border-0 rounded-0">
+    <div class="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <div class="input-icon input-icon-start position-relative">
+        <span class="input-icon-addon text-dark"><i class="ti ti-search"></i></span>
+        <input
+          [(ngModel)]="search"
+          [ngModelOptions]="{ standalone: true }"
+          type="search"
+          class="form-control"
+          placeholder="Search by name, code, id"
+        />
+      </div>
+      @if(auth.hasPermission('COUNTRY','write')){
+      <button
+        type="button"
+        class="btn btn-sm btn-primary ml-auto"
+        (click)="openAddModal()"
+      >
+        <i class="ti ti-square-rounded-plus-filled me-1"></i> Add Country
+      </button>
+    }
+    </div>
+    <div class="card-body">
+      <div class="table-responsive custom-table">
+        <table class="table text-nowrap">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Country ID</th>
+              <th>Country Name</th>
+              <th>Country Code</th>
+              <th>Number Code</th>
+              <th>Flag</th>
+              <th>Jersey</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (filteredCountries.length === 0) {
+              <tr>
+                <td colspan="9" class="text-center text-muted py-4">No country found</td>
+              </tr>
+            } @else {
+              @for (item of filteredCountries; track item.uuid; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.countryId }}</td>
+                  <td>{{ item.countryName }}</td>
+                  <td>{{ item.countryCode }}</td>
+                  <td>{{ item.numberCode }}</td>
+                  <td>
+                    @if (item.flagIcon) {
+                      <img [src]="item.flagIcon" alt="flag" width="28" height="20" style="object-fit: cover" />
+                    } @else {
+                      <span>-</span>
+                    }
+                  </td>
+                  <td>
+                    @if (item.teamJersey) {
+                      <img [src]="item.teamJersey" alt="jersey" width="32" height="28" style="object-fit: cover" />
+                    } @else {
+                      <span>-</span>
+                    }
+                  </td>
+                  <td>
+                    <div class="d-flex form-check form-switch form-check-reverse mb-0">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [checked]="item.status === 1"
+                        [disabled]="!auth.hasPermission('COUNTRY','update')"
+                        (click)="onStatusToggle($event, item)"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    @if(auth.hasPermission('COUNTRY','update')){
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-primary"
+                      (click)="openEditModal(item)"
+                    >
+                      Edit
+                    </button>
+                  }
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="countryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isEditMode ? 'Edit Country' : 'Add Country' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="countryForm" (ngSubmit)="submitCountry()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Country <span class="text-danger">*</span></label>
+            @if (!isEditMode) {
+              <select class="form-select" formControlName="countryCode">
+                <option value="">Select country</option>
+                @for (country of availableCountries; track country.countryCode) {
+                  <option [value]="country.countryCode">
+                    {{ country.countryName }} ({{ country.countryCode }})
+                  </option>
+                }
+              </select>
+            } @else {
+              <input type="text" class="form-control" formControlName="countryCode" readonly />
+            }
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-2">
+                <label class="form-label" for="country-flag-file">Flag</label>
+                <input id="country-flag-file" type="file" class="form-control" accept="image/*" (change)="onFileChange($event, 'flagIcon')" [disabled]="flagUploading" />
+                @if (flagUploading) {
+                  <span class="text-muted small">Uploading…</span>
+                }
+              </div>
+              @if (flagPreviewUrl) {
+                <div class="mb-3">
+                  <span class="form-label d-block" aria-hidden="true">Preview</span>
+                  <img [src]="flagPreviewUrl" alt="Flag preview" width="80" height="56" style="object-fit: cover; border: 1px solid #dee2e6; border-radius: 4px;" />
+                </div>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <div class="mb-2">
+                <label class="form-label" for="country-jersey-file">Jersey</label>
+                <input id="country-jersey-file" type="file" class="form-control" accept="image/*" (change)="onFileChange($event, 'teamJersey')" [disabled]="jerseyUploading" />
+                @if (jerseyUploading) {
+                  <span class="text-muted small">Uploading…</span>
+                }
+              </div>
+              @if (jerseyPreviewUrl) {
+                <div class="mb-3">
+                  <span class="form-label d-block" aria-hidden="true">Preview</span>
+                  <img [src]="jerseyPreviewUrl" alt="Jersey preview" width="80" height="56" style="object-fit: cover; border: 1px solid #dee2e6; border-radius: 4px;" />
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary" [disabled]="countryForm.invalid || isSubmitting">
+            @if (isSubmitting) {
+              {{ flagUploading || jerseyUploading ? 'Uploading…' : 'Saving…' }}
+            } @else {
+              {{ isEditMode ? 'Update' : 'Save' }}
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-confirm-modal
+  [title]="modalTitle"
+  [message]="modalMessage"
+  modalId="changeCountryStatus"
+  (confirmed)="confirmStatusChange()"
+></app-confirm-modal>

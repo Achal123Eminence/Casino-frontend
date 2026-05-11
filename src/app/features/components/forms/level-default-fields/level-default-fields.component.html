@@ -1,0 +1,23 @@
+<form [formGroup]="fieldForm">
+  <table>
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>Is Enabled</th>
+        <th>Is Required</th>
+        <th>Order</th>
+      </tr>
+    </thead>
+    <tbody formArrayName="fields">
+      @for (field of fields.controls; track field) {
+        <tr [formGroup]="field">
+          <td>{{ field.get('label')?.value }}</td>
+          <td><input type="checkbox" formControlName="isEnabled" /></td>
+          <td><input type="checkbox" formControlName="isRequired" /></td>
+          <td><input type="number" formControlName="order" min="1" class="form-control" /></td>
+        </tr>
+      }
+    </tbody>
+
+  </table>
+</form>

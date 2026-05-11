@@ -1,0 +1,862 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconTypiconComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-typicon/icon-typicon.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-typicon</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-typicon.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-typicon.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-typicon/icon-typicon.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-typicon&#x27;,
+    templateUrl: &#x27;./icon-typicon.component.html&#x27;,
+    styleUrls: [&#x27;./icon-typicon.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconTypiconComponent {
+routes&#x3D;routes
+   
+
+   
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Typicon Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Typicon Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Chart --&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;Typicon Icon&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+                    &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chart-pie-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-chart-pie-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chart-pie&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-chart-pie&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chevron-left-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-chevron-left-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chevron-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-chevron-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chevron-right-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-chevron-right-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-chevron-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-chevron-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-clipboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-clipboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-cloud-storage&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-cloud-storage&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-cloud-storage-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-cloud-storage-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-code-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-code-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-code&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-code&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-coffee&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-coffee&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-cog-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-cog-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-cog&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-cog&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-compass&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-compass&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-contacts&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-contacts&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-credit-card&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-credit-card&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-css3&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-css3&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-database&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-database&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-delete-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-delete-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-delete&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-delete&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-device-desktop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-device-desktop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-device-laptop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-device-laptop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-device-phone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-device-phone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-device-tablet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-device-tablet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-directions&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-directions&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-divide-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-divide-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-divide&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-divide&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-document-add&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-document-add&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-document-delete&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-document-delete&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-document-text&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-document-text&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-document&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-document&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-download-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-download-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-download&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-download&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-dropbox&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-dropbox&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-edit&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-edit&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-eject-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-eject-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-eject&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-eject&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-equals-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-equals-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-equals&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-equals&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-export-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-export-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-export&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-export&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-eye-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-eye-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-eye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-eye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-feather&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-feather&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-film&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-film&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-filter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-filter&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flag-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flag-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flash-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flash-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flow-children&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flow-children&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flow-merge&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flow-merge&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flow-parallel&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flow-parallel&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-flow-switch&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-flow-switch&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-folder-add&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-folder-add&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-folder-delete&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-folder-delete&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-folder-open&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-folder-open&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-folder&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-folder&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-gift&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-gift&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-globe-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-globe-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-globe&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-globe&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-group-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-group-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-group&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-group&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-headphones&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-headphones&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-heart-full-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-heart-full-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-heart-half-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-heart-half-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-heart-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-heart-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-heart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-heart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-home-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-home-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-home&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-home&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-html5&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-html5&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-image-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-image-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-image&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-image&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-infinity-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-infinity-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-info-large-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-info-large-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-info-large&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-info-large&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-info-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-info-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-info&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-info&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-input-checked-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-input-checked-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-input-checked&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-input-checked&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-key-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-key-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-key&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-key&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-keyboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-keyboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-leaf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-leaf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-lightbulb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-lightbulb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-link-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-link-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-link&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-link&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-location-arrow-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-location-arrow-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-location-arrow&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-location-arrow&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-location-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-location-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-location&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-location&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-lock-closed-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-lock-closed-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-lock-closed&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-lock-closed&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-lock-open-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-lock-open-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-lock-open&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-lock-open&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-mail&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-mail&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-map&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-map&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-eject-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-eject-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-eject&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-eject&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-fast-forward-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-media-fast-forward-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-fast-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-fast-forward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-pause-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-pause-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-pause&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-pause&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-play-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-play-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-play-reverse-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-media-play-reverse-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-play-reverse&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-play-reverse&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-play&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-play&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-record-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-record-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-record&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-record&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-rewind-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-rewind-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-rewind&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-rewind&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-stop-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-stop-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-media-stop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-media-stop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-message-typing&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-message-typing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-message&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-message&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-messages&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-messages&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-microphone-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-microphone-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-microphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-microphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-minus-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-minus-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-minus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-mortar-board&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-mortar-board&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-news&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-news&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-notes-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-notes-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-notes&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-notes&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pen&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pen&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pencil&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pencil&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-phone-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-phone-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-phone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-phone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pi-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pi-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pi&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pi&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pin-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pin-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pin&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pin&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-pipette&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-pipette&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-plane-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-plane-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-plane&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-plane&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-plug&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-plug&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-plus-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-plus-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-point-of-interest-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-point-of-interest-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-point-of-interest&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-point-of-interest&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-power-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-power-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-power&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-power&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-printer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-printer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-puzzle-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-puzzle-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-puzzle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-puzzle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-radar-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-radar-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-radar&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-radar&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-refresh-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-refresh-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-refresh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-refresh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-rss-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-rss-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-rss&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-rss&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-scissors-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-scissors-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-scissors&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-scissors&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-shopping-bag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-shopping-bag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-shopping-cart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-shopping-cart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-at-circular&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-at-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-dribbble-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-dribbble-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-dribbble&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-dribbble&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-facebook-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-facebook-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-facebook&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-facebook&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-flickr-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-flickr-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-flickr&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-flickr&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-github-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-github-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-github&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-github&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-google-plus-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-google-plus-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-google-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-google-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-instagram-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-instagram-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-instagram&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-instagram&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-last-fm-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-last-fm-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-last-fm&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-last-fm&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-linkedin-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-linkedin-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-linkedin&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-linkedin&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-pinterest-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-pinterest-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-pinterest&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-pinterest&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-skype-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-skype-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-skype&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-skype&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-tumbler-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-tumbler-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-tumbler&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-tumbler&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-twitter-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-twitter-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-twitter&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-twitter&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-vimeo-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-vimeo-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-vimeo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-vimeo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-youtube-circular&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-social-youtube-circular&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-social-youtube&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-social-youtube&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-sort-alphabetically-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-sort-alphabetically-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-sort-alphabetically&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-sort-alphabetically&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-sort-numerically-outline&quot;
+                                data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;typcn typcn-sort-numerically-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-sort-numerically&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-sort-numerically&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-spanner-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-spanner-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-spanner&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-spanner&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-spiral&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-spiral&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-star-full-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-star-full-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-star-half-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-star-half-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-star-half&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-star-half&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-star-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-star-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-star&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-star&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-starburst-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-starburst-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-starburst&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-starburst&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-stopwatch&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-stopwatch&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-support&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-support&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li class&#x3D;&quot;icons-list-item&quot;&gt;&lt;i class&#x3D;&quot;typcn typcn-tabs-outline&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;typcn typcn-tabs-outline&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-typicon.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Typicon Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Typicon Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Chart -->    <div class="col-md-12">        <div class="card">            <div class="card-header">                <div class="card-title">Typicon Icon</div>            </div>            <div class="card-body">                <div class="icons-items">                    <ul class="icons-list">                        <li class="icons-list-item"><i class="typcn typcn-chart-pie-outline" data-bs-toggle="tooltip"                                title="typcn typcn-chart-pie-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-chart-pie" data-bs-toggle="tooltip"                                title="typcn typcn-chart-pie"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-chevron-left-outline" data-bs-toggle="tooltip"                                title="typcn typcn-chevron-left-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-chevron-left" data-bs-toggle="tooltip"                                title="typcn typcn-chevron-left"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-chevron-right-outline"                                data-bs-toggle="tooltip" title="typcn typcn-chevron-right-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-chevron-right" data-bs-toggle="tooltip"                                title="typcn typcn-chevron-right"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-clipboard" data-bs-toggle="tooltip"                                title="typcn typcn-clipboard"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-cloud-storage" data-bs-toggle="tooltip"                                title="typcn typcn-cloud-storage"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-cloud-storage-outline"                                data-bs-toggle="tooltip" title="typcn typcn-cloud-storage-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-code-outline" data-bs-toggle="tooltip"                                title="typcn typcn-code-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-code" data-bs-toggle="tooltip"                                title="typcn typcn-code"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-coffee" data-bs-toggle="tooltip"                                title="typcn typcn-coffee"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-cog-outline" data-bs-toggle="tooltip"                                title="typcn typcn-cog-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-cog" data-bs-toggle="tooltip"                                title="typcn typcn-cog"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-compass" data-bs-toggle="tooltip"                                title="typcn typcn-compass"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-contacts" data-bs-toggle="tooltip"                                title="typcn typcn-contacts"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-credit-card" data-bs-toggle="tooltip"                                title="typcn typcn-credit-card"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-css3" data-bs-toggle="tooltip"                                title="typcn typcn-css3"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-database" data-bs-toggle="tooltip"                                title="typcn typcn-database"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-delete-outline" data-bs-toggle="tooltip"                                title="typcn typcn-delete-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-delete" data-bs-toggle="tooltip"                                title="typcn typcn-delete"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-device-desktop" data-bs-toggle="tooltip"                                title="typcn typcn-device-desktop"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-device-laptop" data-bs-toggle="tooltip"                                title="typcn typcn-device-laptop"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-device-phone" data-bs-toggle="tooltip"                                title="typcn typcn-device-phone"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-device-tablet" data-bs-toggle="tooltip"                                title="typcn typcn-device-tablet"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-directions" data-bs-toggle="tooltip"                                title="typcn typcn-directions"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-divide-outline" data-bs-toggle="tooltip"                                title="typcn typcn-divide-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-divide" data-bs-toggle="tooltip"                                title="typcn typcn-divide"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-document-add" data-bs-toggle="tooltip"                                title="typcn typcn-document-add"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-document-delete" data-bs-toggle="tooltip"                                title="typcn typcn-document-delete"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-document-text" data-bs-toggle="tooltip"                                title="typcn typcn-document-text"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-document" data-bs-toggle="tooltip"                                title="typcn typcn-document"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-download-outline" data-bs-toggle="tooltip"                                title="typcn typcn-download-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-download" data-bs-toggle="tooltip"                                title="typcn typcn-download"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-dropbox" data-bs-toggle="tooltip"                                title="typcn typcn-dropbox"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-edit" data-bs-toggle="tooltip"                                title="typcn typcn-edit"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-eject-outline" data-bs-toggle="tooltip"                                title="typcn typcn-eject-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-eject" data-bs-toggle="tooltip"                                title="typcn typcn-eject"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-equals-outline" data-bs-toggle="tooltip"                                title="typcn typcn-equals-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-equals" data-bs-toggle="tooltip"                                title="typcn typcn-equals"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-export-outline" data-bs-toggle="tooltip"                                title="typcn typcn-export-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-export" data-bs-toggle="tooltip"                                title="typcn typcn-export"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-eye-outline" data-bs-toggle="tooltip"                                title="typcn typcn-eye-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-eye" data-bs-toggle="tooltip"                                title="typcn typcn-eye"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-feather" data-bs-toggle="tooltip"                                title="typcn typcn-feather"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-film" data-bs-toggle="tooltip"                                title="typcn typcn-film"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-filter" data-bs-toggle="tooltip"                                title="typcn typcn-filter"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flag-outline" data-bs-toggle="tooltip"                                title="typcn typcn-flag-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flag" data-bs-toggle="tooltip"                                title="typcn typcn-flag"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flash-outline" data-bs-toggle="tooltip"                                title="typcn typcn-flash-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flash" data-bs-toggle="tooltip"                                title="typcn typcn-flash"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flow-children" data-bs-toggle="tooltip"                                title="typcn typcn-flow-children"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flow-merge" data-bs-toggle="tooltip"                                title="typcn typcn-flow-merge"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flow-parallel" data-bs-toggle="tooltip"                                title="typcn typcn-flow-parallel"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-flow-switch" data-bs-toggle="tooltip"                                title="typcn typcn-flow-switch"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-folder-add" data-bs-toggle="tooltip"                                title="typcn typcn-folder-add"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-folder-delete" data-bs-toggle="tooltip"                                title="typcn typcn-folder-delete"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-folder-open" data-bs-toggle="tooltip"                                title="typcn typcn-folder-open"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-folder" data-bs-toggle="tooltip"                                title="typcn typcn-folder"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-gift" data-bs-toggle="tooltip"                                title="typcn typcn-gift"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-globe-outline" data-bs-toggle="tooltip"                                title="typcn typcn-globe-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-globe" data-bs-toggle="tooltip"                                title="typcn typcn-globe"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-group-outline" data-bs-toggle="tooltip"                                title="typcn typcn-group-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-group" data-bs-toggle="tooltip"                                title="typcn typcn-group"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-headphones" data-bs-toggle="tooltip"                                title="typcn typcn-headphones"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-heart-full-outline" data-bs-toggle="tooltip"                                title="typcn typcn-heart-full-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-heart-half-outline" data-bs-toggle="tooltip"                                title="typcn typcn-heart-half-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-heart-outline" data-bs-toggle="tooltip"                                title="typcn typcn-heart-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-heart" data-bs-toggle="tooltip"                                title="typcn typcn-heart"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-home-outline" data-bs-toggle="tooltip"                                title="typcn typcn-home-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-home" data-bs-toggle="tooltip"                                title="typcn typcn-home"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-html5" data-bs-toggle="tooltip"                                title="typcn typcn-html5"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-image-outline" data-bs-toggle="tooltip"                                title="typcn typcn-image-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-image" data-bs-toggle="tooltip"                                title="typcn typcn-image"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-infinity-outline" data-bs-toggle="tooltip"                                title="typcn typcn-infinity-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-info-large-outline" data-bs-toggle="tooltip"                                title="typcn typcn-info-large-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-info-large" data-bs-toggle="tooltip"                                title="typcn typcn-info-large"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-info-outline" data-bs-toggle="tooltip"                                title="typcn typcn-info-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-info" data-bs-toggle="tooltip"                                title="typcn typcn-info"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-input-checked-outline"                                data-bs-toggle="tooltip" title="typcn typcn-input-checked-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-input-checked" data-bs-toggle="tooltip"                                title="typcn typcn-input-checked"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-key-outline" data-bs-toggle="tooltip"                                title="typcn typcn-key-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-key" data-bs-toggle="tooltip"                                title="typcn typcn-key"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-keyboard" data-bs-toggle="tooltip"                                title="typcn typcn-keyboard"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-leaf" data-bs-toggle="tooltip"                                title="typcn typcn-leaf"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-lightbulb" data-bs-toggle="tooltip"                                title="typcn typcn-lightbulb"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-link-outline" data-bs-toggle="tooltip"                                title="typcn typcn-link-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-link" data-bs-toggle="tooltip"                                title="typcn typcn-link"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-location-arrow-outline"                                data-bs-toggle="tooltip" title="typcn typcn-location-arrow-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-location-arrow" data-bs-toggle="tooltip"                                title="typcn typcn-location-arrow"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-location-outline" data-bs-toggle="tooltip"                                title="typcn typcn-location-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-location" data-bs-toggle="tooltip"                                title="typcn typcn-location"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-lock-closed-outline" data-bs-toggle="tooltip"                                title="typcn typcn-lock-closed-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-lock-closed" data-bs-toggle="tooltip"                                title="typcn typcn-lock-closed"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-lock-open-outline" data-bs-toggle="tooltip"                                title="typcn typcn-lock-open-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-lock-open" data-bs-toggle="tooltip"                                title="typcn typcn-lock-open"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-mail" data-bs-toggle="tooltip"                                title="typcn typcn-mail"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-map" data-bs-toggle="tooltip"                                title="typcn typcn-map"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-eject-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-eject-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-eject" data-bs-toggle="tooltip"                                title="typcn typcn-media-eject"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-fast-forward-outline"                                data-bs-toggle="tooltip" title="typcn typcn-media-fast-forward-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-fast-forward" data-bs-toggle="tooltip"                                title="typcn typcn-media-fast-forward"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-pause-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-pause-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-pause" data-bs-toggle="tooltip"                                title="typcn typcn-media-pause"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-play-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-play-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-play-reverse-outline"                                data-bs-toggle="tooltip" title="typcn typcn-media-play-reverse-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-play-reverse" data-bs-toggle="tooltip"                                title="typcn typcn-media-play-reverse"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-play" data-bs-toggle="tooltip"                                title="typcn typcn-media-play"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-record-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-record-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-record" data-bs-toggle="tooltip"                                title="typcn typcn-media-record"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-rewind-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-rewind-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-rewind" data-bs-toggle="tooltip"                                title="typcn typcn-media-rewind"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-stop-outline" data-bs-toggle="tooltip"                                title="typcn typcn-media-stop-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-media-stop" data-bs-toggle="tooltip"                                title="typcn typcn-media-stop"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-message-typing" data-bs-toggle="tooltip"                                title="typcn typcn-message-typing"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-message" data-bs-toggle="tooltip"                                title="typcn typcn-message"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-messages" data-bs-toggle="tooltip"                                title="typcn typcn-messages"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-microphone-outline" data-bs-toggle="tooltip"                                title="typcn typcn-microphone-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-microphone" data-bs-toggle="tooltip"                                title="typcn typcn-microphone"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-minus-outline" data-bs-toggle="tooltip"                                title="typcn typcn-minus-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-minus" data-bs-toggle="tooltip"                                title="typcn typcn-minus"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-mortar-board" data-bs-toggle="tooltip"                                title="typcn typcn-mortar-board"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-news" data-bs-toggle="tooltip"                                title="typcn typcn-news"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-notes-outline" data-bs-toggle="tooltip"                                title="typcn typcn-notes-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-notes" data-bs-toggle="tooltip"                                title="typcn typcn-notes"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pen" data-bs-toggle="tooltip"                                title="typcn typcn-pen"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pencil" data-bs-toggle="tooltip"                                title="typcn typcn-pencil"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-phone-outline" data-bs-toggle="tooltip"                                title="typcn typcn-phone-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-phone" data-bs-toggle="tooltip"                                title="typcn typcn-phone"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pi-outline" data-bs-toggle="tooltip"                                title="typcn typcn-pi-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pi" data-bs-toggle="tooltip"                                title="typcn typcn-pi"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pin-outline" data-bs-toggle="tooltip"                                title="typcn typcn-pin-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pin" data-bs-toggle="tooltip"                                title="typcn typcn-pin"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-pipette" data-bs-toggle="tooltip"                                title="typcn typcn-pipette"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-plane-outline" data-bs-toggle="tooltip"                                title="typcn typcn-plane-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-plane" data-bs-toggle="tooltip"                                title="typcn typcn-plane"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-plug" data-bs-toggle="tooltip"                                title="typcn typcn-plug"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-plus-outline" data-bs-toggle="tooltip"                                title="typcn typcn-plus-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-plus" data-bs-toggle="tooltip"                                title="typcn typcn-plus"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-point-of-interest-outline"                                data-bs-toggle="tooltip" title="typcn typcn-point-of-interest-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-point-of-interest" data-bs-toggle="tooltip"                                title="typcn typcn-point-of-interest"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-power-outline" data-bs-toggle="tooltip"                                title="typcn typcn-power-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-power" data-bs-toggle="tooltip"                                title="typcn typcn-power"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-printer" data-bs-toggle="tooltip"                                title="typcn typcn-printer"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-puzzle-outline" data-bs-toggle="tooltip"                                title="typcn typcn-puzzle-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-puzzle" data-bs-toggle="tooltip"                                title="typcn typcn-puzzle"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-radar-outline" data-bs-toggle="tooltip"                                title="typcn typcn-radar-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-radar" data-bs-toggle="tooltip"                                title="typcn typcn-radar"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-refresh-outline" data-bs-toggle="tooltip"                                title="typcn typcn-refresh-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-refresh" data-bs-toggle="tooltip"                                title="typcn typcn-refresh"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-rss-outline" data-bs-toggle="tooltip"                                title="typcn typcn-rss-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-rss" data-bs-toggle="tooltip"                                title="typcn typcn-rss"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-scissors-outline" data-bs-toggle="tooltip"                                title="typcn typcn-scissors-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-scissors" data-bs-toggle="tooltip"                                title="typcn typcn-scissors"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-shopping-bag" data-bs-toggle="tooltip"                                title="typcn typcn-shopping-bag"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-shopping-cart" data-bs-toggle="tooltip"                                title="typcn typcn-shopping-cart"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-at-circular" data-bs-toggle="tooltip"                                title="typcn typcn-social-at-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-dribbble-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-dribbble-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-dribbble" data-bs-toggle="tooltip"                                title="typcn typcn-social-dribbble"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-facebook-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-facebook-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-facebook" data-bs-toggle="tooltip"                                title="typcn typcn-social-facebook"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-flickr-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-flickr-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-flickr" data-bs-toggle="tooltip"                                title="typcn typcn-social-flickr"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-github-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-github-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-github" data-bs-toggle="tooltip"                                title="typcn typcn-social-github"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-google-plus-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-google-plus-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-google-plus" data-bs-toggle="tooltip"                                title="typcn typcn-social-google-plus"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-instagram-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-instagram-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-instagram" data-bs-toggle="tooltip"                                title="typcn typcn-social-instagram"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-last-fm-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-last-fm-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-last-fm" data-bs-toggle="tooltip"                                title="typcn typcn-social-last-fm"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-linkedin-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-linkedin-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-linkedin" data-bs-toggle="tooltip"                                title="typcn typcn-social-linkedin"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-pinterest-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-pinterest-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-pinterest" data-bs-toggle="tooltip"                                title="typcn typcn-social-pinterest"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-skype-outline" data-bs-toggle="tooltip"                                title="typcn typcn-social-skype-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-skype" data-bs-toggle="tooltip"                                title="typcn typcn-social-skype"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-tumbler-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-tumbler-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-tumbler" data-bs-toggle="tooltip"                                title="typcn typcn-social-tumbler"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-twitter-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-twitter-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-twitter" data-bs-toggle="tooltip"                                title="typcn typcn-social-twitter"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-vimeo-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-vimeo-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-vimeo" data-bs-toggle="tooltip"                                title="typcn typcn-social-vimeo"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-youtube-circular"                                data-bs-toggle="tooltip" title="typcn typcn-social-youtube-circular"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-social-youtube" data-bs-toggle="tooltip"                                title="typcn typcn-social-youtube"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-sort-alphabetically-outline"                                data-bs-toggle="tooltip" title="typcn typcn-sort-alphabetically-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-sort-alphabetically" data-bs-toggle="tooltip"                                title="typcn typcn-sort-alphabetically"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-sort-numerically-outline"                                data-bs-toggle="tooltip" title="typcn typcn-sort-numerically-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-sort-numerically" data-bs-toggle="tooltip"                                title="typcn typcn-sort-numerically"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-spanner-outline" data-bs-toggle="tooltip"                                title="typcn typcn-spanner-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-spanner" data-bs-toggle="tooltip"                                title="typcn typcn-spanner"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-spiral" data-bs-toggle="tooltip"                                title="typcn typcn-spiral"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-star-full-outline" data-bs-toggle="tooltip"                                title="typcn typcn-star-full-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-star-half-outline" data-bs-toggle="tooltip"                                title="typcn typcn-star-half-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-star-half" data-bs-toggle="tooltip"                                title="typcn typcn-star-half"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-star-outline" data-bs-toggle="tooltip"                                title="typcn typcn-star-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-star" data-bs-toggle="tooltip"                                title="typcn typcn-star"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-starburst-outline" data-bs-toggle="tooltip"                                title="typcn typcn-starburst-outline"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-starburst" data-bs-toggle="tooltip"                                title="typcn typcn-starburst"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-stopwatch" data-bs-toggle="tooltip"                                title="typcn typcn-stopwatch"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-support" data-bs-toggle="tooltip"                                title="typcn typcn-support"></i></li>                        <li class="icons-list-item"><i class="typcn typcn-tabs-outline" data-bs-toggle="tooltip"                                title="typcn typcn-tabs-outline"></i></li>                    </ul>                </div>            </div>        </div>    </div>    <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconTypiconComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconTypiconComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

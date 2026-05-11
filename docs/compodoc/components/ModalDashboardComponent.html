@@ -1,0 +1,1640 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ModalDashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-modal-dashboard</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../interfaces/Module.html" target="_self" >NgApexchartsModule</a></code>
+                                <code><a href="../components/CollapseHeaderComponent.html" target="_self" >CollapseHeaderComponent</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >CommonModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >FormsModule</a></code>
+                                <code><a href="../interfaces/Module.html" target="_self" >BsDatepickerModule</a></code>
+                                <code><a href="../components/DateRangePickerComponent.html" target="_self" >DateRangePickerComponent</a></code>
+                                <code><a href="../components/CollapseHeaderComponent.html" target="_self" >CollapseHeaderComponent</a></code>
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./modal-dashboard.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./modal-dashboard.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#base" >base</a>
+                            </li>
+                            <li>
+                                <a href="#bsRangeValue" >bsRangeValue</a>
+                            </li>
+                            <li>
+                                <a href="#bsValue" >bsValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#chart" >chart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions" >chartOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions2" >chartOptions2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions3" >chartOptions3</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions4" >chartOptions4</a>
+                            </li>
+                            <li>
+                                <a href="#last" >last</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#layout" >layout</a>
+                            </li>
+                            <li>
+                                <a href="#maxDate" >maxDate</a>
+                            </li>
+                            <li>
+                                <a href="#page" >page</a>
+                            </li>
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(common: <a href="../injectables/CommonService.html" target="_self">CommonService</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, layout: <a href="../injectables/SettingsService.html" target="_self">SettingsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>constructor function.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>common</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommonService.html" target="_self" >CommonService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>layout</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Parameter.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:305</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnDestroy function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="295"
+                                    class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:295</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>ngOnInit function.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="base"></a>
+                    <span class="name">
+                        <span ><b>base</b></span>
+                        <a href="#base"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bsRangeValue"></a>
+                    <span class="name">
+                        <span ><b>bsRangeValue</b></span>
+                        <a href="#bsRangeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bsValue"></a>
+                    <span class="name">
+                        <span ><b>bsValue</b></span>
+                        <a href="#bsValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chart"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>chart</b></span>
+                        <a href="#chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ChartComponent</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;chart&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions</b></span>
+                        <a href="#chartOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions2"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions2</b></span>
+                        <a href="#chartOptions2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions3"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions3</b></span>
+                        <a href="#chartOptions3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions4"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions4</b></span>
+                        <a href="#chartOptions4"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Partial&lt;ChartOptions&gt; | any</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="last"></a>
+                    <span class="name">
+                        <span ><b>last</b></span>
+                        <a href="#last"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layout"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>layout</b></span>
+                        <a href="#layout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/SettingsService.html" target="_self" >SettingsService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">- Parameter.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxDate"></a>
+                    <span class="name">
+                        <span ><b>maxDate</b></span>
+                        <a href="#maxDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="page"></a>
+                    <span class="name">
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/features/main-menu/dashboards/modal-dashboard/modal-dashboard.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Renderer2, ViewChild } from &#x27;@angular/core&#x27;;
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexXAxis,
+  ApexPlotOptions,
+} from &#x27;ng-apexcharts&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { CommonService } from &#x27;../../../../shared/common/common.service&#x27;;
+import { NgApexchartsModule } from &#x27;ng-apexcharts&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../../common/collapse-header/collapse-header.component&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { DateRangePickerComponent } from &#x27;../../../common/date-range-picker/date-range-picker.component&#x27;;
+import { SettingsService } from &#x27;../../../../shared/settings/settings.service&#x27;;
+export interface ChartOptions {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
+  xaxis: ApexXAxis | any;
+  colors: any;
+  grid:  any;
+}
+
+export interface ChartOptions {
+  series: ApexAxisChartSeries | any;
+  chart: ApexChart | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
+  xaxis: ApexXAxis | any;
+}
+
+
+
+@Component({
+    selector: &#x27;app-modal-dashboard&#x27;,
+    templateUrl: &#x27;./modal-dashboard.component.html&#x27;,
+    styleUrl: &#x27;./modal-dashboard.component.scss&#x27;,
+    imports: [NgApexchartsModule
+          ,CollapseHeaderComponent,
+          CommonModule,
+          FormsModule,BsDatepickerModule,DateRangePickerComponent,CollapseHeaderComponent
+          ,RouterLink]
+})
+export class ModalDashboardComponent  {
+  routes &#x3D;  routes
+  bsValue &#x3D; new Date();
+  bsRangeValue: Date[];
+  maxDate &#x3D; new Date();
+  base &#x3D; &#x27;&#x27;;
+  page &#x3D; &#x27;&#x27;;
+  last &#x3D; &#x27;&#x27;;
+  @ViewChild(&#x27;chart&#x27;) chart!: ChartComponent;
+  public chartOptions: Partial&lt;ChartOptions&gt;;
+  public chartOptions2: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions3: Partial&lt;ChartOptions&gt; | any;
+  public chartOptions4: Partial&lt;ChartOptions&gt; | any;
+
+  /**
+   * constructor function.
+   * @param {*} common - Parameter.
+   * @param {*} renderer - Parameter.
+   * @param {*} layout - Parameter.
+   * @returns {*} Result.
+   */
+  constructor( private common: CommonService, private renderer: Renderer2,public layout:SettingsService) {
+    this.common.base.subscribe((res: string) &#x3D;&gt; {
+        this.base &#x3D; res;
+        if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-mini&#x27;) {
+          layout.changeLayoutMode(&#x27;mini&#x27;);
+        }else if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-hoverview&#x27;){
+          layout.changeLayoutMode(&#x27;hoverview&#x27;);
+        }else if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-fullwidth&#x27;){
+          layout.changeLayoutMode(&#x27;full-width&#x27;);
+        }else if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-hidden&#x27;){
+          layout.changeLayoutMode(&#x27;hidden&#x27;);
+        }else if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-rtl&#x27;){
+          layout.changeLayoutMode(&#x27;rtl&#x27;);
+        }else if (this.base &#x3D;&#x3D;&#x3D; &#x27;layout-dark&#x27;){
+          layout.changeThemeColor(&#x27;dark&#x27;);
+        }else {
+          layout.changeLayoutMode(&#x27;default&#x27;);
+          layout.changeThemeColor(&#x27;light&#x27;);
+          // layout.changeLayoutMode(&#x27;1&#x27;);
+          // layout.changeLayoutWidth(&#x27;1&#x27;);
+          // layout.changeThemeColor(&#x27;1&#x27;);
+        }
+      });
+    this.chartOptions &#x3D; {
+          series: [{
+          data: [400, 220, 448,]
+      }],
+          chart: {
+          type: &#x27;bar&#x27;,
+          height: 180,
+      toolbar: {
+        show: false
+      }
+      },
+    
+      plotOptions: {
+          bar: {
+          horizontal: true,
+          }
+      },
+      dataLabels: {
+          enabled: false
+      },
+     colors: [&#x27;#EF1E1ED9&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,
+    },
+      xaxis: {
+          categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+          ],
+      }
+      };
+    this.chartOptions2 &#x3D; {
+        series: [{
+        data: [400, 122, 250]
+    }],
+        chart: {
+        type: &#x27;bar&#x27;,
+        height: 180,
+      toolbar: {
+        show: false
+      }
+    },
+    plotOptions: {
+        bar: {
+        horizontal: true,
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    colors: [&#x27;#27AE60&#x27;],
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,     
+    },
+    xaxis: {
+        categories: [&#x27;Conversation&#x27;, &#x27;Follow Up&#x27;, &#x27;Inpipeline&#x27;
+        ],
+    }
+    };
+    this.chartOptions3 &#x3D; {
+      series: [{
+      name: &quot;sales&quot;,
+      colors: [&#x27;#FFC38F&#x27;],
+      data: [{
+        x: &#x27;Inpipeline&#x27;,
+        y: 400,
+        
+      }, {
+        x: &#x27;Follow Up&#x27;,
+        y: 130
+      }, {
+        x: &#x27;Schedule&#x27;,
+        y: 248
+      }, {
+        x: &#x27;Conversation&#x27;,
+        y: 470
+      }, {
+        x: &#x27;Won&#x27;,
+        y: 470
+      }, {
+        x: &#x27;Lost&#x27;,
+        y: 180
+      }]
+    }],
+      chart: {
+      type: &#x27;bar&#x27;,
+      height: 385,
+      toolbar: {
+        show: false
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,     
+      padding: {
+        right: -20 // ✅ Remove extra right padding
+      }
+    },
+    plotOptions: {
+      bar: {
+          borderRadiusApplication: &#x27;around&#x27;,
+          columnWidth: &#x27;50%&#x27;,
+      }
+    },
+    colors: [&#x27;#0E9384&#x27;],
+    xaxis: {
+      type: &#x27;category&#x27;,
+      group: {
+        style: {
+          fontSize: &#x27;7px&#x27;,
+          fontWeight: 700,
+        },
+      }
+    },
+    yaxis: {
+        labels: {
+          offsetX: -13,
+        }
+    }
+    
+    };
+    this.chartOptions4 &#x3D; {
+      series: [{
+        name: &quot;Deals&quot;,
+        data: [1, 2, 3, 1.5, 2.2, 4, 3.0, 2.0, 3.0, 1.8, 3.0, 6.0]
+    }],
+      chart: {
+      height: 273,
+      type: &#x27;area&#x27;,
+      zoom: {
+        enabled: false
+      },
+      toolbar: {
+        show: false
+      }
+    },
+    colors: [&#x27;#FFA201&#x27;],
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: &#x27;straight&#x27;
+    },
+    fill: {
+      type: &#x27;solid&#x27;,
+      opacity: 0 // ✅ this removes area bg color
+    },
+     markers: {
+      size: 5,         
+      shape: &#x27;circle&#x27;, 
+      strokeWidth: 2,  
+      strokeColors: &#x27;#FFA201&#x27;, 
+      hover: {
+        size: 7
+      }
+    },
+    grid: {
+      borderColor: &#x27;#E8E8E8&#x27;,  
+      strokeDashArray: 4 ,      // Dashed lines
+    },
+    xaxis: {
+      categories: [&#x27;Jan&#x27;, &#x27;Feb&#x27;, &#x27;Mar&#x27;, &#x27;Apr&#x27;, &#x27;May&#x27;, &#x27;Jun&#x27;, &#x27;Jul&#x27;, &#x27;Aug&#x27;, &#x27;Sep&#x27;, &#x27;Oct&#x27;, &#x27;Nov&#x27;, &#x27;Dec&#x27;],
+    }, 
+    yaxis: {
+      min: 1,
+      max: 6,
+      tickAmount: 5,
+          labels: {
+          offsetX: -15,
+            formatter: (val:any) &#x3D;&gt; {
+              return val / 1 + &#x27;K&#x27;
+            }
+          }
+        },
+        legend: {
+          position: &#x27;top&#x27;,
+          horizontalAlign: &#x27;left&#x27;
+        }
+    };
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue &#x3D; [this.bsValue, this.maxDate];
+    this.common.base.subscribe((base: string) &#x3D;&gt; {
+      this.base &#x3D; base;
+    });
+    this.common.page.subscribe((page: string) &#x3D;&gt; {
+      this.page &#x3D; page;
+    });
+    this.common.last.subscribe((last: string) &#x3D;&gt; {
+      this.last &#x3D; last;
+    });
+    if (this.page &#x3D;&#x3D; &#x27;deals-dashboard&#x27;) {
+      this.renderer.addClass(document.body, &#x27;date-picker-dashboard&#x27;);
+    }
+  }
+/**
+ * ngOnInit function.
+ * @returns {*} Result.
+ */
+ngOnInit():void{
+  this.renderer.addClass(document.body,&#x27;date-picker&#x27;);
+  if(this.base &#x3D;&#x3D;&#x3D; &#x27;layout-mini&#x27;){
+    this.layout.SideBarMouseHover&#x3D;true;
+  }
+}
+/**
+ * ngOnDestroy function.
+ * @returns {*} Result.
+ */
+ngOnDestroy():void{
+  this.renderer.removeClass(document.body,&#x27;date-picker&#x27;)
+  this.layout.SideBarMouseHover&#x3D;false
+}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">
+    &lt;div class&#x3D;&quot;content&quot;&gt;
+        &lt;!-- Page Header --&gt;
+        &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap&quot;&gt;
+            &lt;div&gt;
+                &lt;h4 class&#x3D;&quot;mb-0&quot;&gt;Deals Dashboard&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;gap-2 d-flex align-items-center flex-wrap&quot;&gt;
+                &lt;div class&#x3D;&quot;daterangepick form-control w-auto d-flex align-items-center&quot;&gt;
+                    &lt;app-date-range-picker&gt;&lt;/app-date-range-picker&gt;
+                &lt;/div&gt;
+                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;btn btn-icon btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                    data-bs-placement&#x3D;&quot;top&quot; aria-label&#x3D;&quot;Refresh&quot; data-bs-original-title&#x3D;&quot;Refresh&quot;&gt;&lt;i
+                        class&#x3D;&quot;ti ti-refresh&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;app-collapse-header&gt;&lt;/app-collapse-header&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- End Page Header --&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+            &lt;div class&#x3D;&quot;col-md-6 d-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;&gt;
+                        &lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Recently Created Deals&lt;/h6&gt;
+                        &lt;div class&#x3D;&quot;dropdown&quot;&gt;
+                            &lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot;
+                                href&#x3D;&quot;javascript:void(0);&quot;&gt;
+                                Last 30 days
+                            &lt;/a&gt;
+                            &lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+                                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                                    Last 15 days
+                                &lt;/a&gt;
+                                &lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+                                    Last 30 days
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                        &lt;div class&#x3D;&quot;table-responsive custom-table&quot;&gt;
+                            &lt;table class&#x3D;&quot;table dataTable table-nowrap&quot; id&#x3D;&quot;deals-project&quot;&gt;
+                                &lt;thead class&#x3D;&quot;table-light&quot;&gt;
+                                    &lt;tr&gt;
+                                        &lt;th&gt;Deal Name&lt;/th&gt;
+                                        &lt;th&gt;Stage&lt;/th&gt;
+                                        &lt;th&gt;Deal Value&lt;/th&gt;
+                                        &lt;th&gt;Status&lt;/th&gt;
+                                    &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                    &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                                        &lt;td&gt;
+                                            &lt;a [routerLink]&#x3D;&quot;routes.dealsDetails&quot; class&#x3D;&quot;fw-medium&quot;&gt;SkyHigh Annual Booking&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;Appointment&lt;/td&gt;
+                                        &lt;td&gt;$04,51,000&lt;/td&gt;
+                                        &lt;td&gt;&lt;span class&#x3D;&quot;badge badge-pill  bg-success&quot;&gt;Won&lt;/span&gt;&lt;/td&gt;
+                                    &lt;/tr&gt;
+                                    &lt;tr class&#x3D;&quot;even&quot;&gt;
+                                        &lt;td&gt;
+                                            &lt;a [routerLink]&#x3D;&quot;routes.dealsDetails&quot; class&#x3D;&quot;fw-medium&quot;&gt;CRM Onboarding Package&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;Contact Made&lt;/td&gt;
+                                        &lt;td&gt;$72,14,078&lt;/td&gt;
+                                        &lt;td&gt;&lt;span class&#x3D;&quot;badge badge-pill  bg-danger&quot;&gt;Lost&lt;/span&gt;&lt;/td&gt;
+                                    &lt;/tr&gt;
+                                    &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                                        &lt;td&gt;
+                                            &lt;a [routerLink]&#x3D;&quot;routes.dealsDetails&quot; class&#x3D;&quot;fw-medium&quot;&gt;Enterprise Plan Upgrade&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;Presentation&lt;/td&gt;
+                                        &lt;td&gt;$04,14,800&lt;/td&gt;
+                                        &lt;td&gt;&lt;span class&#x3D;&quot;badge badge-pill  bg-success&quot;&gt;Won&lt;/span&gt;&lt;/td&gt;
+                                    &lt;/tr&gt;
+                                    &lt;tr class&#x3D;&quot;even&quot;&gt;
+                                        &lt;td&gt;
+                                            &lt;a [routerLink]&#x3D;&quot;routes.dealsDetails&quot; class&#x3D;&quot;fw-medium&quot;&gt;CRM Migration Project&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;Proposal Made&lt;/td&gt;
+                                        &lt;td&gt;$16,11,400&lt;/td&gt;
+                                        &lt;td&gt;&lt;span class&#x3D;&quot;badge badge-pill  bg-success&quot;&gt;Won&lt;/span&gt;&lt;/td&gt;
+                                    &lt;/tr&gt;
+                                    &lt;tr class&#x3D;&quot;odd&quot;&gt;
+                                        &lt;td&gt;
+                                            &lt;a [routerLink]&#x3D;&quot;routes.dealsDetails&quot; class&#x3D;&quot;fw-medium&quot;&gt;Sales Pipeline
+                                                Optimization
+                                            &lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;Qualify To Buy&lt;/td&gt;
+                                        &lt;td&gt;$09,05,947&lt;/td&gt;
+                                        &lt;td&gt;&lt;span class&#x3D;&quot;badge badge-pill  bg-success&quot;&gt;Won&lt;/span&gt;&lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                            &lt;/table&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt; &lt;!-- end card body --&gt;
+                &lt;/div&gt; &lt;!-- end card --&gt;
+            &lt;/div&gt; &lt;!-- end col --&gt;
+            &lt;div class&#x3D;&quot;col-md-6 d-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-header border-0 pb-0&quot;&gt;
+                       &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;&gt;
+									&lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Deals By Stage&lt;/h6&gt;
+									&lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+										&lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+											&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+												Sales Pipeline
+											&lt;/a&gt;
+											&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;														
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Marketing Pipeline
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Sales Pipeline
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Email
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Chats
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Operational
+												&lt;/a&gt;
+											&lt;/div&gt;										
+										&lt;/div&gt;
+										&lt;div class&#x3D;&quot;dropdown&quot;&gt;
+											&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+												Last 30 Days
+											&lt;/a&gt;
+											&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 30 Days
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 15 Days
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 7 Days
+												&lt;/a&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                        &lt;div id&#x3D;&quot;deals-chart&quot;&gt;
+                            &lt;apx-chart [series]&#x3D;&quot;chartOptions3.series&quot; [chart]&#x3D;&quot;chartOptions3.chart&quot;
+                                [dataLabels]&#x3D;&quot;chartOptions3.dataLabels&quot; [plotOptions]&#x3D;&quot;chartOptions3.plotOptions&quot;
+                                [yaxis]&#x3D;&quot;chartOptions3.yaxis&quot; [xaxis]&#x3D;&quot;chartOptions3.xaxis&quot;
+                                [stroke]&#x3D;&quot;chartOptions3.stroke&quot; [grid]&#x3D;&quot;chartOptions3.grid&quot; [fill]&#x3D;&quot;chartOptions3.fill&quot;
+                                [annotations]&#x3D;&quot;chartOptions3.annotations&quot; [colors]&#x3D;&quot;chartOptions3.colors&quot;&gt;&lt;/apx-chart&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+            &lt;div class&#x3D;&quot;col-md-6 d-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-header&quot;&gt;
+									&lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;&gt;
+										&lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Lost Deals Stage&lt;/h6&gt;
+										&lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+											&lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+												&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+													Marketing Pipeline
+												&lt;/a&gt;
+												&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;														
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Marketing Pipeline
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Sales Pipeline
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Email
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Chats
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Operational
+													&lt;/a&gt;
+												&lt;/div&gt;										
+											&lt;/div&gt;
+											&lt;div class&#x3D;&quot;dropdown&quot;&gt;
+												&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+													Last 30 Days
+												&lt;/a&gt;
+												&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Last 30 Days
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Last 6 months
+													&lt;/a&gt;
+													&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+														Last 12 months
+													&lt;/a&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+							&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                        &lt;div id&#x3D;&quot;last-chart&quot;&gt;
+                            &lt;apx-chart [series]&#x3D;&quot;chartOptions.series&quot; [chart]&#x3D;&quot;chartOptions.chart&quot;
+                                [dataLabels]&#x3D;&quot;chartOptions.dataLabels&quot; [plotOptions]&#x3D;&quot;chartOptions.plotOptions&quot;
+                                [xaxis]&#x3D;&quot;chartOptions.xaxis&quot;
+                                [colors]&#x3D;&quot;chartOptions.colors&quot;&gt;&lt;/apx-chart&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-md-6 d-flex&quot;&gt;
+                &lt;div class&#x3D;&quot;card flex-fill&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-header&quot;&gt;
+								&lt;div class&#x3D;&quot;d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;&gt;
+									&lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Won Deals Stage&lt;/h6&gt;
+									&lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+										&lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+											&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+												Marketing Pipeline
+											&lt;/a&gt;
+											&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;														
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Marketing Pipeline
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Sales Pipeline
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Email
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Chats
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Operational
+												&lt;/a&gt;
+											&lt;/div&gt;										
+										&lt;/div&gt;
+										&lt;div class&#x3D;&quot;dropdown&quot;&gt;
+											&lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+												Last 30 Days
+											&lt;/a&gt;
+											&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 30 Days
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 6 months
+												&lt;/a&gt;
+												&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+													Last 12 months
+												&lt;/a&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+
+                        &lt;div id&#x3D;&quot;won-chart&quot;&gt;
+                            &lt;apx-chart [series]&#x3D;&quot;chartOptions2.series&quot; [chart]&#x3D;&quot;chartOptions2.chart&quot;
+                                [dataLabels]&#x3D;&quot;chartOptions2.dataLabels&quot; [plotOptions]&#x3D;&quot;chartOptions2.plotOptions&quot;
+                                [xaxis]&#x3D;&quot;chartOptions2.xaxis&quot;
+                                [colors]&#x3D;&quot;chartOptions2.colors&quot;&gt;&lt;/apx-chart&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-12 d-flex&quot;&gt;
+                    &lt;div class&#x3D;&quot;card w-100&quot;&gt;
+                        &lt;div class&#x3D;&quot;card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3&quot;&gt;
+								&lt;h6 class&#x3D;&quot;mb-0&quot;&gt;Deals by Year&lt;/h6&gt;
+								&lt;div class&#x3D;&quot;d-flex align-items-center flex-wrap row-gap-3&quot;&gt;
+								    &lt;div class&#x3D;&quot;dropdown me-2&quot;&gt;
+									    &lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+										    Sales Pipeline
+										&lt;/a&gt;
+										&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+											&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+												Marketing Pipeline
+											&lt;/a&gt;
+											&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+												Sales Pipeline
+											&lt;/a&gt;
+										&lt;/div&gt;						
+									&lt;/div&gt;
+									&lt;div class&#x3D;&quot;dropdown&quot;&gt;
+									    &lt;a class&#x3D;&quot;dropdown-toggle btn btn-outline-light shadow&quot; data-bs-toggle&#x3D;&quot;dropdown&quot; href&#x3D;&quot;javascript:void(0);&quot;&gt;
+											Last 30 Days
+										&lt;/a&gt;
+										&lt;div class&#x3D;&quot;dropdown-menu dropdown-menu-end&quot;&gt;
+											&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+											    Last 3 months
+											&lt;/a&gt;
+											&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+											    Last 6 months
+											&lt;/a&gt;
+											&lt;a href&#x3D;&quot;javascript:void(0);&quot; class&#x3D;&quot;dropdown-item&quot;&gt;
+											    Last 12 months
+										    &lt;/a&gt;
+									    &lt;/div&gt;
+								    &lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+                        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                            &lt;div id&#x3D;&quot;deals-year&quot;&gt;
+                                &lt;apx-chart [series]&#x3D;&quot;chartOptions4.series&quot; [chart]&#x3D;&quot;chartOptions4.chart&quot;
+                                    [xaxis]&#x3D;&quot;chartOptions4.xaxis&quot; [dataLabels]&#x3D;&quot;chartOptions4.dataLabels&quot;
+                                    [grid]&#x3D;&quot;chartOptions4.grid&quot; [stroke]&#x3D;&quot;chartOptions4.stroke&quot;
+                                    [title]&#x3D;&quot;chartOptions4.title&quot; [colors]&#x3D;&quot;chartOptions4.colors&quot;
+                                    [fill]&#x3D;&quot;chartOptions4.fill&quot; [markers]&#x3D;&quot;chartOptions4.markers&quot;&gt;&lt;/apx-chart&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>    <div class="content">        <!-- Page Header -->        <div class="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">            <div>                <h4 class="mb-0">Deals Dashboard</h4>            </div>            <div class="gap-2 d-flex align-items-center flex-wrap">                <div class="daterangepick form-control w-auto d-flex align-items-center">                    <app-date-range-picker></app-date-range-picker>                </div>                <a href="javascript:void(0);" class="btn btn-icon btn-outline-light shadow" data-bs-toggle="tooltip"                    data-bs-placement="top" aria-label="Refresh" data-bs-original-title="Refresh"><i                        class="ti ti-refresh"></i></a>                <app-collapse-header></app-collapse-header>            </div>        </div>        <!-- End Page Header -->        <div class="row">            <div class="col-md-6 d-flex">                <div class="card flex-fill">                    <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">                        <h6 class="mb-0">Recently Created Deals</h6>                        <div class="dropdown">                            <a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown"                                href="javascript:void(0);">                                Last 30 days                            </a>                            <div class="dropdown-menu dropdown-menu-end">                                <a href="javascript:void(0);" class="dropdown-item">                                    Last 15 days                                </a>                                <a href="javascript:void(0);" class="dropdown-item">                                    Last 30 days                                </a>                            </div>                        </div>                    </div>                    <div class="card-body">                        <div class="table-responsive custom-table">                            <table class="table dataTable table-nowrap" id="deals-project">                                <thead class="table-light">                                    <tr>                                        <th>Deal Name</th>                                        <th>Stage</th>                                        <th>Deal Value</th>                                        <th>Status</th>                                    </tr>                                </thead>                                <tbody>                                    <tr class="odd">                                        <td>                                            <a [routerLink]="routes.dealsDetails" class="fw-medium">SkyHigh Annual Booking</a>                                        </td>                                        <td>Appointment</td>                                        <td>$04,51,000</td>                                        <td><span class="badge badge-pill  bg-success">Won</span></td>                                    </tr>                                    <tr class="even">                                        <td>                                            <a [routerLink]="routes.dealsDetails" class="fw-medium">CRM Onboarding Package</a>                                        </td>                                        <td>Contact Made</td>                                        <td>$72,14,078</td>                                        <td><span class="badge badge-pill  bg-danger">Lost</span></td>                                    </tr>                                    <tr class="odd">                                        <td>                                            <a [routerLink]="routes.dealsDetails" class="fw-medium">Enterprise Plan Upgrade</a>                                        </td>                                        <td>Presentation</td>                                        <td>$04,14,800</td>                                        <td><span class="badge badge-pill  bg-success">Won</span></td>                                    </tr>                                    <tr class="even">                                        <td>                                            <a [routerLink]="routes.dealsDetails" class="fw-medium">CRM Migration Project</a>                                        </td>                                        <td>Proposal Made</td>                                        <td>$16,11,400</td>                                        <td><span class="badge badge-pill  bg-success">Won</span></td>                                    </tr>                                    <tr class="odd">                                        <td>                                            <a [routerLink]="routes.dealsDetails" class="fw-medium">Sales Pipeline                                                Optimization                                            </a>                                        </td>                                        <td>Qualify To Buy</td>                                        <td>$09,05,947</td>                                        <td><span class="badge badge-pill  bg-success">Won</span></td>                                    </tr>                                </tbody>                            </table>                        </div>                    </div> <!-- end card body -->                </div> <!-- end card -->            </div> <!-- end col -->            <div class="col-md-6 d-flex">                <div class="card flex-fill">                    <div class="card-header border-0 pb-0">                       <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">									<h6 class="mb-0">Deals By Stage</h6>									<div class="d-flex align-items-center flex-wrap row-gap-3">										<div class="dropdown me-2">											<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">												Sales Pipeline											</a>											<div class="dropdown-menu dropdown-menu-end">																										<a href="javascript:void(0);" class="dropdown-item">													Marketing Pipeline												</a>												<a href="javascript:void(0);" class="dropdown-item">													Sales Pipeline												</a>												<a href="javascript:void(0);" class="dropdown-item">													Email												</a>												<a href="javascript:void(0);" class="dropdown-item">													Chats												</a>												<a href="javascript:void(0);" class="dropdown-item">													Operational												</a>											</div>																				</div>										<div class="dropdown">											<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">												Last 30 Days											</a>											<div class="dropdown-menu dropdown-menu-end">												<a href="javascript:void(0);" class="dropdown-item">													Last 30 Days												</a>												<a href="javascript:void(0);" class="dropdown-item">													Last 15 Days												</a>												<a href="javascript:void(0);" class="dropdown-item">													Last 7 Days												</a>											</div>										</div>									</div>								</div>                    </div>                    <div class="card-body">                        <div id="deals-chart">                            <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart"                                [dataLabels]="chartOptions3.dataLabels" [plotOptions]="chartOptions3.plotOptions"                                [yaxis]="chartOptions3.yaxis" [xaxis]="chartOptions3.xaxis"                                [stroke]="chartOptions3.stroke" [grid]="chartOptions3.grid" [fill]="chartOptions3.fill"                                [annotations]="chartOptions3.annotations" [colors]="chartOptions3.colors"></apx-chart>                        </div>                    </div>                </div>            </div>        </div>        <div class="row">            <div class="col-md-6 d-flex">                <div class="card flex-fill">                    <div class="card-header">									<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">										<h6 class="mb-0">Lost Deals Stage</h6>										<div class="d-flex align-items-center flex-wrap row-gap-3">											<div class="dropdown me-2">												<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">													Marketing Pipeline												</a>												<div class="dropdown-menu dropdown-menu-end">																											<a href="javascript:void(0);" class="dropdown-item">														Marketing Pipeline													</a>													<a href="javascript:void(0);" class="dropdown-item">														Sales Pipeline													</a>													<a href="javascript:void(0);" class="dropdown-item">														Email													</a>													<a href="javascript:void(0);" class="dropdown-item">														Chats													</a>													<a href="javascript:void(0);" class="dropdown-item">														Operational													</a>												</div>																					</div>											<div class="dropdown">												<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">													Last 30 Days												</a>												<div class="dropdown-menu dropdown-menu-end">													<a href="javascript:void(0);" class="dropdown-item">														Last 30 Days													</a>													<a href="javascript:void(0);" class="dropdown-item">														Last 6 months													</a>													<a href="javascript:void(0);" class="dropdown-item">														Last 12 months													</a>												</div>											</div>										</div>									</div>							</div>                    <div class="card-body">                        <div id="last-chart">                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"                                [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"                                [xaxis]="chartOptions.xaxis"                                [colors]="chartOptions.colors"></apx-chart>                        </div>                    </div>                </div>            </div>            <div class="col-md-6 d-flex">                <div class="card flex-fill">                    <div class="card-header">								<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-3">									<h6 class="mb-0">Won Deals Stage</h6>									<div class="d-flex align-items-center flex-wrap row-gap-3">										<div class="dropdown me-2">											<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">												Marketing Pipeline											</a>											<div class="dropdown-menu dropdown-menu-end">																										<a href="javascript:void(0);" class="dropdown-item">													Marketing Pipeline												</a>												<a href="javascript:void(0);" class="dropdown-item">													Sales Pipeline												</a>												<a href="javascript:void(0);" class="dropdown-item">													Email												</a>												<a href="javascript:void(0);" class="dropdown-item">													Chats												</a>												<a href="javascript:void(0);" class="dropdown-item">													Operational												</a>											</div>																				</div>										<div class="dropdown">											<a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">												Last 30 Days											</a>											<div class="dropdown-menu dropdown-menu-end">												<a href="javascript:void(0);" class="dropdown-item">													Last 30 Days												</a>												<a href="javascript:void(0);" class="dropdown-item">													Last 6 months												</a>												<a href="javascript:void(0);" class="dropdown-item">													Last 12 months												</a>											</div>										</div>									</div>								</div>							</div>                    <div class="card-body">                        <div id="won-chart">                            <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"                                [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"                                [xaxis]="chartOptions2.xaxis"                                [colors]="chartOptions2.colors"></apx-chart>                        </div>                    </div>                </div>            </div>            <div class="row">                <div class="col-md-12 d-flex">                    <div class="card w-100">                        <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">								<h6 class="mb-0">Deals by Year</h6>								<div class="d-flex align-items-center flex-wrap row-gap-3">								    <div class="dropdown me-2">									    <a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">										    Sales Pipeline										</a>										<div class="dropdown-menu dropdown-menu-end">											<a href="javascript:void(0);" class="dropdown-item">												Marketing Pipeline											</a>											<a href="javascript:void(0);" class="dropdown-item">												Sales Pipeline											</a>										</div>															</div>									<div class="dropdown">									    <a class="dropdown-toggle btn btn-outline-light shadow" data-bs-toggle="dropdown" href="javascript:void(0);">											Last 30 Days										</a>										<div class="dropdown-menu dropdown-menu-end">											<a href="javascript:void(0);" class="dropdown-item">											    Last 3 months											</a>											<a href="javascript:void(0);" class="dropdown-item">											    Last 6 months											</a>											<a href="javascript:void(0);" class="dropdown-item">											    Last 12 months										    </a>									    </div>								    </div>								</div>							</div>                        <div class="card-body">                            <div id="deals-year">                                <apx-chart [series]="chartOptions4.series" [chart]="chartOptions4.chart"                                    [xaxis]="chartOptions4.xaxis" [dataLabels]="chartOptions4.dataLabels"                                    [grid]="chartOptions4.grid" [stroke]="chartOptions4.stroke"                                    [title]="chartOptions4.title" [colors]="chartOptions4.colors"                                    [fill]="chartOptions4.fill" [markers]="chartOptions4.markers"></apx-chart>                            </div>                        </div>                    </div>                </div>            </div>        </div>    </div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'ModalDashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ModalDashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

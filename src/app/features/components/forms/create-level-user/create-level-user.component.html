@@ -1,0 +1,63 @@
+<form [formGroup]="dynamicForm" class="offcanvas-body">
+  <div class="row">
+
+    @for (field of formFieldList; track field) {
+      @if (!(selectedUser.email && field.formFieldId.inputType === 'password')) {
+      <div class="col-md-6" [ngSwitch]="field.formFieldId.inputType">
+        <div class="mb-3">
+          <label class="form-label">
+            {{ field.formFieldId.label }}
+
+            @if (field.isRequired || field.formFieldId.required) {
+              <span class="text-danger">*</span>
+            }
+          </label>
+
+          <input *ngSwitchCase="'textbox'"
+                 type="text"
+                 class="form-control"
+                 [formControlName]="field.formFieldId.name"
+                 [placeholder]="field.formFieldId.placeholder" />
+            <input *ngSwitchCase="'password'"
+            type="password"
+            class="form-control"
+            [formControlName]="field.formFieldId.name"
+            [placeholder]="field.formFieldId.placeholder" />
+          <input *ngSwitchCase="'email'"
+                 type="email"
+                 class="form-control"
+                 [formControlName]="field.formFieldId.name"
+                 [placeholder]="field.formFieldId.placeholder" />
+
+          <select *ngSwitchCase="'select'"
+                  class="form-control"
+                  [formControlName]="field.formFieldId.name">
+            <option value="">
+              Select {{ field.formFieldId.label }}
+            </option>
+
+            @for (opt of field.formFieldId.options; track opt) {
+              <option [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            }
+          </select>
+
+          <input *ngSwitchCase="'number'"
+                 type="text"
+                 class="form-control"
+                 [formControlName]="field.formFieldId.name"
+                 [placeholder]="field.formFieldId.placeholder" />
+
+          @if (dynamicForm.get(field.formFieldId.name)?.touched
+               && dynamicForm.get(field.formFieldId.name)?.invalid) {
+            <div class="text-danger mt-1">
+              {{ getErrorMessage(field) }}
+            </div>
+          }
+        </div>
+      </div>
+    }
+    }
+  </div>
+</form>

@@ -1,0 +1,19 @@
+<div class="modal fade" [id]="modalId" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm rounded-0">
+    <div class="modal-content rounded-0">
+      <div class="modal-body p-4 text-center position-relative">
+        <div class="mb-3 position-relative z-1">
+          <span class="avatar avatar-xl badge-soft-danger border-0 text-danger rounded-circle">
+            <i class="fa fa-check-circle fs-24"></i>
+          </span>
+        </div>
+        <h5 class="mb-1">{{ title }}</h5>
+        <p class="mb-3">{{ message }}</p>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-light me-2 w-100" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary w-100" (click)="onConfirm()" data-bs-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

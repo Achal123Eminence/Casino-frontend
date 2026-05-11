@@ -1,0 +1,392 @@
+<div class="content pb-0 profile-activity-page">
+  <div class="d-flex align-items-center justify-content-between gap-2 mb-2 flex-wrap page-toolbar">
+    <div>
+      <h4 class="mb-1">Profile & Activity</h4>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="routes.manageUsers">Manage Users</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            User {{ profileInfo.userId }}
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="d-flex align-items-center gap-1">
+      <a [routerLink]="routes.manageUsers" class="btn btn-info btn-sm">
+        <i class="ti ti-arrow-left me-1"></i> Back
+      </a>
+    </div>
+  </div>
+
+  <ul
+    class="nav nav-pills align-items-center bg-white shadow-sm rounded py-2 px-2 gap-1 mb-2"
+  >
+    @for (tab of mainTabs; track tab.id) {
+    <li class="nav-item">
+      <!-- Tab button: highlights when activeIndex matches tab.index -->
+      <a
+        class="nav-link fw-semibold active"
+      >
+        {{ tab.label }}
+      </a>
+    </li>
+    }
+  </ul>
+
+  <div class="card border-0 rounded-0 content-card">
+    <div class="card-body">
+      <ul class="sub-tab-list">
+        @for (tab of subTabs; track tab.id) {
+        <li>
+          <button
+            type="button"
+            class="sub-tab"
+            [class.active]="activeSubTab === tab.id"
+            (click)="setSubTab(tab.id)"
+          >
+            {{ tab.label }}
+          </button>
+        </li>
+        }
+      </ul>
+
+      @if (activeSubTab === 'profile') {
+        @if (isLoadingUserDetail) {
+          <div class="alert alert-info py-2 px-3 mb-2">Loading user details...</div>
+        }
+         <div class="table-responsive profile-wallet-table-wrap mb-2">
+          <table class="table table-bordered profile-wallet-table mb-0">
+            <thead>
+              <tr>
+                <th>WALLET</th>
+                <th>AVAILABLE TO BET</th>
+                <th>FUNDS AVAILABLE TO WITHDRAW</th>
+                <th>CREDIT REFERENCE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ walletSummary.wallet }}</td>
+                <td>{{ walletSummary.availableToBet }}</td>
+                <td>{{ walletSummary.availableToWithdraw }}</td>
+                <td>{{ walletSummary.creditReference }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row g-0 profile-grid">
+          <div class="col-lg-6">
+            <div class="profile-box">
+              <div class="profile-box-title">About You</div>
+              <table class="table mb-0 profile-detail-table">
+                <tbody>
+                  <tr>
+                    <th>User ID</th>
+                    <td>{{ profileInfo.userId }}</td>
+                  </tr>
+                  <tr>
+                    <th>UUID</th>
+                    <td>{{ profileInfo.uuid }}</td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td>{{ profileInfo.name }}</td>
+                  </tr>
+                  <tr>
+                    <th>E-mail</th>
+                    <td>{{ profileInfo.email }}</td>
+                  </tr>
+                  <tr>
+                    <th>Password</th>
+                    <td class="d-flex align-items-center justify-content-between gap-2">
+                      <span>{{ profileInfo.password }}</span>
+                      <button
+                        type="button"
+                        class="btn btn-warning btn-sm px-3 py-0"
+                        (click)="openChangePasswordModal()"
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Time Zone</th>
+                    <td>{{ profileInfo?.timeZone || 'IST' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="profile-box">
+              <div class="profile-box-title">Contact Details</div>
+              <table class="table mb-0 profile-detail-table">
+                <tbody>
+                  <tr>
+                    <th>Primary Number</th>
+                    <td>{{ profileInfo.mobile }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (activeSubTab === 'activity') {
+        <div class="activity-toolbar">
+          <div class="activity-toolbar-left">
+            <span class="crumb-home">Home</span>
+            <span class="crumb-sep">></span>
+            <span class="crumb-current">All History</span>
+            <span class="crumb-sep">></span>
+            <div class="dropdown">
+              <button
+                class="btn btn-link p-0 type-filter dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Options: {{ selectedActivityTypeLabel }}
+              </button>
+              <ul class="dropdown-menu activity-type-dropdown">
+                @for (type of activityTypes; track type) {
+                <li>
+                  <button
+                    type="button"
+                    class="dropdown-item"
+                    [class.active]="activityTypeFilter === type.value"
+                    (click)="setActivityType(type.value)"
+                  >
+                    {{ type.label }}
+                  </button>
+                </li>
+                }
+              </ul>
+            </div>
+          </div>
+          <button type="button" class="btn btn-warning btn-sm btn-icon">
+            <i class="ti ti-user"></i>
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered activity-table mb-0">
+            <thead>
+              <tr>
+                <th>S.NO.</th>
+                <th>DATE/TIME</th>
+                <th>DESCRIPTION</th>
+                <th>IP ADDRESS</th>
+                <th>CREATED BY</th>
+                <th>USER AGENT</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (isLoadingActivityLogs) {
+                <tr>
+                  <td colspan="6" class="text-center py-3">Loading activity logs...</td>
+                </tr>
+              }
+              @for (log of filteredActivityLogs; track log.id; let i = $index) {
+              <tr>
+                <td>{{ ((activityPagination.currentPage - 1) * activityPagination.limit) + i + 1 }} .</td>
+                <td>{{ log.dateTime }}</td>
+                <td>{{ log.description }}</td>
+                <td>{{ log.ipAddress }}</td>
+                <td>{{ log.createdBy }}</td>
+                <td>{{ log.userAgent }}</td>
+              </tr>
+              } @empty {
+                @if (!isLoadingActivityLogs) {
+                  <tr>
+                    <td colspan="6" class="text-center py-3">No activity logs found</td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2">
+          <small class="text-muted">
+            Total Records: {{ activityPagination.totalRecords }}
+          </small>
+          <div class="d-flex align-items-center gap-2">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              [disabled]="activityPagination.currentPage <= 1 || isLoadingActivityLogs"
+              (click)="changeActivityPage(activityPagination.currentPage - 1)">
+              Prev
+            </button>
+            <small class="text-muted">
+              Page {{ activityPagination.currentPage }} of {{ activityPagination.totalPages || 1 }}
+            </small>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              [disabled]="activityPagination.currentPage >= (activityPagination.totalPages || 1) || isLoadingActivityLogs"
+              (click)="changeActivityPage(activityPagination.currentPage + 1)">
+              Next
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (activeSubTab === 'security') {
+        <div class="table-responsive">
+          <table class="table table-bordered activity-table mb-0">
+            <thead>
+              <tr>
+                <th>S.NO.</th>
+                <th>DATE/TIME</th>
+                <th>PERMISSION</th>
+                <th>OLD VALUE</th>
+                <th>NEW VALUE</th>
+                <th>CREATED BY</th>
+                <th>IP ADDRESS</th>
+                <th>NARRATION</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (isLoadingSecurityLogs) {
+                <tr>
+                  <td colspan="8" class="text-center py-3">Loading security statements...</td>
+                </tr>
+              }
+              @for (log of securityLogs; track log.id; let i = $index) {
+                <tr>
+                  <td>{{ ((securityPagination.currentPage - 1) * securityPagination.limit) + i + 1 }} .</td>
+                  <td>{{ log.dateTime }}</td>
+                  <td>{{ log.typePermission }}</td>
+                  <td>{{ log.oldValue }}</td>
+                  <td>{{ log.newValue }}</td>
+                  <td>{{ log.createdBy }}</td>
+                  <td>{{ log.ipAddress }}</td>
+                  <td>{{ log.narration }}</td>
+                </tr>
+              } @empty {
+                @if (!isLoadingSecurityLogs) {
+                  <tr>
+                    <td colspan="8" class="text-center py-3">No security statements found</td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2">
+          <small class="text-muted">
+            Total Records: {{ securityPagination.totalRecords }}
+          </small>
+          <div class="d-flex align-items-center gap-2">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              [disabled]="securityPagination.currentPage <= 1 || isLoadingSecurityLogs"
+              (click)="changeSecurityPage(securityPagination.currentPage - 1)">
+              Prev
+            </button>
+            <small class="text-muted">
+              Page {{ securityPagination.currentPage }} of {{ securityPagination.totalPages || 1 }}
+            </small>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              [disabled]="securityPagination.currentPage >= (securityPagination.totalPages || 1) || isLoadingSecurityLogs"
+              (click)="changeSecurityPage(securityPagination.currentPage + 1)">
+              Next
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="profileChangePasswordModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="btn-close" (click)="closeChangePasswordModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="changePasswordForm">
+          <div class="mb-3">
+            <label class="form-label">{{ currentPasswordLabel }}</label>
+            <div class="input-group">
+              <input
+                [type]="showCurrentPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="userPassword"
+                [placeholder]="isSelfPasswordChange ? 'Enter current password' : 'Enter your password'"
+              />
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('current')">
+                <i class="fa" [class.fa-eye]="!showCurrentPassword" [class.fa-eye-slash]="showCurrentPassword"></i>
+              </button>
+            </div>
+            @if (changePasswordForm.get('userPassword')?.touched && changePasswordForm.get('userPassword')?.invalid) {
+              <div class="text-danger">Password is required.</div>
+            }
+          </div>
+          <div class="mb-3">
+            <label class="form-label">New Password</label>
+            <div class="input-group">
+              <input
+                [type]="showNewPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="newPassword"
+                placeholder="Enter new password"
+              />
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('new')">
+                <i class="fa" [class.fa-eye]="!showNewPassword" [class.fa-eye-slash]="showNewPassword"></i>
+              </button>
+            </div>
+            @if (changePasswordForm.get('newPassword')?.touched && changePasswordForm.get('newPassword')?.invalid) {
+              <div class="text-danger">
+                Password must be at least 8 characters with one uppercase and one special character.
+              </div>
+            }
+          </div>
+          <div class="mb-0">
+            <label class="form-label">Confirm Password</label>
+            <div class="input-group">
+              <input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                class="form-control"
+                formControlName="confirmPassword"
+                placeholder="Re-enter new password"
+              />
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('confirm')">
+                <i class="fa" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
+              </button>
+            </div>
+            @if (changePasswordForm.get('confirmPassword')?.touched && changePasswordForm.get('confirmPassword')?.invalid) {
+              <div class="text-danger">Confirm password is required.</div>
+            }
+            @if (changePasswordForm.errors?.['passwordMismatch'] && changePasswordForm.get('confirmPassword')?.touched) {
+              <div class="text-danger">Passwords do not match.</div>
+            }
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeChangePasswordModal()">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          [disabled]="isUpdatingPassword"
+          (click)="submitChangePassword()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1200 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  Level</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/features/user-management/manage-users/manage-users.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#level" 
+>
+                                            level
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#shortName" 
+>
+                                            shortName
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#title" 
+>
+                                            title
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#uuid" 
+>
+                                            uuid
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="level"></a>
+                                        <span class="name "><b>level</b>
+                                            <a href="#level">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>level:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="shortName"></a>
+                                        <span class="name "><b>shortName</b>
+                                            <a href="#shortName">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>shortName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="title"></a>
+                                        <span class="name "><b>title</b>
+                                            <a href="#title">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>title:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="uuid"></a>
+                                        <span class="name "><b>uuid</b>
+                                            <a href="#uuid">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>uuid:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, Location } from &#x27;@angular/common&#x27;;
+import { Component, ElementRef, ViewChild } from &#x27;@angular/core&#x27;;
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+import { BsDatepickerModule } from &#x27;ngx-bootstrap/datepicker&#x27;;
+import { NgxEditorModule } from &#x27;ngx-editor&#x27;;
+import { CustomPaginationComponent } from &#x27;../../../shared/custom-pagination/custom-pagination.component&#x27;;
+import { MatSort, MatSortModule, Sort } from &#x27;@angular/material/sort&#x27;;
+import { CollapseHeaderComponent } from &#x27;../../common/collapse-header/collapse-header.component&#x27;;
+import { MatTableDataSource } from &#x27;@angular/material/table&#x27;;
+import { routes } from &#x27;../../../shared/routes/routes&#x27;;
+import { pageSelection, userList, roles } from &#x27;../../../shared/model/pages.model&#x27;;
+import { PaginationService } from &#x27;../../../shared/custom-pagination/pagination.service&#x27;;
+import { DataService } from &#x27;../../../shared/data/data.service&#x27;;
+import { DateRangePickerComponent } from &#x27;../../common/date-range-picker/date-range-picker.component&#x27;;
+import { AuthService } from &#x27;../../../services/auth.service&#x27;;
+import { DatahandlerService } from &#x27;../../../services/datahandler.service&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { ConfirmModalComponent } from &#x27;../../../shared/common/confirm-modal/confirm-modal.component&#x27;;
+import { CommonFormModalComponent } from &#x27;../../../shared/common/common-form-modal/common-form-modal.component&#x27;;
+import { CreditReferenceComponent } from &#x27;../../components/forms/credit-reference/credit-reference.component&#x27;;
+import { RechargeComponent } from &quot;../../components/forms/recharge/recharge.component&quot;;
+import { CreateLevelUserComponent } from &#x27;../../components/forms/create-level-user/create-level-user.component&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { take } from &#x27;rxjs&#x27;;
+import { ExportDropdownComponent } from &quot;../../../shared/common/export-dropdown/export-dropdown.component&quot;;
+import { ChangePasswordFormComponent } from &#x27;../../components/forms/change-password-form/change-password-form.component&#x27;;
+
+interface Level {
+  level: number;
+  shortName: string;
+  title: string;
+  uuid: string;
+}
+
+interface FormField {
+  userLevelId: string;
+  formFieldId: {
+    errorMessages: {
+      required: string;
+      minLength?: string;
+      maxLength?: string;
+      regex?: string;
+    };
+    name: string;
+    label: string;
+    inputType: string;
+    placeholder?: string;
+    minLength?: number;
+    maxLength?: number;
+    regex?: string;
+    required?: boolean;
+    status?: string;
+    uuid: string;
+    options?: { label: string; value: any }[];
+  };
+  isRequired: boolean;
+  isEnabled: boolean;
+  order: number;
+  uuid: string;
+}
+declare var bootstrap: any;
+@Component({
+  selector: &#x27;app-manage-users&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    NgxEditorModule,
+    MatSelectModule,
+    FormsModule,
+    BsDatepickerModule,
+    MatChipsModule,
+    MatIconModule,
+    CustomPaginationComponent,
+    CollapseHeaderComponent,
+    ReactiveFormsModule,
+    MatSortModule,
+    ConfirmModalComponent,
+    CommonFormModalComponent,
+    CreditReferenceComponent,
+    RechargeComponent,
+    CreateLevelUserComponent,
+    ExportDropdownComponent,
+    ChangePasswordFormComponent
+],
+  templateUrl: &#x27;./manage-users.component.html&#x27;,
+  styleUrl: &#x27;./manage-users.component.scss&#x27;,
+})
+export class ManageUsersComponent {
+  @ViewChild(&#x27;changeStatusModal&#x27;) changeStatusModal!: ElementRef; // Taking this to change toggle status only after confirmation
+  @ViewChild(&#x27;creditRefForm&#x27;) creditRefForm!: CreditReferenceComponent;
+  @ViewChild(&#x27;rechargeForm&#x27;) rechargeForm!: RechargeComponent;
+  @ViewChild(&#x27;createUserForm&#x27;) createUserForm!: CreateLevelUserComponent;
+  @ViewChild(&#x27;changePasswordForm&#x27;)
+  changePasswordForm!: ChangePasswordFormComponent;
+
+  breadcrumbDataLevel : any ;
+  breadcrumbData: any[] &#x3D; [];
+  public routes &#x3D; routes;
+  public userList: userList[] &#x3D; [];
+  public pageSize &#x3D; 10;
+  public serialNumberArray: number[] &#x3D; [];
+  public totalData &#x3D; 0;
+  public dataSource!: MatTableDataSource&lt;userList&gt;;
+  public searchDataValue &#x3D; &#x27;&#x27;;
+  public user: any;
+  public level_values: Level[] &#x3D; [];
+  public userLevel: Level[] &#x3D; []
+  public nextLevel: any &#x3D; &#x27;&#x27;;
+  public userLevelUuid: any &#x3D; 2;
+  public formFieldList: FormField[] &#x3D; [];
+  public password: boolean[] &#x3D; [false];
+  public row &#x3D; true;
+  public totalCount &#x3D; 0
+  private selectedUserUuid: string | null &#x3D; null;
+  modalTitle: string &#x3D; &#x27;&#x27;;
+  modalMessage: string &#x3D; &#x27;&#x27;;
+  selectedUser: userList &#x3D; {
+    creditReference: 0,
+    userName: &#x27;&#x27;,
+    userId: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    mobile: &#x27;&#x27;,
+    status: 0,
+    balance: 0,
+    uuid: &#x27;&#x27;
+  }
+  roles: roles[] &#x3D; [];
+  levelForBcum: any;
+  editMode : boolean &#x3D; false;
+  download: any &#x3D; &#x27;&#x27;;
+  downloadType: any &#x3D; &#x27;&#x27;;
+  downloadData: any[] &#x3D; [];
+  currentLevel: any;
+  userId: any;
+  fromBalanceUser : any;
+
+  fileName &#x3D; &#x27;User Report&#x27;;
+  changePasswordUser: any;
+  constructor(
+    private dataService: DataService,
+    private pagination: PaginationService,
+    public authService: AuthService,
+    private dataserve: DatahandlerService,
+    private toastr: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    // this.dataService.getManagementUser().subscribe(); // Fetch users if needed
+  }
+
+  /**
+   * ngOnInit function.
+   * @returns {*} Result.
+   */
+  ngOnInit(): void {
+    // Subscribe to user once
+    this.authService.user$.pipe(take(1)).subscribe((user: any) &#x3D;&gt; {
+      this.user &#x3D; user;
+      this.fromBalanceUser &#x3D; this.user?.balance
+    });
+
+    // Fetch roles and user levels
+    this.getRoles();
+    this.getUserLevels();
+
+    // Read query params and load table data\
+    this.route.queryParams.subscribe((params : any)&#x3D;&gt;{
+    const level &#x3D; params[&#x27;level&#x27;];
+    this.breadcrumbDataLevel &#x3D; level || 2
+    const userId &#x3D; params[&#x27;userId&#x27;];
+      if (level &amp;&amp; userId) {
+        this.getTableData({ skip: 0, limit: 100 }, { level: Number(level), userId });
+      } else {
+        this.getTableData({ skip: 0, limit: 100 });
+      }
+    })
+
+          // 🔹 Handle routing AFTER user is resolved
+      this.route.queryParams.subscribe(params &#x3D;&gt; {
+        const level &#x3D; Number(params[&#x27;level&#x27;]);
+        const userId &#x3D; params[&#x27;userId&#x27;];
+
+        if (Number.isFinite(level) &amp;&amp; userId) {
+          this.breadcrumbDataLevel &#x3D; level;
+          this.userId &#x3D; userId;
+
+          this.getTableData(
+            { skip: 0, limit: 100 },
+            { level, userId }
+          );
+          return;
+        }
+
+        if (Number.isFinite(level)) {
+          this.breadcrumbDataLevel &#x3D; level;
+          this.userId &#x3D; null;
+
+          this.getTableData(
+            { skip: 0, limit: 100 },
+            { level }
+          );
+          return;
+        }
+
+        // Default load
+        this.breadcrumbData &#x3D; [];
+        this.userId &#x3D; null;
+
+        // this.getTableData(
+        //   { skip: 0, limit: 100 },
+        //   { accessType: this.activeAccessType }
+        // );
+      });
+
+  }
+
+  /**
+   * togglePassword function.
+   * @param {*} index - Parameter.
+   * @returns {*} Result.
+   */
+  togglePassword(index: number) {
+    this.password[index] &#x3D; !this.password[index];
+  }
+
+  private getTableData(queryParams: pageSelection, level: any &#x3D; null): void {
+    this.dataService.getManagementUser(queryParams, level).subscribe((res: any) &#x3D;&gt; {
+      this.currentLevel &#x3D; res.data?.levelData;
+      this.fromBalanceUser &#x3D; res.data?.balance;
+      this.userList &#x3D; res.data.users
+      this.totalCount &#x3D; res.data.count
+      this.userLevel.push(res.data.levelData)
+    });
+  }
+
+  /**
+   * sortData function.
+   * @param {*} sort - Parameter.
+   * @returns {*} Result.
+   */
+  public sortData(sort: Sort) {
+    const data &#x3D; this.userList.slice();
+    if (!sort.active || sort.direction &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this.userList &#x3D; data;
+    } else {
+      this.userList &#x3D; data.sort((a, b) &#x3D;&gt; {
+        /**
+         * aValue function.
+         * @returns {*} Result.
+         */
+        const aValue &#x3D; (a as never)[sort.active];
+        /**
+         * bValue function.
+         * @returns {*} Result.
+         */
+        const bValue &#x3D; (b as never)[sort.active];
+        return (aValue &lt; bValue ? -1 : 1) * (sort.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27; ? 1 : -1);
+      });
+    }
+  }
+
+  /**
+   * searchData function.
+   * @param {*} value - Parameter.
+   * @returns {*} Result.
+   */
+  public searchData(value: string): void {
+    this.searchDataValue &#x3D; value.trim().toLowerCase();
+    this.dataSource.filter &#x3D; this.searchDataValue;
+    this.userList &#x3D; this.dataSource.filteredData;
+    this.row &#x3D; this.userList.length &gt; 0;
+
+    this.pagination.calculatePageSize.next({
+      totalData: this.searchDataValue !&#x3D;&#x3D; &#x27;&#x27; ? this.userList.length : this.totalData,
+      pageSize: this.pageSize,
+      tableData: this.userList,
+      serialNumberArray: this.userList.map((_, i) &#x3D;&gt; i + 1),
+    });
+  }
+
+  /**
+   * getUserLevels function.
+   * @returns {*} Result.
+   */
+  getUserLevels() {
+    this.dataserve.getUserLevels({}).subscribe((res: any) &#x3D;&gt; {
+      this.level_values &#x3D; res?.data;
+      this.nextLevel &#x3D; this.level_values.find((l) &#x3D;&gt; l.level &#x3D;&#x3D;&#x3D; this.user.level + 1);
+    });
+  }
+
+  /**
+   * getRoles function.
+   * @returns {*} Result.
+   */
+  getRoles(){
+    this.dataserve.getRoles({}).subscribe((res: any) &#x3D;&gt; {
+      this.roles &#x3D; res.data
+    });
+  }
+
+  /**
+   * hideAddUserModal function.
+   * @returns {*} Result.
+   */
+  hideAddUserModal() {
+    const modalEl &#x3D; document.getElementById(&#x27;addUserModal&#x27;);
+    if (modalEl) {
+      // Remove Bootstrap &#x27;show&#x27; and &#x27;offcanvas-end&#x27; classes
+      modalEl.classList.remove(&#x27;show&#x27;);
+      modalEl.style.visibility &#x3D; &#x27;hidden&#x27;;
+      modalEl.setAttribute(&#x27;aria-hidden&#x27;, &#x27;true&#x27;);
+
+      // Remove backdrop if it exists
+      const backdrop &#x3D; document.querySelector(&#x27;.offcanvas-backdrop&#x27;);
+      if (backdrop) {
+        backdrop.remove();
+      }
+
+      // Remove body overflow styling
+      document.body.classList.remove(&#x27;offcanvas-backdrop&#x27;, &#x27;show&#x27;);
+      document.body.style.overflow &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  /**
+   * getNextLevelUsers function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  getNextLevelUsers &#x3D; (user: any) &#x3D;&gt; {
+    const existingIndex &#x3D; this.breadcrumbData.findIndex(
+      (item) &#x3D;&gt; item.queryParams?.user &#x3D;&#x3D;&#x3D; user.uuid
+    );
+    const queryParams &#x3D; {level: Number(this.userLevel[this.userLevel.length - 1]?.level) + 1, userId: user.uuid};
+
+    if (existingIndex !&#x3D;&#x3D; -1) {
+      // Truncate all items after the existing one
+      this.breadcrumbData &#x3D; this.breadcrumbData.slice(0, existingIndex + 1);
+    } else {
+      // Add new breadcrumb
+			const levelForBcum &#x3D;  this.level_values.find((l) &#x3D;&gt; l.level &#x3D;&#x3D; this.breadcrumbDataLevel);
+      this.breadcrumbData.push({
+        link: &quot;/manage-users&quot;,
+        userId: user.userId,
+        designation: levelForBcum?.title,
+        queryParams: queryParams,
+      });
+    }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      // queryParamsHandling: &#x27;merge&#x27;, // keeps other params intact
+    });
+    this.getTableData({skip: 0, limit: 100}, queryParams)
+  }
+
+  /**
+   * confirmStatusChange function.
+   * @param {*} event - Parameter.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  confirmStatusChange(event: MouseEvent, user: any): void {
+    event.preventDefault(); // prevent immediate toggle
+
+    this.selectedUserUuid &#x3D; user.uuid;
+    this.modalTitle &#x3D; user.status ? &#x27;Disable Confirmation&#x27; : &#x27;Enable Confirmation&#x27;;
+    this.modalMessage &#x3D; &#x60;Are you sure you want to ${user.status ? &#x27;disable&#x27; : &#x27;enable&#x27;} user ${user.userId}?&#x60;;
+    const modalElement &#x3D; document.getElementById(&#x27;changeUserStatus&#x27;);
+    if (modalElement) {
+      const modal &#x3D; new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  /**
+   * confirmChange function.
+   * @returns {*} Result.
+   */
+  confirmChange(): void {
+    if (!this.selectedUserUuid) return;
+
+    // Find the user by uuid and toggle the status
+    const userIndex &#x3D; this.userList.findIndex(u &#x3D;&gt; u.uuid &#x3D;&#x3D;&#x3D; this.selectedUserUuid);
+    if (userIndex!&#x3D; -1) {
+      const status &#x3D; this.userList[userIndex].status &#x3D;&#x3D;&#x3D; 0 ?  1 : 0;
+      // console.log(&#x60;Status updated for ${this.userList[userIndex].userName}:&#x60;, this.userList[userIndex].status);
+      const payload &#x3D; {
+        userId: this.userList[userIndex].uuid,
+        status: status, // the new status after toggle
+      };
+
+      this.dataService.updateUserStatus(payload).subscribe({
+        next: (resp) &#x3D;&gt; {
+          this.userList[userIndex].status &#x3D; status
+          this.toastr.success(resp?.message || &#x27;Status updated successfully&#x27;)
+        },
+        error: (error) &#x3D;&gt; {
+          this.toastr.error(error?.error?.message || &#x27;Something went wrong&#x27;, &#x27;Error&#x27;)
+          // Optionally handle error UI here
+        }
+      });
+    }
+    // Clear the pending user
+    this.selectedUserUuid &#x3D; null;
+  }
+
+  /**
+   * handleFormSave function.
+   * @returns {*} Result.
+   */
+  handleFormSave() {
+    this.creditRefForm.submit();
+  }
+
+  /**
+   * handleFormCancel function.
+   * @returns {*} Result.
+   */
+  handleFormCancel() {
+    console.log(&#x27;Modal Cancelled&#x27;);
+  }
+
+  /**
+   * handleRechargeFormSave function.
+   * @returns {*} Result.
+   */
+  handleRechargeFormSave() {
+    this.rechargeForm.submit();
+  }
+
+  /**
+   * handleUserFormSave function.
+   * @returns {*} Result.
+   */
+  handleUserFormSave() {
+    this.createUserForm.submit();
+  }
+
+  /**
+   * onUserFormSubmit_old function.
+   * @param {*} data - Parameter.
+   * @returns {*} Result.
+   */
+  onUserFormSubmit_old(data: any) {
+    const payload :any &#x3D; {
+      userLevelUuid: this.user.userLevelId,
+      parentUserUuid: this.user.uuid,
+      formData: data,
+    };
+    // update user
+    if (this.selectedUser?.uuid) {
+      payload[&#x27;userUuid&#x27;] &#x3D; this.selectedUser.uuid;
+      this.dataserve.updateUser(this.selectedUser?.uuid, payload).subscribe({
+        next: (res: any) &#x3D;&gt; {
+          this.toastr.success(res?.message || &#x27;User updated successfully&#x27;);
+          this.getTableData({ skip: 0, limit: 100 });
+          this.hideAllModals();
+        },
+        error: (err) &#x3D;&gt; this.toastr.error(err?.error?.message || &#x27;Update failed&#x27;, &#x27;Error&#x27;)
+      });
+    } else {
+      // Create User
+      this.dataserve.createUser(payload).subscribe({
+        next: (res: any) &#x3D;&gt; {
+          this.toastr.success(res?.message || &#x27;User created successfully&#x27;);
+          this.getTableData({ skip: 0, limit: 100 });
+          this.hideAllModals();
+        },
+        error: (err) &#x3D;&gt; this.toastr.error(err?.error?.message || &#x27;Creation failed&#x27;, &#x27;Error&#x27;)
+      });
+    }
+  }
+
+    /**
+     * onUserFormSubmit function.
+     * @param {*} data - Parameter.
+     * @returns {*} Result.
+     */
+    onUserFormSubmit(data: any) {
+    const payload: any &#x3D; {
+      userLevelUuid: this.user.userLevelId,
+      parentId: this.userId || this.user.uuid,
+      formData: data,
+    };
+    // update user
+    if (this.selectedUser?.uuid) {
+      payload[&#x27;userUuid&#x27;] &#x3D; this.selectedUser.uuid;
+      this.dataserve.updateUser(this.selectedUser?.uuid, payload).subscribe({
+        next: (res: any) &#x3D;&gt; {
+          this.toastr.success(res?.message || &#x27;User updated successfully&#x27;);
+          this.reloadCurrentTableData();
+          this.hideAllModals();
+        },
+        error: (err) &#x3D;&gt;
+          this.toastr.error(err?.error?.message || &#x27;Update failed&#x27;, &#x27;Error&#x27;),
+      });
+    } else {
+      // Create User
+      this.dataserve.createUser(payload).subscribe({
+        next: (res: any) &#x3D;&gt; {
+          this.toastr.success(res?.message || &#x27;User created successfully&#x27;);
+          this.reloadCurrentTableData();
+          this.hideAllModals();
+        },
+        error: (err) &#x3D;&gt;
+          this.toastr.error(err?.error?.message || &#x27;Creation failed&#x27;, &#x27;Error&#x27;),
+      });
+    }
+  }
+
+  /**
+   * reloadCurrentTableData function.
+   * @returns {*} Result.
+   */
+  private reloadCurrentTableData(): void {
+    const params &#x3D; this.route.snapshot.queryParams;
+
+    const level &#x3D; Number(params[&#x27;level&#x27;]);
+    const userId &#x3D; params[&#x27;userId&#x27;];
+
+    if (Number.isFinite(level) &amp;&amp; userId) {
+      // 🔹 Hierarchy reload (NO accessType)
+      this.getTableData(
+        { skip: 0, limit: 100 },
+        { level, userId }
+      );
+    } else {
+      // 🔹 Root / tab reload
+      this.getTableData(
+        { skip: 0, limit: 100 },
+      );
+    }
+  }
+
+
+  /**
+   * onFormSubmit function.
+   * @param {*} data - Parameter.
+   * @returns {*} Result.
+   */
+  onFormSubmit(data: any) {
+    console.log(&#x27;Received from form:&#x27;, data);
+    const payload &#x3D; {
+      toUUID: data.selectedUser,
+      creditReference: data.creditReference,
+      googleOtp: data.googleOtp
+    }
+    this.dataService.updateCreditReference(payload).subscribe({
+      next: (resp) &#x3D;&gt; {
+        this.toastr.success(resp?.message || &#x27;Status updated successfully&#x27;)
+        const userIndex &#x3D; this.userList.findIndex(u &#x3D;&gt; u.uuid &#x3D;&#x3D;&#x3D; data.selectedUser);
+        if(userIndex !&#x3D; -1) this.userList[userIndex].creditReference &#x3D; data.creditReference
+        this.hideAllModals()
+      },
+      error: (error) &#x3D;&gt; {
+        this.toastr.error(error?.error?.message || &#x27;Something went wrong&#x27;, &#x27;Error&#x27;)
+        // Optionally handle error UI here
+      }
+    });
+    // Call API here with selectedUser.uuid + new data
+  }
+
+  /**
+   * onRechargeFormSubmit function.
+   * @param {*} data - Parameter.
+   * @returns {*} Result.
+   */
+  onRechargeFormSubmit(data: any) {
+    const payload &#x3D; {
+      toUUID: data.selectedUser,
+      amount: data.amount,
+      googleOtp: data.googleOtp,
+      type: data.type
+    }
+
+    this.dataService.updateBalanceForm(payload).subscribe({
+      next: (resp) &#x3D;&gt; {
+        this.toastr.success(resp?.message || &#x27;Status updated successfully&#x27;)
+        const userIndex &#x3D; this.userList.findIndex(u &#x3D;&gt; u.uuid &#x3D;&#x3D;&#x3D; data.selectedUser);
+        console.log(userIndex, &#x27;userIndex&#x27;)
+        if(userIndex !&#x3D; -1)
+          this.userList[userIndex].balance &#x3D; {
+            $numberDecimal: resp.data.receiverBalance.toString()
+          };
+        this.hideAllModals()
+      },
+      error: (error) &#x3D;&gt; {
+        this.toastr.error(error?.error?.message || &#x27;Something went wrong&#x27;, &#x27;Error&#x27;)
+        // Optionally handle error UI here
+      }
+    });
+    // Call API here with selectedUser.uuid + new data
+  }
+
+  // openModal &#x3D; (modalId: any, selectedUser: any &#x3D; null) &#x3D;&gt; {
+
+  //   if(selectedUser) this.selectedUser &#x3D; selectedUser
+  //   const modalEl &#x3D; document.getElementById(modalId);
+  //   console.log(modalEl, &#x27;modalEl&#x27;)
+  //   if (modalEl) {
+  //     const bsModal &#x3D; new bootstrap.Modal(modalEl);
+  //     bsModal.show();
+  //   }
+  // }
+
+  /**
+   * openModal function.
+   * @param {*} modalId - Parameter.
+   * @param {*} selectedUser - Parameter.
+   * @returns {*} Result.
+   */
+  openModal &#x3D; (modalId: any, selectedUser: any &#x3D; null) &#x3D;&gt; {
+    if (selectedUser) {
+      this.selectedUser &#x3D; selectedUser;
+      this.editMode &#x3D; true; // we&#x27;re editing
+    } else {
+      this.selectedUser &#x3D; {
+        creditReference: 0,
+        userName: &#x27;&#x27;,
+        userId: &#x27;&#x27;,
+        email: &#x27;&#x27;,
+        mobile: &#x27;&#x27;,
+        status: 0,
+        balance: 0,
+        uuid: &#x27;&#x27;
+      };
+      this.editMode &#x3D; false; // we&#x27;re adding
+    }
+
+    const modalEl &#x3D; document.getElementById(modalId);
+    if (modalEl) {
+      const bsModal &#x3D; new bootstrap.Modal(modalEl);
+      bsModal.show();
+    }
+  };
+
+
+  /**
+   * hideAllModals function.
+   * @returns {*} Result.
+   */
+  hideAllModals(): void {
+    const modals &#x3D; document.querySelectorAll(&#x27;.modal.show&#x27;);
+    modals.forEach((modalEl: any) &#x3D;&gt; {
+      const modalInstance &#x3D; bootstrap.Modal.getInstance(modalEl);
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+    });
+  }
+
+  /**
+   * navigateToBreadcrumb function.
+   * @param {*} index - Parameter.
+   * @returns {*} Result.
+   */
+  navigateToBreadcrumb(index: number): void {
+    const selected &#x3D; this.breadcrumbData[index];
+    this.breadcrumbData &#x3D; this.breadcrumbData.slice(0, index + 1);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams : selected.queryParams || {},
+      // queryParamsHandling: &#x27;merge&#x27;, // keeps other params intact
+    });
+  }
+
+  /**
+   * openUserBreadcrumb function.
+   * @param {*} user - Parameter.
+   * @returns {*} Result.
+   */
+  openUserBreadcrumb(user: any): void {
+    const existingIndex &#x3D; this.breadcrumbData.findIndex(
+      (item) &#x3D;&gt; item.queryParams?.user &#x3D;&#x3D;&#x3D; user.uuid
+    );
+
+
+    console.log(&quot;existingIndex:::::::&quot;, existingIndex)
+
+    if (existingIndex !&#x3D;&#x3D; -1) {
+      // Truncate all items after the existing one
+      this.breadcrumbData &#x3D; this.breadcrumbData.slice(0, existingIndex + 1);
+    } else {
+      // Add new breadcrumb
+      this.breadcrumbData.push({
+        link: &quot;/management-user&quot;,
+        userId: user.userId,
+        designation: user.role,
+        queryParams: { user: user.uuid },
+      });
+    }
+
+    this.router.navigate([&quot;/management-user&quot;], {
+      queryParams: { user: user.uuid },
+    });
+  }
+
+  /**
+   * goBack function.
+   * @returns {*} Result.
+   */
+  goBack() {
+    this.location.back();
+  }
+
+/**
+ * onExportRequest function.
+ * @param {*} type - Parameter.
+ * @returns {*} Result.
+ */
+onExportRequest(type: &#x27;pdf&#x27; | &#x27;xls&#x27;) {
+  this.download &#x3D; true;
+  this.downloadType &#x3D; type;
+  this.getTableData({ skip: 0, limit: 100 });
+}
+
+/**
+ * openChangePassword function.
+ * @param {*} user - Parameter.
+ * @returns {*} Result.
+ */
+openChangePassword(user: any) {
+  this.changePasswordUser &#x3D; user;
+  this.selectedUser &#x3D; user; // store the selected user
+  this.editMode &#x3D; true; // if needed
+  this.openModal(&#x27;changeUserPasswordModal&#x27;, user);
+}
+
+  /**
+   * handleChangePasswordFormSubmit function.
+   * @returns {*} Result.
+   */
+  handleChangePasswordFormSubmit() {
+    this.changePasswordForm.onSubmit();
+  }
+
+  /**
+   * handleChangePasswordFormCancel function.
+   * @returns {*} Result.
+   */
+  handleChangePasswordFormCancel() {
+    this.changePasswordForm.reset();
+    this.hideAllModals();
+    this.changePasswordUser &#x3D; null;
+  }
+
+  /**
+   * submitChangePasswordForm function.
+   * @param {*} data - Parameter.
+   * @returns {*} Result.
+   */
+  submitChangePasswordForm(data: any) {
+    const payload &#x3D; {
+      currentPassword: data?.currentPassword,
+      newPassword: data?.newPassword,
+      confirmPassword: data?.confirmPassword, // ✅ ADD THIS
+      userId: this.changePasswordUser?.uuid, // ✅ IMPORTANT: API expects &quot;userId&quot; field, not uuid
+    };
+
+    this.dataserve.changeUserPassword(payload).subscribe({
+      next: (res: any) &#x3D;&gt; {
+        this.toastr.success(res?.message || &#x27;Password updated successfully&#x27;);
+        this.changePasswordForm.reset();
+        this.hideAllModals();
+        this.changePasswordUser &#x3D; null;
+      },
+      error: (err:any) &#x3D;&gt; {
+        this.toastr.error(
+          err?.error?.message || &#x27;Password update failed&#x27;,
+          &#x27;Error&#x27;
+        );
+      },
+    });
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Level.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

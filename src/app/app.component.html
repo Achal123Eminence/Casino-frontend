@@ -1,0 +1,26 @@
+<router-outlet></router-outlet>
+<title>{{ page | titlecase }} | CRMS - Advanced Bootstrap 5 Admin Template for Customer Management</title>
+
+<div class="modal fade" id="pageGuideVideoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ activeGuideVideoTitle }}</h5>
+        <button type="button" class="btn-close" (click)="closeGuideVideoModal()"></button>
+      </div>
+      <div class="modal-body p-2">
+        @if (activeGuideVideoUrl) {
+          <div class="ratio ratio-16x9">
+            <iframe
+              [src]="activeGuideVideoUrl"
+              allowfullscreen>
+            </iframe>
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeGuideVideoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

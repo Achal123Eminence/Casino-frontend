@@ -1,0 +1,707 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Downline Frontend</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Downline Frontend</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  IconIonicComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/ui-interface/icons/icon-ionic/icon-ionic.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-icon-ionic</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./icon-ionic.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./icon-ionic.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#routes" >routes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>routes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/features/ui-interface/icons/icon-ionic/icon-ionic.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { routes } from &#x27;../../../../shared/routes/routes&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-icon-ionic&#x27;,
+    templateUrl: &#x27;./icon-ionic.component.html&#x27;,
+    styleUrls: [&#x27;./icon-ionic.component.scss&#x27;],
+    imports: [RouterLink]
+})
+export class IconIonicComponent {
+    routes&#x3D;routes
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Page Header --&gt;
+                &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                    &lt;h4 class&#x3D;&quot;mb-1&quot;&gt;Iconic Icon&lt;/h4&gt;
+                    &lt;nav aria-label&#x3D;&quot;breadcrumb&quot;&gt;
+                        &lt;ol class&#x3D;&quot;breadcrumb mb-0 p-0&quot;&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a [routerLink]&#x3D;&quot;routes.index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item&quot;&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Icons&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class&#x3D;&quot;breadcrumb-item active&quot; aria-current&#x3D;&quot;page&quot;&gt;Iconic Icon&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/nav&gt;
+				&lt;/div&gt;
+				&lt;!-- End Page Header --&gt;
+
+&lt;div class&#x3D;&quot;row&quot;&gt;
+
+    &lt;!-- Chart --&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                &lt;div class&#x3D;&quot;card-title&quot;&gt;Ionic Icon&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;div class&#x3D;&quot;icons-items&quot;&gt;
+                    &lt;ul class&#x3D;&quot;icons-list&quot;&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-ionic&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-ionic&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-up-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-up-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-right-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-right-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-down-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-down-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-left-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-left-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-up-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-up-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-right-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-right-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-down-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-down-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-left-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-left-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-up-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-up-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-right-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-right-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-down-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-down-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-left-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-left-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-return-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-arrow-return-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-return-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-return-left&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-swap&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-swap&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-shrink&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-shrink&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-expand&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-expand&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-move&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-move&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-resize&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-arrow-resize&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chevron-up&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chevron-up&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chevron-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chevron-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chevron-down&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chevron-down&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chevron-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chevron-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-navicon-round&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-navicon-round&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-navicon&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-navicon&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-drag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-drag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-log-in&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-log-in&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-log-out&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-log-out&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-checkmark-round&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-checkmark-round&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-checkmark&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-checkmark&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-checkmark-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-checkmark-circled&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-close-round&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-close-round&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-close&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-close&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-close-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-close-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-plus-round&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-plus-round&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-plus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-plus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-plus-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-plus-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-minus-round&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-minus-round&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-minus&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-minus&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-minus-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-minus-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-information&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-information&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-information-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-information-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-help&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-help&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-help-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-help-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-help-buoy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-help-buoy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-asterisk&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-asterisk&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-alert&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-alert&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-alert-circled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-alert-circled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-refresh&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-refresh&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-loop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-loop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-shuffle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-shuffle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-home&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-home&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-search&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-search&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-flag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-flag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-star&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-star&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-heart&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-heart&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-heart-broken&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-heart-broken&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-gear-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-gear-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-gear-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-gear-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-toggle-filled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-toggle-filled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-toggle&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-toggle&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-settings&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-settings&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-wrench&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-wrench&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-folder&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-folder&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-hammer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-hammer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-edit&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-edit&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-trash-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-trash-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-trash-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-trash-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-document&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-document&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-document-text&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-document-text&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-clipboard&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-clipboard&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-scissors&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-scissors&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-funnel&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-funnel&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-bookmark&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-bookmark&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-email&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-email&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-folder&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-folder&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-filing&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-filing&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-archive&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-archive&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-reply&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-reply&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-reply-all&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-reply-all&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-forward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-share&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-share&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-paper-airplane&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-paper-airplane&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-link&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-link&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-paperclip&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-paperclip&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-compose&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-compose&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-briefcase&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-briefcase&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-medkit&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-medkit&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-at&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-at&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pound&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pound&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-quote&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-quote&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-cloud&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-cloud&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-upload&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-upload&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-more&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-more&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-grid&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-grid&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-calendar&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-calendar&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-clock&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-clock&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-compass&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-compass&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pinpoint&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pinpoint&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pin&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pin&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-navigate&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-navigate&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-location&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-location&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-map&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-map&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-model-s&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-model-s&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-locked&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-locked&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-unlocked&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-unlocked&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-key&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-key&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-graph-up-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-arrow-graph-up-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-graph-down-right&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-arrow-graph-down-right&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-arrow-graph-down-left&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-arrow-graph-down-left&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-stats-bars&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-stats-bars&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-connection-bars&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-connection-bars&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pie-graph&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pie-graph&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatbubble&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chatbubble&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatbubble-working&quot; data-bs-toggle&#x3D;&quot;tooltip&quot;
+                                title&#x3D;&quot;ion-chatbubble-working&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatbubbles&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chatbubbles&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatbox&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chatbox&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatbox-working&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chatbox-working&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-chatboxes&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-chatboxes&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-person&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-person&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-person-add&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-person-add&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-person-stalker&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-person-stalker&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-woman&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-woman&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-man&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-man&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-female&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-female&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-male&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-male&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-fork&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-fork&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-knife&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-knife&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-spoon&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-spoon&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-beer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-beer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-wineglass&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-wineglass&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-coffee&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-coffee&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-icecream&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-icecream&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pizza&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pizza&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-power&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-power&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-mouse&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-mouse&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-battery-full&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-battery-full&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-battery-half&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-battery-half&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-battery-low&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-battery-low&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-battery-empty&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-battery-empty&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-battery-charging&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-battery-charging&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-bluetooth&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-bluetooth&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-calculator&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-calculator&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-camera&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-camera&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-eye&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-eye&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-eye-disabled&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-eye-disabled&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-flash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-flash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-flash-off&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-flash-off&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-qr-scanner&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-qr-scanner&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-image&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-image&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-images&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-images&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-contrast&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-contrast&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-wand&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-wand&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-aperture&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-aperture&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-monitor&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-monitor&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-laptop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-laptop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-ipad&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-ipad&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-iphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-iphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-ipod&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-ipod&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-printer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-printer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-usb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-usb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-outlet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-outlet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-bug&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-bug&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-code&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-code&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-code-working&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-code-working&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-code-download&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-code-download&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-fork-repo&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-fork-repo&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-network&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-network&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pull-request&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pull-request&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-merge&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-merge&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-game-controller-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-game-controller-a&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-game-controller-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-game-controller-b&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-xbox&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-xbox&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-playstation&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-playstation&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-steam&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-steam&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-closed-captioning&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-closed-captioning&quot;&gt;&lt;/i&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-videocamera&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-videocamera&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-film-marker&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-film-marker&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-disc&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-disc&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-headphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-headphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-music-note&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-music-note&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-radio-waves&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-radio-waves&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-speakerphone&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-speakerphone&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-mic-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-mic-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-mic-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-mic-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-mic-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-mic-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-volume-high&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-volume-high&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-volume-medium&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-volume-medium&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-volume-low&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-volume-low&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-volume-mute&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-volume-mute&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-levels&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-levels&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-play&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-play&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pause&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pause&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-stop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-stop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-record&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-record&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-skip-forward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-skip-forward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-skip-backward&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-skip-backward&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-eject&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-eject&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-bag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-bag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-card&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-card&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-cash&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-cash&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pricetag&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pricetag&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-pricetags&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-pricetags&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-thumbsup&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-thumbsup&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-thumbsdown&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-thumbsdown&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-happy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-happy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-sad&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-sad&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-trophy&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-trophy&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-podium&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-podium&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-ribbon-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-ribbon-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-ribbon-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-ribbon-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-university&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-university&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-magnet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-magnet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-beaker&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-beaker&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-flask&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-flask&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-egg&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-egg&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-earth&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-earth&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-planet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-planet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-lightbulb&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-lightbulb&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-cube&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-cube&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-leaf&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-leaf&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-waterdrop&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-waterdrop&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-flame&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-flame&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-fireball&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-fireball&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-bonfire&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-bonfire&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-umbrella&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-umbrella&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-nuclear&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-nuclear&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-no-smoking&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-no-smoking&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-thermometer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-thermometer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-speedometer&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-speedometer&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-plane&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-plane&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-jet&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-jet&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-load-a&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-load-a&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-load-b&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-load-b&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-load-c&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-load-c&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;i class&#x3D;&quot;ion-load-d&quot; data-bs-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;ion-load-d&quot;&gt;&lt;/i&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- /Chart --&gt;
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./icon-ionic.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Page Header -->                <div class="mb-4">                    <h4 class="mb-1">Iconic Icon</h4>                    <nav aria-label="breadcrumb">                        <ol class="breadcrumb mb-0 p-0">                            <li class="breadcrumb-item"><a [routerLink]="routes.index">Home</a></li>                            <li class="breadcrumb-item"><a href="#">Icons</a></li>                            <li class="breadcrumb-item active" aria-current="page">Iconic Icon</li>                        </ol>                    </nav>				</div>				<!-- End Page Header --><div class="row">    <!-- Chart -->    <div class="col-md-12">        <div class="card">            <div class="card-header">                <div class="card-title">Ionic Icon</div>            </div>            <div class="card-body">                <div class="icons-items">                    <ul class="icons-list">                        <li><i class="ion-ionic" data-bs-toggle="tooltip" title="ion-ionic"></i></li>                        <li><i class="ion-arrow-up-a" data-bs-toggle="tooltip" title="ion-arrow-up-a"></i></li>                        <li><i class="ion-arrow-right-a" data-bs-toggle="tooltip" title="ion-arrow-right-a"></i></li>                        <li><i class="ion-arrow-down-a" data-bs-toggle="tooltip" title="ion-arrow-down-a"></i></li>                        <li><i class="ion-arrow-left-a" data-bs-toggle="tooltip" title="ion-arrow-left-a"></i></li>                        <li><i class="ion-arrow-up-b" data-bs-toggle="tooltip" title="ion-arrow-up-b"></i></li>                        <li><i class="ion-arrow-right-b" data-bs-toggle="tooltip" title="ion-arrow-right-b"></i></li>                        <li><i class="ion-arrow-down-b" data-bs-toggle="tooltip" title="ion-arrow-down-b"></i></li>                        <li><i class="ion-arrow-left-b" data-bs-toggle="tooltip" title="ion-arrow-left-b"></i></li>                        <li><i class="ion-arrow-up-c" data-bs-toggle="tooltip" title="ion-arrow-up-c"></i></li>                        <li><i class="ion-arrow-right-c" data-bs-toggle="tooltip" title="ion-arrow-right-c"></i></li>                        <li><i class="ion-arrow-down-c" data-bs-toggle="tooltip" title="ion-arrow-down-c"></i></li>                        <li><i class="ion-arrow-left-c" data-bs-toggle="tooltip" title="ion-arrow-left-c"></i></li>                        <li><i class="ion-arrow-return-right" data-bs-toggle="tooltip"                                title="ion-arrow-return-right"></i></li>                        <li><i class="ion-arrow-return-left" data-bs-toggle="tooltip" title="ion-arrow-return-left"></i>                        </li>                        <li><i class="ion-arrow-swap" data-bs-toggle="tooltip" title="ion-arrow-swap"></i></li>                        <li><i class="ion-arrow-shrink" data-bs-toggle="tooltip" title="ion-arrow-shrink"></i></li>                        <li><i class="ion-arrow-expand" data-bs-toggle="tooltip" title="ion-arrow-expand"></i></li>                        <li><i class="ion-arrow-move" data-bs-toggle="tooltip" title="ion-arrow-move"></i></li>                        <li><i class="ion-arrow-resize" data-bs-toggle="tooltip" title="ion-arrow-resize"></i></li>                        <li><i class="ion-chevron-up" data-bs-toggle="tooltip" title="ion-chevron-up"></i></li>                        <li><i class="ion-chevron-right" data-bs-toggle="tooltip" title="ion-chevron-right"></i></li>                        <li><i class="ion-chevron-down" data-bs-toggle="tooltip" title="ion-chevron-down"></i></li>                        <li><i class="ion-chevron-left" data-bs-toggle="tooltip" title="ion-chevron-left"></i></li>                        <li><i class="ion-navicon-round" data-bs-toggle="tooltip" title="ion-navicon-round"></i></li>                        <li><i class="ion-navicon" data-bs-toggle="tooltip" title="ion-navicon"></i></li>                        <li><i class="ion-drag" data-bs-toggle="tooltip" title="ion-drag"></i></li>                        <li><i class="ion-log-in" data-bs-toggle="tooltip" title="ion-log-in"></i></li>                        <li><i class="ion-log-out" data-bs-toggle="tooltip" title="ion-log-out"></i></li>                        <li><i class="ion-checkmark-round" data-bs-toggle="tooltip" title="ion-checkmark-round"></i>                        </li>                        <li><i class="ion-checkmark" data-bs-toggle="tooltip" title="ion-checkmark"></i></li>                        <li><i class="ion-checkmark-circled" data-bs-toggle="tooltip" title="ion-checkmark-circled"></i>                        </li>                        <li><i class="ion-close-round" data-bs-toggle="tooltip" title="ion-close-round"></i></li>                        <li><i class="ion-close" data-bs-toggle="tooltip" title="ion-close"></i></li>                        <li><i class="ion-close-circled" data-bs-toggle="tooltip" title="ion-close-circled"></i></li>                        <li><i class="ion-plus-round" data-bs-toggle="tooltip" title="ion-plus-round"></i></li>                        <li><i class="ion-plus" data-bs-toggle="tooltip" title="ion-plus"></i></li>                        <li><i class="ion-plus-circled" data-bs-toggle="tooltip" title="ion-plus-circled"></i></li>                        <li><i class="ion-minus-round" data-bs-toggle="tooltip" title="ion-minus-round"></i></li>                        <li><i class="ion-minus" data-bs-toggle="tooltip" title="ion-minus"></i></li>                        <li><i class="ion-minus-circled" data-bs-toggle="tooltip" title="ion-minus-circled"></i></li>                        <li><i class="ion-information" data-bs-toggle="tooltip" title="ion-information"></i></li>                        <li><i class="ion-information-circled" data-bs-toggle="tooltip"                                title="ion-information-circled"></i></li>                        <li><i class="ion-help" data-bs-toggle="tooltip" title="ion-help"></i></li>                        <li><i class="ion-help-circled" data-bs-toggle="tooltip" title="ion-help-circled"></i></li>                        <li><i class="ion-help-buoy" data-bs-toggle="tooltip" title="ion-help-buoy"></i></li>                        <li><i class="ion-asterisk" data-bs-toggle="tooltip" title="ion-asterisk"></i></li>                        <li><i class="ion-alert" data-bs-toggle="tooltip" title="ion-alert"></i></li>                        <li><i class="ion-alert-circled" data-bs-toggle="tooltip" title="ion-alert-circled"></i></li>                        <li><i class="ion-refresh" data-bs-toggle="tooltip" title="ion-refresh"></i></li>                        <li><i class="ion-loop" data-bs-toggle="tooltip" title="ion-loop"></i></li>                        <li><i class="ion-shuffle" data-bs-toggle="tooltip" title="ion-shuffle"></i></li>                        <li><i class="ion-home" data-bs-toggle="tooltip" title="ion-home"></i></li>                        <li><i class="ion-search" data-bs-toggle="tooltip" title="ion-search"></i></li>                        <li><i class="ion-flag" data-bs-toggle="tooltip" title="ion-flag"></i></li>                        <li><i class="ion-star" data-bs-toggle="tooltip" title="ion-star"></i></li>                        <li><i class="ion-heart" data-bs-toggle="tooltip" title="ion-heart"></i></li>                        <li><i class="ion-heart-broken" data-bs-toggle="tooltip" title="ion-heart-broken"></i></li>                        <li><i class="ion-gear-a" data-bs-toggle="tooltip" title="ion-gear-a"></i></li>                        <li><i class="ion-gear-b" data-bs-toggle="tooltip" title="ion-gear-b"></i></li>                        <li><i class="ion-toggle-filled" data-bs-toggle="tooltip" title="ion-toggle-filled"></i></li>                        <li><i class="ion-toggle" data-bs-toggle="tooltip" title="ion-toggle"></i></li>                        <li><i class="ion-settings" data-bs-toggle="tooltip" title="ion-settings"></i></li>                        <li><i class="ion-wrench" data-bs-toggle="tooltip" title="ion-wrench"></i></li>                        <li><i class="ion-folder" data-bs-toggle="tooltip" title="ion-folder"></i></li>                        <li><i class="ion-hammer" data-bs-toggle="tooltip" title="ion-hammer"></i></li>                        <li><i class="ion-edit" data-bs-toggle="tooltip" title="ion-edit"></i></li>                        <li><i class="ion-trash-a" data-bs-toggle="tooltip" title="ion-trash-a"></i></li>                        <li><i class="ion-trash-b" data-bs-toggle="tooltip" title="ion-trash-b"></i></li>                        <li><i class="ion-document" data-bs-toggle="tooltip" title="ion-document"></i></li>                        <li><i class="ion-document-text" data-bs-toggle="tooltip" title="ion-document-text"></i></li>                        <li><i class="ion-clipboard" data-bs-toggle="tooltip" title="ion-clipboard"></i></li>                        <li><i class="ion-scissors" data-bs-toggle="tooltip" title="ion-scissors"></i></li>                        <li><i class="ion-funnel" data-bs-toggle="tooltip" title="ion-funnel"></i></li>                        <li><i class="ion-bookmark" data-bs-toggle="tooltip" title="ion-bookmark"></i></li>                        <li><i class="ion-email" data-bs-toggle="tooltip" title="ion-email"></i></li>                        <li><i class="ion-folder" data-bs-toggle="tooltip" title="ion-folder"></i></li>                        <li><i class="ion-filing" data-bs-toggle="tooltip" title="ion-filing"></i></li>                        <li><i class="ion-archive" data-bs-toggle="tooltip" title="ion-archive"></i></li>                        <li><i class="ion-reply" data-bs-toggle="tooltip" title="ion-reply"></i></li>                        <li><i class="ion-reply-all" data-bs-toggle="tooltip" title="ion-reply-all"></i></li>                        <li><i class="ion-forward" data-bs-toggle="tooltip" title="ion-forward"></i></li>                        <li><i class="ion-share" data-bs-toggle="tooltip" title="ion-share"></i></li>                        <li><i class="ion-paper-airplane" data-bs-toggle="tooltip" title="ion-paper-airplane"></i></li>                        <li><i class="ion-link" data-bs-toggle="tooltip" title="ion-link"></i></li>                        <li><i class="ion-paperclip" data-bs-toggle="tooltip" title="ion-paperclip"></i></li>                        <li><i class="ion-compose" data-bs-toggle="tooltip" title="ion-compose"></i></li>                        <li><i class="ion-briefcase" data-bs-toggle="tooltip" title="ion-briefcase"></i></li>                        <li><i class="ion-medkit" data-bs-toggle="tooltip" title="ion-medkit"></i></li>                        <li><i class="ion-at" data-bs-toggle="tooltip" title="ion-at"></i></li>                        <li><i class="ion-pound" data-bs-toggle="tooltip" title="ion-pound"></i></li>                        <li><i class="ion-quote" data-bs-toggle="tooltip" title="ion-quote"></i></li>                        <li><i class="ion-cloud" data-bs-toggle="tooltip" title="ion-cloud"></i></li>                        <li><i class="ion-upload" data-bs-toggle="tooltip" title="ion-upload"></i></li>                        <li><i class="ion-more" data-bs-toggle="tooltip" title="ion-more"></i></li>                        <li><i class="ion-grid" data-bs-toggle="tooltip" title="ion-grid"></i></li>                        <li><i class="ion-calendar" data-bs-toggle="tooltip" title="ion-calendar"></i></li>                        <li><i class="ion-clock" data-bs-toggle="tooltip" title="ion-clock"></i></li>                        <li><i class="ion-compass" data-bs-toggle="tooltip" title="ion-compass"></i></li>                        <li><i class="ion-pinpoint" data-bs-toggle="tooltip" title="ion-pinpoint"></i></li>                        <li><i class="ion-pin" data-bs-toggle="tooltip" title="ion-pin"></i></li>                        <li><i class="ion-navigate" data-bs-toggle="tooltip" title="ion-navigate"></i></li>                        <li><i class="ion-location" data-bs-toggle="tooltip" title="ion-location"></i></li>                        <li><i class="ion-map" data-bs-toggle="tooltip" title="ion-map"></i></li>                        <li><i class="ion-model-s" data-bs-toggle="tooltip" title="ion-model-s"></i></li>                        <li><i class="ion-locked" data-bs-toggle="tooltip" title="ion-locked"></i></li>                        <li><i class="ion-unlocked" data-bs-toggle="tooltip" title="ion-unlocked"></i></li>                        <li><i class="ion-key" data-bs-toggle="tooltip" title="ion-key"></i></li>                        <li><i class="ion-arrow-graph-up-right" data-bs-toggle="tooltip"                                title="ion-arrow-graph-up-right"></i></li>                        <li><i class="ion-arrow-graph-down-right" data-bs-toggle="tooltip"                                title="ion-arrow-graph-down-right"></i></li>                        <li><i class="ion-arrow-graph-down-left" data-bs-toggle="tooltip"                                title="ion-arrow-graph-down-left"></i></li>                        <li><i class="ion-stats-bars" data-bs-toggle="tooltip" title="ion-stats-bars"></i></li>                        <li><i class="ion-connection-bars" data-bs-toggle="tooltip" title="ion-connection-bars"></i>                        </li>                        <li><i class="ion-pie-graph" data-bs-toggle="tooltip" title="ion-pie-graph"></i></li>                        <li><i class="ion-chatbubble" data-bs-toggle="tooltip" title="ion-chatbubble"></i></li>                        <li><i class="ion-chatbubble-working" data-bs-toggle="tooltip"                                title="ion-chatbubble-working"></i></li>                        <li><i class="ion-chatbubbles" data-bs-toggle="tooltip" title="ion-chatbubbles"></i></li>                        <li><i class="ion-chatbox" data-bs-toggle="tooltip" title="ion-chatbox"></i></li>                        <li><i class="ion-chatbox-working" data-bs-toggle="tooltip" title="ion-chatbox-working"></i>                        </li>                        <li><i class="ion-chatboxes" data-bs-toggle="tooltip" title="ion-chatboxes"></i></li>                        <li><i class="ion-person" data-bs-toggle="tooltip" title="ion-person"></i></li>                        <li><i class="ion-person-add" data-bs-toggle="tooltip" title="ion-person-add"></i></li>                        <li><i class="ion-person-stalker" data-bs-toggle="tooltip" title="ion-person-stalker"></i></li>                        <li><i class="ion-woman" data-bs-toggle="tooltip" title="ion-woman"></i></li>                        <li><i class="ion-man" data-bs-toggle="tooltip" title="ion-man"></i></li>                        <li><i class="ion-female" data-bs-toggle="tooltip" title="ion-female"></i></li>                        <li><i class="ion-male" data-bs-toggle="tooltip" title="ion-male"></i></li>                        <li><i class="ion-fork" data-bs-toggle="tooltip" title="ion-fork"></i></li>                        <li><i class="ion-knife" data-bs-toggle="tooltip" title="ion-knife"></i></li>                        <li><i class="ion-spoon" data-bs-toggle="tooltip" title="ion-spoon"></i></li>                        <li><i class="ion-beer" data-bs-toggle="tooltip" title="ion-beer"></i></li>                        <li><i class="ion-wineglass" data-bs-toggle="tooltip" title="ion-wineglass"></i></li>                        <li><i class="ion-coffee" data-bs-toggle="tooltip" title="ion-coffee"></i></li>                        <li><i class="ion-icecream" data-bs-toggle="tooltip" title="ion-icecream"></i></li>                        <li><i class="ion-pizza" data-bs-toggle="tooltip" title="ion-pizza"></i></li>                        <li><i class="ion-power" data-bs-toggle="tooltip" title="ion-power"></i></li>                        <li><i class="ion-mouse" data-bs-toggle="tooltip" title="ion-mouse"></i></li>                        <li><i class="ion-battery-full" data-bs-toggle="tooltip" title="ion-battery-full"></i></li>                        <li><i class="ion-battery-half" data-bs-toggle="tooltip" title="ion-battery-half"></i></li>                        <li><i class="ion-battery-low" data-bs-toggle="tooltip" title="ion-battery-low"></i></li>                        <li><i class="ion-battery-empty" data-bs-toggle="tooltip" title="ion-battery-empty"></i></li>                        <li><i class="ion-battery-charging" data-bs-toggle="tooltip" title="ion-battery-charging"></i>                        </li>                        <li><i class="ion-bluetooth" data-bs-toggle="tooltip" title="ion-bluetooth"></i></li>                        <li><i class="ion-calculator" data-bs-toggle="tooltip" title="ion-calculator"></i></li>                        <li><i class="ion-camera" data-bs-toggle="tooltip" title="ion-camera"></i></li>                        <li><i class="ion-eye" data-bs-toggle="tooltip" title="ion-eye"></i></li>                        <li><i class="ion-eye-disabled" data-bs-toggle="tooltip" title="ion-eye-disabled"></i></li>                        <li><i class="ion-flash" data-bs-toggle="tooltip" title="ion-flash"></i></li>                        <li><i class="ion-flash-off" data-bs-toggle="tooltip" title="ion-flash-off"></i></li>                        <li><i class="ion-qr-scanner" data-bs-toggle="tooltip" title="ion-qr-scanner"></i></li>                        <li><i class="ion-image" data-bs-toggle="tooltip" title="ion-image"></i></li>                        <li><i class="ion-images" data-bs-toggle="tooltip" title="ion-images"></i></li>                        <li><i class="ion-contrast" data-bs-toggle="tooltip" title="ion-contrast"></i></li>                        <li><i class="ion-wand" data-bs-toggle="tooltip" title="ion-wand"></i></li>                        <li><i class="ion-aperture" data-bs-toggle="tooltip" title="ion-aperture"></i></li>                        <li><i class="ion-monitor" data-bs-toggle="tooltip" title="ion-monitor"></i></li>                        <li><i class="ion-laptop" data-bs-toggle="tooltip" title="ion-laptop"></i></li>                        <li><i class="ion-ipad" data-bs-toggle="tooltip" title="ion-ipad"></i></li>                        <li><i class="ion-iphone" data-bs-toggle="tooltip" title="ion-iphone"></i></li>                        <li><i class="ion-ipod" data-bs-toggle="tooltip" title="ion-ipod"></i></li>                        <li><i class="ion-printer" data-bs-toggle="tooltip" title="ion-printer"></i></li>                        <li><i class="ion-usb" data-bs-toggle="tooltip" title="ion-usb"></i></li>                        <li><i class="ion-outlet" data-bs-toggle="tooltip" title="ion-outlet"></i></li>                        <li><i class="ion-bug" data-bs-toggle="tooltip" title="ion-bug"></i></li>                        <li><i class="ion-code" data-bs-toggle="tooltip" title="ion-code"></i></li>                        <li><i class="ion-code-working" data-bs-toggle="tooltip" title="ion-code-working"></i></li>                        <li><i class="ion-code-download" data-bs-toggle="tooltip" title="ion-code-download"></i></li>                        <li><i class="ion-fork-repo" data-bs-toggle="tooltip" title="ion-fork-repo"></i></li>                        <li><i class="ion-network" data-bs-toggle="tooltip" title="ion-network"></i></li>                        <li><i class="ion-pull-request" data-bs-toggle="tooltip" title="ion-pull-request"></i></li>                        <li><i class="ion-merge" data-bs-toggle="tooltip" title="ion-merge"></i></li>                        <li><i class="ion-game-controller-a" data-bs-toggle="tooltip" title="ion-game-controller-a"></i>                        </li>                        <li><i class="ion-game-controller-b" data-bs-toggle="tooltip" title="ion-game-controller-b"></i>                        </li>                        <li><i class="ion-xbox" data-bs-toggle="tooltip" title="ion-xbox"></i></li>                        <li><i class="ion-playstation" data-bs-toggle="tooltip" title="ion-playstation"></i></li>                        <li><i class="ion-steam" data-bs-toggle="tooltip" title="ion-steam"></i></li>                        <li><i class="ion-closed-captioning" data-bs-toggle="tooltip" title="ion-closed-captioning"></i>                        </li>                        <li><i class="ion-videocamera" data-bs-toggle="tooltip" title="ion-videocamera"></i></li>                        <li><i class="ion-film-marker" data-bs-toggle="tooltip" title="ion-film-marker"></i></li>                        <li><i class="ion-disc" data-bs-toggle="tooltip" title="ion-disc"></i></li>                        <li><i class="ion-headphone" data-bs-toggle="tooltip" title="ion-headphone"></i></li>                        <li><i class="ion-music-note" data-bs-toggle="tooltip" title="ion-music-note"></i></li>                        <li><i class="ion-radio-waves" data-bs-toggle="tooltip" title="ion-radio-waves"></i></li>                        <li><i class="ion-speakerphone" data-bs-toggle="tooltip" title="ion-speakerphone"></i></li>                        <li><i class="ion-mic-a" data-bs-toggle="tooltip" title="ion-mic-a"></i></li>                        <li><i class="ion-mic-b" data-bs-toggle="tooltip" title="ion-mic-b"></i></li>                        <li><i class="ion-mic-c" data-bs-toggle="tooltip" title="ion-mic-c"></i></li>                        <li><i class="ion-volume-high" data-bs-toggle="tooltip" title="ion-volume-high"></i></li>                        <li><i class="ion-volume-medium" data-bs-toggle="tooltip" title="ion-volume-medium"></i></li>                        <li><i class="ion-volume-low" data-bs-toggle="tooltip" title="ion-volume-low"></i></li>                        <li><i class="ion-volume-mute" data-bs-toggle="tooltip" title="ion-volume-mute"></i></li>                        <li><i class="ion-levels" data-bs-toggle="tooltip" title="ion-levels"></i></li>                        <li><i class="ion-play" data-bs-toggle="tooltip" title="ion-play"></i></li>                        <li><i class="ion-pause" data-bs-toggle="tooltip" title="ion-pause"></i></li>                        <li><i class="ion-stop" data-bs-toggle="tooltip" title="ion-stop"></i></li>                        <li><i class="ion-record" data-bs-toggle="tooltip" title="ion-record"></i></li>                        <li><i class="ion-skip-forward" data-bs-toggle="tooltip" title="ion-skip-forward"></i></li>                        <li><i class="ion-skip-backward" data-bs-toggle="tooltip" title="ion-skip-backward"></i></li>                        <li><i class="ion-eject" data-bs-toggle="tooltip" title="ion-eject"></i></li>                        <li><i class="ion-bag" data-bs-toggle="tooltip" title="ion-bag"></i></li>                        <li><i class="ion-card" data-bs-toggle="tooltip" title="ion-card"></i></li>                        <li><i class="ion-cash" data-bs-toggle="tooltip" title="ion-cash"></i></li>                        <li><i class="ion-pricetag" data-bs-toggle="tooltip" title="ion-pricetag"></i></li>                        <li><i class="ion-pricetags" data-bs-toggle="tooltip" title="ion-pricetags"></i></li>                        <li><i class="ion-thumbsup" data-bs-toggle="tooltip" title="ion-thumbsup"></i></li>                        <li><i class="ion-thumbsdown" data-bs-toggle="tooltip" title="ion-thumbsdown"></i></li>                        <li><i class="ion-happy" data-bs-toggle="tooltip" title="ion-happy"></i></li>                        <li><i class="ion-sad" data-bs-toggle="tooltip" title="ion-sad"></i></li>                        <li><i class="ion-trophy" data-bs-toggle="tooltip" title="ion-trophy"></i></li>                        <li><i class="ion-podium" data-bs-toggle="tooltip" title="ion-podium"></i></li>                        <li><i class="ion-ribbon-a" data-bs-toggle="tooltip" title="ion-ribbon-a"></i></li>                        <li><i class="ion-ribbon-b" data-bs-toggle="tooltip" title="ion-ribbon-b"></i></li>                        <li><i class="ion-university" data-bs-toggle="tooltip" title="ion-university"></i></li>                        <li><i class="ion-magnet" data-bs-toggle="tooltip" title="ion-magnet"></i></li>                        <li><i class="ion-beaker" data-bs-toggle="tooltip" title="ion-beaker"></i></li>                        <li><i class="ion-flask" data-bs-toggle="tooltip" title="ion-flask"></i></li>                        <li><i class="ion-egg" data-bs-toggle="tooltip" title="ion-egg"></i></li>                        <li><i class="ion-earth" data-bs-toggle="tooltip" title="ion-earth"></i></li>                        <li><i class="ion-planet" data-bs-toggle="tooltip" title="ion-planet"></i></li>                        <li><i class="ion-lightbulb" data-bs-toggle="tooltip" title="ion-lightbulb"></i></li>                        <li><i class="ion-cube" data-bs-toggle="tooltip" title="ion-cube"></i></li>                        <li><i class="ion-leaf" data-bs-toggle="tooltip" title="ion-leaf"></i></li>                        <li><i class="ion-waterdrop" data-bs-toggle="tooltip" title="ion-waterdrop"></i></li>                        <li><i class="ion-flame" data-bs-toggle="tooltip" title="ion-flame"></i></li>                        <li><i class="ion-fireball" data-bs-toggle="tooltip" title="ion-fireball"></i></li>                        <li><i class="ion-bonfire" data-bs-toggle="tooltip" title="ion-bonfire"></i></li>                        <li><i class="ion-umbrella" data-bs-toggle="tooltip" title="ion-umbrella"></i></li>                        <li><i class="ion-nuclear" data-bs-toggle="tooltip" title="ion-nuclear"></i></li>                        <li><i class="ion-no-smoking" data-bs-toggle="tooltip" title="ion-no-smoking"></i></li>                        <li><i class="ion-thermometer" data-bs-toggle="tooltip" title="ion-thermometer"></i></li>                        <li><i class="ion-speedometer" data-bs-toggle="tooltip" title="ion-speedometer"></i></li>                        <li><i class="ion-plane" data-bs-toggle="tooltip" title="ion-plane"></i></li>                        <li><i class="ion-jet" data-bs-toggle="tooltip" title="ion-jet"></i></li>                        <li><i class="ion-load-a" data-bs-toggle="tooltip" title="ion-load-a"></i></li>                        <li><i class="ion-load-b" data-bs-toggle="tooltip" title="ion-load-b"></i></li>                        <li><i class="ion-load-c" data-bs-toggle="tooltip" title="ion-load-c"></i></li>                        <li><i class="ion-load-d" data-bs-toggle="tooltip" title="ion-load-d"></i></li>                    </ul>                </div>            </div>        </div>    </div>    <!-- /Chart --></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesComponent', 'selector': 'app-activities'},{'name': 'ActivitiesListComponent', 'selector': 'app-activities-list'},{'name': 'ActivityCallsComponent', 'selector': 'app-activity-calls'},{'name': 'ActivityMailComponent', 'selector': 'app-activity-mail'},{'name': 'ActivityMeetingComponent', 'selector': 'app-activity-meeting'},{'name': 'ActivityTaskComponent', 'selector': 'app-activity-task'},{'name': 'AddBlogComponent', 'selector': 'app-add-blog'},{'name': 'AddformFieldsComponent', 'selector': 'app-addform-fields'},{'name': 'AddInvoicesComponent', 'selector': 'app-add-invoices'},{'name': 'AddPageComponent', 'selector': 'app-add-page'},{'name': 'AdvancedUiComponent', 'selector': 'app-advanced-ui'},{'name': 'AllTasksComponent', 'selector': 'app-all-tasks'},{'name': 'AnalyticsComponent', 'selector': 'app-analytics'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppearanceSettingsComponent', 'selector': 'app-appearance-settings'},{'name': 'ApplicationComponent', 'selector': 'app-application'},{'name': 'AudioCallComponent', 'selector': 'app-audio-call'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BanIpAddressComponent', 'selector': 'app-ban-ip-address'},{'name': 'BankAccountsComponent', 'selector': 'app-bank-accounts'},{'name': 'BaseUiComponent', 'selector': 'app-base-ui'},{'name': 'BlankComponent', 'selector': 'app-blank'},{'name': 'BlogCategoriesComponent', 'selector': 'app-blog-categories'},{'name': 'BlogCommentsComponent', 'selector': 'app-blog-comments'},{'name': 'BlogDetailsComponent', 'selector': 'app-blog-details'},{'name': 'BlogListComponent', 'selector': 'app-blog-list'},{'name': 'BlogsComponent', 'selector': 'app-blogs'},{'name': 'BlogTagsComponent', 'selector': 'app-blog-tags'},{'name': 'BreadcrumbsComponent', 'selector': 'app-breadcrumbs'},{'name': 'CalendarComponent', 'selector': 'app-calendar'},{'name': 'CallHistoryComponent', 'selector': 'app-call-history'},{'name': 'CallsComponent', 'selector': 'app-calls'},{'name': 'CampaignArchieveComponent', 'selector': 'app-campaign-archieve'},{'name': 'CampaignCompleteComponent', 'selector': 'app-campaign-complete'},{'name': 'CampaignComponent', 'selector': 'app-campaign'},{'name': 'CampaignListComponent', 'selector': 'app-campaign-list'},{'name': 'ChangePasswordFormComponent', 'selector': 'app-change-password-form'},{'name': 'ChartApexComponent', 'selector': 'app-chart-apex'},{'name': 'ChartsComponent', 'selector': 'app-charts'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'CitiesComponent', 'selector': 'app-cities'},{'name': 'ClearCacheComponent', 'selector': 'app-clear-cache'},{'name': 'CollapseHeaderComponent', 'selector': 'app-collapse-header'},{'name': 'ComingSoonComponent', 'selector': 'app-coming-soon'},{'name': 'CommonFormModalComponent', 'selector': 'app-common-form-modal'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesComponent', 'selector': 'app-companies'},{'name': 'CompaniesDetailsComponent', 'selector': 'app-companies-details'},{'name': 'CompaniesGridComponent', 'selector': 'app-companies-grid'},{'name': 'CompaniesListComponent', 'selector': 'app-companies-list'},{'name': 'CompanyReportsComponent', 'selector': 'app-company-reports'},{'name': 'CompanySettingsComponent', 'selector': 'app-company-settings'},{'name': 'ConfirmModalComponent', 'selector': 'app-confirm-modal'},{'name': 'ConnectedAppsComponent', 'selector': 'app-connected-apps'},{'name': 'ContactDetailsComponent', 'selector': 'app-contact-details'},{'name': 'ContactGridComponent', 'selector': 'app-contact-grid'},{'name': 'ContactListComponent', 'selector': 'app-contact-list'},{'name': 'ContactMessagesComponent', 'selector': 'app-contact-messages'},{'name': 'ContactReportsComponent', 'selector': 'app-contact-reports'},{'name': 'ContactsComponent', 'selector': 'app-contacts'},{'name': 'ContactStageComponent', 'selector': 'app-contact-stage'},{'name': 'ContentComponent', 'selector': 'app-content'},{'name': 'ContractsComponent', 'selector': 'app-contracts'},{'name': 'ContractsGridComponent', 'selector': 'app-contracts-grid'},{'name': 'ContractsListComponent', 'selector': 'app-contracts-list'},{'name': 'CountriesComponent', 'selector': 'app-countries'},{'name': 'CreateLevelUserComponent', 'selector': 'app-create-level-user'},{'name': 'CreditReferenceComponent', 'selector': 'app-credit-reference'},{'name': 'CronjobComponent', 'selector': 'app-cronjob'},{'name': 'CurrenciesComponent', 'selector': 'app-currencies'},{'name': 'CustomCalendarComponent', 'selector': 'app-custom-calendar'},{'name': 'CustomFieldsSettingComponent', 'selector': 'app-custom-fields-setting'},{'name': 'CustomPaginationComponent', 'selector': 'app-custom-pagination'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DatabaseBackupComponent', 'selector': 'app-database-backup'},{'name': 'DataTablesComponent', 'selector': 'app-data-tables'},{'name': 'DateRangePickerComponent', 'selector': 'app-date-range-picker'},{'name': 'DealReportsComponent', 'selector': 'app-deal-reports'},{'name': 'DealsComponent', 'selector': 'app-deals'},{'name': 'DealsDashboardComponent', 'selector': 'app-deals-dashboard'},{'name': 'DealsDetailsComponent', 'selector': 'app-deals-details'},{'name': 'DealsKanbanComponent', 'selector': 'app-deals-kanban'},{'name': 'DealsListComponent', 'selector': 'app-deals-list'},{'name': 'DeleteRequestComponent', 'selector': 'app-delete-request'},{'name': 'DomainComponent', 'selector': 'app-domain'},{'name': 'EditBlogComponent', 'selector': 'app-edit-blog'},{'name': 'EditInvoicesComponent', 'selector': 'app-edit-invoices'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'EmailComponent', 'selector': 'app-email'},{'name': 'EmailReplyComponent', 'selector': 'app-email-reply'},{'name': 'EmailSettingsComponent', 'selector': 'app-email-settings'},{'name': 'EmailVerificationComponent', 'selector': 'app-email-verification'},{'name': 'Error404Component', 'selector': 'app-error-404'},{'name': 'Error500Component', 'selector': 'app-error-500'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'EstimationListComponent', 'selector': 'app-estimation-list'},{'name': 'EstimationsComponent', 'selector': 'app-estimations'},{'name': 'EstimationsKanbanComponent', 'selector': 'app-estimations-kanban'},{'name': 'ExportDropdownComponent', 'selector': 'app-export-dropdown'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'FormBasicInputsComponent', 'selector': 'app-form-basic-inputs'},{'name': 'FormCheckboxRadiosComponent', 'selector': 'app-form-checkbox-radios'},{'name': 'FormElementsComponent', 'selector': 'app-form-elements'},{'name': 'FormFieldsComponent', 'selector': 'app-form-fields'},{'name': 'FormFileuploadComponent', 'selector': 'app-form-fileupload'},{'name': 'FormFloatingLabelsComponent', 'selector': 'app-form-floating-labels'},{'name': 'FormGridGuttersComponent', 'selector': 'app-form-grid-gutters'},{'name': 'FormHorizontalComponent', 'selector': 'app-form-horizontal'},{'name': 'FormInputGroupsComponent', 'selector': 'app-form-input-groups'},{'name': 'FormMaskComponent', 'selector': 'app-form-mask'},{'name': 'FormPickersComponent', 'selector': 'app-form-pickers'},{'name': 'FormsComponent', 'selector': 'app-forms'},{'name': 'FormSelect2Component', 'selector': 'app-form-select-2'},{'name': 'FormSelectComponent', 'selector': 'app-form-select'},{'name': 'FormValidationComponent', 'selector': 'app-form-validation'},{'name': 'FormVerticalComponent', 'selector': 'app-form-vertical'},{'name': 'FormWizardComponent', 'selector': 'app-form-wizard'},{'name': 'GdprCookiesComponent', 'selector': 'app-gdpr-cookies'},{'name': 'HandlePermissionComponent', 'selector': 'app-handle-permission'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'IconBootstrapComponent', 'selector': 'app-icon-bootstrap'},{'name': 'IconFeatherComponent', 'selector': 'app-icon-feather'},{'name': 'IconFlagComponent', 'selector': 'app-icon-flag'},{'name': 'IconFontawesomeComponent', 'selector': 'app-icon-fontawesome'},{'name': 'IconIonicComponent', 'selector': 'app-icon-ionic'},{'name': 'IconMaterialComponent', 'selector': 'app-icon-material'},{'name': 'IconPe7Component', 'selector': 'app-icon-pe7'},{'name': 'IconRemixComponent', 'selector': 'app-icon-remix'},{'name': 'IconsComponent', 'selector': 'app-icons'},{'name': 'IconSimplelineComponent', 'selector': 'app-icon-simpleline'},{'name': 'IconTablerComponent', 'selector': 'app-icon-tabler'},{'name': 'IconThemifyComponent', 'selector': 'app-icon-themify'},{'name': 'IconTypiconComponent', 'selector': 'app-icon-typicon'},{'name': 'IconWeatherComponent', 'selector': 'app-icon-weather'},{'name': 'IndustryComponent', 'selector': 'app-industry'},{'name': 'InvoiceComponent', 'selector': 'app-invoice'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceDetailsComponent', 'selector': 'app-invoice-details'},{'name': 'InvoiceGridComponent', 'selector': 'app-invoice-grid'},{'name': 'InvoiceListComponent', 'selector': 'app-invoice-list'},{'name': 'InvoicesComponent', 'selector': 'app-invoices'},{'name': 'InvoiceSettingsComponent', 'selector': 'app-invoice-settings'},{'name': 'KanbanComponent', 'selector': 'app-kanban'},{'name': 'LanguageSettingsComponent', 'selector': 'app-language-settings'},{'name': 'LanguageWebComponent', 'selector': 'app-language-web'},{'name': 'LanguageWebEditComponent', 'selector': 'app-language-web-edit'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'LeadDashboardComponent', 'selector': 'app-lead-dashboard'},{'name': 'LeadReportsComponent', 'selector': 'app-lead-reports'},{'name': 'LeadsComponent', 'selector': 'app-leads'},{'name': 'LeadsDetailsComponent', 'selector': 'app-leads-details'},{'name': 'LeadsKanbanComponent', 'selector': 'app-leads-kanban'},{'name': 'LeadsListComponent', 'selector': 'app-leads-list'},{'name': 'LeafletComponent', 'selector': 'app-leaflet'},{'name': 'LevelDefaultFieldsComponent', 'selector': 'app-level-default-fields'},{'name': 'LocalizationSettingsComponent', 'selector': 'app-localization-settings'},{'name': 'LocationsComponent', 'selector': 'app-locations'},{'name': 'LockScreenComponent', 'selector': 'app-lock-screen'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LostReasonComponent', 'selector': 'app-lost-reason'},{'name': 'ManageUsersComponent', 'selector': 'app-manage-users'},{'name': 'MapsComponent', 'selector': 'app-maps'},{'name': 'MembershipAddonsComponent', 'selector': 'app-membership-addons'},{'name': 'MembershipComponent', 'selector': 'app-membership'},{'name': 'MembershipPlansComponent', 'selector': 'app-membership-plans'},{'name': 'MembershipTransactionsComponent', 'selector': 'app-membership-transactions'},{'name': 'ModalDashboardComponent', 'selector': 'app-modal-dashboard'},{'name': 'ModuleComponent', 'selector': 'app-module'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MultiSelectDropdownComponent', 'selector': 'app-multi-select-dropdown'},{'name': 'NotesComponent', 'selector': 'app-notes'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'NotificationsSettingsComponent', 'selector': 'app-notifications-settings'},{'name': 'PackagesComponent', 'selector': 'app-packages'},{'name': 'PagesComponent', 'selector': 'app-pages'},{'name': 'PaymentGatewaysComponent', 'selector': 'app-payment-gateways'},{'name': 'PaymentsComponent', 'selector': 'app-payments'},{'name': 'PermissionsComponent', 'selector': 'app-permissions'},{'name': 'PipelineComponent', 'selector': 'app-pipeline'},{'name': 'PreferenceSettingsComponent', 'selector': 'app-preference-settings'},{'name': 'PrefixesSettingsComponent', 'selector': 'app-prefixes-settings'},{'name': 'PrimeNgComponent', 'selector': 'app-prime-ng'},{'name': 'PrintersSettingsComponent', 'selector': 'app-printers-settings'},{'name': 'ProfileSettingsComponent', 'selector': 'app-profile-settings'},{'name': 'ProjectDashboardComponent', 'selector': 'app-project-dashboard'},{'name': 'ProjectDetailsComponent', 'selector': 'app-project-details'},{'name': 'ProjectGridComponent', 'selector': 'app-project-grid'},{'name': 'ProjectListComponent', 'selector': 'app-project-list'},{'name': 'ProjectReportsComponent', 'selector': 'app-project-reports'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'ProposalsComponent', 'selector': 'app-proposals'},{'name': 'ProposalsGridComponent', 'selector': 'app-proposals-grid'},{'name': 'ProposalsListComponent', 'selector': 'app-proposals-list'},{'name': 'PurchaseTransactionComponent', 'selector': 'app-purchase-transaction'},{'name': 'RechargeComponent', 'selector': 'app-recharge'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReportsComponent', 'selector': 'app-reports'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'RoleComponent', 'selector': 'app-role'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RolesPermissionsComponent', 'selector': 'app-roles-permissions'},{'name': 'RoleUserComponent', 'selector': 'app-role-user'},{'name': 'RoleUsersComponent', 'selector': 'app-role-users'},{'name': 'SecuritySettingsComponent', 'selector': 'app-security-settings'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SideFormModalComponent', 'selector': 'app-side-form-modal'},{'name': 'SitemapComponent', 'selector': 'app-sitemap'},{'name': 'SmsGatewaysComponent', 'selector': 'app-sms-gateways'},{'name': 'SocialFeedComponent', 'selector': 'app-social-feed'},{'name': 'SourcesComponent', 'selector': 'app-sources'},{'name': 'StatesComponent', 'selector': 'app-states'},{'name': 'StorageComponent', 'selector': 'app-storage'},{'name': 'SubscriptionsComponent', 'selector': 'app-subscriptions'},{'name': 'SuccessComponent', 'selector': 'app-success'},{'name': 'SuperAdminComponent', 'selector': 'app-super-admin'},{'name': 'SystemBackupComponent', 'selector': 'app-system-backup'},{'name': 'SystemUpdateComponent', 'selector': 'app-system-update'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TablesBasicComponent', 'selector': 'app-tables-basic'},{'name': 'TaskReportsComponent', 'selector': 'app-task-reports'},{'name': 'TasksCompletedComponent', 'selector': 'app-tasks-completed'},{'name': 'TasksComponent', 'selector': 'app-tasks'},{'name': 'TasksImportantComponent', 'selector': 'app-tasks-important'},{'name': 'TaxRatesComponent', 'selector': 'app-tax-rates'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TicketDetailsComponent', 'selector': 'app-ticket-details'},{'name': 'TicketsComponent', 'selector': 'app-tickets'},{'name': 'TodoComponent', 'selector': 'app-todo'},{'name': 'TodoListComponent', 'selector': 'app-todo-list'},{'name': 'TwoStepVerificationComponent', 'selector': 'app-two-step-verification'},{'name': 'UiAccordionComponent', 'selector': 'app-ui-accordion'},{'name': 'UiAlertsComponent', 'selector': 'app-ui-alerts'},{'name': 'UiAvatarComponent', 'selector': 'app-ui-avatar'},{'name': 'UiBadgesComponent', 'selector': 'app-ui-badges'},{'name': 'UiBreadcrumbComponent', 'selector': 'app-ui-breadcrumb'},{'name': 'UiButtonsComponent', 'selector': 'app-ui-buttons'},{'name': 'UiButtonsGroupComponent', 'selector': 'app-ui-buttons-group'},{'name': 'UiCardsComponent', 'selector': 'app-ui-cards'},{'name': 'UiCarouselComponent', 'selector': 'app-ui-carousel'},{'name': 'UiClipboardComponent', 'selector': 'app-ui-clipboard'},{'name': 'UiCollapseComponent', 'selector': 'app-ui-collapse'},{'name': 'UiColorsComponent', 'selector': 'app-ui-colors'},{'name': 'UiCounterComponent', 'selector': 'app-ui-counter'},{'name': 'UiDragDropComponent', 'selector': 'app-ui-drag-drop'},{'name': 'UiDropdownsComponent', 'selector': 'app-ui-dropdowns'},{'name': 'UiGridComponent', 'selector': 'app-ui-grid'},{'name': 'UiImagesComponent', 'selector': 'app-ui-images'},{'name': 'UiLightboxComponent', 'selector': 'app-ui-lightbox'},{'name': 'UiLinksComponent', 'selector': 'app-ui-links'},{'name': 'UiListGroupComponent', 'selector': 'app-ui-list-group'},{'name': 'UiModalsComponent', 'selector': 'app-ui-modals'},{'name': 'UiNavTabsComponent', 'selector': 'app-ui-nav-tabs'},{'name': 'UiOffcanvasComponent', 'selector': 'app-ui-offcanvas'},{'name': 'UiPaginationComponent', 'selector': 'app-ui-pagination'},{'name': 'UiPlaceholdersComponent', 'selector': 'app-ui-placeholders'},{'name': 'UiPopoversComponent', 'selector': 'app-ui-popovers'},{'name': 'UiProgressComponent', 'selector': 'app-ui-progress'},{'name': 'UiRangesliderComponent', 'selector': 'app-ui-rangeslider'},{'name': 'UiRatingComponent', 'selector': 'app-ui-rating'},{'name': 'UiRibbonComponent', 'selector': 'app-ui-ribbon'},{'name': 'UiScrollbarComponent', 'selector': 'app-ui-scrollbar'},{'name': 'UiSortableComponent', 'selector': 'app-ui-sortable'},{'name': 'UiSpinnerComponent', 'selector': 'app-ui-spinner'},{'name': 'UiStickynoteComponent', 'selector': 'app-ui-stickynote'},{'name': 'UiTextEditorComponent', 'selector': 'app-ui-text-editor'},{'name': 'UiTimelineComponent', 'selector': 'app-ui-timeline'},{'name': 'UiToastsComponent', 'selector': 'app-ui-toasts'},{'name': 'UiTooltipsComponent', 'selector': 'app-ui-tooltips'},{'name': 'UiTypographyComponent', 'selector': 'app-ui-typography'},{'name': 'UiUtilitiesComponent', 'selector': 'app-ui-utilities'},{'name': 'UiVideoComponent', 'selector': 'app-ui-video'},{'name': 'UnderMaintenanceComponent', 'selector': 'app-under-maintenance'},{'name': 'UserLevelFormComponent', 'selector': 'app-user-level-form'},{'name': 'UserLevelsComponent', 'selector': 'app-user-levels'},{'name': 'VideoCallComponent', 'selector': 'app-video-call'}];
+    var DIRECTIVES = [{'name': 'ValidationDirective', 'selector': '[appValidation]'}];
+    var ACTUAL_COMPONENT = {'name': 'IconIonicComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IconIonicComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

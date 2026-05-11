@@ -1,0 +1,75 @@
+<form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="Enter role title (e.g. ADMIN)"
+        [ngClass]="{ 'is-invalid': controls['title'].touched && controls['title'].invalid }" />
+      @if (controls['title'].touched && controls['title'].errors) {
+        <div class="invalid-feedback">
+          @if (controls['title'].errors['required']) {
+            <div>Title is required</div>
+          }
+          @if (controls['title'].errors['pattern']) {
+            <div>Only alphabets and spaces allowed</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Short Name -->
+    <div class="mb-3">
+      <label class="form-label">Short Name</label>
+      <input type="text" class="form-control" formControlName="shortName" placeholder="Enter short name (e.g. ADM)"
+        [ngClass]="{ 'is-invalid': controls['shortName'].touched && controls['shortName'].invalid }" />
+      @if (controls['shortName'].touched && controls['shortName'].errors) {
+        <div class="invalid-feedback">
+          @if (controls['shortName'].errors['required']) {
+            <div>Short Name is required</div>
+          }
+          @if (controls['shortName'].errors['pattern']) {
+            <div>Only uppercase letters allowed</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Level -->
+    <div class="mb-3">
+      <label class="form-label">Level</label>
+      <input type="number" class="form-control" formControlName="level" placeholder="Enter level (e.g. 3)"
+        [ngClass]="{ 'is-invalid': controls['level'].touched && controls['level'].invalid }" />
+      @if (controls['level'].touched && controls['level'].errors) {
+        <div class="invalid-feedback">
+          @if (controls['level'].errors['required']) {
+            <div>Level is required</div>
+          }
+          @if (controls['level'].errors['pattern']) {
+            <div>Only numeric values allowed</div>
+          }
+          @if (controls['level'].errors['min']) {
+            <div>Level must be at least 1</div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Can user be created -->
+  <div class="mb-3">
+    <label class="form-label">Can user be created</label>
+    <select
+      class="form-select"
+      formControlName="canUserBeCreated"
+      [ngClass]="{ 'is-invalid': controls['canUserBeCreated'].touched && controls['canUserBeCreated'].invalid }"
+      >
+      <option [value]="true">Yes</option>
+      <option [value]="false">No</option>
+    </select>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-end">
+    <a href="javascript:void(0);" class="btn btn-light me-2" data-bs-dismiss="offcanvas">Cancel</a>
+    <button type="submit" class="btn btn-primary" [disabled]="fieldForm.invalid">{{ button }}</button>
+  </div>
+</form>
