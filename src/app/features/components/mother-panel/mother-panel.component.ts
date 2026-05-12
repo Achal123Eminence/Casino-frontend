@@ -1,189 +1,365 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DatahandlerService } from '../../../services/datahandler.service';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+  FormsModule
+} from '@angular/forms';
+
 import { RouterModule } from '@angular/router';
-import * as bootstrap from 'bootstrap';
 import Swal from 'sweetalert2';
+
+import { AuthService } from '../../../services/auth.service';
+import { DatahandlerService } from '../../../services/datahandler.service';
 
 @Component({
   selector: 'app-mother-panel',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule,FormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule
+  ],
   templateUrl: './mother-panel.component.html',
   styleUrl: './mother-panel.component.scss',
 })
-export class MotherPanelComponent {
- editForm:FormGroup
-    searchText: string = '';
-    filteredPanels:any
+export class MotherPanelComponent implements OnInit {
+
+  userForm!: FormGroup;
+
+  users: any[] = [];
 
   motherPanelList: any[] = [];
-  users:any
-  usernameName: any;
-  userObjId: any;
-  loggedinId=localStorage.getItem("loggedInUserId")
-  userData:any
-    constructor(private apiService:DatahandlerService) {
-      this.editForm = new FormGroup({
-      user_id: new FormControl('', [Validators.required]),
-      mother_panel: new FormControl('', [Validators.required])
+
+  editId: string = '';
+
+  constructor(
+    private apiService: DatahandlerService
+  ) {
+
+    this.userForm = new FormGroup({
+
+      user_id: new FormControl(
+        '123456',
+        [Validators.required]
+      ),
+
+      mother_panel: new FormControl(
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9._]+$/)
+        ]
+      )
+
     });
-    }
 
-    // You can also add methods to handle user actions, such as adding or deleting users.
-    ngOnInit() {
-      // Call the fetchUsers method when the component initializes
-      this.getUserById()
-      this.fetchUsers();
-      this.fetchMotherPanel()
-    }
+  }
 
-      fetchMotherPanel() {
-      this.apiService.getMotherPanelforuserandAdmin(this.loggedinId).subscribe(
-        (response: any) => {
-          console.log(response, 'response');
-                      this.motherPanelList = response.data;
-                      this.filteredPanels=response.data
-        },
-        (error: any) => {
-          console.error('Error fetching users:', error);
-        }
-      );
+  ngOnInit(): void {
 
-    }
+    this.fetchUsers();
 
+    this.getMotherPanels();
 
-    openEdiTPop(item:any){
-      this.usernameName=item.user_id.username
-      this.userObjId=item._id
-      this.editForm.patchValue({
-        user_id:item.user_id.username,
-        mother_panel: item.mother_panel
-      })
+  }
 
-    }
+  // =============================
+  // FETCH USERS
+  // =============================
 
- editMotherPanel() {
-  this.apiService.editMotherPanel(this.userObjId, this.editForm.value).subscribe({
-    next: (res: any) => {
-      console.log('Updated successfully:', res);
-            this.showAlert1("Updated successfully")
+  fetchUsers() {
 
+    this.apiService.getUsers().subscribe({
 
-      // // Close the modal
-      const modalEl = document.getElementById('updateModel');
-      if (modalEl) {
-        const modal = bootstrap.Modal.getInstance(modalEl); // Get existing modal instance
-        modal?.hide();
-      }
+      next: (response: any) => {
 
-      // Optional: Refresh data or emit event to parent
-      this.fetchMotherPanel(); // Or whatever method reloads your data
-    },
-    error: (err: any) => {
-      console.error('Error updating user:', err);
-      // Optional: show error message
-    }
-  });
-}
-
-
-
-      fetchUsers() {
-    this.apiService.getUsers().subscribe(
-      (response: any) => {
-        console.log(response, 'response');
         if (response && response.users) {
+
           this.users = response.users;
-        } else {
-          console.error('No users found in the response');
+
         }
+
       },
-      (error: any) => {
+
+      error: (error: any) => {
+
         console.error('Error fetching users:', error);
+
       }
-    );
+
+    });
 
   }
 
-    showAlert1(message: any) {
-      const swalWithStyle = Swal.mixin({
-        customClass: {
-          popup: 'my-custom-popup',
-        },
-      });
-      swalWithStyle.fire({
-        width: 400,
-        color: '#000',
-        icon: 'success',
-        title: message,
-        timer: 1000,
-      });
-      const customCss = `
-        .swal2-popup.my-custom-popup {
-          border: 5px solid green;
-          border-radius: 10px;
+  // =============================
+  // ADD / UPDATE
+  // =============================
+
+  onSubmit() {
+
+    if (this.userForm.invalid) {
+
+      this.userForm.markAllAsTouched();
+
+      return;
+
+    }
+
+    const payload = this.userForm.value;
+
+
+    // =============================
+    // UPDATE
+    // =============================
+
+    if (this.editId) {
+
+      this.apiService
+        .updateMotherPanel(this.editId, payload)
+        .subscribe({
+
+          next: (response: any) => {
+
+            this.showAlert1('Mother Panel Updated Successfully');
+
+            this.userForm.reset();
+
+            this.editId = '';
+
+            this.getMotherPanels();
+
+          },
+
+          error: (error: any) => {
+
+            console.error(error);
+
+            this.showAlert2('Something went wrong');
+
+          }
+
+        });
+
+    }
+
+    // =============================
+    // ADD
+    // =============================
+
+    else {
+
+      this.apiService
+        .addMotherPanel(payload)
+        .subscribe({
+
+          next: (response: any) => {
+
+            this.showAlert1('Mother Panel Added Successfully');
+
+            this.userForm.reset();
+
+            this.getMotherPanels();
+
+          },
+
+          error: (error: any) => {
+
+            console.error(error);
+
+            this.showAlert2('Something went wrong');
+
+          }
+
+        });
+
+    }
+
+  }
+
+  // =============================
+  // GET ALL
+  // =============================
+
+  getMotherPanels() {
+
+    this.apiService.getMotherPanels().subscribe({
+
+      next: (response: any) => {
+
+        if (response && response.data) {
+
+          this.motherPanelList = response.data;
+
         }
-        .swal2-styled.swal2-confirm {
-          background: green;
-          border-color:green
+
+      },
+
+      error: (error: any) => {
+
+        console.error(error);
+
       }
-      `;
-      const style = document.createElement('style');
-      style.textContent = customCss;
-      document.head.append(style);
-    }
 
-    showAlert2(message: any) {
-      const swalWithStyle = Swal.mixin({
-        customClass: {
-          popup: 'my-custom-popup',
-        },
-      });
-      swalWithStyle.fire({
-        width: 400,
-        color: '#000',
-        icon: 'error',
-        title: message,
-        timer: 1000,
-      });
-      const customCss = `
-        .swal2-popup.my-custom-popup {
-          border: 5px solid red;
-          border-radius: 10px;
-        }
-        .swal2-styled.swal2-confirm {
-          background: red;
-          border-color:red
-      }
-      `;
-      const style = document.createElement('style');
-      style.textContent = customCss;
-      document.head.append(style);
-    }
+    });
 
-
-     filterData() {
-    try {
-      const regex = new RegExp(this.searchText, 'i'); // case-insensitive
-      this.motherPanelList = this.filteredPanels.filter((panel:any) =>
-        regex.test(panel.user_id.username) || regex.test(panel.mother_panel)
-      );
-    } catch (e) {
-      // If invalid regex, show no results or all
-      this.filteredPanels = [];
-    }
   }
 
+  // =============================
+  // EDIT
+  // =============================
 
+  editMotherPanel(data: any) {
 
-   getUserById(){
-    // this.apiService.getUserByObjId(this.loggedinId).subscribe((res:any)=>{
-    //   this.userData=res.users
-    //   console.log(this.userData?.type,"userData?.type");
+    this.editId = data._id;
 
+    this.userForm.patchValue({
 
+      user_id: data?.user_id?._id,
 
-    // })
+      mother_panel: data?.mother_panel
+
+    });
+
   }
+
+  // =============================
+  // DELETE
+  // =============================
+
+  deleteMotherPanel(id: string) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to delete this Mother Panel?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes Delete',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        this.apiService
+          .deleteMotherPanel(id)
+          .subscribe({
+
+            next: (response: any) => {
+
+              this.showAlert1('Deleted Successfully');
+
+              this.getMotherPanels();
+
+            },
+
+            error: (error: any) => {
+
+              console.error(error);
+
+              this.showAlert2('Delete Failed');
+
+            }
+
+          });
+
+      }
+
+    });
+
+  }
+
+  // =============================
+  // CANCEL
+  // =============================
+
+  onCancel() {
+
+    this.userForm.reset();
+
+    this.editId = '';
+
+  }
+
+  // =============================
+  // SUCCESS ALERT
+  // =============================
+
+  showAlert1(message: any) {
+
+    const swalWithStyle = Swal.mixin({
+      customClass: {
+        popup: 'my-custom-popup',
+      },
+    });
+
+    swalWithStyle.fire({
+      width: 400,
+      color: '#000',
+      icon: 'success',
+      title: message,
+      timer: 1000,
+      showConfirmButton: false
+    });
+
+  }
+
+  // =============================
+  // ERROR ALERT
+  // =============================
+
+  showAlert2(message: any) {
+
+    const swalWithStyle = Swal.mixin({
+      customClass: {
+        popup: 'my-custom-popup',
+      },
+    });
+
+    swalWithStyle.fire({
+      width: 400,
+      color: '#000',
+      icon: 'error',
+      title: message,
+      timer: 1000,
+      showConfirmButton: false
+    });
+
+  }
+
+  // =============================
+  // BLOCK SPECIAL CHARACTER
+  // =============================
+
+  blockSpecialChars(event: KeyboardEvent): void {
+
+    const invalidChars = /[@#$%&*]/;
+
+    if (invalidChars.test(event.key)) {
+
+      event.preventDefault();
+
+    }
+
+  }
+
+  // =============================
+  // BLOCK PASTE
+  // =============================
+
+  blockPaste(event: ClipboardEvent): void {
+
+    const clipboardData =
+      event.clipboardData?.getData('text');
+
+    if (/[@#$%&*]/.test(clipboardData || '')) {
+
+      event.preventDefault();
+
+    }
+
+  }
+
 }

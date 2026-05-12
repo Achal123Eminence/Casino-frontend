@@ -1,0 +1,257 @@
+<div class="container-fluid website-page">
+
+  <!-- ====================================== -->
+  <!-- HEADER -->
+  <!-- ====================================== -->
+
+  <div class="top-header">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-8">
+        <h2 class="page-title">{{ userName }}</h2>
+
+        <nav>
+          <ol class="breadcrumb custom-breadcrumb">
+
+            <li class="breadcrumb-item">
+              <a routerLink="/home">Dashboard</a>
+            </li>
+
+            <li class="breadcrumb-item">
+              <a routerLink="/mother-panel">Mother PanelList</a>
+            </li>
+
+            <li class="breadcrumb-item active">
+              Add Website
+            </li>
+
+          </ol>
+        </nav>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ====================================== -->
+  <!-- FORM CARD -->
+  <!-- ====================================== -->
+
+  <div class="form-card">
+
+    <form [formGroup]="websiteForm">
+
+      <div class="row">
+
+        <!-- Mother Panel -->
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Mother Panel Name</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="panel_id"
+              readonly
+            >
+          </div>
+        </div>
+
+        <!-- Website Name -->
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Website Name</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="website_name"
+              placeholder="Enter Website Name"
+            >
+          </div>
+        </div>
+
+        <!-- Website URL -->
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Website Url</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="website_url"
+              placeholder="Enter Website Url"
+            >
+          </div>
+        </div>
+
+        <!-- Refresh URL -->
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Refresh EndPoint Url</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="refresh_endpoint"
+              placeholder="Enter Refresh Url"
+            >
+          </div>
+        </div>
+
+        <!-- WEBSITE LOGO -->
+
+        <div class="col-md-4 file-section">
+
+          <div class="form-group">
+
+            <label>
+              Website Logo
+              <span class="img-size">(158 × 53)</span>
+            </label>
+
+            <input
+              type="file"
+              class="form-control custom-input"
+              (change)="onFileChange($event, 'website_logo')"
+            >
+
+          </div>
+
+          <div class="form-group mt-3">
+
+            <label>Logo Variant</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="wLogoVariant"
+              placeholder="Enter Variant"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- WEB LOGIN IMAGE -->
+
+        <div class="col-md-4 file-section">
+
+          <div class="form-group">
+
+            <label>
+              Website Web Login Image
+              <span class="img-size">(250 × 408)</span>
+            </label>
+
+            <input
+              type="file"
+              class="form-control custom-input"
+              (change)="onFileChange($event, 'wLoginImageFile')"
+            >
+
+          </div>
+
+          <div class="form-group mt-3">
+
+            <label>Login Variant</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="wLoginVariant"
+              placeholder="Enter Variant"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- MOBILE LOGIN IMAGE -->
+
+        <div class="col-md-4 file-section">
+
+          <div class="form-group">
+
+            <label>
+              Website M Login Image
+              <span class="img-size">(750 × 560)</span>
+            </label>
+
+            <input
+              type="file"
+              class="form-control custom-input"
+              (change)="onFileChange($event, 'mLoginImageFile')"
+            >
+
+          </div>
+
+          <div class="form-group mt-3">
+
+            <label>Variant</label>
+
+            <input
+              type="text"
+              class="form-control custom-input"
+              formControlName="mLoginVariant"
+              placeholder="Enter Variant"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- FAVICON -->
+
+        <div class="col-md-4">
+
+          <div class="form-group">
+
+            <label>
+              Website Favicon
+              <span class="img-size">(48 × 48)</span>
+            </label>
+
+            <input
+              type="file"
+              class="form-control custom-input"
+              (change)="onFileChange($event, 'favImageFile')"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BUTTONS -->
+
+      <div class="button-section">
+
+        <button
+          type="button"
+          class="btn save-btn"
+          (click)="saveWebsite()"
+        >
+          Save
+        </button>
+
+        <button
+          type="button"
+          class="btn cancel-btn"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

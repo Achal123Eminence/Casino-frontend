@@ -1,0 +1,179 @@
+/* ========================================= */
+/* PAGE */
+/* ========================================= */
+
+.website-page{
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+.top-header{
+    background: #233b73;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+}
+
+.page-title{
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.custom-breadcrumb{
+    margin: 0;
+    background: transparent;
+}
+
+.custom-breadcrumb .breadcrumb-item{
+    color: #b8c6e3;
+    font-size: 16px;
+}
+
+.custom-breadcrumb .breadcrumb-item a{
+    color: #b8c6e3;
+    text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item.active{
+    color: #ffffff;
+}
+
+/* ========================================= */
+/* FORM CARD */
+/* ========================================= */
+
+.form-card{
+    background: #25314d;
+    border-radius: 10px;
+    padding: 30px;
+    border: 1px solid #344563;
+}
+
+/* ========================================= */
+/* LABELS */
+/* ========================================= */
+
+.form-group{
+    margin-bottom: 25px;
+}
+
+.form-group label{
+    color: #7ea0dd;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.img-size{
+    color: #ff8f8f;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* ========================================= */
+/* INPUTS */
+/* ========================================= */
+
+.custom-input{
+    background: #2d3957 !important;
+    border: 1px solid #44516f !important;
+    color: #ffffff !important;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: none !important;
+}
+
+.custom-input:focus{
+    background: #2d3957 !important;
+    border-color: #4d7cff !important;
+    color: #ffffff !important;
+}
+
+.custom-input::placeholder{
+    color: #a6b5d1;
+}
+
+/* FILE INPUT */
+
+input[type="file"].custom-input{
+    padding: 10px;
+}
+
+/* ========================================= */
+/* BUTTON SECTION */
+/* ========================================= */
+
+.button-section{
+    border-top: 1px solid #394764;
+    padding-top: 25px;
+    margin-top: 15px;
+}
+
+/* SAVE BUTTON */
+
+.save-btn{
+    background: #18d8b2;
+    border: none;
+    color: #ffffff;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.save-btn:hover{
+    background: #14c5a2;
+    color: #ffffff;
+}
+
+/* CANCEL BUTTON */
+
+.cancel-btn{
+    background: #ff8c6b;
+    border: none;
+    color: #ffffff;
+    padding: 12px 35px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cancel-btn:hover{
+    background: #f77b58;
+    color: #ffffff;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+@media(max-width: 768px){
+
+    .page-title{
+        font-size: 28px;
+    }
+
+    .form-card{
+        padding: 20px;
+    }
+
+    .button-section{
+        text-align: center;
+    }
+
+    .save-btn,
+    .cancel-btn{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+}

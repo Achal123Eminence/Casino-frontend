@@ -258,7 +258,28 @@ export const routes: Routes = [
             './features/components/mother-panel/mother-panel.component'
           ).then((m) => m.MotherPanelComponent),
       },
-      
+        {
+        path: 'client-list-b2b',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/make-changes-b2-b/make-changes-b2-b.component'
+          ).then((m) => m.MakeChangesB2BComponent),
+      },
+      //  {
+      //   path: 'add-website-b2b',
+      //   loadComponent: () =>
+      //     /**
+      //      * import function.
+      //      * @returns {*} Result.
+      //      */
+      //     import(
+      //       './features/components/add-wbdsiteb2b/add-wbdsiteb2b.component'
+      //     ).then((m) => m.AddWebsiteComponent),
+      // },
       //Application
       {
         path: 'application',

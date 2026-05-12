@@ -1,0 +1,215 @@
+/* ========================================= */
+/* PAGE BACKGROUND */
+/* ========================================= */
+
+body{
+    background: #ffffff;
+    font-family: sans-serif;
+}
+
+/* ========================================= */
+/* MAIN CARD */
+/* ========================================= */
+
+.main-card{
+    // background: #25314d;
+    border-radius: 10px;
+    // padding: 25px;
+    // border: 1px solid #344563;
+}
+
+/* ========================================= */
+/* PAGE HEADER */
+/* ========================================= */
+
+.page-header{
+    // background: #233b73;
+    border-radius: 10px;
+    padding: 25px 30px;
+    // margin-bottom: 20px;
+}
+
+.page-header h2{
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+    // margin-bottom: 10px;
+}
+
+.breadcrumb{
+    margin: 0;
+    background: transparent;
+}
+
+.breadcrumb-item,
+.breadcrumb-item a{
+    color: #9eb2d8;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* ========================================= */
+/* TABLE */
+/* ========================================= */
+
+.custom-table{
+    width: 100%;
+    color: #d6e3ff;
+    border-collapse: collapse;
+    background: #25314d;
+}
+
+.custom-table thead{
+    background: #2d3957;
+}
+
+.custom-table th{
+    padding: 18px;
+    border: 1px solid #344563;
+    color: #7da7f7;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.custom-table td{
+    padding: 18px;
+    border: 1px solid #344563;
+    vertical-align: middle;
+}
+
+/* ========================================= */
+/* LOGO IMAGES */
+/* ========================================= */
+
+.table-logo{
+    width: 110px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.login-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ========================================= */
+/* BUTTONS */
+/* ========================================= */
+
+.edit-btn{
+    background: #1ee0c1;
+    border: none;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+.edit-btn:hover{
+    background: #17c8ab;
+}
+
+/* Banner Buttons */
+
+.banner-btn{
+    width: 110px;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.banner-add{
+    background: #47bfff;
+}
+
+.banner-csv{
+    background: #47bfff;
+}
+
+.banner-change{
+    background: #1ee0c1;
+}
+
+/* Body Buttons */
+
+.body-btn{
+    width: 110px;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.body-add{
+    background: #ffc107;
+    color: #000;
+}
+
+.body-view{
+    background: #1ee0c1;
+    color: #fff;
+}
+
+/* Action Buttons */
+
+.delete-btn{
+    background: #ef4452;
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.refresh-btn{
+    background: #4bbcff;
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+/* ========================================= */
+/* SEARCH + ENTRIES */
+/* ========================================= */
+
+.dataTables_length,
+.dataTables_filter{
+    color: #9fb3d9 !important;
+    margin-bottom: 20px;
+}
+
+.dataTables_length select,
+.dataTables_filter input{
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+/* ========================================= */
+/* WEBSITE URL */
+/* ========================================= */
+
+.website-url{
+    color: #7ea6f8;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.website-url:hover{
+    color: #ffffff;
+}

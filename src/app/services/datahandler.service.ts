@@ -730,8 +730,8 @@ export class DatahandlerService {
   }
 
   // getMotherPanelforuserandAdminmmmmmmmmmmmmmmmmmm
-   getMotherPanel(){
-    return this.http.get(`${this.baseUrl}/mother-panel/get?userid=""`);
+   getMotherPanels(){
+    return this.http.get(`${this.baseUrl}/b2b/get-mother-panels`);
   }
 
 
@@ -739,10 +739,10 @@ export class DatahandlerService {
     return this.http.get(`${this.baseUrl}/mother-panel/get?userid=${id}`);
   }
   getMotherPanelById(id:any){
-    return this.http.get(`${this.baseUrl}/mother-panel/get/${id}`);
+    return this.http.get(`${this.baseUrl}/b2b/get-mother-panels/${id}`);
   }
   addMotherPanel(data : any){
-    return this.http.post(`${this.baseUrl}/mother-panel/add-mother-panel`, data);
+    return this.http.post(`${this.baseUrl}/b2b/add-mother-panel`, data);
   }
   editMotherPanel(id:any,data : any){
     return this.http.put(`${this.baseUrl}/mother-panel/update-mother-panel/${id}`, data);
@@ -751,6 +751,11 @@ export class DatahandlerService {
 
   deleteMotherPanel(panelId: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/mother-panel/delete-mother-panel/${panelId}`);
+  }
+
+
+    updateMotherPanel(panelId: string, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/mother-panel/update-mother-panel/${panelId}`, data);
   }
    getUsers(){
     return this.http.get(`${this.baseUrl}/user/users`);

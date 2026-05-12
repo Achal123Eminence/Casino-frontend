@@ -2,38 +2,78 @@
 <!-- TOP FILTER + ADD SECTION -->
 <!-- ============================= -->
 
-<div class="row mb-4 align-items-end main-card">
-  
-  <!-- Select User -->
-  <div class="col-md-4">
-    <label class="form-label text-light mb-2">Select User</label>
-    <select class="form-select custom-input">
-      <option selected disabled>Select User</option>
-      <option>rezul</option>
-      <option>45sport</option>
-      <option>pottoy</option>
-    </select>
-  </div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-4 align-items-end main-card">
 
-  <!-- Website Input -->
-  <div class="col-md-5">
-    <label class="form-label text-light mb-2">Website Name</label>
-    <input
-      type="text"
-      class="form-control custom-input"
-      placeholder="Enter Website Name"
-    />
-  </div>
+    <!-- Select User -->
+    <div class="col-md-4 mb-3">
+      <label class="form-label text-light mb-2">Select User</label>
 
-  <!-- Add Button -->
-  <div class="col-md-3">
-    <button class="btn add-btn w-100">
-      <i class="fa fa-plus me-2"></i>
-      Add Website
-    </button>
-  </div>
+      <select
+        class="form-select custom-input"
+        formControlName="user_id"
+      >
+        <option value="">Select User</option>
 
-</div>
+        <option
+          *ngFor="let user of users"
+          [value]="user._id"
+        >
+          {{ user.userName }}
+        </option>
+      </select>
+
+      <div
+        class="text-danger mt-1"
+        *ngIf="userForm.get('user_id')?.touched && userForm.get('user_id')?.invalid"
+      >
+        Please select user
+      </div>
+    </div>
+
+    <!-- Website Input -->
+    <div class="col-md-5 mb-3">
+      <label class="form-label text-light mb-2">
+        Mother Panel
+      </label>
+
+      <input
+        type="text"
+        class="form-control custom-input"
+        placeholder="Enter Mother Panel"
+        formControlName="mother_panel"
+        (keypress)="blockSpecialChars($event)"
+        (paste)="blockPaste($event)"
+      />
+
+      <div
+        class="text-danger mt-1"
+        *ngIf="userForm.get('mother_panel')?.touched && userForm.get('mother_panel')?.errors?.['required']"
+      >
+        Mother Panel is required
+      </div>
+
+      <div
+        class="text-danger mt-1"
+        *ngIf="userForm.get('mother_panel')?.touched && userForm.get('mother_panel')?.errors?.['pattern']"
+      >
+        Only letters, numbers, dot(.) and underscore(_) allowed
+      </div>
+    </div>
+
+    <!-- Add Button -->
+    <div class="col-md-3 mb-3">
+      <button
+        type="submit"
+        class="btn add-btn w-100"
+      >
+        <i class="fa fa-plus me-2"></i>
+        Add Mother Panel
+      </button>
+    </div>
+
+  </div>
+</form>
 
 
 
@@ -43,6 +83,7 @@
 
 <div class="table-responsive">
   <table class="table custom-table align-middle">
+
     <thead>
       <tr>
         <th>Sr.No</th>
@@ -56,62 +97,63 @@
 
     <tbody>
 
-      <tr>
-        <td>1</td>
-        <td>rezul</td>
-        <td>Bets3.in</td>
+      <tr *ngFor="let item of motherPanelList; let i = index">
+
+        <td>{{ i + 1 }}</td>
 
         <td>
-          <button class="btn website-btn">
+          {{ item?.user_id?.userName }}
+        </td>
+
+        <td>
+          {{ item?.mother_panel }}
+        </td>
+
+        <td>
+          <button
+            routerLink="/add-website-b2b"
+            class="btn website-btn"
+          >
             Add Website
           </button>
         </td>
 
         <td>
-          <button class="btn edit-btn">
+
+          <button
+            class="btn edit-btn me-2"
+            (click)="editMotherPanel(item)"
+          >
             <i class="fa fa-pencil"></i>
           </button>
 
-          <button class="btn delete-btn">
+          <button
+            class="btn delete-btn"
+            (click)="deleteMotherPanel(item._id)"
+          >
             <i class="fa fa-trash"></i>
           </button>
+
         </td>
 
         <td>
-          <button class="btn portfolio-btn">
+          <button
+            routerLink="/client-list-b2b"
+            class="btn portfolio-btn"
+          >
             Make Changes
           </button>
         </td>
+
       </tr>
 
-      <tr>
-        <td>2</td>
-        <td>45sport</td>
-        <td>45sport</td>
-
-        <td>
-          <button class="btn website-btn">
-            Add Website
-          </button>
-        </td>
-
-        <td>
-          <button class="btn edit-btn">
-            <i class="fa fa-pencil"></i>
-          </button>
-
-          <button class="btn delete-btn">
-            <i class="fa fa-trash"></i>
-          </button>
-        </td>
-
-        <td>
-          <button class="btn portfolio-btn">
-            Make Changes
-          </button>
+      <tr *ngIf="motherPanelList?.length == 0">
+        <td colspan="6" class="text-center text-light py-4">
+          No Data Found
         </td>
       </tr>
 
     </tbody>
+
   </table>
 </div>
