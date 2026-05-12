@@ -1,0 +1,120 @@
+
+/* ============================= */
+/* INPUTS */
+/* ============================= */
+.main-card{
+  padding: 2rem;
+}
+.custom-input{
+    // background: #25314d;
+    border: 1px solid #344563;
+    color: #000;
+    height: 48px;
+}
+
+.custom-input:focus{
+    // background: #25314d;
+    border-color: #4c4f54;
+    color: #000;
+    box-shadow: none;
+}
+
+.custom-input::placeholder{
+    color: #eaecf1;
+}
+
+/* ============================= */
+/* ADD BUTTON */
+/* ============================= */
+
+.add-btn{
+    height: 48px;
+    background: #00d4aa;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.add-btn:hover{
+    background: #00bc96;
+    color: #fff;
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
+.custom-table{
+    background: #25314d;
+    color: #000;
+    border: 1px solid #344563;
+}
+
+.custom-table thead{
+    background: #2c3958;
+}
+
+.custom-table th{
+    padding: 18px;
+    border-color: #344563;
+    color: #000;
+    font-weight: 600;
+}
+
+.custom-table td{
+    padding: 22px 18px;
+    border-color: #344563;
+    vertical-align: middle;
+}
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+.website-btn{
+    border: 1px solid #0d6efd;
+    color: #2ea0ff;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.website-btn:hover{
+    background: #0d6efd;
+    color: #fff;
+}
+
+.edit-btn{
+    background: #4e73ff;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.delete-btn{
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.portfolio-btn{
+    background: #14d8b4;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.portfolio-btn:hover{
+    background: #11c5a3;
+    color: #fff;
+}

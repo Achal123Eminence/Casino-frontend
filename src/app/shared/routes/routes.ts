@@ -278,6 +278,7 @@ export const routes={
   casinoProvider: '/casino-provider',
   casinoCategoryList: '/casino-category-list',
   casinoImages: '/casino-Images',
+  b2bImages:"/b2b-Images",
   modules: '/modules/0',
   roles: '/roles',
   changeDesigns: '/change-designs',

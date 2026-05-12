@@ -728,4 +728,32 @@ export class DatahandlerService {
   updateCasinoGameDetails(data: any,id: any) {
     return this.http.post(`${this.baseUrl}/image/update/${id}`, data);
   }
+
+  // getMotherPanelforuserandAdminmmmmmmmmmmmmmmmmmm
+   getMotherPanel(){
+    return this.http.get(`${this.baseUrl}/mother-panel/get?userid=""`);
+  }
+
+
+    getMotherPanelforuserandAdmin(id:any){
+    return this.http.get(`${this.baseUrl}/mother-panel/get?userid=${id}`);
+  }
+  getMotherPanelById(id:any){
+    return this.http.get(`${this.baseUrl}/mother-panel/get/${id}`);
+  }
+  addMotherPanel(data : any){
+    return this.http.post(`${this.baseUrl}/mother-panel/add-mother-panel`, data);
+  }
+  editMotherPanel(id:any,data : any){
+    return this.http.put(`${this.baseUrl}/mother-panel/update-mother-panel/${id}`, data);
+  }
+
+
+  deleteMotherPanel(panelId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/mother-panel/delete-mother-panel/${panelId}`);
+  }
+   getUsers(){
+    return this.http.get(`${this.baseUrl}/user/users`);
+
+  }
 }

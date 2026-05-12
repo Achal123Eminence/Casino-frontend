@@ -235,6 +235,30 @@ export const routes: Routes = [
             './features/components/images/images.component'
           ).then((m) => m.ImagesComponent),
       },
+
+      {
+        path: 'b2b-Images',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/b2-b-images/b2-b-images.component'
+          ).then((m) => m.B2BIMAGESComponent),
+      },
+      {
+        path: 'mother-panel',
+        loadComponent: () =>
+          /**
+           * import function.
+           * @returns {*} Result.
+           */
+          import(
+            './features/components/mother-panel/mother-panel.component'
+          ).then((m) => m.MotherPanelComponent),
+      },
+      
       //Application
       {
         path: 'application',

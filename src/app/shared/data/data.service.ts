@@ -762,7 +762,16 @@ export class DataService {
           hasSubRoute: false,
           showSubRoute: false,
           permissionKey: 'CASINOIMAGES',
-        },          
+        },
+      {
+          menuValue: 'B2B Images',
+          icon: 'layout',
+          route: routes.b2bImages,
+          base: 'b2b-Images',
+          hasSubRoute: false,
+          showSubRoute: false,
+          permissionKey: 'B2BIMG',
+        },
       ],
     },
     {
@@ -2707,5 +2716,5 @@ export class DataService {
         payload
       );
     }
-    
+
   }
