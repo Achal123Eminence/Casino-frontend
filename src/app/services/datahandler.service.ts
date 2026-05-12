@@ -716,4 +716,16 @@ export class DatahandlerService {
   casinoAddImages(data: any) {
     return this.http.post(`${this.baseUrl}/image/upload`, data);
   };
+  getCasinoImages(data: any = {}) {
+    return this.http.post(`${this.baseUrl}/image/get-images`,data);
+  }
+  updateCasinoImagesStatus(data: any,id: any) {
+    return this.http.post(`${this.baseUrl}/image/update-fav-img/${id}`,data);
+  }
+  deleteCasinoImages(data: any,id: any){
+    return this.http.post(`${this.baseUrl}/image/delete-image/${id}`,data);
+  }
+  updateCasinoGameDetails(data: any,id: any) {
+    return this.http.post(`${this.baseUrl}/image/update/${id}`, data);
+  }
 }

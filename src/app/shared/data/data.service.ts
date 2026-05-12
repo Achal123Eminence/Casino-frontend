@@ -755,7 +755,7 @@ export class DataService {
           permissionKey: 'CASINOPROVIDER',
         },
         {
-          menuValue: 'Images',
+          menuValue: 'Baajiwala Images',
           icon: 'layout',
           route: routes.casinoImages,
           base: 'casino-images',
